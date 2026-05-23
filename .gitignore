@@ -1,0 +1,12 @@
+hk-tree-labeler/.runtime/
+hk-tree-labeler/backend/.venv/
+hk-tree-labeler/frontend/node_modules/
+hk-tree-labeler/frontend/dist/
+**/node_modules/
+**/__pycache__/
+*.pyc
+*.log
+dataset/
+streetview-dl/
+temp/
+选取树种/
