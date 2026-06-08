@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import torch
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QInputDialog, QMessageBox, QLabel, \
     QListWidgetItem, QDialog, QMenu, QAbstractItemView, QProgressBar, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, \
     QCheckBox, QListWidget, QFrame, QWidget
@@ -10,7 +11,6 @@ from main_dataset_tool import DatasetToolWindow
 import cv2
 import numpy as np
 from PIL import Image
-import torch
 try:
     from ui.author_info import AuthorInfoDialog
 except ImportError:
@@ -1026,7 +1026,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.current_image_path = None
         self.current_dir = None
         self.class_list = []
-        self.current_format = "json"
+        self.current_format = os.environ.get("LABELPAW_DEFAULT_FORMAT", "json").strip().lower()
+        if self.current_format not in {"json", "yolo", "xml"}:
+            self.current_format = "json"
         self.yolo_filtered_class_ids = []
 
         self.modeLabel = QLabel("模式: 矩形标注")
@@ -1050,7 +1052,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._init_pose_templates()
 
         self._connect_signals()
-        self._set_mode(CanvasMode.RECT)
+        self.formatWidget.set_format(self.current_format)
+        default_mode_name = os.environ.get("LABELPAW_DEFAULT_MODE", "rect").strip().lower()
+        default_mode = {
+            "rect": CanvasMode.RECT,
+            "rectangle": CanvasMode.RECT,
+            "poly": CanvasMode.POLY,
+            "polygon": CanvasMode.POLY,
+            "point": CanvasMode.POINT,
+            "rbox": CanvasMode.RBOX,
+            "obb": CanvasMode.RBOX,
+        }.get(default_mode_name, CanvasMode.RECT)
+        self._set_mode(default_mode)
         
         # 初始化模型下拉菜单
         self._init_model_selector()

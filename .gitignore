@@ -12,3 +12,5 @@ ultralytics/
 __pycache__/
 
 yolotest/
+.runtime/
+Ultralytics/
