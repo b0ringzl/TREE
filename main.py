@@ -1069,7 +1069,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._init_model_selector()
         
         # 默认加载 SAM 3
-        default_sam_key = "sam3" if "sam3" in SAM_MODEL_MAP else next(iter(SAM_MODEL_MAP), None)
+        default_sam_key = (
+            "sam2.1_hiera_tiny"
+            if "sam2.1_hiera_tiny" in SAM_MODEL_MAP
+            else next((key for key, info in SAM_MODEL_MAP.items() if info.get("type") == "sam2"), None)
+        )
+        if default_sam_key is None:
+            default_sam_key = next(iter(SAM_MODEL_MAP), None)
         if default_sam_key:
             self.on_model_selected(default_sam_key)
         else:

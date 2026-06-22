@@ -39,6 +39,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\start-labelpaw-yolo.ps1 -C
 SAM2 tiny:
 D:\TREE\LabelPaw-web-images\weights\sam_weights\sam2.1_hiera_tiny.pt
 
+SAM3:
+D:\TREE\LabelPaw-web-images\weights\sam_weights\sam3.pt
+
 YOLO11 segmentation:
 D:\TREE\LabelPaw-web-images\weights\yolo11_weights\yolo11n-seg.pt
 ```
@@ -47,16 +50,11 @@ D:\TREE\LabelPaw-web-images\weights\yolo11_weights\yolo11n-seg.pt
 
 ```text
 SAM2 tiny 可加载到 CUDA
+SAM3 可加载到 CUDA
 YOLO11 segmentation 可加载，任务类型为 segment
 ```
 
-暂不使用：
-
-```text
-SAM3
-```
-
-原因：当前没有拿到 `sam3.pt` 权重。程序已调整为没有 SAM3 权重时不默认选择 SAM3。
+默认启动时优先加载 SAM2 tiny。SAM3 已可用，但不会作为默认启动模型，避免每次启动都加载 3GB 以上的大模型。
 
 ## 3. 图片目录准备
 
@@ -140,6 +138,7 @@ Ctrl+Z / Ctrl+Y：撤销 / 重做
 
 ```text
 sam2.1_hiera_tiny
+sam3
 ```
 
 使用建议：
@@ -150,7 +149,9 @@ sam2.1_hiera_tiny
 4. 在目标树木上点击，SAM2 会生成候选轮廓。
 5. 如果轮廓可用，将其作为标签保存；如果不理想，继续手工多边形标注。
 
-SAM2 tiny 速度较快、显存压力小，适合先测试流程。若以后加入更大的 SAM2 权重，文件名要包含这些关键词之一：
+SAM2 tiny 速度较快、显存压力小，适合默认使用。SAM3 支持文本提示分割，但模型更大，加载和推理更吃显存。
+
+若以后加入更大的 SAM2 权重，文件名要包含这些关键词之一：
 
 ```text
 tiny
@@ -265,6 +266,16 @@ LabelPaw 只扫描这种目录名：
 ```text
 weights\yolo*_weights\
 ```
+
+### 启动后没有 SAM3
+
+检查文件是否存在：
+
+```text
+D:\TREE\LabelPaw-web-images\weights\sam_weights\sam3.pt
+```
+
+SAM3 权重较大，建议保留文件名 `sam3.pt`，这样 LabelPaw 会识别为 SAM3 模型。
 
 ### SAM2 点击后没结果或报错
 
