@@ -1,6 +1,7 @@
 import os
 import cv2
 import numpy as np
+import torch
 from PySide6.QtGui import QImage, QPolygonF
 from PySide6.QtCore import QPointF, QRectF, QThread, Signal
 from ultralytics import YOLO

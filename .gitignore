@@ -14,3 +14,4 @@ __pycache__/
 yolotest/
 .runtime/
 Ultralytics/
+weights/

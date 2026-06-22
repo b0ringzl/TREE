@@ -9,12 +9,6 @@ from PIL import Image
 import os
 
 try:
-    from sam3.model_builder import build_sam3_image_model
-    from sam3.model.sam3_image_processor import Sam3Processor
-except ImportError:
-    pass
-
-try:
     from sam2.build_sam import build_sam2
     from sam2.sam2_image_predictor import SAM2ImagePredictor
 except ImportError:
@@ -32,7 +26,7 @@ import sys
 if getattr(sys, 'frozen', False):
     PROJECT_ROOT = os.path.dirname(sys.executable)
 else:
-    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 LOCAL_WEIGHTS_DIR = os.path.join(PROJECT_ROOT, "weights")
 HARDCODED_DEV_DIR = r"E:\11-AI\标注工具\weights"
@@ -105,6 +99,9 @@ class Sam3ModelLoadWorker(QThread):
 
     def run(self):
         try:
+            from sam3.model_builder import build_sam3_image_model
+            from sam3.model.sam3_image_processor import Sam3Processor
+
             model = build_sam3_image_model(checkpoint_path=self.checkpoint_path, enable_inst_interactivity=True)
             model.to("cuda")
             processor = Sam3Processor(model)

@@ -1069,7 +1069,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._init_model_selector()
         
         # 默认加载 SAM 3
-        self.on_model_selected("sam3")
+        default_sam_key = "sam3" if "sam3" in SAM_MODEL_MAP else next(iter(SAM_MODEL_MAP), None)
+        if default_sam_key:
+            self.on_model_selected(default_sam_key)
+        else:
+            self.update_model_status(False, "未找到 SAM 权重；可继续手动标注或选择 YOLO 模型")
         
         self.yolo_worker = None
 
