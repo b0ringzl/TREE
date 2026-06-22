@@ -325,3 +325,102 @@ codex/network-image-labelpaw-setup
 ```
 
 权重文件在 `.gitignore` 中被忽略，不会提交到 git。
+
+## 13. 导出 156 类 YOLO 训练集
+
+标注时可以逐个打开树种文件夹，例如：
+
+```text
+D:\TREE\选取树种\Acacia auriculiformis
+D:\TREE\选取树种\Acacia confusa
+```
+
+每个树种文件夹内的标签可以只使用该树种作为本地类别。导出训练集时，脚本会按文件夹名自动生成全局 156 类，并把每个标签文件第一列 `class_id` 重写为全局类别 ID。
+
+一键导出：
+
+```text
+D:\TREE\LabelPaw-web-images\export-species-yolo-dataset.bat
+```
+
+默认输入目录：
+
+```text
+D:\TREE\选取树种
+```
+
+默认输出目录：
+
+```text
+D:\TREE\models\web_tree_species_seg_dataset_v1
+```
+
+也可以手动运行：
+
+```powershell
+cd /d D:\TREE\LabelPaw-web-images
+C:\Users\57680\.conda\envs\yolo\python.exe export_species_yolo_dataset.py `
+  --species-root D:\TREE\选取树种 `
+  --output D:\TREE\models\web_tree_species_seg_dataset_v1 `
+  --overwrite
+```
+
+导出后的结构：
+
+```text
+D:\TREE\models\web_tree_species_seg_dataset_v1\
+  data.yaml
+  classes.txt
+  class_to_idx.json
+  manifest.csv
+  export_report.json
+  warnings.txt
+  images\
+    train\
+    val\
+    test\
+  labels\
+    train\
+    val\
+    test\
+```
+
+导出后的图片不再按树种分文件夹，而是混合放入 `images/train`、`images/val`、`images/test`。树种由标签文件里的全局 `class_id` 区分。
+
+### 导出命名规则
+
+导出脚本会自动避免不同树种的同名图片冲突。命名规则是：
+
+```text
+全局序号__树种安全名__原文件名安全短名__原路径短哈希.jpg
+全局序号__树种安全名__原文件名安全短名__原路径短哈希.txt
+```
+
+示例：
+
+```text
+000000__Acacia_auriculiformis__image_001__b82a776461.jpg
+000000__Acacia_auriculiformis__image_001__b82a776461.txt
+
+000001__Acacia_confusa__image_001__992a777683.jpg
+000001__Acacia_confusa__image_001__992a777683.txt
+```
+
+即使两个树种文件夹里都有 `image_001.jpg`，导出后也不会覆盖或错配。
+
+### 导出注意事项
+
+导出脚本只导出有同名 `.txt` 标签的图片。例如：
+
+```text
+image_001.jpg
+image_001.txt
+```
+
+如果图片没有对应 `.txt`，会被跳过，并记录到：
+
+```text
+warnings.txt
+```
+
+如果标签行不是 YOLO segmentation 多边形格式，也会跳过并记录警告。
