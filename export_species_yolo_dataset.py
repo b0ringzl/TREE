@@ -1,6 +1,6 @@
 """Export per-species LabelPaw annotations to one YOLO dataset.
 
-The source layout is expected to be:
+Supported source layouts:
 
     species_root/
       Species A/
@@ -9,6 +9,14 @@ The source layout is expected to be:
       Species B/
         image_001.jpg
         image_001.txt
+
+or:
+
+    species_root/
+      Species A/
+        images/
+          image_001.jpg
+          image_001.txt
 
 Each source folder is treated as one species class. Source label class ids are
 rewritten to the global class id derived from the species folder name.
@@ -125,12 +133,31 @@ def parse_and_remap_label(label_path: Path, class_id: int) -> tuple[list[str], l
     return output_lines, warnings
 
 
+def iter_species_image_paths(species_dir: Path) -> tuple[Path, list[Path], str]:
+    """Return the image folder and image files for one species directory."""
+    nested_images_dir = species_dir / "images"
+    image_dir = nested_images_dir if nested_images_dir.is_dir() else species_dir
+    image_paths = sorted(
+        [path for path in image_dir.iterdir() if path.is_file() and path.suffix.lower() in IMAGE_EXTS],
+        key=lambda path: path.name.lower(),
+    )
+    layout = "nested_images" if image_dir == nested_images_dir else "flat"
+    return image_dir, image_paths, layout
+
+
 def collect_items(
     species_root: Path,
     val_fraction: float,
     test_fraction: float,
 ) -> tuple[list[ExportItem], list[str], list[str]]:
-    species_dirs = sorted([path for path in species_root.iterdir() if path.is_dir()], key=lambda path: path.name.lower())
+    species_dirs = sorted(
+        [
+            path
+            for path in species_root.iterdir()
+            if path.is_dir() and path.name not in {"duplicate_photo_review"}
+        ],
+        key=lambda path: path.name.lower(),
+    )
     classes = [path.name for path in species_dirs]
     class_to_idx = {name: index for index, name in enumerate(classes)}
 
@@ -138,14 +165,16 @@ def collect_items(
     warnings: list[str] = []
 
     for species_dir in species_dirs:
-        image_paths = sorted(
-            [path for path in species_dir.iterdir() if path.is_file() and path.suffix.lower() in IMAGE_EXTS],
-            key=lambda path: path.name.lower(),
-        )
+        image_dir, image_paths, layout = iter_species_image_paths(species_dir)
+        if not image_paths:
+            warnings.append(f"{species_dir.name}: no images found in {image_dir} ({layout})")
+            continue
         labeled_images = [path for path in image_paths if path.with_suffix(".txt").exists()]
         missing_count = len(image_paths) - len(labeled_images)
         if missing_count:
-            warnings.append(f"{species_dir.name}: skipped {missing_count} images without matching .txt labels")
+            warnings.append(
+                f"{species_dir.name}: skipped {missing_count} images without matching .txt labels in {image_dir}"
+            )
 
         split_map = split_species_items(labeled_images, val_fraction, test_fraction)
         for image_path in labeled_images:
@@ -284,7 +313,7 @@ def export_dataset(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Export per-species LabelPaw labels to one YOLO segmentation dataset.")
-    parser.add_argument("--species-root", type=Path, default=Path(r"D:\TREE\选取树种"))
+    parser.add_argument("--species-root", type=Path, default=Path(r"D:\TREE\external_datasets\inat_max150"))
     parser.add_argument("--output", type=Path, default=Path(r"D:\TREE\models\web_tree_species_seg_dataset_v1"))
     parser.add_argument("--val-fraction", type=float, default=0.15)
     parser.add_argument("--test-fraction", type=float, default=0.05)

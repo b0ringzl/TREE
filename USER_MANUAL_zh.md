@@ -326,13 +326,67 @@ codex/network-image-labelpaw-setup
 
 权重文件在 `.gitignore` 中被忽略，不会提交到 git。
 
-## 13. 导出 156 类 YOLO 训练集
+## 13. 使用 `inat_max150` 作为标注来源
+
+如果从 iNaturalist 批量图片开始标注，推荐使用：
+
+```text
+D:\TREE\external_datasets\inat_max150
+```
+
+这个目录的结构是：
+
+```text
+D:\TREE\external_datasets\inat_max150\
+  Acacia auriculiformis\
+    images\
+      001_inat_photo_664817789.jpg
+      002_inat_photo_664817829.jpg
+    metadata.jsonl
+  Acacia confusa\
+    images\
+      ...
+    metadata.jsonl
+```
+
+LabelPaw 打开目录时不会递归读取子目录，所以标注时应选择具体树种下的 `images` 目录，例如：
+
+```text
+D:\TREE\external_datasets\inat_max150\Acacia auriculiformis\images
+```
+
+不要直接选择：
+
+```text
+D:\TREE\external_datasets\inat_max150
+D:\TREE\external_datasets\inat_max150\Acacia auriculiformis
+```
+
+保存后，标签会生成在同一个 `images` 目录里：
+
+```text
+001_inat_photo_664817789.jpg
+001_inat_photo_664817789.txt
+```
+
+导出脚本已经支持这种 `树种\images\图片` 结构，会自动根据上一级树种文件夹名生成全局类别 ID。
+
+一键导出默认使用：
+
+```text
+输入：D:\TREE\external_datasets\inat_max150
+输出：D:\TREE\models\web_tree_species_seg_dataset_v1
+```
+
+也就是说，你可以放心从 `inat_max150` 开始标注；标注时打开每个树种的 `images` 子目录，训练前再运行导出脚本。
+
+## 14. 导出 156 类 YOLO 训练集
 
 标注时可以逐个打开树种文件夹，例如：
 
 ```text
-D:\TREE\选取树种\Acacia auriculiformis
-D:\TREE\选取树种\Acacia confusa
+D:\TREE\external_datasets\inat_max150\Acacia auriculiformis\images
+D:\TREE\external_datasets\inat_max150\Acacia confusa\images
 ```
 
 每个树种文件夹内的标签可以只使用该树种作为本地类别。导出训练集时，脚本会按文件夹名自动生成全局 156 类，并把每个标签文件第一列 `class_id` 重写为全局类别 ID。
@@ -346,7 +400,7 @@ D:\TREE\LabelPaw-web-images\export-species-yolo-dataset.bat
 默认输入目录：
 
 ```text
-D:\TREE\选取树种
+D:\TREE\external_datasets\inat_max150
 ```
 
 默认输出目录：
@@ -360,7 +414,7 @@ D:\TREE\models\web_tree_species_seg_dataset_v1
 ```powershell
 cd /d D:\TREE\LabelPaw-web-images
 C:\Users\57680\.conda\envs\yolo\python.exe export_species_yolo_dataset.py `
-  --species-root D:\TREE\选取树种 `
+  --species-root D:\TREE\external_datasets\inat_max150 `
   --output D:\TREE\models\web_tree_species_seg_dataset_v1 `
   --overwrite
 ```
