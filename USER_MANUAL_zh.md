@@ -380,7 +380,7 @@ D:\TREE\external_datasets\inat_max150\Acacia auriculiformis
 
 也就是说，你可以放心从 `inat_max150` 开始标注；标注时打开每个树种的 `images` 子目录，训练前再运行导出脚本。
 
-## 14. 导出 156 类 YOLO 训练集
+## 14. 导出项目树种 YOLO 训练集
 
 标注时可以逐个打开树种文件夹，例如：
 
@@ -409,12 +409,28 @@ D:\TREE\external_datasets\inat_max150
 D:\TREE\models\web_tree_species_seg_dataset_v1
 ```
 
+默认类别目录：
+
+```text
+D:\TREE\选取树种
+```
+
+默认合并表：
+
+```text
+D:\TREE\tools\tree_species_label_merge_map.csv
+```
+
+导出时会以 `D:\TREE\选取树种` 的文件夹列表作为最终训练类别表，并用合并表把旧来源目录映射到当前项目类别。比如 `Bridelia insulana` 和 `Bridelia tomentosa` 都会导出为 `Bridelia tomentosa(Bridelia insulana)`。因此即使 `D:\TREE\external_datasets\inat_max150` 里还保留两个旧来源文件夹，最终 `classes.txt` 和 `data.yaml` 里也只会有合并后的一个类别。
+
 也可以手动运行：
 
 ```powershell
 cd /d D:\TREE\LabelPaw-web-images
 C:\Users\57680\.conda\envs\yolo\python.exe export_species_yolo_dataset.py `
   --species-root D:\TREE\external_datasets\inat_max150 `
+  --class-root D:\TREE\选取树种 `
+  --merge-map D:\TREE\tools\tree_species_label_merge_map.csv `
   --output D:\TREE\models\web_tree_species_seg_dataset_v1 `
   --overwrite
 ```
