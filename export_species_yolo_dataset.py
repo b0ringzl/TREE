@@ -88,7 +88,7 @@ def load_class_names(class_root: Path | None) -> list[str]:
     return [path.name for path in iter_species_dirs(class_root)]
 
 
-def load_species_merge_map(merge_map_path: Path | None, allowed_labels: set[str] | None) -> dict[str, str]:
+def load_species_merge_map(merge_map_path: Path | None) -> dict[str, str]:
     if merge_map_path is None or not merge_map_path.exists():
         return {}
 
@@ -99,8 +99,6 @@ def load_species_merge_map(merge_map_path: Path | None, allowed_labels: set[str]
             source = (row.get("original_species") or "").strip()
             label = (row.get("label_species") or "").strip()
             if not source or not label:
-                continue
-            if allowed_labels is not None and label not in allowed_labels:
                 continue
             merge_map[source] = label
     return merge_map
@@ -199,11 +197,12 @@ def collect_items(
     merge_map_path: Path | None = DEFAULT_MERGE_MAP,
 ) -> tuple[list[ExportItem], list[str], list[str]]:
     species_dirs = iter_species_dirs(species_root)
-    classes = load_class_names(class_root)
-    allowed_labels = set(classes) if classes else None
-    merge_map = load_species_merge_map(merge_map_path, allowed_labels)
+    raw_classes = load_class_names(class_root)
+    merge_map = load_species_merge_map(merge_map_path)
 
-    if not classes:
+    if raw_classes:
+        classes = sorted({normalize_species_name(name, merge_map) for name in raw_classes}, key=str.lower)
+    else:
         classes = sorted({normalize_species_name(path.name, merge_map) for path in species_dirs}, key=str.lower)
     class_to_idx = {name: index for index, name in enumerate(classes)}
 
