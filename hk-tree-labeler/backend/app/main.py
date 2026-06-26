@@ -4,10 +4,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from .config import TEMP_DIR, ensure_runtime_dirs
+from .config import DATASET_DIR, TEMP_DIR, ensure_runtime_dirs, google_maps_api_key_source
 from .data_access import list_species, read_traits_text
-from .schemas import RejectRequest, StartTaskRequest, SubmitRequest
+from .prebox_predictor import predict_preboxes
+from .schemas import ApiKeyRequest, RejectRequest, StartTaskRequest, SubmitRequest
 from .task_manager import manager
+from .tree_segmenter import predict_tree_segments
 
 ensure_runtime_dirs()
 
@@ -20,6 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.mount("/temp", StaticFiles(directory=str(TEMP_DIR)), name="temp")
+app.mount("/dataset", StaticFiles(directory=str(DATASET_DIR)), name="dataset")
 
 
 @app.middleware("http")
@@ -40,6 +43,32 @@ def get_species_traits(species: str) -> dict:
         return {"species": species, "traits": read_traits_text(species)}
     except Exception as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/config/status")
+def get_config_status() -> dict:
+    return {
+        "google_maps_api_key_available": bool(manager.client.api_key),
+        "google_maps_api_key_source": "session" if manager.client.api_key else google_maps_api_key_source(),
+        "google_maps_api_key_length": len(manager.client.api_key or ""),
+    }
+
+
+@app.post("/api/config/api-key")
+async def set_api_key(payload: ApiKeyRequest) -> dict:
+    try:
+        return await manager.configure_api_key(payload.api_key)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/api/config/validate")
+async def validate_api_key() -> dict:
+    try:
+        await manager.client.validate_api_key()
+        return {"status": "ok", "google_maps_api_key_available": True}
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.post("/api/task/start")
@@ -65,17 +94,25 @@ async def next_task() -> dict:
         "species": sample.species,
         "images": sample.images,
         "candidates": sample.candidates,
+        "tree": sample.tree,
         "warnings": sample.warnings,
     }
 
 
 @app.get("/api/task/predict")
 def predict_task(image: str) -> dict:
-    # Replace this fallback with an Ultralytics/ONNX model call when weights are available.
-    return {
-        "image": image,
-        "boxes": [],
-    }
+    try:
+        return predict_preboxes(image)
+    except Exception as exc:
+        return {"image": image, "boxes": [], "error": str(exc)}
+
+
+@app.get("/api/task/segment")
+def segment_task(image: str) -> dict:
+    try:
+        return predict_tree_segments(image)
+    except Exception as exc:
+        return {"image": image, "candidates": [], "error": str(exc)}
 
 
 @app.post("/api/task/submit")

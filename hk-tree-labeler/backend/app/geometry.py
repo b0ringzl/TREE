@@ -47,24 +47,6 @@ def fov_for_distance(distance_m: float) -> int:
     return 60
 
 
-def trunk_fov_for_distance(distance_m: float) -> int:
-    if distance_m < 10:
-        return 75
-    if distance_m < 20:
-        return 65
-    return 60
-
-
-def detail_fov_for_distance(distance_m: float) -> int:
-    if distance_m < 5:
-        return 35
-    if distance_m < 10:
-        return 40
-    if distance_m < 20:
-        return 45
-    return 50
-
-
 def offset_point(lat: float, lon: float, bearing: float, distance_m: float) -> tuple[float, float]:
     angular_distance = distance_m / EARTH_RADIUS_M
     theta = math.radians(bearing)

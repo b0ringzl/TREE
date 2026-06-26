@@ -1,5 +1,4 @@
 param(
-    [string]$ApiKey = "",
     [int]$BackendPort = 8000,
     [int]$FrontendPort = 5173
 )
@@ -13,6 +12,7 @@ $Frontend = Join-Path $Project "frontend"
 $Runtime = Join-Path $Project ".runtime"
 $SessionDir = Join-Path $Runtime ("session_" + (Get-Date -Format "yyyyMMdd_HHmmss"))
 $BrowserProfile = Join-Path $Runtime "browser-profile"
+$ApiKeyFile = Join-Path $SessionDir "google_maps_api_key.txt"
 $DatasetDir = Join-Path $Root "dataset"
 $TempDir = Join-Path $Root "temp"
 $BackendUrl = "http://127.0.0.1:$BackendPort"
@@ -115,19 +115,21 @@ function Stop-IfRunning($Process) {
     }
 }
 
-if (-not $ApiKey) {
-    $secure = Read-Host "Enter Google Maps API Key" -AsSecureString
-    $ptr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
-    try {
-        $ApiKey = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($ptr)
+function Stop-ProjectProcessOnPort([int]$Port, [string]$Label) {
+    $connection = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $connection) {
+        return
     }
-    finally {
-        [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($ptr)
+    $processId = [int]$connection.OwningProcess
+    $processInfo = Get-CimInstance Win32_Process -Filter "ProcessId = $processId" -ErrorAction SilentlyContinue
+    $commandLine = if ($processInfo) { [string]$processInfo.CommandLine } else { "" }
+    if ($commandLine -like "*$Project*" -or $commandLine -like "*uvicorn*app.main:app*" -or $commandLine -like "*vite*") {
+        Write-Host "Stopping previous $Label on port $Port (PID $processId)."
+        Stop-Process -Id $processId -Force -ErrorAction SilentlyContinue
+        Start-Sleep -Milliseconds 800
+        return
     }
-}
-
-if (-not $ApiKey) {
-    throw "API Key cannot be empty."
+    throw "Port $Port is already in use by PID $processId. Close it first or choose another port."
 }
 
 $python = Join-Path $Backend ".venv\Scripts\python.exe"
@@ -154,10 +156,17 @@ $browserProcess = $null
 $status = $null
 
 try {
+    Stop-ProjectProcessOnPort $BackendPort "backend"
+    Stop-ProjectProcessOnPort $FrontendPort "frontend"
+
     Write-Host ""
     Write-Host "Starting backend: $BackendUrl ..."
+    Write-Host "Google Maps API Key will be entered and validated in the browser UI."
     $backendArgs = "-m uvicorn app.main:app --host 127.0.0.1 --port $BackendPort"
-    $backendProcess = Start-LocalProcess $python $backendArgs $Backend @{ GOOGLE_MAPS_API_KEY = $ApiKey }
+    $backendProcess = Start-LocalProcess $python $backendArgs $Backend @{
+        GOOGLE_MAPS_API_KEY = ""
+        GOOGLE_MAPS_API_KEY_FILE = $ApiKeyFile
+    }
 
     if (-not (Wait-HttpOk "$BackendUrl/api/species/list" 45)) {
         throw "Backend startup timed out. Check whether port $BackendPort is already in use."
@@ -243,6 +252,7 @@ finally {
         $report.Add("Queued for review: $($status.queued_count)")
         $report.Add("Saved samples: $($status.reviewed_count)")
         $report.Add("Rejected samples: $($status.rejected_count)")
+        $report.Add("Skipped failed samples: $($status.failed_count)")
         $report.Add("Pending queue: $($status.pending)")
         if ($status.message) {
             $report.Add("Message: $($status.message)")
@@ -256,6 +266,16 @@ finally {
         }
         else {
             $report.Add("  - unavailable")
+        }
+        $report.Add("")
+        $report.Add("API errors/retries:")
+        if ($status.api_error_counts) {
+            foreach ($entry in ($status.api_error_counts.PSObject.Properties | Sort-Object Name)) {
+                $report.Add("  - $($entry.Name): $($entry.Value)")
+            }
+        }
+        else {
+            $report.Add("  - none recorded")
         }
     }
     else {
