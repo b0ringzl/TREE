@@ -18,6 +18,10 @@ input {
   font: inherit;
 }
 
+select {
+  font: inherit;
+}
+
 button {
   border: 1px solid #cbd8cf;
   background: #ffffff;
@@ -421,6 +425,37 @@ p {
   flex-wrap: wrap;
 }
 
+.sam-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid #dbe4df;
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.assist-toggle {
+  min-height: 32px;
+  color: #385047;
+}
+
+.assist-toggle.active {
+  color: #ffffff;
+  background: #0f766e;
+  border-color: #0f766e;
+}
+
+.sam-controls select {
+  max-width: 210px;
+  min-height: 32px;
+  border: 1px solid #cbd8cf;
+  border-radius: 6px;
+  padding: 0 8px;
+  color: #263c32;
+  background: #ffffff;
+}
+
 .report-grid {
   margin-top: 16px;
   display: grid;
@@ -669,6 +704,22 @@ p {
   background: #0b0f0d;
 }
 
+.assist-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #ffffff;
+  background: rgba(15, 118, 110, 0.92);
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
 .context-menu {
   position: absolute;
   z-index: 5;
@@ -725,6 +776,16 @@ p {
   .toolbar {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .sam-controls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .sam-controls select {
+    flex: 1 1 180px;
+    max-width: none;
   }
 
   .report-grid,

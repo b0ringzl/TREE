@@ -17,10 +17,12 @@ import {
   Play,
   Search,
   ShieldCheck,
+  Sparkles,
   Target,
   X,
 } from "lucide-react";
 import {
+  appendCandidatePolygon,
   buildFreehandPolygon,
   contextMenuHitTest,
   pixelsToPoint,
@@ -126,9 +128,12 @@ function CanvasAnnotator({
   draftPoints,
   selectedPolygon,
   selectedVertex,
+  samAssistEnabled = false,
+  samAssistBusy = false,
   onPolygonsChange,
   onDraftChange,
   onSelect,
+  onSamAssistPoint,
 }) {
   const canvasRef = useRef(null);
   const imageRef = useRef(null);
@@ -263,7 +268,7 @@ function CanvasAnnotator({
 
   function finishDraft() {
     if (draftPoints.length < 3) return;
-    const next = [{ class_id: 0, points: draftPoints }];
+    const next = [...polygons, { class_id: 0, points: draftPoints }];
     onPolygonsChange(next);
     onDraftChange([]);
     onSelect(next.length - 1, -1);
@@ -284,7 +289,7 @@ function CanvasAnnotator({
     const polygon = buildFreehandPolygon(points, canvas.width, canvas.height);
     clearPendingPress();
     if (!polygon) return true;
-    const next = [polygon];
+    const next = [...polygons, polygon];
     onPolygonsChange(next);
     onDraftChange([]);
     onSelect(next.length - 1, -1);
@@ -323,6 +328,12 @@ function CanvasAnnotator({
     }
 
     const firstPoint = pixelsToPoint(p, canvas.width, canvas.height);
+    if (samAssistEnabled && draftPoints.length === 0 && onSamAssistPoint) {
+      onSelect(-1, -1);
+      onSamAssistPoint(firstPoint);
+      return;
+    }
+
     pressRef.current = {
       active: false,
       start: p,
@@ -419,7 +430,7 @@ function CanvasAnnotator({
         width="640"
         height="640"
         className="annotator-canvas"
-        title="Click to add polygon vertices. Long-press empty space to draw a closed freehand curve. Right-click labels to delete."
+        title={samAssistEnabled ? "AI assist is enabled. Click blank crown area to request a SAM polygon." : "Click to add polygon vertices. Long-press empty space to draw a closed freehand curve. Right-click labels to delete."}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
@@ -427,6 +438,12 @@ function CanvasAnnotator({
         onDoubleClick={finishDraft}
         onContextMenu={onContextMenu}
       />
+      {samAssistBusy && (
+        <div className="assist-overlay">
+          <Loader2 className="spin" size={18} />
+          SAM
+        </div>
+      )}
       {contextMenu && (
         <div className="context-menu" style={{ left: contextMenu.x, top: contextMenu.y }}>
           <button type="button" className="context-danger" onClick={deleteContextTarget}>
@@ -772,6 +789,11 @@ function Workspace({ species, onShowResults }) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+  const [samModels, setSamModels] = useState([]);
+  const [samEnabled, setSamEnabled] = useState(false);
+  const [samModelKey, setSamModelKey] = useState("");
+  const [samMessage, setSamMessage] = useState("");
+  const [samBusyImage, setSamBusyImage] = useState(-1);
 
   const applyHistoryEntry = useCallback((entry, nextIndex) => {
     setSample(entry.sample);
@@ -822,6 +844,18 @@ function Workspace({ species, onShowResults }) {
 
   useEffect(() => {
     loadNext();
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API}/api/sam/models`)
+      .then((res) => res.json())
+      .then((data) => {
+        const models = data.models || [];
+        setSamModels(models);
+        const preferred = models.find((model) => model.type === "sam2") || models[0];
+        if (preferred) setSamModelKey(preferred.key);
+      })
+      .catch((err) => setSamMessage(`SAM models unavailable: ${err.message}`));
   }, []);
 
   function goBack() {
@@ -899,7 +933,7 @@ function Workspace({ species, onShowResults }) {
   }, [reject, selected, submit]);
 
   function updatePolygons(index, polygons) {
-    setAnnotations((current) => current.map((item, i) => (i === index ? { ...item, polygons: polygons.slice(0, 1) } : item)));
+    setAnnotations((current) => current.map((item, i) => (i === index ? { ...item, polygons } : item)));
   }
 
   function updateDraft(index, draftPoints) {
@@ -926,6 +960,45 @@ function Workspace({ species, onShowResults }) {
     setSelected({ image: 0, polygon: -1, vertex: -1 });
   }
 
+  async function requestSamAssist(index, point) {
+    if (!samEnabled || !samModelKey || samBusyImage >= 0) return;
+    const item = annotations[index];
+    if (!item) return;
+    setSamBusyImage(index);
+    setSamMessage("SAM is segmenting the clicked crown area...");
+    try {
+      const res = await fetch(`${API}/api/task/sam-segment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: item.image, model_key: samModelKey, point }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "SAM request failed");
+      if (data.error) throw new Error(data.error);
+      const candidate = data.candidates?.[0];
+      if (!candidate) throw new Error("SAM did not return a usable polygon for this point.");
+
+      const nextPolygonIndex = item.polygons.length;
+      setAnnotations((current) =>
+        current.map((entry, imageIndex) =>
+          imageIndex === index
+            ? {
+                ...entry,
+                polygons: appendCandidatePolygon(entry.polygons, candidate),
+                draftPoints: [],
+              }
+            : entry,
+        ),
+      );
+      setSelected({ image: index, polygon: nextPolygonIndex, vertex: -1 });
+      setSamMessage(`Added SAM polygon from ${candidate.model_key || samModelKey}.`);
+    } catch (err) {
+      setSamMessage(err.message);
+    } finally {
+      setSamBusyImage(-1);
+    }
+  }
+
   const keptCount = annotations.filter((item) => item.keep).length;
 
   return (
@@ -936,6 +1009,34 @@ function Workspace({ species, onShowResults }) {
           <p>{sample?.species || species}</p>
         </div>
         <div className="actions">
+          <div className="sam-controls" title="Optional SAM2/SAM3-assisted polygon generation">
+            <button
+              type="button"
+              className={samEnabled ? "assist-toggle active" : "assist-toggle"}
+              onClick={() => setSamEnabled((value) => !value)}
+              disabled={!samModels.length || busy}
+              title={samModels.length ? "Toggle SAM-assisted click segmentation" : "No SAM weights were found"}
+            >
+              <Sparkles size={18} />
+              AI Assist
+            </button>
+            <select
+              value={samModelKey}
+              onChange={(event) => setSamModelKey(event.target.value)}
+              disabled={!samModels.length || samBusyImage >= 0}
+              title="Choose SAM model"
+            >
+              {samModels.length ? (
+                samModels.map((model) => (
+                  <option key={model.key} value={model.key}>
+                    {model.display_name} {model.size_label ? `(${model.size_label})` : ""}
+                  </option>
+                ))
+              ) : (
+                <option value="">No SAM models</option>
+              )}
+            </select>
+          </div>
           <button onClick={goBack} disabled={busy || historyIndex <= 0} title="Return to the previous tree for editing">
             <ArrowLeft size={18} /> Back
           </button>
@@ -969,6 +1070,7 @@ function Workspace({ species, onShowResults }) {
       )}
 
       {status && <div className="status-line">{status}</div>}
+      {samMessage && <div className={`status-line ${samMessage.startsWith("Added") ? "neutral" : ""}`}>{samMessage}</div>}
 
       <ViewGeometryPanel shots={sample?.candidates || []} />
 
@@ -1035,9 +1137,12 @@ function Workspace({ species, onShowResults }) {
               draftPoints={item.draftPoints}
               selectedPolygon={selected.image === index ? selected.polygon : -1}
               selectedVertex={selected.image === index ? selected.vertex : -1}
+              samAssistEnabled={samEnabled && Boolean(samModelKey)}
+              samAssistBusy={samBusyImage === index}
               onPolygonsChange={(polygons) => updatePolygons(index, polygons)}
               onDraftChange={(draftPoints) => updateDraft(index, draftPoints)}
               onSelect={(polygon, vertex = -1) => setSelected({ image: index, polygon, vertex })}
+              onSamAssistPoint={(point) => requestSamAssist(index, point)}
             />
             {!item.keep && <div className="drop-overlay">Dropped from dataset</div>}
             <div className="view-meta" title="Street View sampling metadata for this image">

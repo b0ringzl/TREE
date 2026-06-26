@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildFreehandPolygon, candidatePolygons, contextMenuHitTest } from "./annotationGeometry.js";
+import { appendCandidatePolygon, buildFreehandPolygon, candidatePolygons, contextMenuHitTest } from "./annotationGeometry.js";
 
 test("buildFreehandPolygon closes a freehand path and skips dense duplicate points", () => {
   const polygon = buildFreehandPolygon(
@@ -56,5 +56,17 @@ test("candidatePolygons converts masks into ordinary editable label polygons", (
       class_id: 0,
       points: [[0.2, 0.2], [0.4, 0.2], [0.4, 0.4], [0.2, 0.4]],
     },
+  ]);
+});
+
+test("appendCandidatePolygon keeps existing labels and appends SAM candidates", () => {
+  const existing = [{ class_id: 0, points: [[0.1, 0.1], [0.2, 0.1], [0.2, 0.2], [0.1, 0.2]] }];
+  const next = appendCandidatePolygon(existing, {
+    polygon: [[0.5, 0.5], [0.7, 0.5], [0.7, 0.7], [0.5, 0.7]],
+  });
+
+  assert.deepEqual(next, [
+    { class_id: 0, points: [[0.1, 0.1], [0.2, 0.1], [0.2, 0.2], [0.1, 0.2]] },
+    { class_id: 0, points: [[0.5, 0.5], [0.7, 0.5], [0.7, 0.7], [0.5, 0.7]] },
   ]);
 });

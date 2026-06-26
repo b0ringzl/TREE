@@ -49,3 +49,17 @@ class SubmitRequest(BaseModel):
 class RejectRequest(BaseModel):
     tree_id: str
     species: str | None = None
+
+
+class SamSegmentRequest(BaseModel):
+    image: str
+    model_key: str
+    point: tuple[float, float]
+
+    @field_validator("point")
+    @classmethod
+    def validate_point(cls, point: tuple[float, float]) -> tuple[float, float]:
+        x, y = point
+        if not 0 <= x <= 1 or not 0 <= y <= 1:
+            raise ValueError("SAM point must be normalized coordinates between 0 and 1")
+        return point

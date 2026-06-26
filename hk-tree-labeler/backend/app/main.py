@@ -7,7 +7,8 @@ from fastapi.staticfiles import StaticFiles
 from .config import DATASET_DIR, TEMP_DIR, ensure_runtime_dirs, google_maps_api_key_source
 from .data_access import list_species, read_traits_text
 from .prebox_predictor import predict_preboxes
-from .schemas import ApiKeyRequest, RejectRequest, StartTaskRequest, SubmitRequest
+from .sam_assistant import discover_sam_models, predict_sam_polygon
+from .schemas import ApiKeyRequest, RejectRequest, SamSegmentRequest, StartTaskRequest, SubmitRequest
 from .task_manager import manager
 from .tree_segmenter import predict_tree_segments
 
@@ -113,6 +114,19 @@ def segment_task(image: str) -> dict:
         return predict_tree_segments(image)
     except Exception as exc:
         return {"image": image, "candidates": [], "error": str(exc)}
+
+
+@app.get("/api/sam/models")
+def sam_models() -> dict:
+    return {"models": discover_sam_models()}
+
+
+@app.post("/api/task/sam-segment")
+def sam_segment_task(payload: SamSegmentRequest) -> dict:
+    try:
+        return predict_sam_polygon(payload.image, payload.model_key, payload.point)
+    except Exception as exc:
+        return {"image": payload.image, "candidates": [], "error": str(exc)}
 
 
 @app.post("/api/task/submit")

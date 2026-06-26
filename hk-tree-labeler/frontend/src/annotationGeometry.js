@@ -53,6 +53,11 @@ export function candidatePolygons(candidates, limit = 1) {
     .slice(0, limit);
 }
 
+export function appendCandidatePolygon(polygons, candidate) {
+  const polygon = candidateToPolygon(candidate);
+  return polygon ? [...polygons, polygon] : polygons;
+}
+
 export function polygonBounds(points, width, height) {
   const pixels = polygonToPixels(points, width, height);
   if (!pixels.length) return null;

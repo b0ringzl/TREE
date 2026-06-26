@@ -50,6 +50,11 @@ YOLO_TREE_SEG_MODEL = os.getenv(
 YOLO_TREE_SEG_CONF = float(os.getenv("YOLO_TREE_SEG_CONF", "0.12"))
 YOLO_TREE_SEG_IMAGE_SIZE = int(os.getenv("YOLO_TREE_SEG_IMAGE_SIZE", "640"))
 YOLO_TREE_SEG_MAX_MASKS = int(os.getenv("YOLO_TREE_SEG_MAX_MASKS", "8"))
+SAM_PYTHON = os.getenv("SAM_PYTHON", YOLO_PYTHON)
+SAM_WEIGHTS_DIR = Path(
+    os.getenv("SAM_WEIGHTS_DIR", str(ROOT_DIR / "LabelPaw-web-images" / "weights" / "sam_weights"))
+).resolve()
+SAM_SEGMENT_TIMEOUT_SEC = int(os.getenv("SAM_SEGMENT_TIMEOUT_SEC", "180"))
 
 
 def ensure_runtime_dirs() -> None:
