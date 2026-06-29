@@ -1,0 +1,2704 @@
+
+
+## Page 1
+
+ 
+Contents lists available at ScienceDirect
+ISPRS Journal of Photogrammetry and Remote Sensing
+journal homepage: www.elsevier.com/locate/isprsjprs
+ 
+WHU-STree: A multi-modal benchmark dataset for street tree inventory
+Ruifei Ding a,1, Zhe Chen a,1, Wen Fan b
+, Chen Long a, Huijuan Xiao c, Yelu Zeng d,e, 
+Zhen Dong a
+,∗, Bisheng Yang a
+a State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan, 430079, China
+b Institute of Forest Management, TUM School of Life Sciences Weihenstephan, Technical University of Munich, Freising, 85354, Germany
+c Department of Civil and Environmental Engineering, The Hong Kong University of Science and Technology, Hong Kong Special Administrative Region of China
+d College of Land Science and Technology, China Agricultural University, Beijing, 100083, China
+e Key Laboratory of Remote Sensing for Agri-Hazards, Ministry of Agriculture and Rural Affairs, Beijing, 100083, China
+A R T I C L E  I N F O
+Keywords:
+Deep learning
+Tree inventory
+Individual tree segmentation
+Tree species classification
+Multi-modal
+Mobile mapping system
+ 
+A B S T R A C T
+Street trees are vital to urban livability, providing ecological and social benefits. Establishing a detailed, accu-
+rate, and dynamically updated street tree inventory has become essential for optimizing these multifunctional 
+assets within space-constrained urban environments. Given that traditional field surveys are time-consuming 
+and labor-intensive, automated surveys utilizing Mobile Mapping Systems (MMS) offer a more efficient 
+solution. However, existing MMS-acquired tree datasets are limited by small-scale scene, limited annotation, or 
+single modality, restricting their utility for comprehensive analysis. To address these limitations, we introduce 
+WHU-STree, a cross-city, richly annotated, and multi-modal urban street tree dataset. Collected across two 
+distinct cities, WHU-STree integrates synchronized point clouds and high-resolution images, encompassing 
+21,007 annotated tree instances across 50 species and 2 morphological parameters. Leveraging the unique 
+characteristics, WHU-STree concurrently supports over 10 tasks related to street tree inventory. We benchmark 
+representative baselines for two key tasks—tree species classification and individual tree segmentation—based 
+on 18 major species and an ‘‘Others’’ category. Extensive experiments demonstrate that while multi-modal 
+fusion yields improvements over uni-modal baselines, it currently presents performance gaps compared to 
+strong 3D-only methods, indicating that effective fusion remains a challenging open problem requiring further 
+research. In particular, we identify key challenges and outline potential future works for fully exploiting WHU-
+STree, encompassing multi-modal fusion, multi-task collaboration, cross-domain generalization, spatial pattern 
+learning, and Multi-modal Large Language Model for street tree asset management. The WHU-STree dataset is 
+accessible at: https://github.com/WHU-USI3DV/WHU-STree.
+1. Introduction
+Street trees, vital to urban ecosystems, provide ecological bene-
+fits (e.g., shade (Kumar et al., 2024), air purification (Grundström 
+and Pleijel, 2014), noise reduction (Salmond et al., 2016)) and social 
+advantages (e.g., public health promotion (Wolf et al., 2020; Pataki 
+et al., 2021), crime reduction (Troy et al., 2012), road safety en-
+hancement (Kondo et al., 2017)). The magnitude of these services is 
+intrinsically linked to specific tree attributes, including species compo-
+sition, spatial distribution, and morphological structure (Grote et al., 
+2016; Liu et al., 2023b). Consequently, maximizing these benefits 
+within the spatial constraints of modern cities necessitates a compre-
+hensive, dynamically updated street tree inventory (Seiferling et al., 
+2017). While traditional inventories conducted by trained arborists 
+∗Corresponding author.
+E-mail address: dongzhenwhu@whu.edu.cn (Z. Dong).
+1 The two authors contribute equaly to this work.
+offer high accuracy, they are labor-intensive, time-consuming, and lack 
+the scalability required for rapid urban development (Berland and 
+Lange, 2017; Alonzo et al., 2016). In response to these challenges, 
+Mobile Mapping Systems (MMS) equipped with high-resolution LiDAR 
+and cameras have emerged as the premier solution for urban asset 
+digitization (Yang et al., 2024a; Zhou et al., 2022). By simultaneously 
+acquiring dense point clouds and distinct street-view imagery, MMS 
+provides the foundational data needed for automated interpretation. 
+However, despite the hardware capabilities, the development of au-
+tomated inventory solutions based on Deep Learning (DL) is severely 
+bottlenecked by the lack of high-quality, purpose-built benchmark 
+datasets.
+https://doi.org/10.1016/j.isprsjprs.2026.02.011
+Received 31 July 2025; Received in revised form 4 February 2026; Accepted 4 February 2026
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+Available online 6 February 2026 
+0924-2716/© 2026 International Society for Photogrammetry and Remote Sensing, Inc. (ISPRS). Published by Elsevier B.V. All rights are reserved, including those 
+for text and data mining, AI training, and similar technologies. 
+
+
+## Page 2
+
+R. Ding et al.
+To identify the specific gaps hindering progress, we conducted a 
+comprehensive survey of existing related datasets, analyzing their char-
+acteristics in terms of scene coverage, data scale, data modalities, and 
+annotation granularity (summarized in Table 1). Historically, datasets 
+have predominantly focused on forest environments. Furthermore, the 
+emergence of prominent benchmarks such as For-instance (Puliti et al., 
+2023) and For-species20k (Puliti et al., 2024) have significantly ad-
+vanced the field by standardizing the tasks of tree species classification 
+and individual tree segmentation. However, due to the significant 
+discrepancies in scene complexity, viewpoint (top-down vs. street-
+level), and object density, these forestry-focused datasets hold limited 
+value for urban street tree inventory, which requires close-range per-
+ception and the handling of complex artificial backgrounds. Within 
+the urban domain, while numerous datasets cover street scenes, they 
+pay insufficient attention to tree assets (Roynard et al., 2018; Behley 
+et al., 2019; Tan et al., 2020; Han et al., 2024). Typically, trees in 
+these datasets are annotated merely as a generic semantic category, 
+lacking both instance-level delineation and critical species information. 
+Although some datasets can be utilized for tasks such as individual tree 
+segmentation (Fan et al., 2021), species classification (Choi et al., 2022; 
+Liu et al., 2023b), and morphological parameter estimation (Wu et al., 
+2013; Wang et al., 2018), their respective limitations prevent them 
+from serving as benchmarks for multi-task joint processing, resulting 
+in a fragmented investigation of urban street tree assets. To the best 
+of our knowledge, there are currently only two datasets that support 
+multi-task processing: Tree-ML (Yazdi et al., 2024) and TDUS (Yang 
+et al., 2023). However, their uni-modal nature limits their effectiveness 
+for tasks requiring multi-modal data. Tree-ML, relying on point clouds, 
+lacks image-based texture and spectral information, hindering fine-
+grained species classification (Yazdi et al., 2024). Conversely, TDUS, 
+an image-based dataset, lacks point cloud data, limiting accurate tree 
+instance localization and morphological parameter estimation (Yang 
+et al., 2023). Furthermore, these datasets, typically collected from a 
+single region, restrict cross-domain studies and hinder validation of 
+algorithm generalization and robustness. In summary, current urban 
+street tree datasets exhibit the following limitations: (1) Small-scale 
+scene, limits the assessment of algorithm generalization. (2) Limited 
+annotation, restricts their applicability for comprehensive asset inven-
+tories. (3) Single modality, hinders the exploration of complementary 
+advantages among multi-modal data.
+This fragmentation of data resources has directly impeded the rigor-
+ous evaluation and advancement of DL-based algorithms. In the realm 
+of image-based research, scholars have consistently tracked the rapid 
+advancements in general computer vision models, witnessing an archi-
+tectural evolution from Convolutional Neural Networks (CNNs) (Ocer 
+et al., 2020; Schiefer et al., 2020) to vision transformers (Dosovit-
+skiy, 2020; Amirkolaee et al., 2023), and more recently, to vision 
+foundation models such as the Segment Anything Model (SAM) (Osco 
+et al., 2023; Kirillov et al., 2023). As for point cloud analysis, it has 
+flourished through diverse paradigms, encompassing projection-based 
+methods that leverage 2D image processing (Windrim and Bryson, 
+2019; Chang et al., 2022), voxel-based representations that utilize 
+volumetric grids (Chen et al., 2021), and point-based architectures 
+that directly process raw 3D data (Liu et al., 2021). Within this con-
+text, end-to-end instance segmentation has emerged as the current 
+research frontier (Henrich et al., 2023; Xiang et al., 2024). However, 
+the most promising frontier — multi-modal fusion — remains largely 
+unexplored in urban forestry. Theoretical studies suggest that fusing 
+geometric structure from point clouds with spectral texture from im-
+ages can significantly enhance performance (Briechle et al., 2021; Liu 
+et al., 2023a). Yet, without a unified benchmark containing aligned 
+multi-modal data, researchers are forced to validate these strategies 
+on private datasets, rendering cross-method comparison impossible. 
+Moreover, the lack of comprehensive benchmarks has hindered the 
+exploration of complex challenges like multi-task collaboration. Current 
+data limitations force these naturally coupled tasks to be treated in 
+isolation, preventing the development of unified architectures capable 
+of mutual feature reinforcement. Consequently, a high-quality, stan-
+dardized benchmark is urgently needed to bridge these methodological 
+gaps and drive novel intelligent inventory solutions.
+To overcome the aforementioned limitations, we present WHU-
+STree (Fig. 1), a large-scale, multi-modal, and richly annotated bench-
+mark dataset specifically designed for urban street tree inventory. 
+Leveraging these features, the dataset supports multiple tasks simulta-
+neously, enabling comprehensive street tree inventories and facilitating 
+the development of novel task settings, such as estimating 3D tree 
+morphology from 2D images. Additionally, the dataset provides both 
+point cloud and image data, allowing for complementary advantages 
+between the two modalities, which can facilitate the exploration of 
+the relationships between multi-modal data. Furthermore, the cross-city 
+data enables the evaluation of algorithm robustness and the develop-
+ment of methods with strong generalization capabilities. Specifically, 
+the main contributions of this study are summarized as follows:
+(1) We present a multi-modal urban street tree dataset, WHU-STree, 
+which integrates both point cloud and image data across two 
+distinct cities. It contains 21,007 annotated tree instances across 
+50 species and 2 morphological parameters. Leveraging its com-
+prehensive strengths, the dataset supports a wide range of tasks 
+related to street tree inventories.
+(2) We provide detailed baselines for two tasks (i.e., tree species 
+classification and individual tree segmentation), thoroughly in-
+vestigating the performance and generalization ability of exist-
+ing algorithms. Our evaluation reveals a critical insight: while 
+multi-modal fusion offers gains over uni-modal inputs, it cur-
+rently requires further optimization to surpass strong 3D-only 
+methods.
+(3) We analyze the current challenges and opportunities from the 
+perspectives of multi-modal fusion, multi-task collaboration, 
+cross-domain generalization, spatial pattern learning, and Multi-
+modal Large Language Model (MLLM) for automated street tree 
+inventories. We hope this dataset and analysis will serve as 
+a foundational resource to foster future research in intelligent 
+urban ecosystem management.
+2. The WHU-STree dataset
+In this section, we introduce the construction process of WHU-STree 
+and analyze the characteristics of the dataset.
+2.1. Data acquisition
+We collected data in Nanjing and Shenyang to construct the dataset 
+(Fig. 2). Located approximately 970 km apart (straight-line distance) 
+and falling within distinct climate zones, the two cities differ sig-
+nificantly in tree species, morphology, and street environments. The 
+Nanjing dataset, designated as WHU-STree-NJ, was collected using the 
+Hiscan-Z MMS in 2020 and 2021. The Shenyang dataset, referred to as 
+WHU-STree-SY, was acquired in 2021 using the Alpha3D system.
+Both the Hiscan-Z and Alpha3D systems share similar configura-
+tions, integrating a laser scanner, a Global Navigation Satellite System 
+(GNSS) receiver, an Inertial Measurement Unit (IMU), and a 360◦
+panoramic camera, all synchronized by a central control module. 
+Mounted on a rigid platform for convenient vehicle installation, these 
+systems efficiently capture high-precision positioning and orientation 
+system (POS) data, dense point clouds, and high-definition panoramic 
+imagery during high-speed operation. The detailed specifications are 
+listed in Table 2. Following data acquisition, the WHU-STree-NJ dataset 
+comprises mobile mapping data covering approximately 59 km across 
+31 roads, while the WHU-STree-SY dataset covers about 7 km across 8 
+roads.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+520 
+
+
+## Page 3
+
+R. Ding et al.
+Table 1
+Existing typical dataset for tree inventory. Abbreviations are defined as follows: ALS (Airborne Laser Scanning); MLS (Mobile Laser Scanning); TLS (Terrestrial 
+Laser Scanning); ULS (Unmanned Aerial Vehicle Laser Scanning); SAR (Synthetic Aperture Radar); RGB (Red-Green-Blue).
+ Dataset
+Scene
+Quantities
+Data type
+Cross-region
+Annotation
+ 
+ 
+Point cloud
+Image
+Instances
+Species
+Parameters 
+ Pasadena Urban Trees 
+(Wegner et al., 2016)
+Urban
+80K
+–
+RGB
+✓
+18
+ 
+ Wytham woods 
+(Calders et al., 2022)
+Forest
+835
+TLS
+–
+✓
+–
+✓
+ 
+ LAUTx 
+(Andreas et al., 2022)
+Forest
+515
+MLS
+–
+✓
+–
+✓
+ 
+ SYSSIFOSS 
+(Weiser et al., 2022)
+Forest
+1491
+ALS& 
+ULS& 
+TLS
+–
+✓
+✓
+22
+✓
+ 
+ TreeSatAI 
+(Ahlswede et al., 2022)
+Forest
+–
+–
+RGB &
+SAR &
+Multispectral
+✓
+20
+ 
+ NeonTreeEvaluation 
+(Weinstein et al., 2022)
+Forest
+31K+
+ALS
+RGB & 
+Hyperspectral
+✓
+✓
+–
+ 
+ TDUS
+(Yang et al., 2023)
+Urban
+–
+–
+RGB
+✓
+✓
+50
+ 
+ Treelearn 
+(Henrich et al., 2023)
+Forest
+235
+MLS
+–
+✓
+–
+ 
+ FOR-instance 
+(Puliti et al., 2023)
+Forest
+1130
+ULS
+–
+✓
+✓
+–
+✓
+ 
+ MillionTrees
+(Weinstein, 2023)
+Forest & 
+Urban
+–
+–
+RGB
+✓
+✓
+21+
+ 
+ ForestSemantic 
+(Liang et al., 2024)
+Forest
+673
+TLS
+–
+✓
+3
+ 
+ OAM-TCD 
+(Veitch-Michaelis et al., 
+2024)
+Forest & 
+Urban
+280K+
+–
+RGB
+✓
+✓
+–
+ 
+ RT-Trees 
+(Kapil et al., 2024)
+Forest
+–
+–
+RGB-thermal
+✓
+–
+ 
+ Tree-ML 
+(Yazdi et al., 2024)
+Urban
+3755
+MLS
+–
+✓
+20+
+✓
+ 
+ FOR-spices20k 
+(Puliti et al., 2024)
+Forest
+20 158
+TLS & 
+MLS & 
+ULS
+–
+✓
+33
+ 
+ WHU-STree (Ours)
+Urban
+21 007
+MLS
+RGB
+✓
+✓
+50
+✓
+ 
+Table 2
+Parameters of the MMS equipment.
+ Parameter
+Hiscan-Z
+Alpha3D
+ 
+ Maximum scanning distance
+119 m
+420 m
+ 
+ Laser emission frequency
+1010k pts/s
+1000k pts/s  
+ Scanning frequency
+200 Hz
+250 Hz
+ 
+ Ranging accuracy
+9 mm
+5 mm
+ 
+ Panoramic camera resolution
+8192 × 4096
+8192 × 4096 
+2.2. Data processing and annotation
+Preprocessing. The raw mobile mapping dataset contains dense 
+point clouds (averaging 616 and 1377 points/m2 for Nanjing and 
+Shenyang, respectively), panoramic images, and POS data. To improve 
+annotation efficiency, preprocessing was applied. (1) Downsampling: 
+voxel-based filtering (0.05 m voxel size) was used to reduce data 
+volume. (2) Adaptive Partitioning: segments were divided at road 
+intersections rather than fixed intervals to maintain continuity of road-
+side features (e.g., avoiding tree fragmentation). (3) Outlier Removal: 
+Statistical filtering was applied to eliminate noise points, followed by 
+ground point removal using an efficient ground filtering method (Zhang 
+et al., 2016).
+Instances and species annotation. Tree instances were anno-
+tated by trained personnel. For overlapping trees with ambiguous 
+boundaries, a multi-view verification approach was adopted. Annota-
+tors simultaneously consulted the registered high-resolution panoramic 
+imagery and the 3D point cloud geometry (e.g., branching structures 
+and color differences) to strictly delineate tree crowns, ensuring each 
+instance maintained a reasonable 3D structural representation. To guar-
+antee annotation reliability, we implemented an expert-in-the-loop it-
+erative feedback mechanism, where forestry experts reviewed annota-
+tions and directed specific refinements until the segmentation met strict 
+botanical standards. Subsequently, 50 species were identified in WHU-
+STree-NJ through integrating the visual analysis of point clouds and 
+panoramic imagery with on-site field surveys. For statistical presenta-
+tion, Table 3 lists the 18 dominant species with sample sizes exceeding 
+150 instances, detailing their scientific names, counts, proportions, and 
+abbreviations used throughout this paper. The remaining less frequent 
+species are grouped as ‘‘Others’’ for brevity. By using the extrinsic 
+parameter at the moment of image exposure to register panoramic 
+images with point clouds, 3D annotations were directly projected onto 
+2D image planes, eliminating the need for separate manual annotation 
+of panoramic imagery.
+Morphological parameters calculation. Tree positions were de-
+termined by the trunk’s bottom center derived from annotated point 
+clouds. As shown in Fig. 3, tree height was derived by subtracting the 
+ground elevation (ℎ𝑔𝑟𝑜𝑢𝑛𝑑) from the maximum elevation of tree points 
+(ℎ𝑚𝑎𝑥). For diameter at breast height (DBH), following Weiser et al. 
+(2022), we estimated its value using tree point clouds to circumvent 
+time-consuming and labor-intensive field measurements. Specifically, 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+521 
+
+
+## Page 4
+
+R. Ding et al.
+Fig. 1.  Overview of the WHU-STree dataset. The left panel illustrates the dataset’s three key characteristics: (1) Cross-city coverage, featuring data collected from 
+Nanjing and Shenyang; (2) Rich annotations, including species and instances, as well as morphological parameters like Diameter at Breast Height (DBH) and Tree 
+Height (TH); and (3) Multi-modal data, comprising aligned panoramic images and point clouds. These features concurrently support the multi-task applications 
+shown in the right panel, which are categorized into basic tasks like species classification and tree segmentation across different modalities (image, point cloud, 
+multi-modal), as well as fine-grained parameter estimation (single-view and multi-view) and novel tasks (domain adaptation and multi-task collaboration).
+Table 3
+Taxonomy and quantitative distribution of tree species annotations in the 
+Nanjing subset (WHU-STree-NJ). The table lists the unique ID, Scientific Name 
+(Latin binomials), and the two-letter Abbreviation used throughout entire 
+manuscript. The Numbers and Percentage columns indicate the instance count 
+and proportion for each category.
+ ID
+Scientific name
+Abbreviation
+Numbers
+Percentage (%) 
+ 0
+Platanus ×acerifolia
+PA
+5260
+30.7
+ 
+ 1
+Cinnamomum camphora
+CC
+3935
+23.0
+ 
+ 2
+Lagerstroemia indica
+LI
+1805
+10.5
+ 
+ 3
+Osmanthus fragrans
+OF
+868
+5.1
+ 
+ 4
+Koelreuteria paniculata
+KP
+609
+3.6
+ 
+ 5
+Prunus cerasifera ‘atropurpurea’
+PC
+480
+2.8
+ 
+ 6
+Zelkova serrata
+ZS
+534
+3.1
+ 
+ 7
+Cedrus deodara
+CD
+526
+3.1
+ 
+ 8
+Ginkgo biloba
+GB
+250
+1.5
+ 
+ 9
+Acer palmatum var. atropurpureum
+AA
+180
+1.1
+ 
+ 10
+Prunus serrulata
+PS
+309
+1.8
+ 
+ 11
+Ligustrum lucidum
+LL
+339
+2.0
+ 
+ 12
+Malus ×micromalus
+MM
+328
+1.9
+ 
+ 13
+Magnolia grandiflora
+MG
+245
+1.4
+ 
+ 14
+Metasequoia glyptostroboides
+MS
+310
+1.8
+ 
+ 15
+Sophora japonica
+SJ
+166
+1.0
+ 
+ 16
+Acer pictum subsp. mono
+AM
+231
+1.3
+ 
+ 17
+Photinia × fraseri
+PF
+163
+1.0
+ 
+ 18
+–
+Others
+596
+3.5
+ 
+we first trained a classifier based on MinkNet (Choy et al., 2019) 
+using annotations from the FOR-instance (Puliti et al., 2023) dataset 
+to extract trunk segments from individual trees. Then, ellipse fitting 
+was performed to horizontally sliced trunk point clouds at 1.2–1.4 m 
+height to derive the major and minor axes, with their mean recorded 
+as DBH. For tree instances with severe point loss, field-measured DBH 
+values were incorporated instead.
+Table 4
+Detailed quantitative statistics of the proposed WHU-STree dataset, consisting 
+of two distinct subsets collected in Nanjing (WHU-STree-NJ) and Shenyang 
+(WHU-STree-SY). 
+ Datasets
+Road length (km)
+Data size (GB)
+Trees
+Species
+Images 
+ WHU-STree-NJ
+59.182
+92.9
+18 343
+50
+10 907 
+ WHU-STree-SY
+7.062
+15.3
+2664
+–
+1286  
+ Total
+66.244
+108.2
+21 007
+50
+12 193 
+2.3. Data split and statistics
+After processing, the WHU-STree dataset comprises a total of 21,007 
+individual tree instances across two cities, with annotations for 50 tree 
+species in the WHU-STree-NJ subset. Detailed quantitative information 
+is presented in Table 4. Examples of the annotated data are shown in 
+Fig. 4.
+Nanjing and Shenyang are located in distinct climatic zones, leading 
+to notable differences in street tree characteristics. We visualized the 
+distribution of morphological parameters (i.e., height and DBH) in 
+the WHU-STree dataset using violin plots, as shown in Fig. 5. WHU-
+STree-NJ exhibits broad height (predominantly 10–20 m, occasionally 
+exceeding 30 m) and DBH distributions (mostly 0.2–0.5 m), indicating 
+robust growth likely attributable to favorable climatic conditions. Con-
+versely, WHU-STree-SY shows more concentrated patterns, with heights 
+primarily between 5–15 m and DBH mostly below 0.3 m. Overall, street 
+trees in WHU-STree-NJ demonstrate a clear advantage in both height 
+and DBH, reflecting distinct differences in urban tree management and 
+environmental conditions between sub-dataset coverage zones.
+Urban trees exhibit significant spatial heterogeneity within sub-
+datasets. Planting density, individual size, and species composition 
+differ markedly between streets. As exemplified by the WHU-STree-
+NJ dataset, densities range from very sparse (less than one tree per 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+522 
+
+
+## Page 5
+
+R. Ding et al.
+Fig. 2.  Geographic overview of the data acquisition regions for WHU-STree dataset. (a) Location of Nanjing city and Shenyang city. (b) The road coverage of 
+the Shenyang subset (WHU-STree-SY). (c) The road coverage of the Nanjing subset (WHU-STree-NJ). In panels (b) and (c), the solid red lines indicate the specific 
+road segments covered by the dataset. Detailed quantitative statistics of annotations for each region are provided in Table 4.
+Fig. 3.  Illustration of tree morphological parameters calculation based on point clouds. Tree point clouds are segmented into trunk (brown) and non-trunk (green). 
+Tree Height is calculated as the vertical distance between the highest point (ℎ𝑚𝑎𝑥) and the ground (ℎ𝑔𝑟𝑜𝑢𝑛𝑑). DBH is derived from a trunk slice at 1.2–1.4 m height 
+using ellipse fitting, where the semi-major (𝑎) and semi-minor (𝑏) axes are summed (𝐷𝐵𝐻= 𝑎+ 𝑏) to estimate the diameter.
+100 m) to high (nearly one tree per meter). Planned planting typically 
+yields homogeneous species assemblages per street, resulting in rare 
+species limited to few locations while prevalent species are widely dis-
+tributed citywide. Beyond spatial distribution, notable disparities exist 
+in per-species abundance and intraspecific morphological variation, as 
+illustrated in Fig. 6.
+The extensive imbalance both across and within datasets increases 
+the complexity of analyzing street trees and places high demands on the 
+robustness and adaptability of algorithms. Nevertheless, it significantly 
+enriches the diversity of our dataset, thereby enhancing its scientific 
+value.
+Based on the dataset characteristics analyzed above, we imple-
+mented two distinct data splitting strategies. (1) Class-balanced split: 
+considering the significant impact of class distribution on classifica-
+tion tasks, we uniformly sample specific road sections to form the 
+test set. This split maintains a roughly consistent class ratio between 
+the training and test sets, ensuring a relatively balanced test setting. 
+(2) Cross-city split: in different cities, the substantial variations in 
+tree shape and size require tree segmentation algorithms to exhibit 
+robust performance and strong generalization capabilities. Thus, the 
+cross-city split is proposed for systematic evaluation of algorithmic 
+generalizability.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+523 
+
+
+## Page 6
+
+R. Ding et al.
+Fig. 4.  Visual examples of point cloud annotations in the WHU-STree dataset. The 3D point cloud labels are projected onto 2D perspective images (Left, Front, 
+Right). The rows display: (Top) Original RGB images; (Middle) Instance annotations (random colors); and (Bottom) Species annotations, where colors correspond 
+to specific categories: CC (blue), OF (yellow), ZS (purple), and PS (red).
+Fig. 5.  Comparative violin plots illustrating the distribution of morphological parameters between the Nanjing (WHU-RSTree-NJ) and Shenyang (WHU-RSTree-
+SY) subsets. (a) Tree Height distribution (in meters). (b) Diameter at Breast Height (DBH) distribution (in meters). The width of the violin shapes represents 
+the probability density of the data. Notably, the WHU-RSTree-NJ exhibits a broader range and larger dimensions, whereas the WHU-RSTree-SY shows more 
+concentrated patterns.
+The schematic diagram depicting the two splitting methods is pre-
+sented in Fig. 7. The first splitting method is suitable for both tree 
+species classification and individual tree segmentation algorithms. The 
+second specifically focuses on evaluating the cross-domain generaliza-
+tion capability of individual tree segmentation algorithms in diverse 
+urban environments.
+2.4. Unique advantages
+Compared to existing datasets, the WHU-STree dataset offers several 
+key advantages: cross-city coverage, rich annotations, and multi-modal 
+data, enabling support for diverse task settings. These strengths make 
+the dataset highly valuable for urban street tree analysis, environmental 
+monitoring, and the training and evaluation of DL-based models.
+Cross-city coverage. The WHU-STree dataset encompasses two 
+geographically distant cities, Nanjing and Shenyang, which represent 
+distinct geographical and climatic regions in China with varying urban 
+planning, tree distribution, and environmental characteristics. Con-
+sequently, this dataset enables the evaluation of model performance 
+across diverse urban environments, providing valuable insights into 
+their adaptability and generalization capabilities across regions (Chen 
+et al., 2022). Furthermore, the dataset includes 66 km of point cloud 
+data and over 12,000 panoramic images, with annotations for 21,007 
+tree instances and 50 tree species. In terms of scale, it significantly 
+surpasses existing tree segmentation datasets, and its number of tree 
+instances is comparable to that of the largest currently available tree 
+species classification dataset (Puliti et al., 2024). This large-scale and 
+diverse dataset offers abundant training samples, helping to improve 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+524 
+
+
+## Page 7
+
+R. Ding et al.
+Fig. 6.  Statistical analysis of species abundance and morphological variations in the Nanjing subset (WHU-STree-NJ). (a) Species frequency distribution, 
+highlighting a significant class imbalance (long-tailed distribution) where prevalent species like PA and CC dominate, while rare species are sparse. (b) and 
+(c) Scatter plots detailing the intraspecific morphological variation in Height and DBH (in meters) for each species.
+Fig. 7.  Visualization of data split strategies for the WHU-STree dataset. The dataset covers two distinct regions: (a) Nanjing (WHU-STree-NJ) and (b) Shenyang 
+(WHU-STree-SY). Blue segments represent the training set. Red segments indicate the testing set for the class-balanced split, used to evaluate species-specific 
+performance within the same domain. Gray segments denote the testing set for the cross-city split, where the entire WHU-STree-SY subset is used. Note that the 
+WHU-STree-SY, representing a distinct geographic domain without species annotations, is utilized to assess the model’s generalization capability and robustness 
+to unseen environments.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+525 
+
+
+## Page 8
+
+R. Ding et al.
+DL-based models’ generalization and robustness. In summary, WHU-
+STree not only serves as a benchmark for evaluating generalization 
+but also provides substantial data support for enhancing algorithmic 
+generalization capabilities.
+Rich annotations. The proposed dataset provides extensive and 
+detailed annotations, encompassing not only precise delineations of 
+individual tree instances with accurate localizations but also species 
+information and comprehensive morphological parameters. These rich 
+annotations establish the dataset as an excellent benchmark for various 
+research tasks, including tree species classification, individual tree seg-
+mentation, and morphological parameter estimation. Furthermore, the 
+diverse annotation types support advanced research, such as the devel-
+opment of multi-task learning models that simultaneously perform clas-
+sification, segmentation, and parameter estimation, thereby facilitating 
+cross-task knowledge transfer and promoting a deeper understanding 
+of the relationships among semantic, structural, and morphological 
+features (Zhou et al., 2025).
+Multi-modal data. This dataset stands out for the multi-modal 
+integration of point cloud and panoramic imagery. The point cloud 
+modality provides precise 3D structural data, such as tree height, crown 
+shape, and spatial distribution, which are vital for morphological analy-
+sis and instance localization. In parallel, panoramic images offer high-
+resolution visual details, including texture, color, and environmental 
+context, which are critical for species identification and semantic un-
+derstanding. By fusing these complementary modalities, the dataset 
+facilitates the development of algorithms that jointly exploit 3D geom-
+etry and 2D appearance, thereby enhancing model comprehensiveness 
+and robustness. We hope that the WHU-STree will promote progress 
+in multi-modal learning, fostering the development of sophisticated 
+methods for urban street tree asset management.
+Multi-task support. With its characteristics of cross-city coverage, 
+rich annotations, and multi-modal data, the WHU-STree dataset offers 
+substantial flexibility in task design. It supports a variety of configura-
+tions, including single-modality or multi-modality input, single-task or 
+multi-task learning, and cross-region or within-region evaluations. This 
+flexibility accommodates diverse research tasks related to urban street 
+tree inventories and fosters methodological innovation. Specifically, the 
+dataset enables fundamental tasks such as tree species classification, 
+individual tree segmentation, and morphological parameter estimation 
+based on either point cloud or image data. Beyond these, WHU-STree 
+facilitates the exploration of advanced learning paradigms, including 
+multi-modal data fusion, domain adaptation/generalization, and the 
+multi-task learning. Moreover, the richness and diversity of the dataset 
+make it possible to define new tasks and benchmarks, such as esti-
+mating 3D tree morphological parameters directly from 2D images—a 
+challenging yet highly promising direction. Success in such a task 
+would enable the use of crowd-sourced street view imagery to establish 
+a street tree inventory at significantly reduced costs. We believe that 
+the release of WHU-STree will further advance research in MMS-based 
+urban street tree management and contribute to the construction of 
+smart ecological cities.
+3. Benchmark experiments
+For tree species classification and individual tree segmentation, 
+we carefully selected several representative methods, including both 
+uni-modal and multi-modal approaches, to benchmark the proposed 
+WHU-STree dataset. Based on the results, we provide in-depth analysis 
+and valuable insights. It should be noted that during the experiment, we 
+group tree species with less than 150 instances under the label ‘‘Others’’. 
+Consequently, the classification experiments were conducted on 19 
+categories, comprising 18 distinct dominant species and the ‘‘Others’’ 
+class.
+3.1. Tree species classification baselines
+We employed point cloud baselines from three paradigms: voxel-
+based MinkNet (Choy et al., 2019), point-based PointMLP (Ma et al., 
+2022), and transformer-based PTv2 (Wu et al., 2022). To investigate 
+the effectiveness of multi-modal fusion, we reproduced TSCMDL (Liu 
+et al., 2023a), which fuses features from a PointMLP backbone and a 
+ResNet (He et al., 2016) backbone. Consequently, we selected ResNet 
+as the image baseline. This configuration enables a direct comparison 
+between individual modalities and the fused multi-modal framework, 
+validating the necessity of integrating point cloud and image data. The 
+selected baselines are:
+∙MinkNet (Choy et al., 2019) employs 3D sparse convolutions on 
+voxelized point clouds using the MinkowskiEngine. By represent-
+ing input data as sparse tensors, the inefficiency and high memory 
+consumption associated with dense representations in 3D laser 
+scanning can be avoided.
+∙PointMLP (Ma et al., 2022) introduces a pure residual Multi-Layer 
+Perceptron (MLP) network, which integrates no sophisticated 
+local geometrical extractors but still performs very competitively. 
+It developed a lightweight geometric affine module to tackle the 
+decrease of accuracy and stability caused by sparse and irregular 
+geometric structures in local regions.
+∙PTv2 (Wu et al., 2022) improves PTv1 through three core in-
+novations: Grouped Vector Attention (GVA) reduces parameters 
+by grouping channels with shared weights; Position Encoding 
+Multiplier (PEM) adds a multiplicative term to enhance 3D spa-
+tial awareness; Partition-based pooling uses grid partitions for 
+efficient feature aggregation.
+∙ResNet (He et al., 2016) proposes a deep residual learning frame-
+work to address the degradation problem encountered when 
+training deep neural networks. By introducing identity shortcut 
+connections that allow gradients to flow more easily, it enables 
+the optimization of substantially deeper architectures.
+∙TSCMDL (Liu et al., 2023a) aims to develop a multi-modal frame-
+work that integrates 2D and 3D features for tree species classi-
+fication. This framework employs ResNet (He et al., 2016) and 
+PointMLP (Ma et al., 2022) to extract image features and point 
+cloud features, respectively, and then uses the fused features 
+generated by concatenation for final classification.
+3.2. Tree segmentation baselines
+Leveraging the comprehensive annotations available in WHU-STree, 
+we extend the tree instance segmentation task to simultaneously seg-
+ment individual trees and classify their species. This is achieved by 
+modifying the classification head of standard instance segmentation 
+models. The recent predominance of clustering-based and transformer-
+based methodologies in instance segmentation research prompts our 
+adoption of SoftGroup (Vu et al., 2022) and SPFormer (Sun et al., 
+2023) as representative baselines. We further incorporate Segmen-
+tAnyTree (Wielgosz et al., 2024), an extension of PointGroup (Jiang 
+et al., 2020) specifically optimized for individual tree segmentation. 
+Additionally, we evaluate LCPS (Zhang et al., 2023), a multi-modal 
+panoptic segmentation algorithm that integrates point clouds and RGB 
+images, to investigate the potential benefits of leveraging multi-modal 
+data for tree segmentation.
+∙SegmentAnyTree (Wielgosz et al., 2024) uses a bottom-up
+panoptic segmentation pipeline consisting of a shared feature 
+extractor followed by three parallel prediction branches. The first 
+branch is dedicated to semantic segmentation. The remaining 
+two branches implement two complementary instance clustering 
+strategies—centroid offset regression and embedding-based con-
+trastive learning—to address the complexity of tree segmentation 
+in densely packed forests.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+526 
+
+
+## Page 9
+
+R. Ding et al.
+∙SoftGroup (Vu et al., 2022) aims at addressing semantic predic-
+tion errors by retaining soft semantic probabilities during cluster-
+ing. Instead of relying on hard semantic labels, it allows cross-
+category clustering and refines instance proposals using a top-
+down network to correct misclassified points. This soft-label strat-
+egy improves robustness to noisy semantics.
+∙SPFormer (Sun et al., 2023) proposes an end-to-end instance 
+segmentation method that unifies superpoint representation and 
+transformer-based query decoding. It aggregates point features 
+into superpoints via average pooling and employs learnable
+queries to decode instance masks through cross-attention, elim-
+inating reliance on error-prone intermediate grouping steps.
+∙LCPS (Zhang et al., 2023) introduces the first LiDAR–camera fu-
+sion framework for 3D panoptic segmentation, featuring a three-
+stage alignment strategy: (1) Asynchronous Compensation Pixel 
+Alignment (ACPA) addresses coordinate misalignment from sen-
+sor asynchronicity via ego-motion compensation; (2) Semantic-
+Aware Region Alignment (SARA) extends point-to-pixel mapping 
+to semantic regions using class activation maps; (3) Point-to-
+Voxel Propagation (PVP) employs local attention to propagate 
+fused features across the entire point cloud.
+3.3. Evaluation metrics
+As for tree species classification, the evaluation metrics are Overall 
+Accuracy (OA), and Intersection over Union (IoU): 
+𝑂𝐴=
+∑𝐾
+𝑘=1 𝑇𝑃𝑘
+𝐺𝑇
+,
+(1)
+𝐼𝑜𝑈𝑘=
+𝑇𝑃𝑘
+𝑇𝑃𝑘+ 𝐹𝑃𝑘+ 𝐹𝑁𝑘
+,
+(2)
+where 𝑇𝑃𝑘, 𝐹𝑃𝑘, 𝐹𝑁𝑘 correspond to the true positives, false positives, 
+and false negatives values of the 𝑘th tree species, and 𝐺𝑇 denotes the 
+total number of ground truth instances.
+For tree segmentation baselines, we follow the evaluation proto-
+col of Wang et al. (2019) and adopt mean class precision (mPrec), 
+mean class recall (mRec), mean class coverage (mCov), and mean 
+class-weighted coverage (mWCov) as species-specific metrics. Among 
+these, mPrec and mRec are calculated using a IoU threshold of 0.5. 
+However, these metrics inherently reflect the combined performance 
+of both segmentation and classification. To enable targeted evaluation 
+of species-agnostic tree segmentation, we introduce a set of supple-
+mentary metrics, including Detection rate (Det), Omission rate (Omi), 
+Commission rate (Com), and F1 : 
+𝐷𝑒𝑡𝑒𝑐𝑡𝑖𝑜𝑛𝑟𝑎𝑡𝑒=
+∑𝐾
+𝑘=1 𝑇𝑃𝑘
+𝐺𝑇
+,
+(3)
+𝑂𝑚𝑖𝑠𝑠𝑖𝑜𝑛𝑟𝑎𝑡𝑒=
+∑𝐾
+𝑘=1 𝐹𝑁𝑘
+𝐺𝑇
+,
+(4)
+𝐶𝑜𝑚𝑚𝑖𝑠𝑠𝑖𝑜𝑛𝑟𝑎𝑡𝑒=
+∑𝐾
+𝑘=1 𝐹𝑃𝑘
+𝑃𝑇
+,
+(5)
+𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛=
+∑𝐾
+𝑘=1 𝑇𝑃𝑘
+∑𝐾
+𝑘=1 𝑇𝑃𝑘+ ∑𝐾
+𝑘=1 𝐹𝑃𝑘
+,
+(6)
+𝑅𝑒𝑐𝑎𝑙𝑙=
+∑𝐾
+𝑘=1 𝑇𝑃𝑘
+∑𝐾
+𝑘=1 𝑇𝑃𝑘+ ∑𝐾
+𝑘=1 𝐹𝑁𝑘
+,
+(7)
+𝐹1 = 2 ⋅𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛⋅𝑅𝑒𝑐𝑎𝑙𝑙
+𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛+ 𝑅𝑒𝑐𝑎𝑙𝑙,
+(8)
+where 𝑃𝑇 refers to the predicted trees, and the threshold for determin-
+ing 𝑇𝑃 is set to an IoU of 0.5.
+Table 5
+Quantitative results of tree species classification benchmark on WHU-STree-
+NJ. Performance is measured by mean Intersection over Union (mIoU) and 
+Overall Accuracy (OA), where ↑ indicates that higher values denote better 
+performance. P: Point Cloud, I: Image. Bold indicates the best results. No-
+tably, while the multimodal TSCMDL improves performance over its specific 
+unimodal backbones (PointMLP and ResNet), the pure 3D transformer model, 
+PTv2, achieves the highest OA and mIoU.
+ Method
+Modality
+mIoU↑ (%)
+OA↑ (%) 
+ MinkNet
+P
+49.9
+81.7
+ 
+ PointMLP
+P
+58.0
+84.5
+ 
+ PTv2
+P
+64.1
+88.0
+ 
+ ResNet
+I
+53.7
+83.4
+ 
+ TSCMDL
+P + I
+60.5
+86.2
+ 
+3.4. Experimental results
+3.4.1. Results for tree species classification
+Table 5 presents three point cloud-based tree species classification 
+methods (MinkNet (Choy et al., 2019), PointMLP (Ma et al., 2022), 
+PTv2 (Wu et al., 2022)), one image-base method (ResNet (He et al., 
+2016)) and one multi-modal method (TSCMDL (Liu et al., 2023a)) that 
+integrates both image and point cloud information. The voxel-based 
+MinkNet exhibits the lowest accuracy, primarily due to information loss 
+during voxel quantization. In contrast, the point-based PointMLP cap-
+turing fine-grained geometric details achieves higher performance. The 
+image-based ResNet outperforms MinkNet but falls short of PointMLP. 
+This suggests that while visual texture provides discriminative cues, 
+the fine-grained geometric details capture by point-based networks are 
+more critical for distinguishing tree species in our dataset. Regarding 
+multi-modal fusion, the quantitative results demonstrate that TSCMDL 
+surpasses both its constituent uni-modal baselines—PointMLP (+2.5%) 
+and ResNet (+6.8%) in mIoU. However, it is worth noting that TSCMDL 
+still trails behind the pure 3D transformer model PTv2 (60.5% vs. 
+64.1% mIoU). To provide a granular analysis of the classification errors 
+while maintaining conciseness, we present the confusion matrix of the 
+top-performing method PTv2 in Fig. 8. Detailed confusion matrices for 
+the remaining baselines are provided in Appendix Fig. C.3 - Fig. C.6.
+3.4.2. Results for tree segmentation
+Table 6 presents the quantitative evaluation of three uni-modal 
+algorithms (SegmentAnyTree (Wielgosz et al., 2024), SoftGroup (Vu 
+et al., 2022), SPFormer (Sun et al., 2023)) and one multi-modal algo-
+rithm (LCPS (Zhang et al., 2023)) for species-agnostic tree segmentation 
+on the WHU-STree-NJ and WHU-STree-SY datasets. On WHU-STree-
+NJ, the transformer-based SPFormer achieved the highest Det (93.2%), 
+benefiting from its end-to-end attention mechanism that models com-
+plex spatial relationships without intermediate error accumulation. 
+However, it exhibited a notably higher Com (26.6%), mainly due to 
+shrub misclassification. Among clustering-based methods, SoftGroup 
+performed the weakest, struggling with dense or overlapping trees 
+due to offset prediction. SegmentAnyTree, incorporating contrastive-
+loss-trained embedding features for clustering, achieved the highest 
+F1-score (86.8%) by effectively segmenting challenging trees. LCPS 
+yielded a suboptimal Det (83.0%). Its segmentation performance was 
+constrained by its dimensional compression strategy, which struggles 
+to resolve spatially overlapping instances in dense forests. In cross-city 
+evaluations on the WHU-STree-SY dataset, all algorithms demonstrated 
+robust performance. This consistency can be attributed to the compre-
+hensive nature of our dataset, which spans diverse scenes, tree species, 
+and morphologies, providing a solid foundation for real-world algorith-
+mic applications. Table 7 presents the integrated results for species-
+specific tree segmentation. The transformer-based SPFormer achieves 
+state-of-the-art performance (57.8% F1), while the clustering-based 
+methods (SoftGroup, SegmentAnyTree, and LCPS) generally lag behind. 
+Qualitative results on the WHU-STree-NJ and WHU-STree-SY are shown 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+527 
+
+
+## Page 10
+
+R. Ding et al.
+Fig. 8.  Confusion matrix of the best-performing model (PTv2) for tree species classification on the WHU-STree-NJ dataset. The rows represent the Ground Truth 
+species, while the columns represent the Predicted species. The color intensity is mapped on a logarithmic scale (see color bar) to visualize classes with vastly 
+different sample sizes.
+Table 6
+Quantitative results of species-agnostic tree segmentation benchmark on WHU-STree. Metrics include Detection rate (Det), Omission rate (Omi), Commission rate 
+(Com), and F1-score. Arrows (↑/↓) indicate whether higher or lower values represent better performance. P: Point Cloud, I: Image. Notably, the point-based 
+SegmentAnyTree achieves the highest F1-score on the local Nanjing subset (WHU-STree-NJ), whereas the multimodal LCPS outperforms others on the cross-city 
+Shenyang subset (WHU-STree-SY), suggesting that incorporating image data may enhance generalization in unseen environments.
+ Method
+Modality
+WHU-STree-NJ
+WHU-STree-SY
+ 
+Det↑ (%)
+Omi↓ (%)
+Com↓ (%)
+F1↑ (%)
+Det↑ (%)
+Omi↓ (%)
+Com↓ (%)
+F1↑ (%) 
+ SegmentAnyTree
+P
+87.6
+12.4
+14.1
+86.8
+86.0
+14.0
+12.6
+86.7
+ 
+ SoftGroup
+P
+59.0
+41.0
+33.0
+62.7
+79.9
+20.1
+20.1
+79.9
+ 
+ SPFormer
+P
+93.2
+6.8
+26.6
+82.2
+87.4
+12.6
+17.5
+84.9
+ 
+ LCPS
+P + I
+75.6
+24.4
+17.8
+78.8
+83.0
+17.0
+7.8
+87.4
+ 
+in Appendix Fig. C.7 and Appendix Fig. C.8. SegmentAnyTree demon-
+strates fewer errors and superior performance in resolving confusion 
+with shrubs. SoftGroup exhibits widespread errors and struggles with 
+segmenting connected canopies. SPFormer misidentifies certain shrubs 
+as trees, leading to a higher Com. LCPS performs the worst when 
+segmenting understory trees beneath tall canopies.
+3.5. Discussion
+3.5.1. Does the inclusion of visual modalities guarantee superior classifica-
+tion performance?
+The quantitative results in Table 5 present a nuanced reality. On one 
+hand, the multi-modal TSCMDL (60.5% mIoU) surpasses its constituent 
+uni-modal baselines — PointMLP and ResNet — by 2.5% and 6.8%, 
+respectively. This performance margin effectively quantifies the relative 
+contribution of each modality, suggesting that while geometric struc-
+ture provides the foundational features for tree species identification, 
+the integration of spectral and textural cues from imagery facilitates 
+a further refinement of the feature space. As shown in Figs. 9a and 
+9b, visual textures effectively supplement geometric features, helping 
+to distinguish species like LI and AM that possess similar point cloud 
+structures. On the other hand, a critical anomaly remains: the multi-
+modal TSCMDL still trails the state-of-the-art uni-modal method, PTv2 
+(64.1% mIoU). We attribute this performance gap to two main factors. 
+First, the development of multi-modal methods in this domain has 
+been hindered by a scarcity of large-scale, aligned datasets. This lag 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+528 
+
+
+## Page 11
+
+R. Ding et al.
+Table 7
+Quantitative results of species-specific tree segmentation benchmark on Nanjing subset (WHU-STree-NJ). Evaluation metrics include mean Precision (mPrec), 
+mean Recall (mRec), mean Coverage (mCov), mean Weighted Coverage (mWCov), and F1-score. P: Point Cloud, I: Image. Bold indicates best results. A key 
+finding is the architectural comparison: the transformer-based method, SPFormer, significantly outperforms all three cluster-based approaches (SegmentAnyTree, 
+SoftGroup, LCPS).
+ Method
+Modality
+mPrec↑ (%)
+mRec↑ (%)
+mCov↑ (%)
+mWCov↑ (%)
+F1↑ (%) 
+ SegmentAnyTree
+P
+56.9
+46.5
+43.2
+46.8
+51.2
+ 
+ SoftGroup
+P
+36.0
+31.1
+31.4
+31.6
+33.4
+ 
+ SPFormer
+P
+52.8
+63.9
+59.4
+61.8
+57.8
+ 
+ LCPS
+P + I
+41.9
+38.0
+35.3
+35.0
+39.9
+ 
+Fig. 9.  Visual comparison of representative tree species using multi-modal data. The top row displays tree point clouds color-coded by intensity, while the 
+bottom row presents the corresponding RGB images. The columns represent four distinct species: (a) Lagerstroemia indica (LI), (b) Acer pictum subsp. mono 
+(AM), (c) Ligustrum lucidum (LL), and (d) Cinnamomum camphora (CC). This comparison illustrates two key challenges: (1) for species like LI and AM, the 
+image modality provides critical supplementary information to distinguish geometrically similar point clouds; (2) for species like LL and CC, the low inter-class 
+variance across both modalities presents a significant challenge for fine-grained classification.
+is reflected in the architecture of TSCMDL, which utilizes a compar-
+atively older point-based backbone (PointMLP) rather than a more 
+modern, transformer-based architecture like PTv2. Second, and more 
+critically, TSCMDL relies on a naive feature concatenation strategy for 
+fusion, which lacks deep, interactive reasoning between modalities. 
+This elementary integration prevents the model from fully exploiting 
+the complementary nature of the data. Consequently, the benefits 
+of multi-modal fusion in this implementation are outweighed by the 
+highly optimized geometric modeling capability of the newer PTv2 
+architecture.
+3.5.2. Why do current multi-modal segmentation framework falls short of 
+3D-native baselines?
+The experimental results across Tables 6 and 7 highlight a consistent 
+performance disparity where the multi-modal LCPS trails behind 3D-
+native approaches in both species-agnostic and species-specific tasks. 
+Specifically, LCPS fails to match the performance of the point-only 
+SPFormer, with the gap widening significantly to an F1-score difference 
+of 17.9% in the integrated classification setting shown in Table 7. 
+This underperformance can be traced to structural limitations regard-
+ing both classification paradigm and geometric representation. First, 
+regarding the classification paradigm, SPFormer employs a query-based 
+mask classification strategy that directly decodes instance semantics, 
+offering a holistic understanding of tree objects. In contrast, SoftGroup, 
+SegmentAnyTree, and LCPS share a ‘per-point prediction followed by 
+voting’ limitation. Their instance categories are determined by the 
+majority vote of point labels. This mechanism is inherently fragile: 
+it lacks object-level semantic consistency and is highly susceptible to 
+boundary segmentation errors, which compromise the final classifi-
+cation accuracy. Second, regarding the specific underperformance of 
+the multi-modal LCPS (39.9% F1), it suffers from a unique projection-
+induced geometric loss that outweighs the benefits of RGB fusion. 
+Unlike the 3D-native approaches (SPFormer, SegmentAnyTree, Soft-
+Group), LCPS compresses features onto a 2D Bird’s-Eye-View (BEV) 
+plane. Although the input vehicle-mounted side-view images capture 
+understory trees, the BEV backbone inherently merges these suppressed 
+trees with the overstory canopy along the Z-axis. This vertical com-
+pression makes it impossible to spatially isolate understory instances, 
+rendering the fused spectral information ineffective and leading to 
+lower performance even compared to the uni-modal SegmentAnyTree.
+3.5.3. What insights are derived from the analysis of hard samples within 
+the benchmark?
+A qualitative examination of challenging cases identifies distinct 
+performance bottlenecks in both species classification and instance 
+segmentation. In terms of classification, the primary observation in-
+volves the discriminability limit between biologically similar species. 
+As illustrated by the confusion matrices (Figs. 8 and Appendix C.3–C.6), 
+species pairs such as LL and CC exhibit extremely low inter-class 
+variance in both canopy geometry and visual texture (Figs. 9c and 
+9d), creating a feature representation bottleneck that current encoders 
+struggle to overcome. In terms of segmentation, we highlight three 
+representative challenging scenarios (Fig. 10) to emphasize the research 
+value of our dataset and inspire future algorithmic studies. Fig. 10a 
+shows mis-segmentation caused by interference from urban road fur-
+niture, especially they are adjacent to trees. While such errors are 
+often minimal in point count and segmentation metrics, they can crit-
+ically impact downstream tasks (e.g., parameter estimation). Fig. 10b 
+depicts severe crown overlap, where dense canopies lack discernible 
+boundaries, leading to under-segmentation. Fig. 10c illustrates errors 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+529 
+
+
+## Page 12
+
+R. Ding et al.
+Fig. 10.  Visualization of representative challenging scenarios for tree segmentation. The red bounding boxes highlight specific error regions. (a) Furniture 
+interference: Urban objects (e.g., poles) are spatially adjacent to tree, causing the algorithm to misclassify non-tree points or fail to separate boundaries. (b) 
+Crown overlap: In dense planting areas, the canopies of adjacent trees interlock, making it difficult to delineate individual tree boundaries. (c) Block merging 
+failure: This is characterized by unnatural arcuate boundaries caused by the cylindrical block sampling strategy, where current heuristic merging algorithm failed 
+to unify predictions across block edges.
+from block merging failures, characterized by arcuate boundaries due 
+to cylindrical block sampling. While the patch-then-merge strategy is 
+essential for large-scale processing under computational constraints, it 
+introduces challenging prediction fusion issues. Current heuristic-based 
+merging techniques lack the flexibility to handle all cases.
+4. Challenges and outlook
+4.1. Fusion of point clouds and images
+Uni-modal data limitations drive multi-modal fusion research, yet 
+multi-modal integration remains scarce in individual tree segmentation 
+due to lacking datasets. WHU-STree addresses this by providing densely 
+aligned point clouds and panoramic images with calibrated projec-
+tion parameters. This enables precise geometric alignment between 3D 
+points and 2D pixels, establishing a solid foundation for multi-modal 
+urban street tree analysis.
+We adapt the LCPS as a baseline for multi-modal tree segmentation. 
+To rigorously assess the contribution of image modality while main-
+taining architectural consistency, we conducted ablation studies using 
+3D-only LCPS configurations. Experimental results are presented in Ta-
+ble 8. The LCPS demonstrates notable improvements over the 3D-only 
+baseline in species-agnostic individual tree segmentation, achieving in-
+creases of +1.6% in mPrec and +4.5% in F1-score. The most substantial 
+enhancement is observed in Com reduction, with a 7.5% decrease. 
+These performance improvements demonstrate that integrating the im-
+age modality can significantly enhance the robustness in complex urban 
+street tree scenarios. When it comes to species-specific results, LCPS 
+consistently outperforms its 3D-only baseline across all metrics: mPrec 
+increases by +6.9%, mRec by +12.0%, mCov by +10.8%, mWCov by 
++8.5%, and F1-score by +9.9%. These results underscore the critical 
+role of image-derived texture and color features in enhancing species 
+classification accuracy.
+Despite improvements, performance remains impractical for deploy-
+ment. Nevertheless, it represents a valuable exploration that warrants 
+further investigation. Several critical challenges persist, including pro-
+jection errors and multi-view inconsistencies, as well as spatiotemporal 
+misalignments (Yi et al., 2025). These inherent limitations require 
+further in-depth study (Han et al., 2024). To this end, we advocate 
+the development of task-specific multi-modal fusion strategies tailored 
+to street tree inventory. We anticipate that the WHU-STree dataset 
+will promote the advancement of multi-modal approaches in urban 
+street tree management, fostering both broader adoption and deeper 
+exploration.
+4.2. Collaboration of multi-task
+Multi-task learning integrates concurrent tasks into end-to-end
+frameworks, streamlining complex processing (e.g., UniAD (Hu et al., 
+2023), ReasonNet (Shao et al., 2023)) and enabling shared repre-
+sentation learning for mutual performance enhancement (e.g., WHU-
+synthetic (Zhou et al., 2025), PatchAugNet (Zou et al., 2023)). For 
+street tree inventory, tree species classification and individual tree seg-
+mentation are critical yet typically addressed separately. This disjointed 
+pipeline increases complexity, propagates errors, and complicates eval-
+uation. Crucially, existing datasets hinder exploration of multi-task 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+530 
+
+
+## Page 13
+
+R. Ding et al.
+Table 8
+Ablation study validating the performance gain from incorporating image modality. The experiment compares the unimodal baseline (LCPS P: Point Cloud only) 
+against the multimodal fusion version (LCPS P+I: Point Cloud + Image) across two tasks. The upper block presents results for species-agnostic segmentation 
+(metrics: Detection rate, Omission rate, Commission rate, F1), while the lower block shows species-specific segmentation (metrics: mPrec, mRec, mCov, mWCov, 
+F1). Bold indicates the best results. The comparison clearly demonstrates that integrating RGB images consistently improves performance on both the local (WHU-
+STree-NJ) and cross-city (WHU-STree-SY) datasets. Notably, the improvement is more pronounced in the species-specific task, suggesting that visual features are 
+critical for distinguishing between tree species.
+ Method
+Modality
+WHU-STree-NJ
+WHU-STree-SY
+ 
+ (Species-agnostic)
+Det↑ (%)
+Omi↓ (%)
+Com↓ (%)
+F1↑ (%)
+Det↑ (%)
+Omi↓ (%)
+Com↓ (%)
+F1↑ (%)
+ 
+ LCPS
+P
+74.0
+26.0
+25.3
+74.3
+76.3
+23.7
+8.6
+83.2
+ 
+ LCPS
+P + I
+75.6
+24.4
+17.8
+78.8
+83.0
+17.0
+7.8
+87.4
+ 
+ (Species-specific)
+mPrec↑ (%)
+mRec↑ (%)
+mCov↑ (%)
+mWCov↑ (%)
+F1↑ (%)
+mPrec↑ (%)
+mRec↑ (%)
+mCov↑ (%)
+mWCov↑ (%)
+F1↑ (%) 
+ LCPS
+P
+26.0
+35.5
+24.5
+26.5
+30.0
+–
+–
+–
+–
+–
+ 
+ LCPS
+P + I
+41.9
+38.0
+35.3
+35.0
+39.9
+–
+–
+–
+–
+–
+ 
+Table 9
+Ablation study investigating the synergy between tree species classification and individual tree segmentation. The experiment uses SPFormer to compare a 
+segmentation-only baseline (w/o species) against a joint learning framework (w/ species) that simultaneously predicts tree IDs and species. Metrics include 
+Detection rate (Det), Omission rate (Omi), Commission rate (Com), and F1-score. Bold indicates better performance. A critical observation is that while Det 
+remains similar, adding species supervision significantly reduces Com. This suggests that species information acts as a constraint, helping the model effectively 
+suppress false positives and resulting in a substantial improvement in the overall F1-score. 
+ Method
+WHU-STree-NJ
+WHU-STree-SY
+ 
+Det↑ (%)
+Omi↓ (%)
+Com↓ (%)
+F1↑ (%)
+Det↑ (%)
+Omi↓ (%)
+Com↓ (%)
+F1↑ (%) 
+ SPFormer (w/o species)
+93.7
+6.3
+45.2
+69.2
+92.5
+7.5
+33.4
+77.5
+ 
+ SPFormer (w/ species)
+93.2
+6.8
+26.6
+82.2
+87.4
+12.6
+17.5
+84.9
+ 
+collaboration. The proposed WHU-STree addresses this gap by simulta-
+neously providing tree instances and species annotations. This enables 
+the development of end-to-end multi-task learning frameworks capable 
+of directly predicting tree instances with associated species labels, 
+paving the way for more efficient and robust urban tree inventory 
+systems.
+To further validate the effectiveness of multi-task collaboration, we 
+conducted preliminary experiments. As previously described, in the tree 
+segmentation baseline, we tasked the semantic or category branch with 
+distinguishing tree species. For comparison, we modified the baseline to 
+differentiate only between trees and non-trees and assessed the species-
+agnostic performance of both approaches. The results are presented in 
+Table 9. On the WHU-STree-NJ dataset, distinguishing tree species com-
+pared to not distinguishing them results in a comparable Det (93.7% vs. 
+93.2%) but a higher F1-score (82.2% vs. 69.2%). This indicates that 
+incorporating species classification enhances the network’s ability to 
+capture fine-grained variations among trees, indirectly improving the 
+overall understanding of the ‘‘tree’’ concept and yielding more precise 
+results. In cross-domain tests, while F1-score shows some improvement 
+by +7.5%, Det slightly declines by −5.1%. We hypothesize that while 
+species classification facilitates learning of species-specific shape rep-
+resentations, inter-species variations across cities may limit detection 
+generalizability.
+These preliminary findings demonstrate the effectiveness and sub-
+stantial potential of multi-task collaboration in street tree inventory. 
+Moving forward, we plan to incorporate additional annotations, in-
+cluding canopy width, support structure ratio, and health status, to 
+support more comprehensive multi-task collaborative frameworks. We 
+encourage researchers to utilize WHU-STree to further investigate and 
+design advanced multi-task frameworks, thereby unlocking enhanced 
+capabilities for street tree inventory.
+4.3. Cross-domain generalization
+DL-based methods often exhibit bias toward the distribution of 
+the training data. In real-world applications, variations in object ap-
+pearance or acquisition equipment typically lead to domain shifts, 
+resulting in poor out-of-distribution (OOD) performance (Saltori et al., 
+2022; Chen et al., 2024). Therefore, generalization is a critical factor 
+for ensuring the practical applicability of algorithms. As previously 
+discussed, WHU-STree-NJ and WHU-STree-SY differ substantially in 
+point density, species composition, and tree morphology. To investigate 
+generalization, we conducted cross-city experiments by training models 
+on WHU-STree-NJ and evaluating them on WHU-STree-SY, focusing 
+on the task of individual tree segmentation, with results presented in 
+Table 6. Across four different baselines, performance did not show a 
+noticeable decline and, in some cases, even slightly improved. This is 
+likely attributable to the large volume and diversity of tree species 
+and morphologies in WHU-STree-NJ, enabling the trained models to 
+inherently possess a degree of generalization. Additionally, the use of 
+voxel downsampling to a fixed resolution helped mitigate differences 
+in point cloud density. Furthermore, the tree layout in WHU-STree-SY 
+is more spacious, with less crown overlap and fewer shrub interfer-
+ences, which reduces the complexity of individual tree segmentation. 
+Notably, compared to the within-domain results on WHU-STree-NJ, 
+the multi-modal method LCPS outperformed both SegmentAnyTree and 
+SPFormer, achieving the highest F1 score of 87.4%. These results high-
+light the advantage of incorporating image modalities in alleviating 
+domain shifts in point cloud data, and demonstrate the effectiveness of 
+multi-modal fusion in improving robustness under heterogeneous urban 
+conditions. We also expect this dataset to further advance research on 
+cross-modal data domain adaptation and generalization (Jaritz et al., 
+2020).
+To further support this line of work, we plan to incorporate species 
+annotations for WHU-STree-SY in future releases, enabling robustness 
+evaluation for tree species classification across domains. However, due 
+to the combined effects of ecological and anthropogenic factors, tree 
+species compositions vary significantly between cities. In this context, 
+advancing research on open-vocabulary recognition (Radford et al., 
+2021; Liu et al., 2024) and novel class discovery (Fini et al., 2021; Riz 
+et al., 2023) is particularly important. Moreover, we will continue to ex-
+pand WHU-STree to cover additional cities, thereby supporting broader 
+investigations into domain generalization in urban tree inventory tasks.
+4.4. Spatial pattern learning
+Unlike trees in natural forests, the spatial distribution and species 
+composition of street trees exhibit strong anthropogenic characteristics. 
+Street trees typically follow regular distribution patterns that adhere to 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+531 
+
+
+## Page 14
+
+R. Ding et al.
+Fig. 11.  Conceptual schematic of the MLLM-driven street tree asset management framework. The upper panel illustrates the diverse data sources (multi-modal 
+data and external knowledge) utilized to fine-tune the Multi-modal Large Language Model (MLLM). The lower panel demonstrates the model’s resulting capabilities 
+across the ‘‘Perception–Analysis–Decision’’ workflow, visualized through a specific Q & A scenario regarding urban tree maintenance.
+planting standards established by local authorities, often arranged lin-
+early along both sides of roads at fixed intervals (Messier et al., 2025). 
+Species selection also reflects distinct function-oriented preferences, 
+influenced by factors such as road hierarchy and functional zoning. For 
+instance, arterial roads are often lined with tall canopy trees, while 
+pedestrian streets tend to favor ornamental species. Understanding 
+the spatial patterns of street trees holds dual significance for both 
+automated inventory tasks and urban greening management. Incorpo-
+rating street tree distribution patterns as prior knowledge can enhance 
+segmentation and classification performance. In individual tree seg-
+mentation tasks, encoding spatial distribution patterns (e.g., linear 
+arrangement along road networks, planting intervals, and topologi-
+cal relationships with surrounding infrastructure) can improve DL-
+based models’ ability to distinguish trees from background points while 
+mitigating over-segmentation and under-segmentation in complex sce-
+narios. Similarly, species classification can benefit from spatial pat-
+tern learning. The function-oriented nature of street trees dictates 
+distinct species preferences across different urban zones. Furthermore, 
+trees in the same road typically maintain species uniformity or sim-
+ilarity. Therefore, spatial context-aware classifiers can leverage these 
+characteristics as auxiliary cues to achieve more robust classification 
+performance (Chi et al., 2025). Beyond fundamental analysis tasks, 
+understanding spatial patterns proves crucial for effective monitoring 
+and long-term management of street trees. It provides foundational data 
+for assessing greening equity and ecological service efficiency, thereby 
+informing rational urban greening planning (Martin et al., 2025).
+In conclusion, we posit that spatial pattern learning represents a 
+critical research frontier for future investigations. This approach not 
+only enhances technical solutions for urban tree analysis but also 
+establishes an important knowledge base for sustainable urban street 
+trees management.
+4.5. MLLM for street tree asset management
+Urban street tree inventory encompasses a wide range of attributes, 
+including location, species, morphological parameters, health condi-
+tion, maintenance requirements (e.g., pruning), and risk assessment 
+(e.g., potential branch fall hazards). Developing a comprehensive
+method capable of extracting and evaluating these attributes is pivotal 
+for automating street tree asset management. However, attributes such 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+532 
+
+
+## Page 15
+
+R. Ding et al.
+as tree health, maintenance requirements, and risk assessment often 
+demand expert knowledge or alignment with governmental policies for 
+accurate interpretation. MLLM (Liu et al., 2023c; Yang et al., 2024b), 
+with its ability to reason and interact across diverse data modalities, 
+have shown remarkable progress in various vertical domains (Li et al., 
+2023; Muhtar et al., 2024). Leveraging the multi-modal, richly an-
+notated, and large-scale characteristics of the proposed WHU-STree 
+dataset, we envision significantly enhancing the capability of MLLM to 
+process and analyze urban street tree inventories. By integrating expert 
+knowledge and governmental policies, MLLM can enable a seamless 
+‘‘perception–analysis–decision’’ pipeline for urban asset management. 
+The ultimate goal is to establish a closed-loop urban street tree asset 
+management framework powered by MLLM. To visually explicate this 
+potential research direction, Fig. 11 presents a conceptual schematic. 
+In the perception phase, the model processes multi-modal data (point 
+clouds, images, and potentially textual reports) to extract compre-
+hensive tree attributes. In the analysis phase, it incorporates expert 
+knowledge and policy guidelines to assess tree health, maintenance 
+needs, and associated risks. Finally, in the decision phase, the model 
+delivers actionable insights, such as maintenance schedules, risk mit-
+igation plans, or policy-compliant management strategies, which can 
+be queried through natural language interfaces. For instance, urban 
+planners could ask, ‘‘Which trees exceed the permitted height limits 
+and pose risks to overhead infrastructure?’’ and receive detailed, policy-
+aligned recommendations. This vision aligns with emerging trends in 
+smart city applications, where multi-modal AI systems are increasingly 
+used for infrastructure management.
+In summary, we envision that by leveraging the WHU-STree dataset, 
+integrating expert knowledge, and embedding governmental policies, 
+MLLM can revolutionize urban street tree asset management. This 
+approach not only enhances the accuracy and robustness of automated 
+assessments but also ensures that management decisions are well-
+informed, compliant, and actionable, paving the way for sustainable 
+and intelligent street tree asset management.
+5. Conclusion
+This study presents WHU-STree, a pioneering multi-modal dataset 
+designed to address critical gaps in urban street tree inventory research. 
+By integrating synchronized point clouds and high-resolution images 
+collected across two geographically distinct cities, WHU-STree offers 
+a comprehensive resource for advancing automated urban street tree 
+inventory. The dataset encompasses 21,007 annotated tree instances 
+with labels for 50 tree species and morphological parameters, en-
+abling simultaneous support for kinds of street tree perception tasks. 
+Its cross-city coverage, combined with rich annotations and multi-
+modal integration, sets a new benchmark for evaluating algorithmic 
+generalization and robustness in real-world urban environments.
+Through extensive benchmarking, we derived critical empirical in-
+sights into the necessity and current limitations of multi-modal percep-
+tion. First, comparative experiments on the TSCMDL baseline reveal 
+that multi-modal fusion significantly outperforms both image-only and 
+point-cloud-only inputs for species classification, demonstrating that 
+combining spectral texture with geometric structure resolves ambigu-
+ities inherent to single modalities. Second, in cross-domain segmen-
+tation, the introduction of image data enables the multi-modal LCPS 
+algorithm to achieve superior robustness against environmental shifts 
+compared to 3D-only methods. However, current multi-modal baselines 
+still fall short of sophisticated 3D-only architectures. We attribute these 
+performance gaps to methodological constraints — ranging from out-
+dated backbones and naive fusion in classification to inferior clustering 
+paradigms and projection-induced information loss in segmentation — 
+rather than limitations of the data itself. These findings suggest that the 
+rich potential of WHU-STree remains to be fully exploited, highlighting 
+an urgent need for advanced architectures capable of deeper, more 
+effective cross-modal interaction.
+Looking ahead, WHU-STree is poised to catalyze innovations in 
+next-generation urban management systems. We advocate for future 
+research to explore spatial pattern learning, which utilizes the distinc-
+tive anthropogenic distribution of street trees as prior knowledge, and 
+the integration of MLLMs for policy-aligned asset management. Cru-
+cially, we remain committed to continuously expanding WHU-STree by 
+incorporating additional annotations (e.g., health status) and extending 
+geographic coverage to more cities. This ongoing expansion will further 
+support advanced investigations into domain generalization and open-
+vocabulary recognition, ultimately paving the way for sustainable and 
+intelligent urban ecosystem management.
+CRediT authorship contribution statement
+Ruifei Ding: Writing – review & editing, Writing – original draft, 
+Visualization, Software, Methodology, Investigation, Formal analysis, 
+Data curation. Zhe Chen: Writing – review & editing, Writing – original 
+draft, Visualization, Validation, Software, Methodology, Conceptualiza-
+tion. Wen Fan: Writing – review & editing, Methodology, Investigation, 
+Conceptualization. Chen Long: Writing – review & editing, Inves-
+tigation, Formal analysis, Data curation. Huijuan Xiao: Writing – 
+review & editing, Visualization. Yelu Zeng: Writing – review & editing, 
+Supervision. Zhen Dong: Writing – review & editing, Supervision, 
+Resources, Project administration, Funding acquisition, Conceptualiza-
+tion. Bisheng Yang: Supervision, Resources, Project administration, 
+Funding acquisition.
+Declaration of competing interest
+The authors declare that they have no known competing finan-
+cial interests or personal relationships that could have appeared to 
+influence the work reported in this paper.
+Acknowledgments
+Our research has received funding from the National Key Research 
+and Development Program of China (2023YFF0725200) and the NSFC 
+Basic Research Project for Ph.D. Candidate (no. 425B2010).
+Appendix A. Supplementary figures
+See Fig. A.1.
+Appendix B. Implementation details
+The input data processing pipeline for the tree species classifi-
+cation baselines is shown in Fig. B.2a. For methods based on point 
+clouds (Choy et al., 2019; Ma et al., 2022; Guo et al., 2021), labeled tree 
+instances are extracted from the full scene and uniformly downsampled 
+to 8192 points per instance. As for the image processing, camera 
+poses are used to spatially associate tree instances with corresponding 
+panoramic images, followed by cropping of image patches based on 
+projected 2D bounding boxes. These image patches are resized to 
+768 × 512 when input into image-based ResNet (He et al., 2016) and 
+multi-modal TSCMDL (Liu et al., 2023a).
+Fig. B.2b illustrates the input data processing workflow for tree 
+segmentation baselines. Specifically, for the uni-modal methods (Wiel-
+gosz et al., 2024; Vu et al., 2022; Sun et al., 2023), point clouds 
+are processed using cylindrical sampling (16 m radius), implemented 
+via a greedy algorithm to ensure comprehensive coverage. Addition-
+ally, random sampling is introduced to enrich the training dataset. 
+During testing, we utilize cylindrical blocks of the same radius and 
+performed uniform sampling with a fixed step size to guarantee full 
+scene coverage. The multi-modal network LCPS (Zhang et al., 2023) 
+requires specialized preprocessing. We convert raw panoramic images 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+533 
+
+
+## Page 16
+
+R. Ding et al.
+Fig. A.1.  The MMS equipment which is used to collect data for building the WHU-STree.
+(a) Input data processing workflow for species classification 
+(b) Input data processing workflow for tree segmentation
+Fig. B.2. Details of input data processing workflow for tree species classification and individual tree segmentation baselines.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+534 
+
+
+## Page 17
+
+R. Ding et al.
+Fig. C.3.  Confusion matrix of MinkNet for tree species classification on the WHU-STree-NJ dataset. The rows represent the Ground Truth species, while the 
+columns represent the Predicted species. The color intensity is mapped on a logarithmic scale (see color bar) to visualize classes with vastly different sample 
+sizes.
+into frame-based images compatible with mainstream image back-
+bones, retaining only a 120◦ horizontal and vertical Field of View (FOV) 
+to minimize lateral distortion while preserving roadside tree distribu-
+tions. The corresponding point clouds are cropped using a 30m×40 m 
+square instead of the image frustum to avoid scene omissions caused 
+by narrow FOVs, thereby ensuring spatial alignment of multi-modal 
+inputs. During inference, predictions from overlapping blocks are fused 
+using the method proposed by Xiang et al. (2023). Subsequent block 
+merging and upsampling are performed to ensure complete coverage, 
+enabling predictions to be assigned to all points in the original road 
+segments.
+All baseline implementations strictly follow the original experimen-
+tal configurations, with minor adaptations made for compatibility with 
+our dataset.
+Appendix C. Supplementary experimental results
+Table C.1 shows detailed per-species results of tree species classifi-
+cation baselines.
+Figs. C.3–C.6 show confusion matrix of tree species classification 
+baselines.
+Figs. C.7 and C.8 present the qualitative results of tree segmentation 
+baseline algorithms on WHU-STree-NJ and WHU-STree-SY datasets.
+The detailed per-species results of each tree segmentation baseline 
+algorithm are presented in Tables C.2–C.5.
+Table C.1
+Detailed per-species classification performance on the WHU-STree-NJ dataset. 
+This table presents the breakdown of Intersection over Union (IoU) scores 
+for the aggregate results shown in Table 5. Bold values indicate the best 
+performing model for each species. Consistent with the main benchmark, PTv2 
+achieves superior performance across the majority of categories.
+ Method
+MinkNet
+PointMLP
+PTv2
+ResNet
+TSCMDL 
+ PA
+90.0
+91.7
+95.7
+94.7
+94.1
+ 
+ CC
+79.1
+81.0
+86.5
+76.5
+87.2
+ 
+ LI
+70.5
+69.4
+81.8
+86.0
+78.0
+ 
+ OF
+75.5
+78.9
+81.4
+65.5
+72.0
+ 
+ KP
+64.4
+44.3
+55.7
+29.5
+50.9
+ 
+ PC
+34.5
+36.9
+52.7
+72.0
+43.8
+ 
+ ZS
+50.9
+56.0
+63.6
+41.5
+49.2
+ 
+ CD
+57.3
+90.4
+85.8
+70.1
+88.4
+ 
+ GB
+61.5
+60.6
+66.7
+50.7
+60.7
+ 
+ AA
+53.5
+49.4
+48.2
+55.7
+54.8
+ 
+ PS
+36.9
+54.4
+48.2
+52.1
+51.3
+ 
+ LL
+1.4
+19.5
+46.5
+41.0
+45.1
+ 
+ MM
+44.9
+52.0
+66.2
+61.9
+39.6
+ 
+ MG
+70.0
+86.2
+80.7
+86.4
+91.4
+ 
+ MS
+61.2
+95.6
+95.6
+33.8
+84.9
+ 
+ SJ
+0.0
+9.4
+24.5
+7.5
+22.8
+ 
+ AM
+42.9
+52.6
+49.6
+35.3
+51.5
+ 
+ PF
+36.9
+48.2
+55.8
+41.4
+50.9
+ 
+ Others
+17.8
+25.8
+32.5
+19.4
+32.9
+ 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+535 
+
+
+## Page 18
+
+R. Ding et al.
+Fig. C.4.  Confusion matrix of PointMLP for tree species classification on the WHU-STree-NJ dataset. The rows represent the Ground Truth species, while the 
+columns represent the Predicted species. The color intensity is mapped on a logarithmic scale (see color bar) to visualize classes with vastly different sample 
+sizes.
+Table C.2
+Detailed per-species segmentation performance of the SegmentAnyTree model on the WHU-STree-NJ dataset. This table serves as a supplementary breakdown of 
+the aggregate results presented in Table 7. The metrics include Coverage (Cov), Weighted Coverage (WCov), Precision (Prec), and Recall (Rec). 
+ Species
+Cov↑ (%)
+WCov↑ (%)
+Prec↑ (%)
+Rec↑ (%) 
+ PA
+80.1
+82.1
+86.8
+88.5
+ 
+ CC
+86.1
+87.7
+83.8
+92.3
+ 
+ LI
+82.5
+80.6
+73.7
+88.1
+ 
+ OF
+60.0
+57.6
+72.2
+63.7
+ 
+ KP
+78.5
+76.3
+79.0
+80.6
+ 
+ PC
+18.4
+30.5
+85.0
+19.1
+ 
+ ZS
+61.6
+68.9
+75.0
+68.8
+ 
+ CD
+62.9
+68.2
+97.5
+70.5
+ 
+ GB
+61.8
+81.1
+93.5
+65.2
+ 
+ AA
+0.0
+0.0
+0.0
+0.0
+ 
+ PS
+57.2
+62.5
+44.3
+61.4
+ 
+ LL
+20.3
+21.9
+29.4
+21.4
+ 
+ MM
+2.5
+2.3
+28.6
+3.1
+ 
+ NG
+0.0
+0.0
+0.0
+0.0
+ 
+ NS
+81.3
+85.1
+76.0
+87.7
+ 
+ SJ
+5.8
+4.9
+50.0
+6.3
+ 
+ AM
+0.0
+0.0
+0.0
+0.0
+ 
+ PF
+3.1
+3.4
+100.0
+3.3
+ 
+ Others
+59.1
+75.5
+6.3
+63.3
+ 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+536 
+
+
+## Page 19
+
+R. Ding et al.
+Fig. C.5.  Confusion matrix of ResNet for tree species classification on the WHU-STree-NJ dataset. The rows represent the Ground Truth species, while the 
+columns represent the Predicted species. The color intensity is mapped on a logarithmic scale (see color bar) to visualize classes with vastly different sample 
+sizes.
+Table C.3
+Detailed per-species segmentation performance of the SoftGroup model on the WHU-STree-NJ dataset. This table serves as a supplementary breakdown of the 
+aggregate results presented in Table 7. The metrics include Coverage (Cov), Weighted Coverage (WCov), Precision (Prec), and Recall (Rec). 
+ Species
+Cov↑ (%)
+WCov↑ (%)
+Prec↑ (%)
+Rec↑ (%) 
+ PA
+57.9
+58.7
+58.5
+53.4
+ 
+ CC
+68.8
+67.7
+66.2
+68.5
+ 
+ LI
+44.0
+49.9
+47.9
+36.2
+ 
+ OF
+48.1
+45.2
+37.4
+39.3
+ 
+ KP
+87.4
+57.5
+62.7
+88.9
+ 
+ PC
+68.6
+73.2
+52.5
+69.7
+ 
+ ZS
+67.1
+71.1
+56.8
+74.0
+ 
+ CD
+56.0
+60.5
+44.5
+58.0
+ 
+ GB
+47.1
+69.3
+88.9
+48.5
+ 
+ AA
+0.0
+0.0
+0.0
+0.0
+ 
+ PS
+0.0
+0.0
+0.0
+0.0
+ 
+ LL
+22.2
+29.9
+84.6
+23.9
+ 
+ MM
+0.0
+0.0
+0.0
+0.0
+ 
+ NG
+0.0
+0.0
+0.0
+0.0
+ 
+ NS
+5.7
+3.0
+80.0
+6.3
+ 
+ SJ
+0.0
+0.0
+0.0
+0.0
+ 
+ AM
+0.0
+0.0
+0.0
+0.0
+ 
+ PF
+0.0
+0.0
+0.0
+0.0
+ 
+ Others
+23.4
+15.5
+4.8
+24.5
+ 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+537 
+
+
+## Page 20
+
+R. Ding et al.
+Fig. C.6.  Confusion matrix of TSCMDL for tree species classification on the WHU-STree-NJ dataset. The rows represent the Ground Truth species, while the 
+columns represent the Predicted species. The color intensity is mapped on a logarithmic scale (see color bar) to visualize classes with vastly different sample 
+sizes.
+Table C.4
+Detailed per-species segmentation performance of the SPFormer model on the WHU-STree-NJ dataset. This table serves as a supplementary breakdown of the 
+aggregate results presented in Table 7. The metrics include Coverage (Cov), Weighted Coverage (WCov), Precision (Prec), and Recall (Rec). 
+ Species
+Cov↑ (%)
+WCov↑ (%)
+Prec↑ (%)
+Rec↑ (%) 
+ PA
+81.4
+83.0
+73.0
+92.0
+ 
+ CC
+88.1
+88.4
+69.1
+95.1
+ 
+ LI
+89.3
+90.2
+67.3
+95.5
+ 
+ OF
+83.5
+80.4
+44.3
+86.6
+ 
+ KP
+87.4
+78.9
+75.4
+88.7
+ 
+ PC
+9.2
+11.9
+4.8
+11.1
+ 
+ ZS
+68.3
+76.6
+68.0
+74.7
+ 
+ CD
+80.8
+85.9
+78.9
+90.2
+ 
+ GB
+78.1
+82.3
+88.2
+78.9
+ 
+ AA
+39.6
+34.4
+49.0
+42.9
+ 
+ PS
+81.7
+87.5
+46.1
+89.4
+ 
+ LL
+16.5
+23.7
+38.5
+17.5
+ 
+ MM
+68.1
+74.0
+30.8
+72.7
+ 
+ NG
+5.6
+8.0
+33.3
+5.9
+ 
+ NS
+80.5
+83.7
+92.1
+90.6
+ 
+ SJ
+0.0
+0.0
+0.0
+0.0
+ 
+ AM
+47.6
+62.1
+76.4
+51.9
+ 
+ PF
+89.5
+90.4
+61.7
+96.7
+ 
+ Others
+32.5
+31.9
+6.3
+33.3
+ 
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+538 
+
+
+## Page 21
+
+R. Ding et al.
+Fig. C.7.  Qualitative segmentation results on the Nanjing subset (WHU-STree-NJ). The top row shows the raw input and Ground Truth. Subsequent rows compare 
+four baseline methods. For each method, the left column displays instance predictions (random colors), while the right column shows error maps, where red areas 
+indicate segmentation errors relative to the ground truth. Notably, SegmentAnyTree demonstrates superior performance with minimal errors in shrub confusion, 
+whereas SoftGroup exhibits widespread errors, particularly in separating connected canopies.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+539 
+
+
+## Page 22
+
+R. Ding et al.
+Fig. C.8.  Qualitative segmentation results on the Shenyang subset (WHU-STree-SY). The top row shows the raw input and Ground Truth. Subsequent rows 
+compare four baseline methods. For each method, the left column displays instance predictions (random colors), while the right column shows error maps, where 
+red areas indicate segmentation errors relative to the ground truth. LCPS exhibits significant errors when segmenting understory trees beneath tall canopies.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+540 
+
+
+## Page 23
+
+R. Ding et al.
+Table C.5
+Detailed per-species segmentation performance of the LCPS model on the WHU-STree-NJ dataset. This table serves as a supplementary breakdown of the aggregate 
+results presented in Table 7. The metrics include Coverage (Cov), Weighted Coverage (WCov), Precision (Prec), and Recall (Rec). 
+ Species
+Cov↑ (%)
+WCov↑ (%)
+Prec↑ (%)
+Rec↑ (%) 
+ PA
+76.1
+80.7
+78.9
+87.2
+ 
+ CC
+80.6
+83.8
+71.6
+86.7
+ 
+ LI
+20.0
+13.8
+68.5
+19.2
+ 
+ OF
+8.5
+13.8
+19.4
+7.4
+ 
+ KP
+91.3
+90.3
+86.7
+92.9
+ 
+ PC
+65.1
+72.9
+36.3
+67.3
+ 
+ ZS
+64.9
+41.6
+73.8
+68.1
+ 
+ CD
+0.0
+0.0
+0.0
+0.0
+ 
+ GB
+91.4
+92.4
+94.7
+94.7
+ 
+ AA
+37.1
+34.3
+17.9
+39.3
+ 
+ PS
+30.0
+31.7
+28.4
+31.8
+ 
+ LL
+24.3
+23.4
+42.9
+33.3
+ 
+ MM
+0.0
+0.0
+0.0
+0.0
+ 
+ NG
+0.0
+0.0
+0.0
+0.0
+ 
+ NS
+0.0
+0.0
+0.0
+0.0
+ 
+ SJ
+0.0
+0.0
+0.0
+0.0
+ 
+ AM
+14.3
+21.3
+71.4
+14.2
+ 
+ PF
+34.9
+36.1
+100.0
+43.3
+ 
+ Others
+32.7
+29.5
+6.2
+36.7
+ 
+References
+Ahlswede, S., Schulz, C., Gava, C., Helber, P., Bischke, B., Förster, M., Arias, F., Hees, J., 
+Demir, B., Kleinschmit, B., 2022. TreeSatAI benchmark archive: A multi-sensor, 
+multi-label dataset for tree species classification in remote sensing. Earth Syst. Sci. 
+Data Discuss. 2022, 1–22.
+Alonzo, M., McFadden, J.P., Nowak, D.J., Roberts, D.A., 2016. Mapping urban forest 
+structure and function using hyperspectral imagery and lidar data. Urban For. & 
+Urban Green. 17, 135–147.
+Amirkolaee, H.A., Shi, M., Mulligan, M., 2023. TreeFormer: a semi-supervised 
+transformer-based framework for tree counting from a single high resolution image. 
+IEEE Trans. Geosci. Remote Sens..
+Andreas, T., Christoph, G., Tim, R., Arne, N., 2022. LAUTx - Individual Tree Point 
+Clouds from Austrian forest Inventory plots. http://dx.doi.org/10.5281/zenodo.
+6560112.
+Behley, J., Garbade, M., Milioto, A., Quenzel, J., Behnke, S., Stachniss, C., Gall, J., 
+2019. Semantickitti: A dataset for semantic scene understanding of lidar sequences. 
+In: Proceedings of the IEEE/CVF International Conference on Computer Vision. pp. 
+9297–9307.
+Berland, A., Lange, D.A., 2017. Google street view shows promise for virtual street tree 
+surveys. Urban For. Urban Green. 21, 11–15.
+Briechle, S., Krzystek, P., Vosselman, G., 2021. Silvi-net–A dual-CNN approach for 
+combined classification of tree species and standing dead trees from remote sensing 
+data. Int. J. Appl. Earth Obs. Geoinf. 98, 102292.
+Calders, K., Verbeeck, H., Burt, A., Origo, N., Nightingale, J., Malhi, Y., Wilkes, P., 
+Raumonen, P., Bunce, R., Disney, M., 2022. Terrestrial laser scanning data Wytham 
+Woods: individual trees and quantitative structure models (QSMs). http://dx.doi.
+org/10.5281/zenodo.7307956.
+Chang, L., Fan, H., Zhu, N., Dong, Z., 2022. A two-stage approach for individual tree 
+segmentation from TLS point clouds. IEEE J. Sel. Top. Appl. Earth Obs. Remote. 
+Sens. 15, 8682–8693.
+Chen, J., Chen, Y., Liu, Z., 2021. Classification of typical tree species in laser point 
+cloud based on deep learning. Remote. Sens. 13 (23), 4750.
+Chen, Z., Yang, B., Ma, A., Peng, M., Li, H., Chen, T., Chen, C., Dong, Z., 2022. Joint 
+alignment of the distribution in input and feature space for cross-domain aerial 
+image semantic segmentation. Int. J. Appl. Earth Obs. Geoinf. 115, 103107.
+Chen, Z., Yang, B., Zhu, R., Dong, Z., 2024. City-scale solar PV potential estimation 
+on 3D buildings using multi-source RS data: A case study in Wuhan, China. Appl. 
+Energy 359, 122720.
+Chi, D., Yan, J., Yu, K., Morsdorf, F., Somers, B., 2025. Planting contexts affect urban 
+tree species classification using airborne hyperspectral and LiDAR imagery. Landsc. 
+Urban Plan. 257, 105316.
+Choi, K., Lim, W., Chang, B., Jeong, J., Kim, I., Park, C.-R., Ko, D.W., 2022. An 
+automatic approach for tree species detection and profile estimation of urban street 
+trees using deep learning and google street view images. ISPRS J. Photogramm. 
+Remote Sens. 190, 165–180.
+Choy, C., Gwak, J., Savarese, S., 2019. 4D spatio-temporal convnets: Minkowski 
+convolutional neural networks. In: Proceedings of the IEEE/CVF Conference on 
+Computer Vision and Pattern Recognition. pp. 3075–3084.
+Dosovitskiy, A., 2020. An image is worth 16x16 words: Transformers for image 
+recognition at scale. arXiv preprint arXiv:2010.11929.
+Fan, W., Yang, B., Dong, Z., Liang, F., Xiao, J., Li, F., 2021. Confidence-guided roadside 
+individual tree extraction for ecological benefit estimation. Int. J. Appl. Earth Obs. 
+Geoinf. 102, 102368.
+Fini, E., Sangineto, E., Lathuilière, S., Zhong, Z., Nabi, M., Ricci, E., 2021. A unified 
+objective for novel class discovery. In: Proceedings of the IEEE/CVF International 
+Conference on Computer Vision. pp. 9284–9292.
+Grote, R., Samson, R., Alonso, R., Amorim, J.H., Cariñanos, P., Churkina, G., Fares, S., 
+Thiec, D.L., Niinemets, Ü., Mikkelsen, T.N., et al., 2016. Functional traits of urban 
+trees: air pollution mitigation potential. Front. Ecol. Environ. 14 (10), 543–550.
+Grundström, M., Pleijel, H., 2014. Limited effect of urban tree vegetation on NO2 and 
+O3 concentrations near a traffic route. Environ. Pollut. 189, 73–76.
+Guo, M.H., Cai, J.X., Liu, Z.N., Mu, T.J., Martin, R.R., Hu, S.M., 2021. Pct: Point cloud 
+transformer. Comput. Vis. Media 7, 187–199.
+Han, X., Liu, C., Zhou, Y., Tan, K., Dong, Z., Yang, B., 2024. WHU-Urban3D: An 
+urban scene LiDAR point cloud dataset for semantic instance segmentation. ISPRS 
+J. Photogramm. Remote Sens. 209, 500–513.
+He, K., Zhang, X., Ren, S., Sun, J., 2016. Deep residual learning for image recog-
+nition. In: Proceedings of the IEEE Conference on Computer Vision and Pattern 
+Recognition. pp. 770–778.
+Henrich, J., van Delden, J., Seidel, D., Kneib, T., Ecker, A., 2023. Treelearn: A 
+comprehensive deep learning method for segmenting individual trees from forest 
+point clouds. arXiv preprint arXiv:2309.08471.
+Hu, Y., Yang, J., Chen, L., Li, K., Sima, C., Zhu, X., Chai, S., Du, S., Lin, T., Wang, W., et 
+al., 2023. Planning-oriented autonomous driving. In: Proceedings of the IEEE/CVF 
+Conference on Computer Vision and Pattern Recognition. pp. 17853–17862.
+Jaritz, M., Vu, T.H., Charette, R.d., Wirbel, E., Pérez, P., 2020. xmuda: Cross-modal 
+unsupervised domain adaptation for 3d semantic segmentation. In: Proceedings 
+of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 
+12605–12614.
+Jiang, L., Zhao, H., Shi, S., Liu, S., Fu, C.W., Jia, J., 2020. Pointgroup: Dual-set point 
+grouping for 3d instance segmentation. In: Proceedings of the IEEE/CVF Conference 
+on Computer Vision and Pattern Recognition. pp. 4867–4876.
+Kapil, R., Marvasti-Zadeh, S.M., Erbilgin, N., Ray, N., 2024. Shadowsense: Unsu-
+pervised domain adaptation and feature fusion for shadow-agnostic tree crown 
+detection from rgb-thermal drone imagery. In: Proceedings of the IEEE/CVF Winter 
+Conference on Applications of Computer Vision. pp. 8266–8276.
+Kirillov, A., Mintun, E., Ravi, N., Mao, H., Rolland, C., Gustafson, L., Xiao, T., 
+Whitehead, S., Berg, A.C., Lo, W.Y., et al., 2023. Segment anything. In: Proceedings 
+of the IEEE/CVF International Conference on Computer Vision. pp. 4015–4026.
+Kondo, M.C., Han, S., Donovan, G.H., MacDonald, J.M., 2017. The association between 
+urban trees and crime: Evidence from the spread of the emerald ash borer in 
+cincinnati. Landsc. Urban Plan. 157, 193–199.
+Kumar, P., Debele, S.E., Khalili, S., Halios, C.H., Sahani, J., Aghamohammadi, N., de 
+Fatima Andrade, M., Athanassiadou, M., Bhui, K., Calvillo, N., et al., 2024. Urban 
+heat mitigation by green and blue infrastructure: Drivers, effectiveness, and future 
+needs. Innov. 5 (2).
+Li, C., Wong, C., Zhang, S., Usuyama, N., Liu, H., Yang, J., Naumann, T., Poon, H., 
+Gao, J., 2023. Llava-med: Training a large language-and-vision assistant for 
+biomedicine in one day. Adv. Neural Inf. Process. Syst. 36, 28541–28564.
+Liang, X., Qi, H., Deng, X., Chen, J., Cai, S., Zhang, Q., Wang, Y., Kukko, A., Hyyppä, J., 
+2024. ForestSemantic: a dataset for semantic learning of forest from close-range 
+sensing. Geo-Spatial Inf. Sci. 1–27.
+Liu, M., Han, Z., Chen, Y., Liu, Z., Han, Y., 2021. Tree species classification of LiDAR 
+data based on 3D deep learning. Measurement 177, 109301.
+Liu, B., Hao, Y., Huang, H., Chen, S., Li, Z., Chen, E., Tian, X., Ren, M., 2023a. TSCMDL: 
+Multimodal deep learning framework for classifying tree species using fusion of 2-D 
+and 3-D features. IEEE Trans. Geosci. Remote Sens. 61, 1–11.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+541 
+
+
+## Page 24
+
+R. Ding et al.
+Liu, D., Jiang, Y., Wang, R., Lu, Y., 2023b. Establishing a citywide street tree inventory 
+with street view images and computer vision techniques. Comput. Environ. Urban 
+Syst. 100, 101924.
+Liu, H., Li, C., Wu, Q., Lee, Y.J., 2023c. Visual instruction tuning. Adv. Neural Inf. 
+Process. Syst. 36, 34892–34916.
+Liu, S., Zeng, Z., Ren, T., Li, F., Zhang, H., Yang, J., Jiang, Q., Li, C., Yang, J., Su, H., 
+et al., 2024. Grounding dino: Marrying dino with grounded pre-training for open-
+set object detection. In: European Conference on Computer Vision. Springer, pp. 
+38–55.
+Ma, X., Qin, C., You, H., Ran, H., Fu, Y., 2022. Rethinking network design and 
+local geometry in point cloud: A simple residual MLP framework. arXiv preprint 
+arXiv:2202.07123.
+Martin, A.J., Fleming, A., Conway, T.M., 2025. Distributional inequities in tree density, 
+size, and species diversity in 32 Canadian cities. Npj Urban Sustain. 5 (1), 18.
+Messier, L., Margulies, E., Wilson, J.P., 2025. Elevating street trees to infrastructure 
+status: A comparison of street tree spacing guidelines in los angeles with US peer 
+cities. Urban For. & Urban Green. 103, 128584.
+Muhtar, D., Li, Z., Gu, F., Zhang, X., Xiao, P., 2024. Lhrs-bot: Empowering remote sens-
+ing with vgi-enhanced large multimodal language model. In: European Conference 
+on Computer Vision. Springer, pp. 440–457.
+Ocer, N.E., Kaplan, G., Erdem, F., Kucuk Matci, D., Avdan, U., 2020. Tree extraction 
+from multi-scale UAV images using mask R-CNN with FPN. Remote. Sens. Lett. 11 
+(9), 847–856.
+Osco, L.P., Wu, Q., de Lemos, E.L., Gonçalves, W.N., Ramos, A.P.M., Li, J., Junior, J.M., 
+2023. The segment anything model (sam) for remote sensing applications: From 
+zero to one shot. Int. J. Appl. Earth Obs. Geoinf. 124, 103540.
+Pataki, D.E., Alberti, M., Cadenasso, M.L., Felson, A.J., McDonnell, M.J., Pincetl, S., 
+Pouyat, R.V., Setälä, H., Whitlow, T.H., 2021. The benefits and limits of urban 
+tree planting for environmental and human health. Front. Ecol. Evol. 9, 603757.
+Puliti, S., Lines, E.R., Müllerová, J., Frey, J., Schindler, Z., Straker, A., Allen, M.J., 
+Winiwarter, L., Rehush, N., Hristova, H., et al., 2024. Benchmarking tree 
+species classification from proximally-sensed laser scanning data: introducing the 
+FOR-species20k dataset. arXiv preprint arXiv:2408.06507.
+Puliti, S., Pearse, G., Surov`y, P., Wallace, L., Hollaus, M., Wielgosz, M., Astrup, R., 2023. 
+For-instance: a uav laser scanning benchmark dataset for semantic and instance 
+segmentation of individual trees. arXiv preprint arXiv:2309.01279.
+Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., 
+Askell, A., Mishkin, P., Clark, J., et al., 2021. Learning transferable visual 
+models from natural language supervision. In: International Conference on Machine 
+Learning. PmLR, pp. 8748–8763.
+Riz, L., Saltori, C., Ricci, E., Poiesi, F., 2023. Novel class discovery for 3d point cloud 
+semantic segmentation. In: Proceedings of the IEEE/CVF Conference on Computer 
+Vision and Pattern Recognition. pp. 9393–9402.
+Roynard, X., Deschaud, J.E., Goulette, F., 2018. Paris-lille-3D: A large and high-
+quality ground-truth urban point cloud dataset for automatic segmentation and 
+classification. Int. J. Robot. Res. 37 (6), 545–557.
+Salmond, J.A., Tadaki, M., Vardoulakis, S., Arbuthnott, K., Coutts, A., Demuzere, M., 
+Dirks, K.N., Heaviside, C., Lim, S., Macintyre, H., et al., 2016. Health and climate 
+related ecosystem services provided by street trees in the urban environment. 
+Environ. Health 15, 95–111.
+Saltori, C., Galasso, F., Fiameni, G., Sebe, N., Ricci, E., Poiesi, F., 2022. Cosmix: 
+Compositional semantic mix for domain adaptation in 3d lidar segmentation. In: 
+European Conference on Computer Vision. Springer, pp. 586–602.
+Schiefer, F., Kattenborn, T., Frick, A., Frey, J., Schall, P., Koch, B., Schmidtlein, S., 
+2020. Mapping forest tree species in high resolution UAV-based RGB-imagery by 
+means of convolutional neural networks. ISPRS J. Photogramm. Remote Sens. 170, 
+205–215.
+Seiferling, I., Naik, N., Ratti, C., Proulx, R., 2017. Green streets- quantifying and 
+mapping urban trees with street-level imagery and computer vision. Landsc. Urban 
+Plan. 165, 93–101.
+Shao, H., Wang, L., Chen, R., Waslander, S.L., Li, H., Liu, Y., 2023. Reasonnet: End-to-
+end driving with temporal and global reasoning. In: Proceedings of the IEEE/CVF 
+Conference on Computer Vision and Pattern Recognition. pp. 13723–13733.
+Sun, J., Qing, C., Tan, J., Xu, X., 2023. Superpoint transformer for 3d scene instance 
+segmentation. In: Proceedings of the AAAI Conference on Artificial Intelligence, 
+vol. 37, pp. 2393–2401.
+Tan, W., Qin, N., Ma, L., Li, Y., Du, J., Cai, G., Yang, K., Li, J., 2020. Toronto-3D: A 
+large-scale mobile LiDAR dataset for semantic segmentation of urban roadways. 
+In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern 
+Recognition Workshops. pp. 202–203.
+Troy, A., Grove, J.M., O’Neil-Dunne, J., 2012. The relationship between tree canopy 
+and crime rates across an urban–rural gradient in the greater baltimore region. 
+Landsc. Urban Plan. 106 (3), 262–270.
+Veitch-Michaelis, J., Cottam, A., Schweizer, D., Broadbent, E.N., Dao, D., Zhang, C., 
+Zambrano, A.A., Max, S., 2024. OAM-TCD: A globally diverse dataset of 
+high-resolution tree cover maps. arXiv preprint arXiv:2407.11743.
+Vu, T., Kim, K., Luu, T.M., Nguyen, T., Yoo, C.D., 2022. Softgroup for 3d instance 
+segmentation on point clouds. In: Proceedings of the IEEE/CVF Conference on 
+Computer Vision and Pattern Recognition. pp. 2708–2717.
+Wang, X., Liu, S., Shen, X., Shen, C., Jia, J., 2019. Associatively segmenting instances 
+and semantics in point clouds. In: Proceedings of the IEEE/CVF Conference on 
+Computer Vision and Pattern Recognition. pp. 4096–4105.
+Wang, W., Xiao, L., Zhang, J., Yang, Y., Tian, P., Wang, H., He, X., 2018. Potential of 
+internet street-view images for measuring tree sizes in roadside forests. Urban For. 
+Urban Green. 35, 211–220.
+Wegner, J.D., Branson, S., Hall, D., Schindler, K., Perona, P., 2016. Cataloging public 
+objects using aerial and street-level images-urban trees. In: Proceedings of the IEEE 
+Conference on Computer Vision and Pattern Recognition. pp. 6014–6023.
+Weinstein, B., 2023. MillionTrees: A benchmark dataset for airborne machine learning. 
+https://milliontrees.idtrees.org/. (Accessed 23 November 2024).
+Weinstein, B., Marconi, S., White, E., 2022. Data for the NeonTreeEvaluation 
+benchmark. http://dx.doi.org/10.5281/zenodo.5914554, (Accessed 11 November 
+2024).
+Weiser, H., Schäfer, J., Winiwarter, L., Krašovec, N., Fassnacht, F.E., Höfle, B., 2022. 
+Individual tree point clouds and tree measurements from multi-platform laser 
+scanning in german forests. Earth Syst. Sci. Data 14 (7), 2989–3012.
+Wielgosz, M., Puliti, S., Xiang, B., Schindler, K., Astrup, R., 2024. SegmentAnyTree: A 
+sensor and platform agnostic deep learning model for tree segmentation using laser 
+scanning data. arXiv preprint arXiv:2401.15739.
+Windrim, L., Bryson, M., 2019. Forest tree detection and segmentation using high 
+resolution airborne lidar. In: 2019 IEEE/RSJ International Conference on Intelligent 
+Robots and Systems. IROS, IEEE, pp. 3898–3904.
+Wolf, K.L., Lam, S.T., McKeen, J.K., Richardson, G.R., van Den Bosch, M., 
+Bardekjian, A.C., 2020. Urban trees and human health: A scoping review. Int. J. 
+Environ. Res. Public Health 17 (12), 4371.
+Wu, X., Lao, Y., Jiang, L., Liu, X., Zhao, H., 2022. Point transformer v2: Grouped 
+vector attention and partition-based pooling. Adv. Neural Inf. Process. Syst. 35, 
+33330–33342.
+Wu, B., Yu, B., Yue, W., Shu, S., Tan, W., Hu, C., Huang, Y., Wu, J., Liu, H., 2013. 
+A voxel-based method for automated identification and morphological parameters 
+estimation of individual street trees from mobile laser scanning data. Remote. Sens. 
+5 (2), 584–611.
+Xiang, B., Peters, T., Kontogianni, T., Vetterli, F., Puliti, S., Astrup, R., Schindler, K., 
+2023. Towards accurate instance segmentation in large-scale LiDAR point clouds. 
+arXiv preprint arXiv:2307.02877.
+Xiang, B., Wielgosz, M., Kontogianni, T., Peters, T., Puliti, S., Astrup, R., Schindler, K., 
+2024. Automated forest inventory: Analysis of high-density airborne lidar point 
+clouds with 3D deep learning. Remote Sens. Environ. 305, 114078.
+Yang, B., Dong, Z., Liang, F., Mi, X., 2024a. Ubiquitous Point Cloud: Theory, Model, 
+and Applications. CRC Press.
+Yang, A., Yang, B., Zhang, B., Hui, B., Zheng, B., Yu, B., Li, C., Liu, D., Huang, F., 
+Wei, H., et al., 2024b. Qwen2. 5 technical report. arXiv preprint arXiv:2412.15115.
+Yang, T., Zhou, S., Huang, Z., Xu, A., Ye, J., Yin, J., 2023. Urban street tree dataset 
+for image classification and instance segmentation. Comput. Electron. Agric. 209, 
+107852.
+Yazdi, H., Shu, Q., Rötzer, T., Petzold, F., Ludwig, F., 2024. A multilayered urban tree 
+dataset of point clouds, quantitative structure and graph models. Sci. Data 11 (1), 
+28.
+Yi, X., Ma, Y., Li, Y., Xu, H., Ma, J., 2025. Artificial intelligence facilitates information 
+fusion for perception in complex environments. Innov. 6 (4).
+Zhang, W., Qi, J., Wan, P., Wang, H., Xie, D., Wang, X., Yan, G., 2016. An easy-to-use 
+airborne LiDAR data filtering method based on cloth simulation. Remote. Sens. 8 
+(6), 501.
+Zhang, Z., Zhang, Z., Yu, Q., Yi, R., Xie, Y., Ma, L., 2023. Lidar-camera panoptic seg-
+mentation via geometry-consistent and semantic-aware alignment. In: Proceedings 
+of the IEEE/CVF International Conference on Computer Vision. pp. 3662–3671.
+Zhou, Y., Han, X., Peng, M., Li, H., Yang, B., Dong, Z., Yang, B., 2022. Street-view 
+imagery guided street furniture inventory from mobile laser scanning point clouds. 
+ISPRS J. Photogramm. Remote Sens. 189, 63–77.
+Zhou, J., Long, C., Xie, Y., Wang, J., Zhang, C., Li, B., Wang, H., Chen, Z., Dong, Z., 
+2025. WHU-synthetic: A synthetic perception dataset for 3D multi-task model 
+research. IEEE Trans. Geosci. Remote Sens. 
+Zou, X., Li, J., Wang, Y., Liang, F., Wu, W., Wang, H., Yang, B., Dong, Z., 2023. 
+PatchAugNet: Patch feature augmentation-based heterogeneous point cloud place 
+recognition in large-scale street scenes. ISPRS J. Photogramm. Remote Sens. 206, 
+273–292.
+ISPRS Journal of Photogrammetry and Remote Sensing 233 (2026) 519–542 
+542 

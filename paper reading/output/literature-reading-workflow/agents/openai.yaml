@@ -1,0 +1,3 @@
+display_name: 文献阅读工作流
+short_description: 按本地 PDF 规则解析论文并生成中文阅读笔记。
+default_prompt: 请使用该工作流读取 PDF 文献，生成中文阅读笔记，并说明解析质量与需核对内容。
