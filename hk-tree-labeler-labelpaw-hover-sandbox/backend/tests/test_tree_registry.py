@@ -46,7 +46,12 @@ class TreeRegistryTest(unittest.TestCase):
         folder.mkdir(parents=True)
         path = folder / f"{species}.csv"
         with path.open("w", encoding="utf-8", newline="") as handle:
-            writer = csv.DictWriter(handle, fieldnames=["tree_id", "latitude", "longitude", "height"])
+            fieldnames = ["tree_id", "latitude", "longitude", "height"]
+            for row in rows:
+                for key in row:
+                    if key not in fieldnames:
+                        fieldnames.append(key)
+            writer = csv.DictWriter(handle, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(rows)
 
@@ -69,6 +74,27 @@ class TreeRegistryTest(unittest.TestCase):
 
         self.assertEqual([match.species for match in matches], ["Another species", "Canonical species"])
         self.assertTrue(all(match.registry_id for match in matches))
+
+    def test_rebuild_registry_excludes_major_parks_rows_without_real_tree_ids(self) -> None:
+        self._write_species_csv(
+            "Park source species",
+            [
+                {
+                    "dataset": "Trees_Major_Parks",
+                    "tree_id": "Kowloon Walled City Park",
+                    "latitude": "22.33237",
+                    "longitude": "114.18968",
+                    "height": "20",
+                    "source_file": "Trees_Major_Parks_converted.geojson",
+                }
+            ],
+        )
+
+        summary = rebuild_tree_registry(self.db_path, self.species_dir, self.label_map)
+        matches = lookup_tree_id("Kowloon Walled City Park", self.db_path)
+
+        self.assertEqual(summary["records"], 3)
+        self.assertEqual(matches, [])
 
     def test_task_manager_prepares_selected_registry_record(self) -> None:
         rebuild_tree_registry(self.db_path, self.species_dir, self.label_map)

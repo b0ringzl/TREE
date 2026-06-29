@@ -13,6 +13,8 @@ from .config import LABEL_MERGE_MAP, SPECIES_DIR, TREE_REGISTRY_DB, safe_name
 from .data_access import ID_ALIASES, LAT_ALIASES, LON_ALIASES, TreeRecord, _find_column, _read_table, parse_height_m
 
 HEIGHT_ALIASES = ("height", "height_m", "tree_height", "楂樺害")
+MAJOR_PARKS_DATASET = "Trees_Major_Parks"
+MAJOR_PARKS_SOURCE_FILE = "Trees_Major_Parks_converted.geojson"
 
 
 @dataclass(frozen=True)
@@ -101,6 +103,19 @@ def _row_value(row: pd.Series, column: str | None, fallback: Any = None) -> Any:
     return fallback if pd.isna(value) else value
 
 
+def _row_value_by_name(row: pd.Series, name: str, fallback: Any = "") -> Any:
+    for key, value in row.to_dict().items():
+        if str(key).strip().casefold() == name.casefold():
+            return fallback if pd.isna(value) else value
+    return fallback
+
+
+def _exclude_from_id_lookup(row: pd.Series) -> bool:
+    dataset = str(_row_value_by_name(row, "dataset")).strip().casefold()
+    source_file = Path(str(_row_value_by_name(row, "source_file"))).name.casefold()
+    return dataset == MAJOR_PARKS_DATASET.casefold() or source_file == MAJOR_PARKS_SOURCE_FILE.casefold()
+
+
 def iter_registry_rows(species_root: Path = SPECIES_DIR, label_map_path: Path = LABEL_MERGE_MAP) -> list[RegistryTree]:
     label_map = load_label_merge_map(label_map_path)
     rows: list[RegistryTree] = []
@@ -122,6 +137,8 @@ def iter_registry_rows(species_root: Path = SPECIES_DIR, label_map_path: Path = 
             if not lat_col or not lon_col:
                 continue
             for row_index, row in df.iterrows():
+                if _exclude_from_id_lookup(row):
+                    continue
                 try:
                     lat = float(row[lat_col])
                     lon = float(row[lon_col])
