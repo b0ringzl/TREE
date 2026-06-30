@@ -1,0 +1,106 @@
+From 2f5a3645e11f3177f282c42349f37e76fcb751ba Mon Sep 17 00:00:00 2001
+From: zhenglin <zhenglin9587@outlook.com>
+Date: Tue, 30 Jun 2026 13:36:25 +0800
+Subject: [PATCH 1/2] Deploy pctrees for local yolo environment
+
+---
+ PCT_Pytorch |  2 +-
+ pct_main.py | 32 +++++++++++++++++++++-----------
+ train.py    |  3 ++-
+ 3 files changed, 24 insertions(+), 13 deletions(-)
+
+diff --git a/PCT_Pytorch b/PCT_Pytorch
+index 3b2aaab..61d65cd 160000
+--- a/PCT_Pytorch
++++ b/PCT_Pytorch
+@@ -1 +1 @@
+-Subproject commit 3b2aaabb9514028d83a0af7d571a1d71c7a4be7a
++Subproject commit 61d65cd4e2d48c3e17b831e58efbda555a0dc519
+diff --git a/pct_main.py b/pct_main.py
+index db1fe55..9a17e98 100755
+--- a/pct_main.py
++++ b/pct_main.py
+@@ -1,9 +1,18 @@
+ from __future__ import print_function
++from pathlib import Path
+ from dataset import MpalaTreeLiDARToPCT, MpalaTreeLiDAR
+ import time
++import sys
++import shutil
++import os
++
++ROOT = Path(__file__).resolve().parent
++PCT_ROOT = ROOT / "PCT_Pytorch"
++sys.path.insert(0, str(PCT_ROOT))
++os.environ.setdefault("WANDB_MODE", "offline")
++
+ from PCT_Pytorch.model import Pct
+ from PCT_Pytorch.util import cal_loss, IOStream
+-import os
+ import argparse
+ import torch
+ import torch.nn as nn
+@@ -26,14 +35,15 @@ def _init_(args):
+         os.makedirs('checkpoints/'+args.exp_name)
+     if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
+         os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
+-    os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
+-    os.system('cp model.py checkpoints' + '/' +
+-              args.exp_name + '/' + 'model.py.backup')
+-    os.system('cp util.py checkpoints' + '/' +
+-              args.exp_name + '/' + 'util.py.backup')
+-    os.system('cp data.py checkpoints' + '/' +
+-              args.exp_name + '/' + 'data.py.backup')
+-    wandb.login()
++    backup_dir = ROOT / "checkpoints" / args.exp_name
++    for source, backup_name in [
++        (ROOT / "pct_main.py", "pct_main.py.backup"),
++        (PCT_ROOT / "model.py", "model.py.backup"),
++        (PCT_ROOT / "util.py", "util.py.backup"),
++        (PCT_ROOT / "data.py", "data.py.backup"),
++    ]:
++        if source.exists():
++            shutil.copy2(source, backup_dir / backup_name)
+     wandb.init(project=args.exp_name, config=args)
+ 
+ 
+@@ -299,7 +309,7 @@ if __name__ == "__main__":
+                         help='num of points to use')
+     parser.add_argument('--dropout', type=float, default=0.5,
+                         help='dropout rate')
+-    parser.add_argument('--model_path', type=str, default='../PCT_Pytorch/checkpoints/best/models/model.t7', metavar='N',
++    parser.add_argument('--model_path', type=str, default='PCT_Pytorch/checkpoints/best/models/model.t7', metavar='N',
+                         help='Pretrained model path')
+     parser.add_argument('--data_dir', type=str,
+                         default="../data", help='Path to LiDAR tree dataset')
+@@ -307,7 +317,7 @@ if __name__ == "__main__":
+                         default="../labels.csv", help='Path to LiDAR labels')
+     parser.add_argument('--min_points', type=int,
+                         default=500, help='Minimum number of points in a tree LiDAR scan file')
+-    parser.add_argument('--train_split', type=int,
++    parser.add_argument('--train_split', type=float,
+                         default=0.8, help='Ratio of training data to test data')
+     parser.add_argument('--output_channels', type=int,
+                         default=41, help='Number of classes')
+diff --git a/train.py b/train.py
+index e863a41..923881e 100644
+--- a/train.py
++++ b/train.py
+@@ -1,4 +1,5 @@
+ import torch
++import os
+ from torch import nn, optim
+ from torchmetrics import AUROC
+ from torch.utils.data import DataLoader, random_split
+@@ -11,7 +12,7 @@ from dataset import MpalaTreeLiDAR, MpalaTreeLiDARToPCT
+ import utils
+ import pandas as pd
+ 
+-wandb.login()
++os.environ.setdefault("WANDB_MODE", "offline")
+ 
+ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+ 
+-- 
+2.54.0.windows.1
+

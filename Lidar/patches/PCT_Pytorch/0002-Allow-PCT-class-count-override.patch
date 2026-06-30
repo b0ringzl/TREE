@@ -1,0 +1,31 @@
+From 602e46cfd63d9d1999e6b04c9c005e5e69b4bbb3 Mon Sep 17 00:00:00 2001
+From: zhenglin <zhenglin9587@outlook.com>
+Date: Tue, 30 Jun 2026 14:23:40 +0800
+Subject: [PATCH 2/2] Allow PCT class count override
+
+---
+ model.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/model.py b/model.py
+index c97aa7d..9fb741f 100644
+--- a/model.py
++++ b/model.py
+@@ -26,6 +26,7 @@ class Pct(nn.Module):
+     def __init__(self, args, output_channels=40):
+         super(Pct, self).__init__()
+         self.args = args
++        output_channels = getattr(args, "output_channels", output_channels)
+         self.conv1 = nn.Conv1d(3, 64, kernel_size=1, bias=False)
+         self.conv2 = nn.Conv1d(64, 64, kernel_size=1, bias=False)
+         self.bn1 = nn.BatchNorm1d(64)
+@@ -137,4 +138,4 @@ class SA_Layer(nn.Module):
+         x_r = torch.bmm(x_v, attention)
+         x_r = self.act(self.after_norm(self.trans_conv(x - x_r)))
+         x = x + x_r
+-        return x
+\ No newline at end of file
++        return x
+-- 
+2.54.0.windows.1
+
