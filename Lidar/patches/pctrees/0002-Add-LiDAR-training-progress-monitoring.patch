@@ -1,7 +1,7 @@
 From 10952f3f8b6e0bafdb576bc2aad29addcc96eea3 Mon Sep 17 00:00:00 2001
 From: zhenglin <zhenglin9587@outlook.com>
 Date: Tue, 30 Jun 2026 14:23:52 +0800
-Subject: [PATCH 2/2] Add LiDAR training progress monitoring
+Subject: [PATCH 2/3] Add LiDAR training progress monitoring
 
 ---
  PCT_Pytorch                |   2 +-

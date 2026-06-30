@@ -63,10 +63,37 @@ Recommended LiDAR training entry:
 D:\TREE\Lidar\train_pctrees_lidar.bat
 ```
 
+The first run builds a reusable point tensor cache under:
+
+```text
+D:\TREE\lidar data\pctrees_cache_4096
+```
+
+After the cache exists, later training runs read `.pt` tensors instead of repeatedly
+decompressing `.laz` files.
+
 To choose an experiment name and epoch count:
 
 ```powershell
 D:\TREE\Lidar\train_pctrees_lidar.bat tree_lidar_pct_run1 10
+```
+
+To choose cache size and DataLoader worker count:
+
+```powershell
+D:\TREE\Lidar\train_pctrees_lidar.bat tree_lidar_pct_run1 10 4096 2
+```
+
+If Windows multiprocessing is unstable on a run, use worker count `0`:
+
+```powershell
+D:\TREE\Lidar\train_pctrees_lidar.bat tree_lidar_pct_run1 10 4096 0
+```
+
+To rebuild the cache manually:
+
+```powershell
+python D:\TREE\Lidar\build_pctrees_point_cache.py --cache-points 4096 --overwrite
 ```
 
 Watch live progress in another terminal:

@@ -1,0 +1,253 @@
+From 62111ff9eb14e7b4f8decfffcc92463aaf0dd716 Mon Sep 17 00:00:00 2001
+From: zhenglin <zhenglin9587@outlook.com>
+Date: Tue, 30 Jun 2026 14:56:41 +0800
+Subject: [PATCH 3/3] Add point cache training pipeline
+
+---
+ dataset.py                        | 24 ++++++++++++++--
+ pct_main.py                       |  3 ++
+ point_cache.py                    | 34 ++++++++++++++++++++++
+ tests/test_point_cache_builder.py | 36 +++++++++++++++++++++++
+ tests/test_point_cache_dataset.py | 47 +++++++++++++++++++++++++++++++
+ utils.py                          |  2 ++
+ 6 files changed, 143 insertions(+), 3 deletions(-)
+ create mode 100644 point_cache.py
+ create mode 100644 tests/test_point_cache_builder.py
+ create mode 100644 tests/test_point_cache_dataset.py
+
+diff --git a/dataset.py b/dataset.py
+index 59abe25..87ee7d3 100644
+--- a/dataset.py
++++ b/dataset.py
+@@ -5,6 +5,7 @@ import argparse
+ import glob
+ import pandas as pd
+ import re
++import torch
+ import utils
+ import numpy as np
+ from torchvision import transforms
+@@ -19,6 +20,7 @@ class MpalaTreeLiDAR(Dataset):
+         min_points: int,
+         top_species: int,
+         transform: transforms.Compose,
++        cache_dir: str = None,
+     ):
+         self.x, self.y = [], []
+         labels = labels.copy()
+@@ -26,9 +28,16 @@ class MpalaTreeLiDAR(Dataset):
+         label_by_id = labels.set_index("tree_id")["label"].to_dict()
+         point_count_by_id = labels.set_index("tree_id")["num_points"].to_dict() if "num_points" in labels.columns else {}
+         datapoints = {}
+-        for filepath in sorted(glob.glob(path.join(dir, "*.las")) + glob.glob(path.join(dir, "*.laz"))):
++        if cache_dir:
++            source_files = sorted(glob.glob(path.join(cache_dir, "*.pt")))
++            source_pattern = re.compile(r"(?:treeID_)?0*(\d+)\.pt$", re.IGNORECASE)
++        else:
++            source_files = sorted(glob.glob(path.join(dir, "*.las")) + glob.glob(path.join(dir, "*.laz")))
++            source_pattern = re.compile(r"(?:treeID_)?0*(\d+)\.la[sz]$", re.IGNORECASE)
++
++        for filepath in source_files:
+             filename = path.basename(filepath)
+-            match = re.match(r"(?:treeID_)?0*(\d+)\.la[sz]$", filename, re.IGNORECASE)
++            match = source_pattern.match(filename)
+             if not match:
+                 continue
+             id = int(match.group(1))
+@@ -36,6 +45,10 @@ class MpalaTreeLiDAR(Dataset):
+                 continue
+             if "num_points" in labels.columns:
+                 point_count = int(point_count_by_id[id])
++            elif filepath.lower().endswith(".pt"):
++                payload = torch.load(filepath, map_location="cpu")
++                points = payload["points"] if isinstance(payload, dict) else payload
++                point_count = len(points)
+             else:
+                 with laspy.open(filepath) as reader:
+                     point_count = reader.header.point_count
+@@ -64,7 +77,12 @@ class MpalaTreeLiDAR(Dataset):
+         self.transform = transform
+ 
+     def __getitem__(self, i):
+-        x = laspy.read(self.x[i])
++        if self.x[i].lower().endswith(".pt"):
++            payload = torch.load(self.x[i], map_location="cpu")
++            x = payload["points"] if isinstance(payload, dict) else payload
++            x = x.clone().float()
++        else:
++            x = laspy.read(self.x[i])
+         y = self.y[i]
+         x = self.transform(x)
+ 
+diff --git a/pct_main.py b/pct_main.py
+index 1b3727c..629fdb1 100755
+--- a/pct_main.py
++++ b/pct_main.py
+@@ -388,6 +388,7 @@ def load_tree_lidar_data(args):
+         labels=pd.read_csv(args.label_path),
+         min_points=args.min_points,
+         top_species=args.top_species,
++        cache_dir=args.cache_dir,
+         transform=transforms.Compose([
+             utils.ToPointCloud(),
+         ]),
+@@ -451,6 +452,8 @@ if __name__ == "__main__":
+                         default=20, help='Print one progress line every N batches')
+     parser.add_argument('--num_workers', type=int, default=0,
+                         help='DataLoader worker count. Use 0 on Windows for stable LAZ loading.')
++    parser.add_argument('--cache_dir', type=str,
++                        help='Optional directory of pre-sampled .pt point cache files.')
+ 
+     args = parser.parse_args()
+ 
+diff --git a/point_cache.py b/point_cache.py
+new file mode 100644
+index 0000000..7fcf64c
+--- /dev/null
++++ b/point_cache.py
+@@ -0,0 +1,34 @@
++from pathlib import Path
++
++import torch
++
++
++def sample_points(points, cache_points, seed):
++    points = points.float()
++    generator = torch.Generator()
++    generator.manual_seed(int(seed))
++    point_count = len(points)
++    if point_count >= cache_points:
++        indices = torch.randperm(point_count, generator=generator)[:cache_points]
++    else:
++        indices = torch.randint(point_count, (cache_points,), generator=generator)
++    return points[indices].contiguous()
++
++
++def write_point_cache(tree_id, points, source_path, output_dir, cache_points, seed):
++    output_dir = Path(output_dir)
++    output_dir.mkdir(parents=True, exist_ok=True)
++    source_path = Path(source_path)
++    cache_path = output_dir / f"{int(tree_id):05d}.pt"
++    cached_points = sample_points(points, cache_points, seed)
++    torch.save(
++        {
++            "tree_id": int(tree_id),
++            "source": source_path.name,
++            "num_source_points": int(len(points)),
++            "cache_points": int(cache_points),
++            "points": cached_points,
++        },
++        cache_path,
++    )
++    return cache_path
+diff --git a/tests/test_point_cache_builder.py b/tests/test_point_cache_builder.py
+new file mode 100644
+index 0000000..a90e3da
+--- /dev/null
++++ b/tests/test_point_cache_builder.py
+@@ -0,0 +1,36 @@
++from pathlib import Path
++import tempfile
++import unittest
++
++import torch
++
++import point_cache
++
++
++class PointCacheBuilderTest(unittest.TestCase):
++    def test_write_point_cache_saves_fixed_size_tensor_and_metadata(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            out_dir = Path(tmp) / "cache"
++            points = torch.arange(30, dtype=torch.float32).reshape(10, 3)
++
++            cache_path = point_cache.write_point_cache(
++                tree_id=70,
++                points=points,
++                source_path=Path("00070.laz"),
++                output_dir=out_dir,
++                cache_points=4,
++                seed=123,
++            )
++            payload = torch.load(cache_path, map_location="cpu")
++
++        self.assertEqual(cache_path.name, "00070.pt")
++        self.assertEqual(payload["tree_id"], 70)
++        self.assertEqual(payload["source"], "00070.laz")
++        self.assertEqual(payload["num_source_points"], 10)
++        self.assertEqual(payload["cache_points"], 4)
++        self.assertEqual(tuple(payload["points"].shape), (4, 3))
++        self.assertEqual(payload["points"].dtype, torch.float32)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_point_cache_dataset.py b/tests/test_point_cache_dataset.py
+new file mode 100644
+index 0000000..5e9bfc5
+--- /dev/null
++++ b/tests/test_point_cache_dataset.py
+@@ -0,0 +1,47 @@
++from pathlib import Path
++import tempfile
++import unittest
++
++import pandas as pd
++import torch
++
++from dataset import MpalaTreeLiDAR
++import utils
++
++
++class PointCacheDatasetTest(unittest.TestCase):
++    def test_dataset_loads_cached_tensor_by_tree_id(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            root = Path(tmp)
++            cache_dir = root / "cache"
++            cache_dir.mkdir()
++            torch.save(
++                {
++                    "tree_id": 70,
++                    "points": torch.arange(12, dtype=torch.float32).reshape(4, 3),
++                    "num_source_points": 100,
++                },
++                cache_dir / "00070.pt",
++            )
++            labels = pd.DataFrame(
++                [{"tree_id": 70, "label": "Acacia", "num_points": 100}]
++            )
++
++            dataset = MpalaTreeLiDAR(
++                dir=str(root / "raw"),
++                labels=labels,
++                min_points=4,
++                top_species=None,
++                transform=utils.ToPointCloud(),
++                cache_dir=str(cache_dir),
++            )
++
++            points, label = dataset[0]
++
++        self.assertEqual(dataset.classes, ["Acacia"])
++        self.assertEqual(label, 0)
++        self.assertTrue(torch.equal(points, torch.arange(12, dtype=torch.float32).reshape(4, 3)))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/utils.py b/utils.py
+index 0b78837..b16f664 100644
+--- a/utils.py
++++ b/utils.py
+@@ -104,6 +104,8 @@ class ToPointCloud:
+         self.hide_class_10 = hide_class_10
+ 
+     def __call__(self, las):
++        if isinstance(las, torch.Tensor):
++            return las.float()
+         pc, _ = las_to_pc(las, self.hide_class_10)
+         return pc
+ 
+-- 
+2.54.0.windows.1
+
