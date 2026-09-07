@@ -1,0 +1,506 @@
+{
+  "hongkong": [
+    {
+      "scientific_name": "Ravenala madagascariensis",
+      "support": 33,
+      "precision": 0.9375,
+      "recall": 0.9090909090909091,
+      "f1": 0.9230769230769231,
+      "domain": "hongkong",
+      "chinese_name": "旅人蕉",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Araucaria columnaris(Araucaria heterophylla)",
+      "support": 82,
+      "precision": 0.8536585365853658,
+      "recall": 0.8536585365853658,
+      "f1": 0.8536585365853658,
+      "domain": "hongkong",
+      "chinese_name": "南洋杉（原训练合并类）",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Livistona chinensis",
+      "support": 42,
+      "precision": 0.85,
+      "recall": 0.8095238095238095,
+      "f1": 0.8292682926829268,
+      "domain": "hongkong",
+      "chinese_name": "蒲葵",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Thevetia peruviana",
+      "support": 23,
+      "precision": 0.8260869565217391,
+      "recall": 0.8260869565217391,
+      "f1": 0.8260869565217391,
+      "domain": "hongkong",
+      "chinese_name": "黄花夹竹桃",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Casuarina equisetifolia",
+      "support": 47,
+      "precision": 0.8043478260869565,
+      "recall": 0.7872340425531915,
+      "f1": 0.7956989247311828,
+      "domain": "hongkong",
+      "chinese_name": "木麻黄",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Michelia x alba",
+      "support": 30,
+      "precision": 0.7666666666666667,
+      "recall": 0.7666666666666667,
+      "f1": 0.7666666666666667,
+      "domain": "hongkong",
+      "chinese_name": "白兰",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Macaranga tanarius",
+      "support": 45,
+      "precision": 0.7857142857142857,
+      "recall": 0.7333333333333333,
+      "f1": 0.7586206896551724,
+      "domain": "hongkong",
+      "chinese_name": "血桐",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Eucalyptus urophylla",
+      "support": 23,
+      "precision": 0.8823529411764706,
+      "recall": 0.6521739130434783,
+      "f1": 0.75,
+      "domain": "hongkong",
+      "chinese_name": "尾叶桉",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Machilus velutina",
+      "support": 17,
+      "precision": 0.6521739130434783,
+      "recall": 0.8823529411764706,
+      "f1": 0.75,
+      "domain": "hongkong",
+      "chinese_name": "绒毛润楠",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Plumeria rubra",
+      "support": 77,
+      "precision": 0.7746478873239436,
+      "recall": 0.7142857142857143,
+      "f1": 0.7432432432432432,
+      "domain": "hongkong",
+      "chinese_name": "鸡蛋花",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Elaeocarpus hainanensis",
+      "support": 18,
+      "precision": 0.9166666666666666,
+      "recall": 0.6111111111111112,
+      "f1": 0.7333333333333333,
+      "domain": "hongkong",
+      "chinese_name": "水石榕",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Podocarpus macrophyllus",
+      "support": 40,
+      "precision": 0.6888888888888889,
+      "recall": 0.775,
+      "f1": 0.7294117647058823,
+      "domain": "hongkong",
+      "chinese_name": "罗汉松",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Lagerstroemia speciosa",
+      "support": 42,
+      "precision": 0.8,
+      "recall": 0.6666666666666666,
+      "f1": 0.7272727272727273,
+      "domain": "hongkong",
+      "chinese_name": "大花紫薇",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Caryota mitis",
+      "support": 34,
+      "precision": 0.7142857142857143,
+      "recall": 0.7352941176470589,
+      "f1": 0.7246376811594203,
+      "domain": "hongkong",
+      "chinese_name": "短穗鱼尾葵",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Reevesia thyrsoidea",
+      "support": 25,
+      "precision": 0.6363636363636364,
+      "recall": 0.84,
+      "f1": 0.7241379310344828,
+      "domain": "hongkong",
+      "chinese_name": "梭罗树",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Terminalia catappa",
+      "support": 47,
+      "precision": 0.723404255319149,
+      "recall": 0.723404255319149,
+      "f1": 0.723404255319149,
+      "domain": "hongkong",
+      "chinese_name": "榄仁树",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Celtis sinensis",
+      "support": 47,
+      "precision": 0.7948717948717948,
+      "recall": 0.6595744680851063,
+      "f1": 0.7209302325581395,
+      "domain": "hongkong",
+      "chinese_name": "朴树",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Diospyros eriantha",
+      "support": 37,
+      "precision": 0.7105263157894737,
+      "recall": 0.7297297297297297,
+      "f1": 0.72,
+      "domain": "hongkong",
+      "chinese_name": "小果柿",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "scientific_name": "Roystonea regia",
+      "support": 45,
+      "precision": 0.7021276595744681,
+      "recall": 0.7333333333333333,
+      "f1": 0.717391304347826,
+      "domain": "hongkong",
+      "chinese_name": "王棕",
+      "modalities": [
+        "image"
+      ]
+    }
+  ],
+  "wuhan": [
+    {
+      "class_index": 7,
+      "support": 30,
+      "precision": 0.9375,
+      "recall": 1.0,
+      "f1": 0.967741935483871,
+      "scientific_name": "Cedrus deodara",
+      "domain": "wuhan",
+      "chinese_name": "雪松",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 12,
+      "support": 30,
+      "precision": 0.9375,
+      "recall": 1.0,
+      "f1": 0.967741935483871,
+      "scientific_name": "Malus x micromalus",
+      "domain": "wuhan",
+      "chinese_name": "西府海棠",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 14,
+      "support": 30,
+      "precision": 1.0,
+      "recall": 0.9333333333333333,
+      "f1": 0.9655172413793104,
+      "scientific_name": "Metasequoia glyptostroboides",
+      "domain": "wuhan",
+      "chinese_name": "水杉",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 5,
+      "support": 30,
+      "precision": 0.9655172413793104,
+      "recall": 0.9333333333333333,
+      "f1": 0.9491525423728815,
+      "scientific_name": "Prunus cerasifera 'atropurpurea'",
+      "domain": "wuhan",
+      "chinese_name": "紫叶李",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 17,
+      "support": 30,
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.9473684210526316,
+      "scientific_name": "Photinia x fraseri",
+      "domain": "wuhan",
+      "chinese_name": "红叶石楠",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 6,
+      "support": 30,
+      "precision": 0.8823529411764706,
+      "recall": 1.0,
+      "f1": 0.9375,
+      "scientific_name": "Zelkova serrata",
+      "domain": "wuhan",
+      "chinese_name": "榉树",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 4,
+      "support": 30,
+      "precision": 0.9642857142857143,
+      "recall": 0.9,
+      "f1": 0.9310344827586207,
+      "scientific_name": "Koelreuteria paniculata",
+      "domain": "wuhan",
+      "chinese_name": "栾树",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 13,
+      "support": 30,
+      "precision": 1.0,
+      "recall": 0.8666666666666667,
+      "f1": 0.9285714285714286,
+      "scientific_name": "Magnolia grandiflora",
+      "domain": "wuhan",
+      "chinese_name": "广玉兰",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 2,
+      "support": 30,
+      "precision": 0.8787878787878788,
+      "recall": 0.9666666666666667,
+      "f1": 0.9206349206349207,
+      "scientific_name": "Lagerstroemia indica",
+      "domain": "wuhan",
+      "chinese_name": "紫薇",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 8,
+      "support": 30,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1": 0.9090909090909091,
+      "scientific_name": "Ginkgo biloba",
+      "domain": "wuhan",
+      "chinese_name": "银杏",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 3,
+      "support": 30,
+      "precision": 0.875,
+      "recall": 0.9333333333333333,
+      "f1": 0.9032258064516129,
+      "scientific_name": "Osmanthus fragrans",
+      "domain": "wuhan",
+      "chinese_name": "桂花",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 16,
+      "support": 30,
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "scientific_name": "Acer pictum subsp. mono",
+      "domain": "wuhan",
+      "chinese_name": "五角枫",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 0,
+      "support": 30,
+      "precision": 0.8108108108108109,
+      "recall": 1.0,
+      "f1": 0.8955223880597014,
+      "scientific_name": "Platanus x acerifolia",
+      "domain": "wuhan",
+      "chinese_name": "二球悬铃木",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 10,
+      "support": 30,
+      "precision": 0.896551724137931,
+      "recall": 0.8666666666666667,
+      "f1": 0.8813559322033899,
+      "scientific_name": "Prunus serrulata",
+      "domain": "wuhan",
+      "chinese_name": "樱花",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 9,
+      "support": 30,
+      "precision": 0.92,
+      "recall": 0.7666666666666667,
+      "f1": 0.8363636363636363,
+      "scientific_name": "Acer palmatum var. atropurpureum",
+      "domain": "wuhan",
+      "chinese_name": "红枫",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 15,
+      "support": 30,
+      "precision": 1.0,
+      "recall": 0.7,
+      "f1": 0.8235294117647058,
+      "scientific_name": "Sophora japonica",
+      "domain": "wuhan",
+      "chinese_name": "国槐",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "class_index": 11,
+      "support": 30,
+      "precision": 0.8275862068965517,
+      "recall": 0.8,
+      "f1": 0.8135593220338982,
+      "scientific_name": "Ligustrum lucidum",
+      "domain": "wuhan",
+      "chinese_name": "女贞",
+      "modalities": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    }
+  ],
+  "unknown": {
+    "scientific_name": "Unknown",
+    "chinese_name": "未知 / 需复核",
+    "policy": "类别范围外、质量严重不足、最大分数<0.55或前两名差<0.15；阈值是demo启发式，未做独立开放集校准"
+  },
+  "excluded_wuhan": [
+    {
+      "class_index": 1,
+      "support": 30,
+      "precision": 0.6744186046511628,
+      "recall": 0.9666666666666667,
+      "f1": 0.7945205479452055,
+      "scientific_name": "Cinnamomum camphora"
+    }
+  ],
+  "selection": "Hong Kong: top 19 validation F1 among classes with >=10 samples. Wuhan: top 17 fusion validation F1 of 18 trained species. No test predictions used for selection.",
+  "overlap": []
+}

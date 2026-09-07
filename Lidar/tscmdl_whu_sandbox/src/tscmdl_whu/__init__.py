@@ -1,0 +1,126 @@
+"""WHU-STree data access helpers for the TSCMDL reproduction."""
+
+from .io import (
+    PlyHeader,
+    PointChunk,
+    WHUFormatError,
+    WHUTrajectoryReader,
+    discover_reference_path,
+    open_whu_trajectory,
+    parse_ply_header,
+)
+from .instances import (
+    InstanceScanResult,
+    NormalizationTransform,
+    TreeInstance,
+    TreeInstanceStats,
+    extract_tree_instances,
+    normalize_unit_sphere,
+    scan_tree_instances,
+    to_benchmark_label,
+    uniform_sample_indices,
+)
+from .panorama import (
+    CameraPose,
+    ProjectionCrop,
+    minimal_circular_interval,
+    nearest_poses,
+    orientation_column_diagnostics,
+    projection_crop_bounds,
+    project_equirectangular,
+    read_trajectory_csv,
+)
+from .dataset import (
+    choose_validation_roads,
+    select_balanced_records,
+    stable_sample_seed,
+)
+from .road_splits import (
+    build_road_class_counts,
+    choose_inner_validation_roads,
+    grouped_counts_can_meet_minimum,
+    maximum_grouped_minimum,
+    plan_outer_road_folds,
+    select_balanced_evaluation_keys,
+)
+from .shared_assets import (
+    choose_minimum_trajectory_cover,
+    select_shared_smoke_records,
+    validate_shared_asset_paths,
+)
+from .knn_cache import MemmapReferenceCache, load_memmap_knn_cache
+from .training import (
+    ImageManifestDataset,
+    MultimodalManifestDataset,
+    PointManifestDataset,
+    classification_metrics,
+    confusion_matrix,
+)
+from .fusion import (
+    PointMLPFeatureEncoder,
+    ResNet50FeatureEncoder,
+    TSCMDLFusionModel,
+)
+from .ptv2 import (
+    GridPool,
+    GroupedLinear,
+    GroupedVectorAttention,
+    PointTransformerV2Classifier,
+    knn_query_packed,
+    packed_point_counts,
+)
+
+__all__ = [
+    "PlyHeader",
+    "PointChunk",
+    "WHUFormatError",
+    "WHUTrajectoryReader",
+    "discover_reference_path",
+    "open_whu_trajectory",
+    "parse_ply_header",
+    "InstanceScanResult",
+    "NormalizationTransform",
+    "TreeInstance",
+    "TreeInstanceStats",
+    "extract_tree_instances",
+    "normalize_unit_sphere",
+    "scan_tree_instances",
+    "to_benchmark_label",
+    "uniform_sample_indices",
+    "CameraPose",
+    "ProjectionCrop",
+    "minimal_circular_interval",
+    "nearest_poses",
+    "orientation_column_diagnostics",
+    "projection_crop_bounds",
+    "project_equirectangular",
+    "read_trajectory_csv",
+    "choose_validation_roads",
+    "select_balanced_records",
+    "stable_sample_seed",
+    "build_road_class_counts",
+    "choose_inner_validation_roads",
+    "grouped_counts_can_meet_minimum",
+    "maximum_grouped_minimum",
+    "plan_outer_road_folds",
+    "select_balanced_evaluation_keys",
+    "choose_minimum_trajectory_cover",
+    "select_shared_smoke_records",
+    "validate_shared_asset_paths",
+    "MemmapReferenceCache",
+    "load_memmap_knn_cache",
+    "ImageManifestDataset",
+    "MultimodalManifestDataset",
+    "PointManifestDataset",
+    "classification_metrics",
+    "confusion_matrix",
+    "PointMLPFeatureEncoder",
+    "ResNet50FeatureEncoder",
+    "TSCMDLFusionModel",
+    "GridPool",
+    "GroupedLinear",
+    "GroupedVectorAttention",
+    "PointTransformerV2Classifier",
+    "knn_query_packed",
+    "packed_point_counts",
+]

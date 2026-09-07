@@ -1,0 +1,1681 @@
+{
+  "scope": "Core code only; no data, weights or private review assets.",
+  "python_syntax_checked": 260,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 743,
+      "sha256": "93c8ad7f9a77313012e7b63362fe84f7227093b66c6701c3c0f0d11ffb404194"
+    },
+    {
+      "path": "ASSETS_REQUIRED.md",
+      "bytes": 2154,
+      "sha256": "74a2bb92312d9c0155bb8a384b5c428c9b134552a8c397495b63116aada96d6e"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_b5b_domain.py",
+      "bytes": 22163,
+      "sha256": "93dba5ea98e6f399e73bcc203346472b1a75b4dd1a800b73800b0df90bd328e5"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_c2_results.py",
+      "bytes": 10569,
+      "sha256": "4c190d7df698951a7a4115178f6e831de98732fafc719ff4a323d3d02f6e5ca6"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_d2_matched_controls.py",
+      "bytes": 16238,
+      "sha256": "cd7dbf7852b55687400d8bd890e5614634d27bc978dd4f94b383c4b1a499f92b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_d2_target_exposure_metrics.py",
+      "bytes": 9309,
+      "sha256": "884714e43d6e07b5d6710af8fce1f2bf2b5087c33a6da7187a095a76fe696dbd"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_d2_three_modality_results.py",
+      "bytes": 14390,
+      "sha256": "e6711fe29099ff87cb47ae51bc7f48c0b14b9e446667fec4ea7d8c4ebe7d937e"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_d2d_controlled_exposure.py",
+      "bytes": 21622,
+      "sha256": "1e23a9e3834754c06e4bcbc1ee5555e9cad3c0eeba758bc37605374fab05e223"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_d2e_point_quality_ablation.py",
+      "bytes": 24535,
+      "sha256": "c574ca2fe0d6102ac78fb15c902e5da845dee25c27525576d714d06172e397c6"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/analyze_d2f_real_point_quality_review.py",
+      "bytes": 29896,
+      "sha256": "c370769830b373bf78fbcdcebeb78a57f697d20db349a126b2eb1fb144729189"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/apply_user_visual_review.py",
+      "bytes": 2134,
+      "sha256": "1197c8da23a826d89200f96f35bce68159029369afaa2f8306c9a6376c2b6603"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/audit_c1a_road_coverage.py",
+      "bytes": 18589,
+      "sha256": "6db9d170412f73af916371c4e0c9aff696ec2adbb32e9650c02366bce626b40c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/bind_d1_exposure_holdout.py",
+      "bytes": 7374,
+      "sha256": "440f14ebb9f7c5c18bb4f34761ba958ebe0fdf4eb69e2b686bf62ecfbc260771"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_b1_inventory.py",
+      "bytes": 8644,
+      "sha256": "2788c49935a30aaf6d793c6a2256ba0d87c38b79828fe8b0e2b1efed59044d48"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_c2_high_vram_update.py",
+      "bytes": 4569,
+      "sha256": "92705779d49bb18b98edd5b57a4a0511583286331c2bfedb4a4021dfa64fdb0b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_c2_portable_bundle.py",
+      "bytes": 8608,
+      "sha256": "5b3930983bfe454584323bca18099212ea75261291e5f3a0895677106fef61ad"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_c2_recovery_update.py",
+      "bytes": 5723,
+      "sha256": "36e68a933a05f3ef3fcb6a95c346f3d26501e318a5305970978be6c2f628a6d6"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_c3_portable_bundle.py",
+      "bytes": 7044,
+      "sha256": "26c44fc4b37c339898a664cf18e90ea36badbe8fd763c20269c23868ffeb9260"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d1_four_class_package.py",
+      "bytes": 29656,
+      "sha256": "1c2f65408b2aa476dcbc0adfd5536e698a9a90f808a3222de815e4ab135ad3c3"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d1_image_quality_plan.py",
+      "bytes": 27311,
+      "sha256": "91fa89791cb0989cb5a15e21d580d26a946219a79a8d5805c1549d0c01283365"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d1_ptv2_knn_cache_view.py",
+      "bytes": 12937,
+      "sha256": "8f14a84b0c672132b2a49c3648ae10a7cd9cfc47d433cf14202f0dcedf0498b8"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d2_exposure_visualization.py",
+      "bytes": 11533,
+      "sha256": "8c921b898f728d6474ef565b4eb03e4e1415cfee79cc3754a8f6b6bf5a4ad6a4"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d2_exposure_visualization_v2.py",
+      "bytes": 17528,
+      "sha256": "0d14a4be5d222b61d116fd951c0777739e054905fc8be907ab00b79b4d791e25"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d2_matched_normal_controls.py",
+      "bytes": 17519,
+      "sha256": "ab1afc6c3bb863fec448ad749e146dc1e0b8b500541503e01571deb44ea9edfd"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d2d_controlled_exposure_dataset.py",
+      "bytes": 16881,
+      "sha256": "40abcd6ffab05ab5e6298cb6ba8ef4e6dab26e6c8d1575df0bbdcd19b6838acc"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d2e_point_quality_ablation.py",
+      "bytes": 23295,
+      "sha256": "39b353b6ec0534bab1d5871367012a091d772dab92e0b2a1545a56bfe7399fe1"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d2f_real_point_quality_review.py",
+      "bytes": 17981,
+      "sha256": "e13403a207303f72aa57861cdd54bce4ffccce98ae987d5baec62ddfa166c4ee"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_d2g_paper_package.py",
+      "bytes": 12856,
+      "sha256": "e139737c40b0355832c2c87d2c541e9c5aa11bd0309348adcbf3ba594537c497"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_pointnet2_windows.ps1",
+      "bytes": 1600,
+      "sha256": "86333586fe06a178ead2e25a6cad4bb2e38f18c21d0f885116bdade93982efe7"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/build_pointnet2_windows.py",
+      "bytes": 1334,
+      "sha256": "10e53c20e886b3c92f3c4918f7581d7899aaa0166b22528a4c418f408b8b7469"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/cache_b4_frozen_features.py",
+      "bytes": 12139,
+      "sha256": "63ddf5759fafa95e91074e089b5ea1f46045686bf6d7366d639f9733fe96c407"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/cache_b5_ptv2_knn.py",
+      "bytes": 6000,
+      "sha256": "bdaadfb6725c5231f0c76433e7b36e493e8a7f7900cf12ed302dce40cdee03d4"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/cache_c2a_ptv2_knn_memmap.py",
+      "bytes": 12944,
+      "sha256": "e4053479502224e5c6149870ea610a8d35dda090aa60779c8531944dac929038"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/cache_d1_fusion_features.py",
+      "bytes": 13661,
+      "sha256": "b6945c1ec469d4e301f1e29cbd62cca01c9e6a7977accfa78e8bf008b5f68326"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/compare_b4_baselines.py",
+      "bytes": 2205,
+      "sha256": "e130612a7e91fee4ef47eedc3f1adf09f293f02d65c3dfcf567006a98acd1076"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/compare_b5_baselines.py",
+      "bytes": 4522,
+      "sha256": "003de7c125cd95cd8c0f010a46db5d6ca539ea93e454ac817952812294f64e86"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/compare_d1_exposure_modalities.py",
+      "bytes": 5136,
+      "sha256": "13d996a73d3b2367e7858f1de720b4e36cc4e47bfbffbf505e1b4a9a54aa222b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/consolidate_project_status.py",
+      "bytes": 64239,
+      "sha256": "a64153dd3f2eb09b72b7a41148b02d49765f86328071bfe9bdc6634380d40d8b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/d1_image_review_server.py",
+      "bytes": 26697,
+      "sha256": "0776bcd582b2f3131ae3215f67f846808106e3ab49a1060dcd1d5647f393cacb"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/d2_exposure_review_server.py",
+      "bytes": 28239,
+      "sha256": "9949376055c627aafb830b253853dfbd2b4a5c20119be0e712b41428ca227017"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/d2f_point_quality_review_server.py",
+      "bytes": 26258,
+      "sha256": "e2625f47fc349673755b6f1fbfa64cff09145fdee2d987e27b8b3948cbb1cbc7"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/device_probe_c3.py",
+      "bytes": 5056,
+      "sha256": "d8d93a2cdcc8a3a8726fa9d9b1fdd9e938033ffa7cc24c3934562f5d67b56b38"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/evaluate_d1_fusion_exposure_holdout.py",
+      "bytes": 21187,
+      "sha256": "67a425cca4a264d991f4b98176e3be45cd7e9b259ac59eca4eca1ecda377d7fc"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/evaluate_d1_image_exposure_holdout.py",
+      "bytes": 19514,
+      "sha256": "f4a883a5a1827fe87c0bd42b63cd9b6a1ac0f4e629b80c25364b18db81c20e0c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/evaluate_d1_point_exposure_holdout.py",
+      "bytes": 18253,
+      "sha256": "cff6c99397c5cf7001a516a9bb7d41d24e4499522df192e056bf27ab75593805"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/export_b1_multimodal_dataset.py",
+      "bytes": 18287,
+      "sha256": "a5d73f8d6ca6a6d0a20a3214ddc6c8c54ccd11379a6ad810c75cb6aa8c9030fe"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/export_c1_full_shared_dataset.py",
+      "bytes": 33534,
+      "sha256": "c6194c4ac07ebe18a2cf24076595fb5dbb21290a03576d3acf9b610836d5ab8d"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/export_c1c_shared_asset_smoke.py",
+      "bytes": 29053,
+      "sha256": "1097e56f7827ced871e5ee9da57d6b8a65fcab438c089df0cd5c4608c1ab9fa6"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/export_d1_review_actions.py",
+      "bytes": 13872,
+      "sha256": "6d83cec00340ab6e8336e8ec9b58151c3b21d182e2e706b2aa5fb08e03b5c8d3"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/freeze_d2_exposure_evaluation.py",
+      "bytes": 11675,
+      "sha256": "9a0245a249ac7db28d3982ce6cc5cff28fb806139a98c5035630b9092e6ebc8a"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/infer_shenyang_four_class.py",
+      "bytes": 28422,
+      "sha256": "b4c23a5bf3514eaae4b51078442330bc33f41052a44257d002c2062826e9e373"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/inspect_whu_trajectory.py",
+      "bytes": 3264,
+      "sha256": "3432789c0966c4cf77fbef75a44f37236b92f84009675abb4ca082eb9bc482dd"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_c1_export.py",
+      "bytes": 2514,
+      "sha256": "cf94d59da9cc40d6d3c859bebff729cb5880cecebbb078ff05f290d6fe8a5657"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_c1_validation.py",
+      "bytes": 2179,
+      "sha256": "77b412b86761fad2c9594561e91c35fa9476222da2a4c21f5101f4098e2f0dcd"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_c2a_knn_cache.py",
+      "bytes": 2461,
+      "sha256": "932448d2e10eda2c8d4b59ff2b3e2f998f953d33e1314da68525ac2f2484b2ab"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_c3.py",
+      "bytes": 7348,
+      "sha256": "3b2084378e1fddbbb966c926cd018bf7af1295b6b378e61f9feddd394853976c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_d1_fusion_repeats.py",
+      "bytes": 3573,
+      "sha256": "4121188e8bdeed96862e1b6a9aabaaafa43d47eb9bfce9e1df6706b9cbf14443"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_d1_ptv2_repeats.py",
+      "bytes": 7360,
+      "sha256": "bf37359db708ae897abae526bdbb74b5411c2ec2b7c445580aeb17580af42f26"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_d1_resnet50_repeats.py",
+      "bytes": 5805,
+      "sha256": "307c335b28f7695d5fbf7bd5b3bd13a31b52cde9dd1fe3ac66f637c836960390"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/monitor_training.py",
+      "bytes": 14699,
+      "sha256": "7d0fb356f92d8a65622fbf1019cd1933fee53970ff3fb4180a5f4d91719a5007"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/pause_c3_after_epoch.ps1",
+      "bytes": 6140,
+      "sha256": "1f4a68d67cc4adf5c94c5e16d0c98e85f5f32b3c9ed60b0c4284e95fc3ce2c95"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/plan_b1_dataset.py",
+      "bytes": 4888,
+      "sha256": "59d15475d9d8a1ace2762cd0ee208ff572b1ba1eb498cb9b0425697a168ea3ab"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/plan_c1b_dual_track.py",
+      "bytes": 28997,
+      "sha256": "b40881ebc0af6f56d9d49c2693b5416f49aaa23364b242f3bcfe5c49d01c4945"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/plan_road_group_cv.py",
+      "bytes": 20493,
+      "sha256": "6a8f4368386f0653a6024f482b5a5114c179223fd6f9c057cf91d299ce686b60"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/prepare_a3_tree_samples.py",
+      "bytes": 5796,
+      "sha256": "d6d9218f4c043cd7aa182eef9a6897e8e768ed8e0bbffd8def6bbcafde6ad51b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/prepare_a4_pairing_preview.py",
+      "bytes": 9048,
+      "sha256": "7267130ca47d40fe922fba58b3744b63f7ca4305e415dc44d1ea08d0442aa942"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/prepare_c2a_ptv2_dataset_view.py",
+      "bytes": 3540,
+      "sha256": "87ee2a1711e55e1c7f7ae6ef8f6fdbed5495874a0122561176234b83d227141b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/prepare_d1_rework_candidates.py",
+      "bytes": 31569,
+      "sha256": "a004f238548de76a19804d8a446993b372e9e643bef73662ed71e9494d70351b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/profile_whu_instances.py",
+      "bytes": 1899,
+      "sha256": "7246ebf3895528d6bae24a23bf4172189dbf1652048d325a17b71188be2a6fc5"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/refresh_c2_portable_checkpoint.py",
+      "bytes": 5085,
+      "sha256": "a8d32581b8269cd4436220987a0860bd92fa81bf34dd7dd23929fe426586704c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/refresh_c2_portable_template.py",
+      "bytes": 2581,
+      "sha256": "041a9ce11669cddb64ad8c4ffef3399c7bc31535dd48f0c35c0d215c865776ab"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/register_d1_exposure_probes.py",
+      "bytes": 18230,
+      "sha256": "4c5cec2bff0b6dc00010971a27aa75c62394d32b8afb01ee6b8e7be593fdf187"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/request_d1_ptv2_pause.py",
+      "bytes": 1539,
+      "sha256": "dc8ad794a6a7ef1927f1444aa5d6daa1cd755318c9a5df0d63b8c44c6a25a717"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/request_d1_resnet50_pause.py",
+      "bytes": 2048,
+      "sha256": "3e9bf5bb496b5b44a64fd6583adee67306e669e4803f49e5e5c61a564cead47b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/resolve_d1_evaluation_review.py",
+      "bytes": 19560,
+      "sha256": "da78aa0d710cf19b74248854678ccc6b5d87b1f56a890449fb4b16587104273c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_b4c_regularization_ablation.py",
+      "bytes": 29161,
+      "sha256": "e301ae325d2c5db48d8c5d73fae03768e876f695957c61e1375145583a02d9f2"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_b5b_repeats.py",
+      "bytes": 8845,
+      "sha256": "c0c420104bc4247e88300901e515b76c2cb34bac5f7f19afa2676c8c99d30ce7"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_c1_full_export.ps1",
+      "bytes": 1351,
+      "sha256": "c35d1d28b08afd9742afaa6bae7006c347f803bdcef1a48a262335edf1f53e3a"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_c1_full_validation.ps1",
+      "bytes": 635,
+      "sha256": "00557ba9e2adf552878f215f70512c9f88c229dd3192741abf4940b4d21d3bc8"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_c2_ptv2.ps1",
+      "bytes": 2249,
+      "sha256": "30c9e7d92df168db843a9e385874787e597f82226a5825641975951e0000b236"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_c2a_knn_cache.ps1",
+      "bytes": 996,
+      "sha256": "b55a4c55f9a5c652bded9e672e8cbd3c9b123f9286baf5ecc70505accc98fa06"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_c3_local.ps1",
+      "bytes": 5224,
+      "sha256": "316d409b0d145ce48ec34d5ea4ac0073732235e349ef16a58716e9d15cdf6dc2"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_d1_fusion_repeats.py",
+      "bytes": 10650,
+      "sha256": "fb9f0f289aa96b1f158b8baa49d3ed60aa1ad3c5e60f407da28b3d9890ea06c8"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_d1_ptv2_repeats.py",
+      "bytes": 8306,
+      "sha256": "80663700066c796934017c64109e21dfbe32aca99aa7e4d3f648fff6edf65fda"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_d1_resnet50_parallel.py",
+      "bytes": 10402,
+      "sha256": "839ba808585c11cc21bdf2c1270660aa171e804412f8d93159d098ea8966e6f8"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/run_d1_resnet50_repeats.py",
+      "bytes": 14379,
+      "sha256": "cc4bf1891693cb70960212d9c1ca4128a8fab92655f3a9f4afd54744fa67c56a"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/smoke_b4a_fusion.py",
+      "bytes": 19928,
+      "sha256": "fdfc0be89592d50d2fc5204e560dcae01f23a73404d87fc0406ca58c25f21934"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/smoke_c2a_ptv2_gpu.py",
+      "bytes": 9673,
+      "sha256": "88bada93ae1bd3235961041b35896584f84cc9ef6c34ee32115ddebcb5bc2b79"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/start_c2_training.ps1",
+      "bytes": 1873,
+      "sha256": "a8001ceaa59f464c35b041ab185de4f01f7e3fa2422d4d10fc13112aeacd3dbf"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/start_c3_local.ps1",
+      "bytes": 2412,
+      "sha256": "e0bbc6d1f264cc49579b1975a268a61292a105e6ca7e4d8c0b978eb7788932e7"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/start_d1_fusion_repeats.ps1",
+      "bytes": 2752,
+      "sha256": "55b36f9cd6b246cd6865aff4f789f3139fd9b3dd91fad60f32b69029477ae32e"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/start_d1_ptv2_repeats.ps1",
+      "bytes": 1939,
+      "sha256": "d8291ab372d7d23fd6671d84824cd9bdf5463a240696dd557c33a01878552c30"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/start_d1_resnet50_repeats.ps1",
+      "bytes": 1617,
+      "sha256": "e8e900bebd80a7d70250126e3660420a0844f8113f1de306a2a271e34b8f5795"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/start_d2f_point_quality_review.ps1",
+      "bytes": 2234,
+      "sha256": "58afe0ebe8ccdc9753258ce9c5a136c739e2c616d0cb3316d4767ff324f84c9c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/start_tree_species_application.ps1",
+      "bytes": 1873,
+      "sha256": "c037cfb7f8a280c0ac33540e2c9d23773eb958b463d37af0e936b5e0c1f2faa4"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/stop_d2f_point_quality_review.ps1",
+      "bytes": 973,
+      "sha256": "bf094d03c8f8edd8b98e555f006d41f54f33f542e591d92ba583ab4a229a3d41"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/summarize_c3_results.py",
+      "bytes": 7933,
+      "sha256": "93e1f5b5a33bad0f160c788d33af975b3a2441b1b5a90ce16cd2bc51739f11e4"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/train_b2_pointmlp.py",
+      "bytes": 25260,
+      "sha256": "19155f39d0bb9455f840e95b35ba98062af8ea1b0171e0771631e9fa2a52d8ac"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/train_b3_resnet50.py",
+      "bytes": 34559,
+      "sha256": "648805204764e370ac3b09db72a651346438c4a104fd75009232ae373c2a016c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/train_b4_tscmdl.py",
+      "bytes": 35694,
+      "sha256": "38ad91abcf796f087165371f95831ca9d2ef78e133bbb42ce97351987f44aa95"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/train_b5_ptv2.py",
+      "bytes": 40178,
+      "sha256": "8047e7f31fa288aedfeaaef2ea3b366d1224fb1eb7828d4bb0a4610021354696"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/tree_species_application_server.py",
+      "bytes": 40257,
+      "sha256": "f73e3c2d7801c2ebeda51a0fe63ecab5a5cb2e61aa2fbf054e5c289489822ba0"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/user_visual_review_server.py",
+      "bytes": 28122,
+      "sha256": "acd50f6f1ef51c67241e5527d49713b2c91989c30a4eb7d7cba9dee7447b5d60"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_a3_pointmlp_input.py",
+      "bytes": 3243,
+      "sha256": "0e0c6c406963c809e0e956295c944b51cc7005a934f37999e23dd7a2b06a5ddc"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_b1_dataset.py",
+      "bytes": 8255,
+      "sha256": "4a71420a20d7ada094e7333200f9d5a089e74adbe3687f4125d14ce283798dbc"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_b2_run.py",
+      "bytes": 9905,
+      "sha256": "43f0fccbf208075ead8fbcf3b2e82a3077b76c057560a6404cdf81fd213857e2"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_b3_run.py",
+      "bytes": 12707,
+      "sha256": "01fed93be071cf42aec7f9e4a50c9b6a9e41aa552927373adadd93ef56199ab4"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_b4_run.py",
+      "bytes": 18197,
+      "sha256": "a07345f2f204ca18fea5928d49e2c8db1e5905257d339e19c9255a197a6321c5"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_b4a_run.py",
+      "bytes": 7916,
+      "sha256": "de2bbf6c1aad0dbbd8bd10f6b4b7c0cadb8a205e3457cec1913f3452aaee2805"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_b4c_run.py",
+      "bytes": 14884,
+      "sha256": "9693918f1a0f4a7b85bbfcdb22b66e8617e48603c4a21d723163ef3154f1fd32"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_b5_run.py",
+      "bytes": 16373,
+      "sha256": "7e8ef27b89f13ff212dc893e0ee7b4aa2745394a780ff225a6aef912fac017dd"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_c1_full_dataset.py",
+      "bytes": 19266,
+      "sha256": "b7c88dd21d5de5b5fce2d8b800dd33e93f6c276ada550873aa5984c7c5a44b27"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_c1c_shared_asset_smoke.py",
+      "bytes": 15674,
+      "sha256": "bc215cc358dc5061b29c41d9a1c7568fef3987137191170b103de882fe9a30c0"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_c2_run.py",
+      "bytes": 20662,
+      "sha256": "a7d54d933bdb6e98c82d88fb856d44295e71f17d6cbe04dea7e58d7ce82478b0"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_c2a_knn_cache.py",
+      "bytes": 7548,
+      "sha256": "6c208aa5ebfec5b4d20f8323738771cc3e9ac5faf20bc416fa13180bbdb2c7c4"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_c2a_stage.py",
+      "bytes": 6544,
+      "sha256": "e31c924037121ce02ca0f48eb05f4dfe6ef32f6b49751640300f9a345cde8bb0"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_c3_portable_bundle.py",
+      "bytes": 5914,
+      "sha256": "db65913c9db7c02228b766c700f241d18f0ac0ffca19f3856ece674f3b3c44b8"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_d1_four_class_package.py",
+      "bytes": 18206,
+      "sha256": "f427194cab7a5c74f7e9028bca681199324139ffb331faf5dc3412be825d4be6"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_d1_ptv2_knn_cache.py",
+      "bytes": 6996,
+      "sha256": "af519e8d23ac40e6725eaed4d2473179a5eda458f453b8fc15f1657ce904c838"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_d1_rework_batch.py",
+      "bytes": 13800,
+      "sha256": "d1be252b6c437dfebb52e813f5582fed9742c800cf935670d0f007febdbfd037"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/scripts/validate_pointmlp_gpu.py",
+      "bytes": 3818,
+      "sha256": "518369aeb82c1d4fce3c7a27da467fe202337f5e9ff681c4a0331431db108521"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/__init__.py",
+      "bytes": 3163,
+      "sha256": "5ceac7cc41da9259aeddf814bfe86dc33e04b9026469228842344077b5015638"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/dataset.py",
+      "bytes": 5435,
+      "sha256": "43e735f46598bde02477247296b8356b2cf5b735b6567c2744bafc0b029c3ebd"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/export_assets.py",
+      "bytes": 4081,
+      "sha256": "61c5f07c982910fd8b4804ff37fea60bcbb5ab729ae3fefc298925e7d2515018"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/fusion.py",
+      "bytes": 8998,
+      "sha256": "d08570ce39fc4c6fa2b22daaf5a2030b1650c1d7a99461091128b7fd4b1073b0"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/instances.py",
+      "bytes": 14039,
+      "sha256": "90508ffb10a87b5f9563a57b1e99db356cc935c9aeba458bd7f94c2c5b824ec0"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/io.py",
+      "bytes": 11446,
+      "sha256": "f7b16f4926785d00993ee01c3e73aa9c2c92adc5428f5d0b9eb0636d62556eb9"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/knn_cache.py",
+      "bytes": 5349,
+      "sha256": "ca6e046e2ce1408270e00099b2aa0c798208e461c4b96e1abae353e7d98d4776"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/panorama.py",
+      "bytes": 9276,
+      "sha256": "42054ebd1846c3cc504899ccd7af2cbd4bba3a7b4faac0f7378b9cc37991bbb9"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/ptv2.py",
+      "bytes": 21682,
+      "sha256": "692b36e5a1f9d46e5c6643c4bd2b5dc29fca023c4480e27b3db3461f977d1536"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/road_splits.py",
+      "bytes": 14041,
+      "sha256": "87792b963b11432e47d6da71b763a20d763cb86d4d729a932d759b82438b60d0"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/shared_assets.py",
+      "bytes": 5998,
+      "sha256": "bd27c9447f308a9eba260ed475e944468616e7a6a1814acbea83017c6c9bea98"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/status.py",
+      "bytes": 7463,
+      "sha256": "aa66b9155b7a7a458ec077c6105b26214a946bc8b9df38a4ba9bd4c9a76454b4"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/training.py",
+      "bytes": 9540,
+      "sha256": "ebbe643e7319849ea330c5240869ea73a29998e5b4b467b817d3913f2f3147df"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/user_review.py",
+      "bytes": 18317,
+      "sha256": "3de7e39a002621f7271662f4219364f384ad6a77df301cba97a09577102b5ba1"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_dataset.py",
+      "bytes": 2542,
+      "sha256": "8aad958687909ad848c3d3d7011b398fe393823e678ec75b0a0ec088d81e174c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_export_assets.py",
+      "bytes": 1874,
+      "sha256": "6d6b8c31ac0795e3134a4720125bbde3b04c924c58f9dafed8a1750910760504"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_fusion.py",
+      "bytes": 4139,
+      "sha256": "e7b6d197d45855c0926ace2e6938550b1cfde0ca77262874b3bc560443d95149"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_instances.py",
+      "bytes": 5737,
+      "sha256": "aa89c1d57b2ce6a4b4ccfe72779e78ef40d06898e5a8a6be156cb5633f9341df"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_io.py",
+      "bytes": 4948,
+      "sha256": "deea48db924fdaae1563bcca775d689d7da18bf6834dd39689337080d139df29"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_knn_cache.py",
+      "bytes": 1733,
+      "sha256": "5931e0c5c84ebd00fabf6d5c110ee4a98ea65a246a8a966fa7472539222a0224"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_monitor_training.py",
+      "bytes": 3613,
+      "sha256": "0a0f608a3887886327dad19d074988e28b958c40d26044e98280b555cd1f9742"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_panorama.py",
+      "bytes": 3119,
+      "sha256": "55422ac5316559c8568ee5a25bc30ba9661e59c9079ce7231c7aac7515d9c033"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_ptv2.py",
+      "bytes": 4201,
+      "sha256": "671a4e60c271d2d25e0a655cd5d0cfffa36633cf118178c2793934f64e8b9b7c"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_road_splits.py",
+      "bytes": 5596,
+      "sha256": "8ea907b3a75a1416ee259d0b99beac60344eeff34a3e422849e9e68fe2e0f672"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_shared_assets.py",
+      "bytes": 2640,
+      "sha256": "15a771741cff531345f1d0fcfb0544d138a95890798f0f3d3ec1cc57eb618c47"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_status.py",
+      "bytes": 2685,
+      "sha256": "91e855eb6cf574fcaac89a8741adbdbcf10ed5267f43796b6902d91266cafd8b"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_training.py",
+      "bytes": 6395,
+      "sha256": "137789959e0120aaf91d429c769d3c80cdb7fdbd71bd8096e352eddf483d098e"
+    },
+    {
+      "path": "Lidar/tscmdl_whu_sandbox/tests/test_user_review.py",
+      "bytes": 5937,
+      "sha256": "2fabe98f4b2dd2d5030af376de0b1aa4ab93f137199426664830f4fa8936b8fe"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4666,
+      "sha256": "483333edae82c70edcb0bec2eb8b0bf84d1c65b85b945f4d66ca6f796a163e66"
+    },
+    {
+      "path": "full_image_species_baseline/run_experiment.ps1",
+      "bytes": 2783,
+      "sha256": "3d66a4d4672ef0598122c974580486460a667ebe67b265fc9680e7e664119dd0"
+    },
+    {
+      "path": "full_image_species_baseline/run_yolo11_experiment.ps1",
+      "bytes": 3191,
+      "sha256": "7d48e73e9f653066e1d335b6016411a2187f88c60eca6046a42f5542dd0addc7"
+    },
+    {
+      "path": "full_image_species_baseline/run_yolo11_seg_experiment.ps1",
+      "bytes": 2017,
+      "sha256": "fc065039a5b8e7df670b9cddc375837b234983d9d9deb4f3d3b5caf03484bfd3"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/build_manifests.py",
+      "bytes": 18967,
+      "sha256": "eb8f57d9d736d17efd80ed34e85ae1ee491385a58f4e53c1b888e9893e2823dd"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/evaluate_yolo11_cls.py",
+      "bytes": 10168,
+      "sha256": "a7002141845713a68d03bcfd5e839265b7bd01131435204b91ff4c51986531ad"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/evaluate_yolo11_seg.py",
+      "bytes": 3297,
+      "sha256": "4104a73a85c56334a9e0a3a1d19c9bde5826c2247899ff78dd283859f44e873c"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/materialize_yolo11_seg.py",
+      "bytes": 9977,
+      "sha256": "24822ed4b573e6bc0e79d354a9f12a9de82596874c61856c7f3741004f132dba"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/materialize_yolo_cls.py",
+      "bytes": 4658,
+      "sha256": "5e0bed613be631cea311f3f68f1c7798acee085f397bc1ed15da85891aa69e53"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/summarize_run.py",
+      "bytes": 5925,
+      "sha256": "fd207af0a1355519e0489bf75da7e4dfb30c18344a1b5e07c092ed3442dede84"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/train_resnet50.py",
+      "bytes": 21976,
+      "sha256": "3b1b78a52f1db6dce4374b88cb68c257a5385e902ed7f0f577f920ca6e966fa7"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/train_yolo11_cls.py",
+      "bytes": 5234,
+      "sha256": "ed74d4bf1e0f996ab24d2785b01234df586a5aa885c02a83e1029a9e089d54f6"
+    },
+    {
+      "path": "full_image_species_baseline/scripts/train_yolo11_seg.py",
+      "bytes": 2887,
+      "sha256": "e114aa8cfb99e0d0a446cafd96c27ecf799a7bb8a9fc27d1453134a812904fb8"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/app/__init__.py",
+      "bytes": 49,
+      "sha256": "70909bc84664dd9cbdce202fbd3821055dd299ec8e1adeea6310131cc2e42da1"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/app/config.py",
+      "bytes": 3627,
+      "sha256": "ff68d912b7e614556f2ed1069c8e5aed1fae069beed4dafa3e10110cfe769144"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/app/frame_manager.py",
+      "bytes": 25172,
+      "sha256": "bf0662d1264871e2dd3c97978f757554c2b4fa9e7839c85ebf9e4ec8b8a5c041"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/app/image_preprocessing.py",
+      "bytes": 4436,
+      "sha256": "9d61f9abdb45a861126e2c4e3c08938ccf2bf3500530afa37822c404a4114a33"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/app/main.py",
+      "bytes": 6655,
+      "sha256": "859a5797e93f2947fb6f638db0071746777a087364fb6a86861a9c8a695aed71"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/app/schemas.py",
+      "bytes": 3890,
+      "sha256": "140149fa0fe521b2f77b05cbd20976167c606b50a47a7ea5b0ae9d7b1da99c64"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/app/task_manager.py",
+      "bytes": 30882,
+      "sha256": "39fe8f2444d8e32fd60182e3a5f4694559468b60dba7a697efe69ad41ea7ce9a"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/requirements.txt",
+      "bytes": 79,
+      "sha256": "24e7ae2a3deaf4bdce2c83c682d1d9aa274e49415687f37c5c4936f9de162ee9"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/tests/test_frame_manager.py",
+      "bytes": 6304,
+      "sha256": "d194023bc418205b7a1cdeb299fc3349f43dedcca1d832dc54a3c1d113b7cb45"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/backend/tests/test_image_preprocessing.py",
+      "bytes": 4492,
+      "sha256": "133f26a4b66eb7f96004906e1dabc267e8918af6a66d785d70af1d5e73f009fa"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/frame.html",
+      "bytes": 325,
+      "sha256": "58430fb34dd7c9aea3650568b95859e391587192722d98f9ca56af11718e5b65"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/index.html",
+      "bytes": 333,
+      "sha256": "48418e13bc4a2b33e7d52fa10975ac4c9a5396d62ae7622925eb8bc4e4c5eeb2"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/package-lock.json",
+      "bytes": 27288,
+      "sha256": "89adda8b8c8e42dc98c11ee942d110d913e6b7879879354db67cd666756c8ad4"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/package.json",
+      "bytes": 445,
+      "sha256": "575685ad34b78dfaa39f79b3d3c58c75cb4238228691c55be14a7938edf04e7b"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/src/annotationGeometry.js",
+      "bytes": 4627,
+      "sha256": "36f4e19cf87a128d122c231326ad46372a42b0e9352a5c5e131ac656b6bfc93f"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/src/frameMain.jsx",
+      "bytes": 34329,
+      "sha256": "3bf70fd3a0be49115e9afe9da501bb384aa4b8ff3a4e20d614b6918c058e2d51"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/src/frameStyles.css",
+      "bytes": 6786,
+      "sha256": "963c0d483b226b40ee55591fda7e749f31082397e45a282cedf7b9882ca3cf6c"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/src/main.jsx",
+      "bytes": 53597,
+      "sha256": "7fdf66ec9ea9a71811688ab758e57e6e870d255f8be97028e4d03487cb81a7f8"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/src/styles.css",
+      "bytes": 14995,
+      "sha256": "738fc9a43359981e487ce3d054352d27fa2a2c6ff4912660050799e90c26dcfa"
+    },
+    {
+      "path": "hk-tree-vmms/annotation_app/frontend/vite.config.js",
+      "bytes": 308,
+      "sha256": "12415c99937353a5ab0be563201b35ef7b869e507f161f523d9d9cfbc12f64e2"
+    },
+    {
+      "path": "hk-tree-vmms/build_route_tree_visualization.py",
+      "bytes": 11505,
+      "sha256": "eadb36efe2f47a03245f7c51e1cd7aaef4b57619dc9220d3f8b9dac070f6de38"
+    },
+    {
+      "path": "hk-tree-vmms/coordinate_solver.py",
+      "bytes": 29276,
+      "sha256": "46d1c71f2cc662025c282ce87c6c064744540c898e70342345d269c5d84e8bb9"
+    },
+    {
+      "path": "hk-tree-vmms/diagnose_lidar_camera_axes.py",
+      "bytes": 5688,
+      "sha256": "4361ad61d6187034a39e21f20800c122600d1c8f5e28d6093ea1a353827a6cf1"
+    },
+    {
+      "path": "hk-tree-vmms/diagnose_panorama_handedness.py",
+      "bytes": 5359,
+      "sha256": "991e2b4cb3983b74f2e77ca3f389743563825bf6478ae99b3c1fae030533246b"
+    },
+    {
+      "path": "hk-tree-vmms/overlay_tree_routes.py",
+      "bytes": 11010,
+      "sha256": "5a27383706b1eb51a515b2bc21b8ddc7c662fe5a391975a42302bce0b275295e"
+    },
+    {
+      "path": "hk-tree-vmms/render_pointcloud_panorama_preview.py",
+      "bytes": 20975,
+      "sha256": "bf5b3d84fd500aceed91094cdbadb84ee44942f22fc65690046fc832f743bc29"
+    },
+    {
+      "path": "hk-tree-vmms/render_temporal_lidar_panorama.py",
+      "bytes": 19009,
+      "sha256": "bbc8e6321c557b423d71362319297f82b785e15f4e19cdb721eecfa746b06b11"
+    },
+    {
+      "path": "hk-tree-vmms/requirements.txt",
+      "bytes": 16,
+      "sha256": "7a6733c8d4d8de23e920266625a64b77587775acaa027edc04e89544719c2449"
+    },
+    {
+      "path": "hk-tree-vmms/run-hewentian-labeler.ps1",
+      "bytes": 2099,
+      "sha256": "6452351adcb642e08742cde1643cc50e02a48905d0819bd2fce64fb69338ee62"
+    },
+    {
+      "path": "hk-tree-vmms/run_coordinate_solver.ps1",
+      "bytes": 1067,
+      "sha256": "49db77f936f7001ce1f59cf26be8f5ae2b3b0f3c2efd488010518a38f2449f0f"
+    },
+    {
+      "path": "hk-tree-vmms/run_tree_route_overlay.ps1",
+      "bytes": 737,
+      "sha256": "989086a3a2df73aa35b424c149c2a3720ab365a8479eb8c6e721d788369e9235"
+    },
+    {
+      "path": "hk-tree-vmms/start-species-review.ps1",
+      "bytes": 3361,
+      "sha256": "1134f7c211f1242b42789f8e7425e468c04a67f080972ffdec3021feefd76417"
+    },
+    {
+      "path": "hk-tree-vmms/tools/analyze_road_slope.py",
+      "bytes": 4009,
+      "sha256": "880edc592f193efdf46ad9fd0cd169839f532acafcb0ec6a703ce05032d713f7"
+    },
+    {
+      "path": "hk-tree-vmms/tools/apply_assistant_species_prelabels.py",
+      "bytes": 16661,
+      "sha256": "543610ed64e9fda5efea2f8fd0f915dfba8308d79a13223acaa2423f76b5af0a"
+    },
+    {
+      "path": "hk-tree-vmms/tools/audit_exhaustive_species_drafts.py",
+      "bytes": 10527,
+      "sha256": "20d6d45a681d63a753c2157904b766ae61528db6dad60b2257212acbb6eaeb25"
+    },
+    {
+      "path": "hk-tree-vmms/tools/audit_five_species_acceptance.py",
+      "bytes": 5772,
+      "sha256": "6d9028a36dc686ddb423a311c11916ae8485263815659de17a831c1ebddc90bb"
+    },
+    {
+      "path": "hk-tree-vmms/tools/audit_hk_metric_height.py",
+      "bytes": 10211,
+      "sha256": "fb039f3f8c5afcada15c535570d4a8e53cdfaf45e2f288cb2ed67b6c796201f6"
+    },
+    {
+      "path": "hk-tree-vmms/tools/audit_hk_palm_structure.py",
+      "bytes": 2412,
+      "sha256": "1a20ebd40533c4bf6476b3515191ef478691fba157b14816210d7c02003a8b16"
+    },
+    {
+      "path": "hk-tree-vmms/tools/audit_proposal_thresholds.py",
+      "bytes": 2420,
+      "sha256": "eb6661cfdba953276df10b7fe71824fc5c79052ed07b56e910bfcfc806e1f34b"
+    },
+    {
+      "path": "hk-tree-vmms/tools/audit_species_fusion.py",
+      "bytes": 4099,
+      "sha256": "74c97b466665f1a7debc14f6d001b561f753e535a7574667f15bc6dceab4da19"
+    },
+    {
+      "path": "hk-tree-vmms/tools/augment_review_with_domain_classifier.py",
+      "bytes": 5390,
+      "sha256": "f7c6a48af1352a3002b640b57cb069cab0f45c3e60b6e16a540935162787807e"
+    },
+    {
+      "path": "hk-tree-vmms/tools/batch_banyan_tracking.py",
+      "bytes": 2575,
+      "sha256": "e3f87c3216ada2cbc5afe91d60d33228ce755c7063ae6a9dd203c5d6a4a6ed96"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_albizia_conflict_review.py",
+      "bytes": 5940,
+      "sha256": "914792640619885d109f254793ff59845e1e2f985d2456bac314f74039ccd97c"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_binary_filter_iteration2_dataset.py",
+      "bytes": 4496,
+      "sha256": "861bea7de5db0800188062c2eb67323737c14852dcdf23bb3353f2baa4c07b36"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_combined_training_datasets.py",
+      "bytes": 17954,
+      "sha256": "8161e39b51d0f920bddd3fa79beb821d615d8d01349a109e1df3a718e8c38334"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_delonix_scene_review.py",
+      "bytes": 6464,
+      "sha256": "96a941e4cf93b91bf65b70dff2c2983251e9a6590d36bb2560b443dd4e79ec40"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_exhaustive_species_drafts.py",
+      "bytes": 34268,
+      "sha256": "b5567215ed7cbe86b4905db701187494ef37e2990c69eca3646916da62da85c9"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_full_density_scene_package.py",
+      "bytes": 16894,
+      "sha256": "a6948bd3538bf9542c5c4a15bb9020b06942a42a8efad5f4eadfa40ef86182ed"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_hk_dense_dataset.py",
+      "bytes": 17626,
+      "sha256": "2e7a3ae2bb64e3b0bee58641e493c64822e4352b5639948cfbfd09430f73d18c"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_hk_five_species_pairs.py",
+      "bytes": 5638,
+      "sha256": "b9af4968b442fb9244de3f900f7b10423afddf3911d6eb2c5a7c440cc13f602c"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_hk_lidar_pairs.py",
+      "bytes": 16533,
+      "sha256": "cdea39c69334036e0ac07296eb122da29328ae69c8cfb82aedce5d2a696baff1"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_human_species_memory.py",
+      "bytes": 8343,
+      "sha256": "096680b2e319c64aab659b06afa4c676deb8747bf7a8110c92c2295cb9ff9f78"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_hwt_species_refinement_dataset.py",
+      "bytes": 14401,
+      "sha256": "9325f1a455b8ac581c44abe843ee281d85cfb3d7251fdc0e4e7591db189b7671"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_review_iteration2_datasets.py",
+      "bytes": 24421,
+      "sha256": "99e4008ac93c149eb5a39524bd07bb4c4b6b769c16f82349c7a4eff15796580b"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_review_replay_species_dataset.py",
+      "bytes": 9604,
+      "sha256": "9aacc5feb1a32af438b3c05e2e63e333dadd2f799174809a36615880c6d76644"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_selected_raw_multimodal_scenes.py",
+      "bytes": 20698,
+      "sha256": "2e4b285fefd0830216952b6963cd4d63b40d147450193b166ac7ee82f2375ccc"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_species_review_package.py",
+      "bytes": 15497,
+      "sha256": "ee5dc9226ebfec85021d6d9a1f4297e729dc258c7c714846d8d3f56eb4f61816"
+    },
+    {
+      "path": "hk-tree-vmms/tools/build_vmms_species_classifier_dataset.py",
+      "bytes": 5509,
+      "sha256": "23a4e8581b7c2d922198908005cf439ca9846e9211bec6975c8770169bbbeb8e"
+    },
+    {
+      "path": "hk-tree-vmms/tools/calibrate_inventory_projection.py",
+      "bytes": 4632,
+      "sha256": "d785e96ed7a16d5ed184f5dbc9cd44fe271919707f550670d815ecb6dc8bb1ce"
+    },
+    {
+      "path": "hk-tree-vmms/tools/check_hwt_original_map_alignment.py",
+      "bytes": 2331,
+      "sha256": "c4c30de021b0386c927ca78310eea663e3d3ff1041c35e0f4a5f50383fa7abc2"
+    },
+    {
+      "path": "hk-tree-vmms/tools/classify_unresolved_runtime_labels.py",
+      "bytes": 4860,
+      "sha256": "322eb960c33d9abf3810f09dae7b3f4710e31176ca1a62e5bf3c21909e2a36e5"
+    },
+    {
+      "path": "hk-tree-vmms/tools/diagnose_palm_coverage.py",
+      "bytes": 3239,
+      "sha256": "7b9c0bbde38ce6b6312f429395c832a843da83f48ea0814e66775b4e1ccece2e"
+    },
+    {
+      "path": "hk-tree-vmms/tools/evaluate_combined_tree_segmentation.py",
+      "bytes": 18382,
+      "sha256": "2999e8edd79f8ab3502fe3f269a27c1f31f860f3a28779a4b5d51007d0ea9a85"
+    },
+    {
+      "path": "hk-tree-vmms/tools/evaluate_cross_route_species_sample.py",
+      "bytes": 4700,
+      "sha256": "b397a73f7654d3d65a2eb9f1538a05fba91f8d791bd36a5e4e3e7080962fb8d9"
+    },
+    {
+      "path": "hk-tree-vmms/tools/evaluate_human_review_accuracy.py",
+      "bytes": 25410,
+      "sha256": "f0ca7d1c9fe880a0ba90a3e874d9ae95fe790b5ca1f91eb12325c50b92ad40d3"
+    },
+    {
+      "path": "hk-tree-vmms/tools/evaluate_species_classifier_confidence.py",
+      "bytes": 2498,
+      "sha256": "36127a54438fcbeda0aac856ae157c1db58aee8c35a7d69ce78d4df6a5d73abc"
+    },
+    {
+      "path": "hk-tree-vmms/tools/expand_hk_species_pilot.py",
+      "bytes": 8939,
+      "sha256": "fc588a02aeeb38bde1297d6315af9e18ef66dd672f651ae862c184adcaad4e88"
+    },
+    {
+      "path": "hk-tree-vmms/tools/expand_requested_five_species.py",
+      "bytes": 2424,
+      "sha256": "b4a47149cce4bb5820f657a143827f19eb3fb319ef638440a49e9343d9c104a6"
+    },
+    {
+      "path": "hk-tree-vmms/tools/expand_requested_four_species.py",
+      "bytes": 628,
+      "sha256": "07bcd303ddf9b4cec5a2b2a6419e7c803d193b2b7bce375a440175d2c8317a61"
+    },
+    {
+      "path": "hk-tree-vmms/tools/export_effective_frame_yolo.py",
+      "bytes": 18608,
+      "sha256": "e25d59f8687cb3bdea4cfe04be62703d728025eab2f12aaf8eccabd81d708506"
+    },
+    {
+      "path": "hk-tree-vmms/tools/extract_unsaved_review_feedback.py",
+      "bytes": 11649,
+      "sha256": "5d9187b7aeaea82effa076538df393fe8a7a7387f8445c220ef9a6b8cd5c607e"
+    },
+    {
+      "path": "hk-tree-vmms/tools/finalize_banyan_batch_qa.py",
+      "bytes": 3235,
+      "sha256": "6fa21e768a179a2188892feb17587b2ebca6901d349bb253804d60a15ea6dff0"
+    },
+    {
+      "path": "hk-tree-vmms/tools/finalize_five_species_precheck.py",
+      "bytes": 6205,
+      "sha256": "7ea71d1e23162b5114c5c1067c527d8f9742e5e1a806950d1b005cff25bebcd4"
+    },
+    {
+      "path": "hk-tree-vmms/tools/import_species_review_into_frame_labeler.py",
+      "bytes": 7782,
+      "sha256": "086f804b8ee6d42b169037279218a1d47a1975b039bb4e21104bf3cf2f301c81"
+    },
+    {
+      "path": "hk-tree-vmms/tools/make_assistant_species_audit_sheets.py",
+      "bytes": 5557,
+      "sha256": "a1c3834252f5d0024e39bd326dff5454f60fceb3ae2edb3da3b8d3071000bc7f"
+    },
+    {
+      "path": "hk-tree-vmms/tools/make_cross_route_species_sample.py",
+      "bytes": 5382,
+      "sha256": "5c030419fa4a0d5d982546c445d3daaad7c9c4fa94badf3f4d6cd1be5a6e16db"
+    },
+    {
+      "path": "hk-tree-vmms/tools/make_segmentation_review_samples.py",
+      "bytes": 6525,
+      "sha256": "98a4e38e9018e86f3e56115d44e2d8bb6b85fa0ae02a45073d226611420567af"
+    },
+    {
+      "path": "hk-tree-vmms/tools/merge_banyan_species_labels.py",
+      "bytes": 9479,
+      "sha256": "cb26dba9ab8000de7820cd5f69b1206a3ee4960d89949742705308c51045951d"
+    },
+    {
+      "path": "hk-tree-vmms/tools/monitor_yolo_training.py",
+      "bytes": 4981,
+      "sha256": "d99fc4ac455ebada3f84d5ecfb1d65fe35b424fbe6d31762af6bd58b01acc4f6"
+    },
+    {
+      "path": "hk-tree-vmms/tools/package_hk_three_species.py",
+      "bytes": 9361,
+      "sha256": "b012146170564bd38d85064e4ea9b0e03cc984ba86fb88b0e646463e71d5637a"
+    },
+    {
+      "path": "hk-tree-vmms/tools/pilot_banyan_tracking.py",
+      "bytes": 10064,
+      "sha256": "037a91d1d7825a517638beedd9975399a94241b95d1ae21758edf920d34463ed"
+    },
+    {
+      "path": "hk-tree-vmms/tools/plan_assistant_curation.py",
+      "bytes": 11083,
+      "sha256": "3134c696c62f8aaa91f059473293e43d55238fd7006ccb4023f0ea1e3151b6b6"
+    },
+    {
+      "path": "hk-tree-vmms/tools/prepare_banyan_batch_qa.py",
+      "bytes": 2405,
+      "sha256": "bf24ccbd219925f0cd70f66a74162abcdcf6c94183f069288895196639fab426"
+    },
+    {
+      "path": "hk-tree-vmms/tools/prepare_five_species_review.py",
+      "bytes": 4512,
+      "sha256": "ea7c5cdc0f7fccb10cf5a2bebbd4b7d8460befe09d6752a87d355a421a87beb7"
+    },
+    {
+      "path": "hk-tree-vmms/tools/recover_leucaena_after_adjudication.py",
+      "bytes": 8186,
+      "sha256": "0531a97ece56cafde59925c06ca30b3895ccffe72d07445a81bd03c8135f3e47"
+    },
+    {
+      "path": "hk-tree-vmms/tools/recover_palm_scene.py",
+      "bytes": 13516,
+      "sha256": "f9d17ee629b31b8c846fddb616fbc06bb58f566fb4d2ee2eec8b48aeb23932e7"
+    },
+    {
+      "path": "hk-tree-vmms/tools/refine_confirmed_delonix.py",
+      "bytes": 8277,
+      "sha256": "45ae87aa96a42072e74e31930dcf8a468a7695cf16731ff8dfc3c7fd2906ccdf"
+    },
+    {
+      "path": "hk-tree-vmms/tools/repair_hewentian_annotations.py",
+      "bytes": 6477,
+      "sha256": "fa3a9a3dabd1bc6aa2ac99ebcb7ab66899c80e638cddeb896d8fb1ab84071a6d"
+    },
+    {
+      "path": "hk-tree-vmms/tools/repair_hk_banyan_stems.py",
+      "bytes": 5991,
+      "sha256": "81f9a3779c79cf677e034737504f71ab16bd901de6ba60cd567b8f2bb11475fd"
+    },
+    {
+      "path": "hk-tree-vmms/tools/repair_jianshazui_annotations.py",
+      "bytes": 5597,
+      "sha256": "34af8757c49ee1416aa1f514fa60e5aac84424800c7c3ee5cbf7b9f8695f06d5"
+    },
+    {
+      "path": "hk-tree-vmms/tools/repair_species_review_state.py",
+      "bytes": 3281,
+      "sha256": "8b5ed2e07100ee328a32ef0ac6198cc0adefde7dbffe03f37ea4c1d183c6ef09"
+    },
+    {
+      "path": "hk-tree-vmms/tools/reprocess_remaining_species_15m.py",
+      "bytes": 22609,
+      "sha256": "a6719c4ba8e1dd96f2068f6cc34f9f6431bba3530a2a6767561e67dddb58693d"
+    },
+    {
+      "path": "hk-tree-vmms/tools/select_species_router_iteration3.py",
+      "bytes": 7638,
+      "sha256": "a4c8f4ebeb25ad0e06b6976ce1df54b3a9d4a767db77de34bb4463dd3275d2ca"
+    },
+    {
+      "path": "hk-tree-vmms/tools/test_banyan_tracking.py",
+      "bytes": 870,
+      "sha256": "959213d1ca4ad518d8bb004bc0ca1990737f365343686c865a8d4b71231e8a4a"
+    },
+    {
+      "path": "hk-tree-vmms/tools/test_hk_metric_height.py",
+      "bytes": 2193,
+      "sha256": "08f8569d703cf03a81e7d6b284a0d241be4dca5d76df5b5de2beb2fa6498266c"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_binary_filter_iteration2.py",
+      "bytes": 7288,
+      "sha256": "be0b34cc7daca9ff647aa69afdb9937a28d8e1e938eaca57c0449c853f1b8f83"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_combined_tree_segmentation.py",
+      "bytes": 6869,
+      "sha256": "8168474d90ab419f5473ad8f82c94875d6ffd48e57cc497ddc8bb79be6a39cfe"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_hk_three_species.py",
+      "bytes": 7467,
+      "sha256": "3e7c379d116680ef438396bfce22d709bc8f9c7c458bd1735f1d1b2e1cf7da77"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_hwt_false_positive_filter.py",
+      "bytes": 8209,
+      "sha256": "971bbd8823c280d5a24d26eb7bfb1bc85287a634811ccbba602c381b34b5f352"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_hwt_species_refinement.py",
+      "bytes": 7090,
+      "sha256": "f8f328fcc52703803b50b6357305f49565c04d6ab781fac14041468a68e31e44"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_review_replay_species_classifier.py",
+      "bytes": 7856,
+      "sha256": "cd7389756cdcff596443d167d37fa1083a8827233c98d10de42ed4a8154cb5df"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_reviewed_five_species.py",
+      "bytes": 13378,
+      "sha256": "e90c6f05296d72bcaf5095116e9730a94ecfb5d1fbc938403571cfbddc450df3"
+    },
+    {
+      "path": "hk-tree-vmms/tools/train_species_fusion_adapter.py",
+      "bytes": 9253,
+      "sha256": "60cff979c3bb59852372311533c5946c0fbc6aa25284eb91c83379c8b60d75d6"
+    },
+    {
+      "path": "hk-tree-vmms/tools/verify_delonix_refined.py",
+      "bytes": 2063,
+      "sha256": "ba36688e1f0cb1eaef87cc821554be38fbf4f63b0c118cb1a855a77d81e77a26"
+    },
+    {
+      "path": "hk-tree-vmms/tools/verify_reviewed_five_species.py",
+      "bytes": 2903,
+      "sha256": "2f78b28ba6eb4ae82a65a5459d218dfee3e87bc2fa7e7cf3bada2649796d1640"
+    },
+    {
+      "path": "hk-tree-vmms/tools/verify_selected_multimodal_scenes.py",
+      "bytes": 9009,
+      "sha256": "bc104908a40875c4391ac18be8c1ade3144f818cdfe6d1cf5cb7863371517d90"
+    },
+    {
+      "path": "hk-tree-vmms/启动VMMS树种预标注验收工具.cmd",
+      "bytes": 120,
+      "sha256": "06b46791db512a792a46b2bcbcaf10fb40665d32c9391b6e6acd898b2fb8e376"
+    },
+    {
+      "path": "hk-tree-vmms/启动三路段树木分割训练.cmd",
+      "bytes": 298,
+      "sha256": "f333e40dcd76635f6bbc3fc83a6f8ad8099a36610637e99f54a45d0d5eecf3f2"
+    },
+    {
+      "path": "hk-tree-vmms/启动何文田标注工具.cmd",
+      "bytes": 335,
+      "sha256": "66b6dbcf814fc875d9df686398c4a02e23904974b93bf7d463f8b239eea44dbf"
+    },
+    {
+      "path": "hk-tree-vmms/启动何文田逐帧标注工具.cmd",
+      "bytes": 2080,
+      "sha256": "31b9df78d4aad558bc0bfb0e9846830eeaa3039df2d1dd005453c9ba194cb180"
+    },
+    {
+      "path": "hk-tree-vmms/启动司徒拔道逐帧标注工具.cmd",
+      "bytes": 2282,
+      "sha256": "30bdcad5dc2c44916e08b2b7fecf4636469cee4d50d67d61d637e3efaf0938a1"
+    },
+    {
+      "path": "hk-tree-vmms/启动尖沙咀逐帧标注工具.cmd",
+      "bytes": 2273,
+      "sha256": "931906101e9d9b2095b1962eeafb97857c4a38f28dda3e2ec496273b72199c53"
+    },
+    {
+      "path": "hk-tree-vmms/启动时序点云投影对比.cmd",
+      "bytes": 533,
+      "sha256": "0c5cd650f64046680aee616acae856c837fda06ed84091864441d2a4d30734cc"
+    },
+    {
+      "path": "hk-tree-vmms/导出何文田有效YOLO数据.cmd",
+      "bytes": 567,
+      "sha256": "7a7fadc9ebe211fddeeead004c78ad486250323f597ca20acea843e3bc94f393"
+    },
+    {
+      "path": "hk-tree-vmms/导出司徒拔道有效YOLO数据.cmd",
+      "bytes": 587,
+      "sha256": "b2959d3e2251d200d2888598d9b7e6c544f03857548fc911ec8ca35f95cf5551"
+    },
+    {
+      "path": "hk-tree-vmms/导出尖沙咀有效YOLO数据.cmd",
+      "bytes": 504,
+      "sha256": "49990529322cd5360af881d43560d1398a5650c908e18015396bd679cd5216cc"
+    },
+    {
+      "path": "hk-tree-vmms/查看三路段分割训练进度.cmd",
+      "bytes": 291,
+      "sha256": "517fae34ea62b723d4f5757bfab6d0feab51f30586826d014b1240a164cee23e"
+    },
+    {
+      "path": "hk-tree-vmms/生成三路段合并训练数据.cmd",
+      "bytes": 536,
+      "sha256": "1fa5181b488694c5cfbe497320387dba8c5aa7701331d529a3b2b86bf58dc98f"
+    },
+    {
+      "path": "hk-tree-vmms/验收三路段树木分割模型.cmd",
+      "bytes": 308,
+      "sha256": "90497a4df2271da3b43eb5315589ce484931216b023db433d799aa708e0966bd"
+    },
+    {
+      "path": "requirements-core.txt",
+      "bytes": 279,
+      "sha256": "94d20cb433978185fb1fa13d17479c3bb889562d82e5a39234d196afb3b8cdb3"
+    },
+    {
+      "path": "tools/tree_species_label_merge_map.csv",
+      "bytes": 1392,
+      "sha256": "ae21e7307529de90144cbb755c747a8e09e08ae3caf11b1d7228e8440c0948b4"
+    },
+    {
+      "path": "tree_species_demo/Demo_Guide_EN_zh-Hant.md",
+      "bytes": 3598,
+      "sha256": "50e78b45b2cbd279bb1a1041c50fc3a4e099ebc29d4c81b16d7402e08150bdf1"
+    },
+    {
+      "path": "tree_species_demo/albizia_conflict_api.py",
+      "bytes": 4442,
+      "sha256": "79f97ef58840ffb7fd21580ac28641fc96dd5735d46d298cec6a0ab8cd8d0ebd"
+    },
+    {
+      "path": "tree_species_demo/catalog.json",
+      "bytes": 12537,
+      "sha256": "48f5b9c1fee23e80a657f01ceb58833aeb7cb288721a8353bca6dcf15895fa64"
+    },
+    {
+      "path": "tree_species_demo/delonix_refined_api.py",
+      "bytes": 2842,
+      "sha256": "54441445b9601be94eb4e2999b3b9ed3842184f368a176fcaac857874e064b13"
+    },
+    {
+      "path": "tree_species_demo/delonix_scenes_api.py",
+      "bytes": 3037,
+      "sha256": "fb9097717aa735c7eddc83181b0b14ec1c9d5b233a720791da3d6ddd2fdd2a14"
+    },
+    {
+      "path": "tree_species_demo/demo_locale.py",
+      "bytes": 16581,
+      "sha256": "0956c66009506f4542acb0905d19d32c445bfc1513c3f3cb95bfd7028429df58"
+    },
+    {
+      "path": "tree_species_demo/engine.py",
+      "bytes": 18879,
+      "sha256": "96d201eedb9a8bd8da54cc6d7bf0a616cabfeb7dbf1c99234cb7684bf299a547"
+    },
+    {
+      "path": "tree_species_demo/hk_five_api.py",
+      "bytes": 2671,
+      "sha256": "ea0ac162204fefec5c047eb030fe4ca3caf3a9537cbc93c178805b1501f51f99"
+    },
+    {
+      "path": "tree_species_demo/hk_five_species.py",
+      "bytes": 7603,
+      "sha256": "08d3a4b369d7b6494dc8dc118b47a650b247e4ea5d8b9b9ef48e399b0b5b3c1f"
+    },
+    {
+      "path": "tree_species_demo/hk_pairs_api.py",
+      "bytes": 11947,
+      "sha256": "31e29b8d94d54d74e811722c74b8fa1749273a5415b89a560c62ca265f2d1e77"
+    },
+    {
+      "path": "tree_species_demo/hk_three_species.py",
+      "bytes": 3530,
+      "sha256": "0123d0f40bd2c6d847bcfdc108d76eeb191c26d33b400a71bb464e519f710abd"
+    },
+    {
+      "path": "tree_species_demo/leucaena_recovery_api.py",
+      "bytes": 3960,
+      "sha256": "490c9bc27f72376d9492519da646e590be99c83e73e952b6fd13ba18ca8e639e"
+    },
+    {
+      "path": "tree_species_demo/prepare.py",
+      "bytes": 10795,
+      "sha256": "97418f22e2c6d7b2843ba3152698c5847ef9962669490816350ac68ca600b373"
+    },
+    {
+      "path": "tree_species_demo/server.py",
+      "bytes": 4916,
+      "sha256": "6bc061ec8ee36103720f7d7a6ffaeedbb07ce87153672b5e7fc5fe7698c9d28f"
+    },
+    {
+      "path": "tree_species_demo/start-demo.ps1",
+      "bytes": 1227,
+      "sha256": "b77ed2e37053f35d5adb4c0d7e0559a2040683f0a1552626f1bed426faea98c9"
+    },
+    {
+      "path": "tree_species_demo/static/decision-view.js",
+      "bytes": 2080,
+      "sha256": "53f3e783ed3b6f851da14853a4b388ff642d6fc4af99361dd81a4d9aabdcf3fa"
+    },
+    {
+      "path": "tree_species_demo/static/demo.css",
+      "bytes": 5551,
+      "sha256": "f970bf7236b95f6d19f46430bf2ddb5397cc8b2465c859beab9ea94d4e62c8a4"
+    },
+    {
+      "path": "tree_species_demo/static/demo.html",
+      "bytes": 4731,
+      "sha256": "a6586dd0b2698461c1b8b8726ff0f66638c43558ea0436d85b78cfdc66541149"
+    },
+    {
+      "path": "tree_species_demo/static/demo.js",
+      "bytes": 8883,
+      "sha256": "f98f3e95407f0ddba9bf92da390b783fd33b94edec21425eb111a7bf8d4398ce"
+    },
+    {
+      "path": "tree_species_demo/static/hk-delonix-refined.html",
+      "bytes": 6897,
+      "sha256": "a8da231bba0b9246e712afb3aabdedf51c6df0fc7de45149ea2153a1e29c13b0"
+    },
+    {
+      "path": "tree_species_demo/static/hk-delonix.html",
+      "bytes": 7204,
+      "sha256": "de1928179ca4351ea35cce5bbacc789e5aa003406016317b147cd5101a2c7929"
+    },
+    {
+      "path": "tree_species_demo/static/hk-expansion.html",
+      "bytes": 7372,
+      "sha256": "566af146666094b52deec978254814aaf5b19dcd77940db4883df2b2b3327157"
+    },
+    {
+      "path": "tree_species_demo/static/hk-extension.js",
+      "bytes": 2481,
+      "sha256": "8cea31bb9e10072766dd55a3a44ad266ca18f43196f091b6e13c7a861fa606da"
+    },
+    {
+      "path": "tree_species_demo/static/hk-five-extension.js",
+      "bytes": 2578,
+      "sha256": "94fed325b7cfacff790e98f2d3d83b9a461d354da7f6cb2fda67df1eaba47727"
+    },
+    {
+      "path": "tree_species_demo/static/hk-label-conflicts.html",
+      "bytes": 6503,
+      "sha256": "58452cb806b73790ff207491f1090666b22172fb930c1ed74114de2dc11043f6"
+    },
+    {
+      "path": "tree_species_demo/static/hk-leucaena-recovery.html",
+      "bytes": 7275,
+      "sha256": "47558a22afa0cc065f03f53a054dc087af460d7793cdc122aa234a26a100ebbd"
+    },
+    {
+      "path": "tree_species_demo/static/hk-pairs.html",
+      "bytes": 10738,
+      "sha256": "0a3776d71c71e4224295f26b8987d10508737b7b221724a1d3b1d6987604e4d3"
+    },
+    {
+      "path": "tree_species_demo/static/hk-stem-batch.html",
+      "bytes": 5939,
+      "sha256": "67302973028cf531992237e38c275e9754aacb8090160bf1f6fa9a3f0a24b853"
+    },
+    {
+      "path": "tree_species_demo/static/hk-stem-pilot.html",
+      "bytes": 5858,
+      "sha256": "b26f8f683cadca5ac6c2514cf18477f56342fcba5f8c6cecb97b565f5ffd7f14"
+    },
+    {
+      "path": "tree_species_demo/static/index.html",
+      "bytes": 16915,
+      "sha256": "adb86bcfd41c0db6ee27983ffdab3741356494da2b8321ffb6174e7ebe09a038"
+    },
+    {
+      "path": "tree_species_demo/test_albizia_conflict.py",
+      "bytes": 4568,
+      "sha256": "08bf0175602ff6314eb4528c60a018e5b98703b91bdb63088a43773cae031470"
+    },
+    {
+      "path": "tree_species_demo/test_delonix_refined.py",
+      "bytes": 2822,
+      "sha256": "1f7219ce11d7b5d498d415532b9f4b02130f97a9d211132d5371a167f0cd0b49"
+    },
+    {
+      "path": "tree_species_demo/test_delonix_scenes.py",
+      "bytes": 2232,
+      "sha256": "5d532610580b7eaa383d79a5f9935df3a0c7b911d5d83c21e600e2dc97e62f97"
+    },
+    {
+      "path": "tree_species_demo/test_demo_locale.py",
+      "bytes": 2049,
+      "sha256": "59623732f83112594ccbf7f34ab91939f0a10dd70137a09689f2586c0ea73533"
+    },
+    {
+      "path": "tree_species_demo/test_demo_presentation.cjs",
+      "bytes": 4038,
+      "sha256": "129a8bd808ac9d965a83540c693fc646d5a555565ff554bad72be28d842fd288"
+    },
+    {
+      "path": "tree_species_demo/test_hk_expansion.py",
+      "bytes": 2209,
+      "sha256": "fcc5edfe3693a5c4c5e6f4bf6ce8f82b6b4c8c68614bac68ce4448d04d075927"
+    },
+    {
+      "path": "tree_species_demo/test_hk_extension.py",
+      "bytes": 5179,
+      "sha256": "337a3f1dc809843400582c9e3b6beb6e44a58a732b932a6d3456c5679787ccf6"
+    },
+    {
+      "path": "tree_species_demo/test_hk_five_demo.py",
+      "bytes": 3112,
+      "sha256": "9dc1b2334443c42164327f2cf4dbacb6c55b6f5aa97ab31e91989c94075036a5"
+    },
+    {
+      "path": "tree_species_demo/test_leucaena_recovery.py",
+      "bytes": 3967,
+      "sha256": "57365cc2599e0682552e8984b0903ca6f552c557026a5d7a4ef95b375fa3237f"
+    },
+    {
+      "path": "tree_species_demo/verify.py",
+      "bytes": 4374,
+      "sha256": "dc825dbb4a155f76bcfe2080361d42ec02b071349c736da455140c5154df6ca6"
+    },
+    {
+      "path": "tree_species_demo/verify_demo_locale_http.py",
+      "bytes": 2030,
+      "sha256": "aaa3713b14132b99d097f031a68122a27e2d788c7e48f84267350d767458e7fd"
+    },
+    {
+      "path": "tree_species_demo/verify_five_demo_http.py",
+      "bytes": 4684,
+      "sha256": "21017d2a19bc133ab239b667a87794ab01da1373ac965c7a13461dc2fe41844a"
+    },
+    {
+      "path": "tree_species_demo/verify_hk_http.py",
+      "bytes": 2591,
+      "sha256": "8193f1335b4e19d2e6819f64a4f8cd0776d3ee5da49a49b483f9779a4b6f75e4"
+    },
+    {
+      "path": "tree_species_demo/启动树种识别Demo.cmd",
+      "bytes": 163,
+      "sha256": "df032395eda82885a81bccb68e0ac1eec500bc44c6b361b4ff5bfe6969fff9fd"
+    },
+    {
+      "path": "tree_species_demo/启动树种识别Demo.ps1",
+      "bytes": 93,
+      "sha256": "657a8c6fed98450cd97fde2c0f3dd963fae976b77970ceeeb7d7d435828982cd"
+    },
+    {
+      "path": "yolo11_species_baseline/requirements.txt",
+      "bytes": 21,
+      "sha256": "50ee699f9a61d2641cf35b1c3a7a567eeab80ca77c6dc90691f3aa89c6f370c7"
+    },
+    {
+      "path": "yolo11_species_baseline/run_experiment.ps1",
+      "bytes": 2006,
+      "sha256": "314bd2985cdbb7822a2338530d2693e72d8c5b3c04671fcef3fd77e15ef57448"
+    },
+    {
+      "path": "yolo11_species_baseline/scripts/build_yolo_dataset.py",
+      "bytes": 8498,
+      "sha256": "b97392e7c5a7fe0464558a734ddc3a9ba2e4cd33e1a699274c93ef34a8c053ef"
+    },
+    {
+      "path": "yolo11_species_baseline/scripts/evaluate_yolo11.py",
+      "bytes": 4953,
+      "sha256": "5e547cff15d76571aaab8bf92fc632330a9b82ca011118b096449712485e5568"
+    },
+    {
+      "path": "yolo11_species_baseline/scripts/monitor_training.py",
+      "bytes": 2195,
+      "sha256": "80d2c21229d9a1244d02e28670e1f3d41d6e9688e26e794f40dd0f7db3dbb13d"
+    },
+    {
+      "path": "yolo11_species_baseline/scripts/train_yolo11.py",
+      "bytes": 3670,
+      "sha256": "b20241ea597c58920a6f413dfe8c484baec0267cfd8f10906725385d89d81924"
+    },
+    {
+      "path": "yolo11_species_baseline/scripts/validate_run.py",
+      "bytes": 4967,
+      "sha256": "e905822452c54f728f5c1e9c84110c26f39c5b5a2585e869cf38d3c5763a3ad6"
+    }
+  ]
+}
