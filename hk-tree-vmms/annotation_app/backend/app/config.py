@@ -29,6 +29,12 @@ FRAME_RUNTIME_DIR = FRAME_LABELER_ROOT / "runtime"
 FRAME_COORDINATES = COORDINATE_DIR / "frame_coordinates.csv"
 NEARBY_TREES = COORDINATE_DIR / "nearby_trees.csv"
 HEWENTIAN_STREAM_ID = os.getenv("VMMS_TREE_STREAM_ID", "hewentian_pano").strip()
+TREE_STREAM_IDS = tuple(
+    value.strip()
+    for value in os.getenv("VMMS_TREE_STREAM_IDS", HEWENTIAN_STREAM_ID).split(",")
+    if value.strip()
+)
+TREE_LABELER_TITLE = os.getenv("VMMS_TREE_LABELER_TITLE", "何文田行道树人工标注").strip()
 FRAME_STREAM_IDS = tuple(
     value.strip()
     for value in os.getenv("VMMS_FRAME_STREAM_IDS", HEWENTIAN_STREAM_ID).split(",")

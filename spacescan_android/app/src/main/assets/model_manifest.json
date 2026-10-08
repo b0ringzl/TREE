@@ -1,0 +1,30 @@
+{
+  "version": "sst-mobile-0.1-20260918-preproc2",
+  "architecture": "YOLO11s-cls + validation-locked frozen KD head",
+  "class_count": 147,
+  "model_sha256": "3bc7c7c4bdaf681e48de036285fa5f57d25f745a76b56c24a964aa1a66d3d82e",
+  "model_bytes": 22607086,
+  "source_backbone_sha256": "7164af4226566c984f57bd5551d5f9115346fbf2dcd6e5374c7de575eb517346",
+  "source_head_sha256": "09bece004c89c92a142ff82bc4d6328d192b004348a721d0277699a318fe92bf",
+  "input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "preprocessing": "EXIF RGB; antialiased bicubic shortest-side resize224; center224; /255",
+  "output": "147 normalized probabilities; historical Ficus pair summed",
+  "scope": "Offline image-only experimental mobile model, NOT desktop SSTv1/BioCLIP",
+  "not_supported": [
+    "Wodyetia bifurcata",
+    "Rhodoleia championii",
+    "Keteleeria fortunei",
+    "point-cloud species inference",
+    "automatic panorama tree detection"
+  ],
+  "candidate_scores_are_not_accuracy": true,
+  "validation_top1": 0.5738636363636364,
+  "validation_n": 2640,
+  "rights": "Local evaluation APK only; Ultralytics AGPL-3.0 and ONNX Runtime MIT notices included; reference/training images not bundled",
+  "trained_this_run": false
+}

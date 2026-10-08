@@ -1,0 +1,61 @@
+{
+    "name": "Rectangle",
+    "label": "rectangle",
+    "description": "4-point rectangle template",
+    "kpt_shape": [
+        4,
+        3
+    ],
+    "keypoints": [
+        {
+            "name": "top_left",
+            "color": "#FF0000",
+            "default_pos": [
+                0.144,
+                0.096
+            ]
+        },
+        {
+            "name": "top_right",
+            "color": "#00FF00",
+            "default_pos": [
+                0.856,
+                0.096
+            ]
+        },
+        {
+            "name": "bottom_right",
+            "color": "#0000FF",
+            "default_pos": [
+                0.856,
+                0.904
+            ]
+        },
+        {
+            "name": "bottom_left",
+            "color": "#FFFF00",
+            "default_pos": [
+                0.144,
+                0.904
+            ]
+        }
+    ],
+    "connections": [
+        [
+            0,
+            1
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            2,
+            3
+        ],
+        [
+            3,
+            0
+        ]
+    ]
+}

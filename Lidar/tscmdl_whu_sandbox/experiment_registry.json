@@ -1,0 +1,3935 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-11T16:48:46+08:00",
+  "authoritative_stage_gate": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\STAGE_GATES.md",
+  "stage_gates": [
+    {
+      "stage": "A0",
+      "scope": "建立隔离沙盒、固定来源和复现基线",
+      "status": "已完成"
+    },
+    {
+      "stage": "A1",
+      "scope": "创建 `whu-tscmdl` 环境，验证 PointMLP 依赖",
+      "status": "已完成，原阻塞已由 A1b 解除"
+    },
+    {
+      "stage": "A1b",
+      "scope": "为旧版 `pointnet2_ops` 做本地 Windows/CUDA 12.8 兼容验证",
+      "status": "已完成"
+    },
+    {
+      "stage": "A2",
+      "scope": "实现 PLY/NPY 分块同步读取器",
+      "status": "已完成"
+    },
+    {
+      "stage": "A3",
+      "scope": "单轨迹单树提取与8192点采样",
+      "status": "已完成"
+    },
+    {
+      "stage": "A4",
+      "scope": "全景投影原型与小样本配对质检",
+      "status": "已完成"
+    },
+    {
+      "stage": "B1",
+      "scope": "三类共有树种数据集构建",
+      "status": "已完成"
+    },
+    {
+      "stage": "B2",
+      "scope": "三类 PointMLP 单模态训练",
+      "status": "已完成"
+    },
+    {
+      "stage": "B3",
+      "scope": "三类 ResNet50 单模态训练",
+      "status": "已完成"
+    },
+    {
+      "stage": "B4",
+      "scope": "三类 TSCMDL 融合训练",
+      "status": "已完成（B4a+B4b+B4c）"
+    },
+    {
+      "stage": "B5",
+      "scope": "三类 PTv2 点云基线训练",
+      "status": "已完成"
+    },
+    {
+      "stage": "B5b",
+      "scope": "PTv2 三随机种子复验与固定道路域诊断",
+      "status": "已完成"
+    },
+    {
+      "stage": "B5c",
+      "scope": "三类道路分组互斥交叉验证协议与可行性验收",
+      "status": "已完成"
+    },
+    {
+      "stage": "C1a",
+      "scope": "完整19类实例清单与道路覆盖审计",
+      "status": "已完成"
+    },
+    {
+      "stage": "C1b",
+      "scope": "19类基准与16类道路域外双轨清单及磁盘预算",
+      "status": "已完成"
+    },
+    {
+      "stage": "C1c",
+      "scope": "共享资产导出器适配与小规模冒烟导出验收",
+      "status": "已完成"
+    },
+    {
+      "stage": "C1",
+      "scope": "完整19类共享资产全量导出与验收",
+      "status": "已完成"
+    },
+    {
+      "stage": "C2a",
+      "scope": "19类PTv2缓存、数据加载与单批次GPU冒烟",
+      "status": "已完成"
+    },
+    {
+      "stage": "C2",
+      "scope": "完整19类基线训练",
+      "status": "已完成"
+    },
+    {
+      "stage": "C2b",
+      "scope": "完整19类PTv2结果验收、诊断与状态收口",
+      "status": "已完成"
+    },
+    {
+      "stage": "C3",
+      "scope": "三随机种子复验和论文指标对照",
+      "status": "待批准"
+    }
+  ],
+  "dataset": {
+    "stage": "B1",
+    "status": "complete",
+    "root": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b1_three_species\\dataset",
+    "sample_count": 600,
+    "split_histogram": {
+      "test": {
+        "1": 30,
+        "2": 30,
+        "13": 30
+      },
+      "train": {
+        "1": 140,
+        "2": 140,
+        "13": 140
+      },
+      "val": {
+        "1": 30,
+        "2": 30,
+        "13": 30
+      }
+    },
+    "classes": [
+      {
+        "class_index": 0,
+        "benchmark_label_id": 1,
+        "scientific_name": "Cinnamomum camphora"
+      },
+      {
+        "class_index": 1,
+        "benchmark_label_id": 2,
+        "scientific_name": "Lagerstroemia indica"
+      },
+      {
+        "class_index": 2,
+        "benchmark_label_id": 13,
+        "scientific_name": "Magnolia grandiflora"
+      }
+    ],
+    "validation_status": "passed",
+    "artifacts": {
+      "classes": {
+        "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b1_three_species\\dataset\\classes.json",
+        "sha256": "2fda86f795514ef0fb866a4f83dbbe9ef47a05a0037df6eb3bb4dd614d228801"
+      },
+      "manifest": {
+        "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b1_three_species\\dataset\\manifest.json",
+        "sha256": "44eb9449ecb8a09e8abd2ce409e1392af8b54a286eebcbbce4da8f3437c8503a"
+      },
+      "validation": {
+        "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b1_three_species\\dataset\\validation.json",
+        "sha256": "defd3572a943757c4bfcdc61edcef6da7e1f8d12c31d85d2a4041fe4568693e3"
+      },
+      "stage_validation": {
+        "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B1_validation.json",
+        "sha256": "defd3572a943757c4bfcdc61edcef6da7e1f8d12c31d85d2a4041fe4568693e3"
+      }
+    }
+  },
+  "experiments": {
+    "B2": {
+      "stage": "B2",
+      "status": "complete",
+      "model": "PointMLP",
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b2_pointmlp\\run_batch3_seed20260714",
+      "epochs_completed": 40,
+      "best_epoch": 19,
+      "class_names": [
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Magnolia grandiflora"
+      ],
+      "split_sizes": {
+        "train": 420,
+        "val": 90,
+        "test": 90
+      },
+      "metrics": {
+        "val": {
+          "accuracy": 0.5444444444444444,
+          "balanced_accuracy": 0.5444444444444444,
+          "macro_precision": 0.5464063384267119,
+          "macro_recall": 0.5444444444444444,
+          "macro_f1": 0.5341808854689417
+        },
+        "test": {
+          "accuracy": 0.6666666666666666,
+          "balanced_accuracy": 0.6666666666666666,
+          "macro_precision": 0.7090108401084011,
+          "macro_recall": 0.6666666666666666,
+          "macro_f1": 0.6610548962049267
+        }
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "best_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b2_pointmlp\\run_batch3_seed20260714\\best.pt",
+          "bytes": 53155091,
+          "sha256": "ef98e0b262e44fd20009b6f52eb4388ad76e7775455db3c8343001731bed8ae1"
+        },
+        "last_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b2_pointmlp\\run_batch3_seed20260714\\last.pt",
+          "bytes": 106115473,
+          "sha256": "d066ac7cadeba11d7388db277be35575a38be5c974232a32e8565e56001d22f6"
+        },
+        "final_metrics": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b2_pointmlp\\run_batch3_seed20260714\\final_metrics.json",
+          "sha256": "1d74e10c8f3e6cac87adfc6800b0d5a53f818236efc8bd065d121e0066f32184"
+        },
+        "predictions": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b2_pointmlp\\run_batch3_seed20260714\\predictions.csv",
+          "sha256": "8f88614b65af7e7cf60162c8ad2a42d01e9004bab119dcd01afc24591ed6250e"
+        },
+        "run_config": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b2_pointmlp\\run_batch3_seed20260714\\run_config.json",
+          "sha256": "6cf694b3eda9d1a17c45ccd6819dcd07ee00cd6fe7dad3f9e7613c4acd5b36e3"
+        },
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B2_validation.json",
+          "sha256": "772df5efcdaecc7a14706536b916db48f8727a55fc6b4ff0319e35e1c9a166c0"
+        }
+      }
+    },
+    "B3": {
+      "stage": "B3",
+      "status": "complete",
+      "model": "ImageNet-pretrained ResNet50",
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b3_resnet50\\run_batch8_seed20260723",
+      "epochs_completed": 300,
+      "best_epoch": 166,
+      "class_names": [
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Magnolia grandiflora"
+      ],
+      "split_sizes": {
+        "train": 420,
+        "val": 90,
+        "test": 90
+      },
+      "metrics": {
+        "val": {
+          "accuracy": 0.9111111111111111,
+          "balanced_accuracy": 0.9111111111111111,
+          "macro_precision": 0.9179292929292929,
+          "macro_recall": 0.9111111111111111,
+          "macro_f1": 0.9109838787258142
+        },
+        "test": {
+          "accuracy": 0.8,
+          "balanced_accuracy": 0.7999999999999999,
+          "macro_precision": 0.8240297713981924,
+          "macro_recall": 0.7999999999999999,
+          "macro_f1": 0.8019105077928609
+        }
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "best_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b3_resnet50\\run_batch8_seed20260723\\best.pt",
+          "bytes": 94375807,
+          "sha256": "554282889f4386f23873eabd8419b05b0fd24f81becf5e2ddbff1fb0a8ff32b6"
+        },
+        "last_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b3_resnet50\\run_batch8_seed20260723\\last.pt",
+          "bytes": 188522557,
+          "sha256": "998a4c1b8c27aaab41ac0e47975e878a05fe121547c156db2cc6b3ef0063176e"
+        },
+        "final_metrics": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b3_resnet50\\run_batch8_seed20260723\\final_metrics.json",
+          "sha256": "b61c147361a8a2b87158c7843089c12975b77ca2a9e53519a6bd8c67032b5aee"
+        },
+        "predictions": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b3_resnet50\\run_batch8_seed20260723\\predictions.csv",
+          "sha256": "12b393455d754a5263396d4203baf7fdd5364347273681d65271b6cfcb6e350b"
+        },
+        "run_config": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b3_resnet50\\run_batch8_seed20260723\\run_config.json",
+          "sha256": "0a2bc6496cad3d2a886971279c0690ab9068a704e26b4998012b2ff5e6730643"
+        },
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B3_validation.json",
+          "sha256": "e1391e50188417e9796f8532e36efe104bf9d4d472d9a49e199287cb6d38b923"
+        }
+      }
+    },
+    "B4a": {
+      "stage": "B4a",
+      "status": "complete",
+      "model": "TSCMDL frozen-backbone fusion smoke",
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4a_fusion_smoke\\run_seed20260727",
+      "steps_completed": 2,
+      "class_names": [
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Magnolia grandiflora"
+      ],
+      "split_sizes": {
+        "train": 420,
+        "val": 90,
+        "test": 90
+      },
+      "feature_shapes": {
+        "point_raw": [
+          2,
+          1024
+        ],
+        "image_raw": [
+          2,
+          2048
+        ],
+        "point_normalized": [
+          2,
+          1024
+        ],
+        "image_normalized": [
+          2,
+          1024
+        ],
+        "fused": [
+          2,
+          2048
+        ]
+      },
+      "parameter_counts": {
+        "point_backbone": 13228995,
+        "image_backbone": 23508032,
+        "fusion_trainable": 3284995,
+        "total": 40022022,
+        "frozen": 36737027
+      },
+      "metrics_scope": "one-batch smoke only",
+      "validation_status": "passed",
+      "artifacts": {
+        "last_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4a_fusion_smoke\\run_seed20260727\\last.pt",
+          "bytes": 173839551,
+          "sha256": "479d4d4f2651ca03828d5e9ff7cfc000584042813d62e3d83856c71aa09bc310"
+        },
+        "smoke_result": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4a_fusion_smoke\\run_seed20260727\\smoke_result.json",
+          "sha256": "3a3406c3df34409e4aa13e1e2acc6d739f4d2c71d26cae2c13146ff90790e4d6"
+        },
+        "run_config": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4a_fusion_smoke\\run_seed20260727\\run_config.json",
+          "sha256": "7f7cbab182260141859e8c6482899794beecf52b76a7ea42f60f049a526ebe0b"
+        },
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B4a_validation.json",
+          "sha256": "6a31db8d4cdaf802697904c58edaf38ec62b55806b9825650ed9ed6e84248b57"
+        }
+      }
+    },
+    "B4": {
+      "stage": "B4",
+      "status": "complete",
+      "model": "TSCMDL frozen-backbone fusion",
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727",
+      "epochs_completed": 300,
+      "best_epoch": 19,
+      "class_names": [
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Magnolia grandiflora"
+      ],
+      "split_sizes": {
+        "train": 420,
+        "val": 90,
+        "test": 90
+      },
+      "metrics": {
+        "val": {
+          "accuracy": 0.8,
+          "balanced_accuracy": 0.7999999999999999,
+          "macro_precision": 0.7995391705069125,
+          "macro_recall": 0.7999999999999999,
+          "macro_f1": 0.7993216506500848
+        },
+        "test": {
+          "accuracy": 0.8333333333333334,
+          "balanced_accuracy": 0.8333333333333334,
+          "macro_precision": 0.8340517241379309,
+          "macro_recall": 0.8333333333333334,
+          "macro_f1": 0.8332422088572992
+        }
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "best_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727\\best.pt",
+          "bytes": 13137645,
+          "sha256": "c34709d3d59873e53bfd51df7dc861e958eeb2e0bca7f8f3dadec0930fc79ea7"
+        },
+        "last_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727\\last.pt",
+          "bytes": 26306441,
+          "sha256": "0cb1f5fb884d71d847e7115b7a0ed599c6861e817f8e1ccbdd8f3777279d73ed"
+        },
+        "final_metrics": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727\\final_metrics.json",
+          "sha256": "a2d19f7871eb28026bb6795ee5a0ae8cee59f8df0ba8dd4aad3d6d9b3fde3060"
+        },
+        "predictions": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727\\predictions.csv",
+          "sha256": "940bb2ed575ac875ced6dfe2510454b356bcf75388731c862352466703ca13ae"
+        },
+        "run_config": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727\\run_config.json",
+          "sha256": "b48ccb4026304bc229cd261308b47ac8654eccca9da8d7d9053e883b11d03b1b"
+        },
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B4_validation.json",
+          "sha256": "8ba6b849acd000d45f7f8d28e5b0827df3893b38e0934bd43bb1ea26a160ec7f"
+        }
+      }
+    },
+    "B4c": {
+      "stage": "B4c",
+      "status": "complete",
+      "model": "TSCMDL selected three-seed fusion",
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4c_regularization_ablation\\run_3seed_20260727",
+      "epochs_completed": 30,
+      "best_epoch": 10,
+      "class_names": [
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Magnolia grandiflora"
+      ],
+      "split_sizes": {
+        "train": 420,
+        "val": 90,
+        "test": 90
+      },
+      "metrics": {
+        "val": {
+          "accuracy": 0.8222222222222222,
+          "balanced_accuracy": 0.8222222222222223,
+          "macro_precision": 0.829188712522046,
+          "macro_recall": 0.8222222222222223,
+          "macro_f1": 0.8230288364589636
+        },
+        "test": {
+          "accuracy": 0.8444444444444444,
+          "balanced_accuracy": 0.8444444444444444,
+          "macro_precision": 0.8443208503275245,
+          "macro_recall": 0.8444444444444444,
+          "macro_f1": 0.8442283350313359
+        }
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "best_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4c_regularization_ablation\\run_3seed_20260727\\best.pt",
+          "bytes": 13136749,
+          "sha256": "8c471778881edfd13d13fcd75b446e759f497b87e9c0621ae30f754baed8eeaa"
+        },
+        "last_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4c_regularization_ablation\\run_3seed_20260727\\last.pt",
+          "bytes": 13139309,
+          "sha256": "79aae4d3a721db33bceecf60bfedc9b57f95e92a3aff5542ee4fe811682496cd"
+        },
+        "final_metrics": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4c_regularization_ablation\\run_3seed_20260727\\final_metrics.json",
+          "sha256": "ab144325b02e205395205ceb6b4a48f4817c51a564456ebc68806a3f6ac7b132"
+        },
+        "predictions": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4c_regularization_ablation\\run_3seed_20260727\\predictions.csv",
+          "sha256": "c63d59b27fe777ff7c61bfea7fffd11ec818479a90add343c1c20496cac2209c"
+        },
+        "run_config": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4c_regularization_ablation\\run_3seed_20260727\\run_config.json",
+          "sha256": "a8e6389d10382cf6affc2bba87d535a7c95d63a0a117d73a8d196bf62cd57baa"
+        },
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B4c_validation.json",
+          "sha256": "383d804b29947f30d3b0c3e88b5d212098cb8b7058e13a21e991d67072d30e5d"
+        }
+      },
+      "suite_metrics": {
+        "fusion": {
+          "modality": "fusion",
+          "val_accuracy_mean": 0.8074074074074074,
+          "val_accuracy_std": 0.02566001196398334,
+          "val_accuracy_min": 0.7777777777777778,
+          "val_accuracy_max": 0.8222222222222222,
+          "val_macro_f1_mean": 0.8061468176401676,
+          "val_macro_f1_std": 0.027087371373114923,
+          "val_macro_f1_min": 0.7749028749028749,
+          "val_macro_f1_max": 0.8230288364589636,
+          "test_accuracy_mean": 0.8333333333333334,
+          "test_accuracy_std": 0.01924500897298752,
+          "test_accuracy_min": 0.8111111111111111,
+          "test_accuracy_max": 0.8444444444444444,
+          "test_macro_f1_mean": 0.8334886823925061,
+          "test_macro_f1_std": 0.019048257899247006,
+          "test_macro_f1_min": 0.8114956486541186,
+          "test_macro_f1_max": 0.8447420634920636
+        },
+        "image": {
+          "modality": "image",
+          "val_accuracy_mean": 0.8148148148148149,
+          "val_accuracy_std": 0.01697250257391052,
+          "val_accuracy_min": 0.8,
+          "val_accuracy_max": 0.8333333333333334,
+          "val_macro_f1_mean": 0.811966523638516,
+          "val_macro_f1_std": 0.01817741503214213,
+          "val_macro_f1_min": 0.7953759858240991,
+          "val_macro_f1_max": 0.8313966009644647,
+          "test_accuracy_mean": 0.7851851851851852,
+          "test_accuracy_std": 0.05592469952052409,
+          "test_accuracy_min": 0.7333333333333333,
+          "test_accuracy_max": 0.8444444444444444,
+          "test_macro_f1_mean": 0.7841956185192162,
+          "test_macro_f1_std": 0.05738480007258054,
+          "test_macro_f1_min": 0.730551950652888,
+          "test_macro_f1_max": 0.8447039920899765
+        },
+        "point": {
+          "modality": "point",
+          "val_accuracy_mean": 0.4666666666666667,
+          "val_accuracy_std": 0.040061680838488774,
+          "val_accuracy_min": 0.4222222222222222,
+          "val_accuracy_max": 0.5,
+          "val_macro_f1_mean": 0.46165645435303176,
+          "val_macro_f1_std": 0.01885970061982416,
+          "val_macro_f1_min": 0.4449433969745633,
+          "val_macro_f1_max": 0.4821040372670808,
+          "test_accuracy_mean": 0.6148148148148148,
+          "test_accuracy_std": 0.10081968584308296,
+          "test_accuracy_min": 0.5,
+          "test_accuracy_max": 0.6888888888888889,
+          "test_macro_f1_mean": 0.5931887340209411,
+          "test_macro_f1_std": 0.12306727197006173,
+          "test_macro_f1_min": 0.45114716825134354,
+          "test_macro_f1_max": 0.667910682322736
+        }
+      }
+    },
+    "B5": {
+      "stage": "B5",
+      "status": "complete",
+      "model": "PTv2 mode-1 classification encoder reimplementation",
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728",
+      "epochs_completed": 99,
+      "best_epoch": 59,
+      "class_names": [
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Magnolia grandiflora"
+      ],
+      "split_sizes": {
+        "train": 420,
+        "val": 90,
+        "test": 90
+      },
+      "metrics": {
+        "val": {
+          "accuracy": 0.7555555555555555,
+          "balanced_accuracy": 0.7555555555555555,
+          "macro_precision": 0.7687017231134877,
+          "macro_recall": 0.7555555555555555,
+          "macro_f1": 0.7393223010244286
+        },
+        "test": {
+          "accuracy": 0.9666666666666667,
+          "balanced_accuracy": 0.9666666666666668,
+          "macro_precision": 0.9696969696969697,
+          "macro_recall": 0.9666666666666668,
+          "macro_f1": 0.9669830137392966
+        }
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "best_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728\\best.pt",
+          "bytes": 38105081,
+          "sha256": "b346d14daeeb617c15e262c0992fd42400b8e1866ac906f435144aa22f0f414f"
+        },
+        "last_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728\\last.pt",
+          "bytes": 113638432,
+          "sha256": "8b2c1e820898809ff42cc4d4fba99c43b06010b651926de3a524bd0970d5e3e5"
+        },
+        "final_metrics": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728\\final_metrics.json",
+          "sha256": "6f19bb379364ad58b3836c97c7885c0e5db4004c338aab1e0f4d518cb141987a"
+        },
+        "predictions": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728\\predictions.csv",
+          "sha256": "ce051d24e3703c7e6280d391a800910fcc19d74eea2c43da620f40624afa9b80"
+        },
+        "run_config": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728\\run_config.json",
+          "sha256": "ab7235be1a2f80723216c1c27bf517d3e3d1bd38e802bfb3ef02a15c37b1dc64"
+        },
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5_validation.json",
+          "sha256": "ea5eccff7dcfdd0937307e8b5d016a134aa5fd23490a17ae2b60d7f29fcb8a70"
+        }
+      }
+    },
+    "B5b": {
+      "stage": "B5b",
+      "status": "complete",
+      "model": "PTv2 locked three-seed repeatability",
+      "seeds": [
+        20260728,
+        20260729,
+        20260730
+      ],
+      "class_names": [
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Magnolia grandiflora"
+      ],
+      "per_seed": {
+        "20260728": {
+          "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728",
+          "best_epoch": 59,
+          "epochs_completed": 99,
+          "training_session_elapsed_seconds": 1809.4868735999917,
+          "metrics": {
+            "val": {
+              "accuracy": 0.7555555555555555,
+              "balanced_accuracy": 0.7555555555555555,
+              "macro_f1": 0.7393223010244286
+            },
+            "test": {
+              "accuracy": 0.9666666666666667,
+              "balanced_accuracy": 0.9666666666666668,
+              "macro_f1": 0.9669830137392966
+            }
+          }
+        },
+        "20260729": {
+          "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5b_ptv2_repeats\\run_batch16_seed20260729",
+          "best_epoch": 50,
+          "epochs_completed": 90,
+          "training_session_elapsed_seconds": 2702.7419739000034,
+          "metrics": {
+            "val": {
+              "accuracy": 0.7777777777777778,
+              "balanced_accuracy": 0.7777777777777778,
+              "macro_f1": 0.7719926353509536
+            },
+            "test": {
+              "accuracy": 0.9222222222222223,
+              "balanced_accuracy": 0.9222222222222222,
+              "macro_f1": 0.922332356089162
+            }
+          }
+        },
+        "20260730": {
+          "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5b_ptv2_repeats\\run_batch16_seed20260730",
+          "best_epoch": 29,
+          "epochs_completed": 69,
+          "training_session_elapsed_seconds": 1246.9461774000083,
+          "metrics": {
+            "val": {
+              "accuracy": 0.7666666666666667,
+              "balanced_accuracy": 0.7666666666666667,
+              "macro_f1": 0.7636236779093922
+            },
+            "test": {
+              "accuracy": 0.9444444444444444,
+              "balanced_accuracy": 0.9444444444444443,
+              "macro_f1": 0.9444351826124541
+            }
+          }
+        }
+      },
+      "aggregate": {
+        "val": {
+          "accuracy": {
+            "count": 3,
+            "mean": 0.7666666666666667,
+            "std": 0.009072184232530303,
+            "minimum": 0.7555555555555555,
+            "maximum": 0.7777777777777778
+          },
+          "balanced_accuracy": {
+            "count": 3,
+            "mean": 0.7666666666666667,
+            "std": 0.009072184232530303,
+            "minimum": 0.7555555555555555,
+            "maximum": 0.7777777777777778
+          },
+          "macro_f1": {
+            "count": 3,
+            "mean": 0.7583128714282582,
+            "std": 0.013856194411688732,
+            "minimum": 0.7393223010244286,
+            "maximum": 0.7719926353509536
+          }
+        },
+        "test": {
+          "accuracy": {
+            "count": 3,
+            "mean": 0.9444444444444444,
+            "std": 0.01814436846506056,
+            "minimum": 0.9222222222222223,
+            "maximum": 0.9666666666666667
+          },
+          "balanced_accuracy": {
+            "count": 3,
+            "mean": 0.9444444444444444,
+            "std": 0.01814436846506065,
+            "minimum": 0.9222222222222222,
+            "maximum": 0.9666666666666668
+          },
+          "macro_f1": {
+            "count": 3,
+            "mean": 0.9445835174803042,
+            "std": 0.018228856420012512,
+            "minimum": 0.922332356089162,
+            "maximum": 0.9669830137392966
+          }
+        }
+      },
+      "ensemble_metrics": {
+        "val": {
+          "accuracy": 0.7666666666666667,
+          "balanced_accuracy": 0.7666666666666666,
+          "macro_precision": 0.7755691056910569,
+          "macro_recall": 0.7666666666666666,
+          "macro_f1": 0.7591312182861478,
+          "confusion_matrix": [
+            [
+              30,
+              0,
+              0
+            ],
+            [
+              9,
+              18,
+              3
+            ],
+            [
+              2,
+              7,
+              21
+            ]
+          ],
+          "per_class": [
+            {
+              "class_index": 0,
+              "support": 30,
+              "precision": 0.7317073170731707,
+              "recall": 1.0,
+              "f1": 0.8450704225352113
+            },
+            {
+              "class_index": 1,
+              "support": 30,
+              "precision": 0.72,
+              "recall": 0.6,
+              "f1": 0.6545454545454547
+            },
+            {
+              "class_index": 2,
+              "support": 30,
+              "precision": 0.875,
+              "recall": 0.7,
+              "f1": 0.7777777777777777
+            }
+          ]
+        },
+        "test": {
+          "accuracy": 0.9666666666666667,
+          "balanced_accuracy": 0.9666666666666668,
+          "macro_precision": 0.9696969696969697,
+          "macro_recall": 0.9666666666666668,
+          "macro_f1": 0.9669830137392966,
+          "confusion_matrix": [
+            [
+              30,
+              0,
+              0
+            ],
+            [
+              1,
+              29,
+              0
+            ],
+            [
+              2,
+              0,
+              28
+            ]
+          ],
+          "per_class": [
+            {
+              "class_index": 0,
+              "support": 30,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            {
+              "class_index": 1,
+              "support": 30,
+              "precision": 1.0,
+              "recall": 0.9666666666666667,
+              "f1": 0.983050847457627
+            },
+            {
+              "class_index": 2,
+              "support": 30,
+              "precision": 1.0,
+              "recall": 0.9333333333333333,
+              "f1": 0.9655172413793104
+            }
+          ]
+        }
+      },
+      "pairwise_prediction_agreement": {
+        "20260728-20260729": {
+          "val": 0.8333333333333334,
+          "test": 0.9555555555555556
+        },
+        "20260728-20260730": {
+          "val": 0.7666666666666667,
+          "test": 0.9444444444444444
+        },
+        "20260729-20260730": {
+          "val": 0.8111111111111111,
+          "test": 0.9
+        }
+      },
+      "road_split_structure": {
+        "train_roads": [
+          "02",
+          "03",
+          "04",
+          "05",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "13",
+          "15",
+          "17",
+          "18",
+          "20",
+          "21",
+          "24",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32",
+          "33"
+        ],
+        "val_roads": [
+          "06",
+          "23"
+        ],
+        "test_roads": [
+          "02",
+          "03",
+          "08",
+          "09",
+          "10",
+          "11",
+          "17",
+          "20",
+          "25",
+          "28",
+          "29",
+          "31",
+          "33"
+        ],
+        "val_seen_in_train": [],
+        "val_unseen_in_train": [
+          "06",
+          "23"
+        ],
+        "test_seen_in_train": [
+          "02",
+          "03",
+          "08",
+          "09",
+          "10",
+          "11",
+          "17",
+          "20",
+          "28",
+          "29",
+          "31",
+          "33"
+        ],
+        "test_unseen_in_train": [
+          "25"
+        ],
+        "val_samples_on_seen_roads": 0,
+        "test_samples_on_seen_roads": 89
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_validation.json",
+          "sha256": "a627ed14929c86f6fd93185bece0fee33d7f3078c7b714059cf667b42447a1a4"
+        },
+        "sample_csv": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_sample_diagnostics.csv",
+          "bytes": 16627,
+          "sha256": "1a68c4fe641164546684d1dcca3476c97efb3d44629099188e9c7c52c6280e93"
+        },
+        "metrics_plot": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_seed_metrics.png",
+          "bytes": 61223,
+          "sha256": "ebe436bba0301e4b7f78e00ab490b3767bc4637251f49ac01fcc9e3bb5be2cdd"
+        },
+        "roads_plot": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_road_domain.png",
+          "bytes": 70707,
+          "sha256": "d292566319b4859da95a691e635cfb5648b2d3e1d524bc04bf65af4026faafcf"
+        },
+        "structure_plot": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_point_structure.png",
+          "bytes": 149100,
+          "sha256": "59890fba7d47feb96455352c906b5f053b1424496ab1a8a1b8854a48220eb1d1"
+        }
+      }
+    },
+    "B5c": {
+      "stage": "B5c",
+      "status": "complete",
+      "protocol": "three-fold road-grouped cross-validation",
+      "summary": {
+        "fold_count": 3,
+        "run_count": 3,
+        "development_road_count": 29,
+        "development_sample_count": 4829,
+        "official_test_withheld_count": 1156,
+        "balanced_validation_samples_per_run": 90,
+        "balanced_test_samples_per_run": 90,
+        "road_support_by_class": {
+          "1": 29,
+          "2": 7,
+          "13": 11
+        }
+      },
+      "checks": {
+        "inventory_complete": true,
+        "official_test_samples_excluded_from_cv": true,
+        "road_overlap_count_by_run": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "all_outer_folds_meet_eval_minimum": true,
+        "all_balanced_eval_subsets_exact": true,
+        "all_training_splits_meet_minimum": true,
+        "sample_assignment_count_exact": true,
+        "each_sample_has_one_split_per_run": true,
+        "every_development_road_is_test_once": true
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5c_road_group_cv\\validation.json",
+          "sha256": "1434bf6785120018a52bea0994f9f7328e8367a822ca41d8ac413f8a5b019161"
+        },
+        "protocol": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5c_road_group_cv\\road_cv_protocol.json",
+          "bytes": 7724,
+          "sha256": "d6130e1494c157dda12bb3ac011a397b47a8b0d2b0153bb84e7e196fe04d9c40"
+        },
+        "road_class_counts": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5c_road_group_cv\\road_class_counts.csv",
+          "bytes": 573,
+          "sha256": "811a5be140c96d013e8739237a3bed7aed96df608d86a3132d56d980742a71b0"
+        },
+        "road_assignments": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5c_road_group_cv\\road_assignments.csv",
+          "bytes": 2226,
+          "sha256": "060cd5b83df9643b23544bdb468e839b6d34123b8570424dcd169c84cd7dba27"
+        },
+        "sample_assignments": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5c_road_group_cv\\sample_assignments.csv",
+          "bytes": 813216,
+          "sha256": "8e950f1b8fee12e04957bffe6416a40a0c4727e7dc27bfe5f33bd7d2f48c8341"
+        },
+        "figure": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5c_road_group_cv\\road_cv_protocol.png",
+          "bytes": 100464,
+          "sha256": "bf0b249a6b4c99b57845d15ff1ec429c2f124c89beefbf684f14b303e945947d"
+        }
+      }
+    },
+    "C1a": {
+      "stage": "C1a",
+      "status": "complete",
+      "scope": "full 19-class inventory and road coverage audit",
+      "summary": {
+        "trajectory_count": 110,
+        "instance_count": 17134,
+        "development_instance_count": 13686,
+        "official_test_instance_count": 3448,
+        "development_road_count": 34,
+        "official_test_road_count": 22,
+        "class_count": 19,
+        "inventory_class_histogram": {
+          "0": 5260,
+          "1": 3935,
+          "2": 1805,
+          "3": 868,
+          "4": 609,
+          "5": 480,
+          "6": 534,
+          "7": 526,
+          "8": 250,
+          "9": 180,
+          "10": 309,
+          "11": 339,
+          "12": 328,
+          "13": 245,
+          "14": 310,
+          "15": 166,
+          "16": 231,
+          "17": 163,
+          "18": 596
+        },
+        "development_class_histogram": {
+          "0": 4209,
+          "1": 3186,
+          "2": 1451,
+          "3": 695,
+          "4": 500,
+          "5": 378,
+          "6": 438,
+          "7": 414,
+          "8": 183,
+          "9": 122,
+          "10": 243,
+          "11": 269,
+          "12": 262,
+          "13": 192,
+          "14": 245,
+          "15": 117,
+          "16": 122,
+          "17": 113,
+          "18": 547
+        },
+        "official_test_class_histogram": {
+          "0": 1051,
+          "1": 749,
+          "2": 354,
+          "3": 173,
+          "4": 109,
+          "5": 102,
+          "6": 96,
+          "7": 112,
+          "8": 67,
+          "9": 58,
+          "10": 66,
+          "11": 70,
+          "12": 66,
+          "13": 53,
+          "14": 65,
+          "15": 49,
+          "16": 109,
+          "17": 50,
+          "18": 49
+        },
+        "strict_profile_necessary_eligible_count": 18,
+        "strict_profile_individually_feasible_count": 13,
+        "strict_profile_joint_plan_status": "passed"
+      },
+      "profiles": [
+        {
+          "folds": 3,
+          "per_class": 30,
+          "necessary_eligible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18
+          ],
+          "necessary_excluded_labels": [
+            17
+          ],
+          "individually_feasible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            13,
+            18
+          ],
+          "individually_infeasible_labels": [
+            9,
+            12,
+            14,
+            15,
+            16,
+            17
+          ],
+          "joint_plan_status": "passed",
+          "joint_plan_error": null,
+          "outer_folds": [
+            {
+              "fold": 0,
+              "roads": [
+                "06",
+                "07",
+                "10",
+                "11",
+                "14",
+                "19",
+                "22",
+                "24",
+                "26",
+                "29",
+                "31",
+                "33"
+              ],
+              "road_count": 12,
+              "class_histogram": {
+                "0": 1181,
+                "1": 1299,
+                "2": 995,
+                "3": 118,
+                "4": 223,
+                "5": 117,
+                "6": 117,
+                "7": 144,
+                "8": 92,
+                "10": 54,
+                "11": 116,
+                "13": 30,
+                "18": 195
+              },
+              "minimum_class_count": 30
+            },
+            {
+              "fold": 1,
+              "roads": [
+                "00",
+                "01",
+                "05",
+                "09",
+                "17",
+                "18",
+                "20",
+                "23",
+                "28",
+                "30",
+                "34"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 1641,
+                "1": 943,
+                "2": 224,
+                "3": 377,
+                "4": 198,
+                "5": 52,
+                "6": 153,
+                "7": 53,
+                "8": 40,
+                "10": 91,
+                "11": 90,
+                "13": 55,
+                "18": 129
+              },
+              "minimum_class_count": 40
+            },
+            {
+              "fold": 2,
+              "roads": [
+                "02",
+                "03",
+                "04",
+                "08",
+                "12",
+                "13",
+                "15",
+                "16",
+                "21",
+                "27",
+                "32"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 1387,
+                "1": 944,
+                "2": 232,
+                "3": 200,
+                "4": 79,
+                "5": 209,
+                "6": 168,
+                "7": 217,
+                "8": 51,
+                "10": 98,
+                "11": 63,
+                "13": 107,
+                "18": 223
+              },
+              "minimum_class_count": 51
+            }
+          ]
+        },
+        {
+          "folds": 3,
+          "per_class": 20,
+          "necessary_eligible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18
+          ],
+          "necessary_excluded_labels": [
+            17
+          ],
+          "individually_feasible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            18
+          ],
+          "individually_infeasible_labels": [
+            12,
+            16,
+            17
+          ],
+          "joint_plan_status": "passed",
+          "joint_plan_error": null,
+          "outer_folds": [
+            {
+              "fold": 0,
+              "roads": [
+                "06",
+                "08",
+                "11",
+                "13",
+                "17",
+                "18",
+                "20",
+                "21",
+                "22",
+                "27",
+                "31",
+                "32"
+              ],
+              "road_count": 12,
+              "class_histogram": {
+                "0": 1017,
+                "1": 1186,
+                "2": 43,
+                "3": 175,
+                "4": 47,
+                "5": 200,
+                "6": 210,
+                "7": 52,
+                "8": 53,
+                "9": 66,
+                "10": 55,
+                "11": 75,
+                "13": 103,
+                "14": 23,
+                "15": 59,
+                "18": 150
+              },
+              "minimum_class_count": 23
+            },
+            {
+              "fold": 1,
+              "roads": [
+                "00",
+                "01",
+                "03",
+                "04",
+                "05",
+                "10",
+                "15",
+                "19",
+                "23",
+                "28",
+                "34"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 709,
+                "1": 1239,
+                "2": 1159,
+                "3": 219,
+                "4": 259,
+                "5": 54,
+                "6": 158,
+                "7": 219,
+                "8": 22,
+                "9": 22,
+                "10": 84,
+                "11": 130,
+                "13": 69,
+                "14": 202,
+                "15": 22,
+                "18": 208
+              },
+              "minimum_class_count": 22
+            },
+            {
+              "fold": 2,
+              "roads": [
+                "02",
+                "07",
+                "09",
+                "12",
+                "14",
+                "16",
+                "24",
+                "26",
+                "29",
+                "30",
+                "33"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 2483,
+                "1": 761,
+                "2": 249,
+                "3": 301,
+                "4": 194,
+                "5": 124,
+                "6": 70,
+                "7": 143,
+                "8": 108,
+                "9": 34,
+                "10": 104,
+                "11": 64,
+                "13": 20,
+                "14": 20,
+                "15": 36,
+                "18": 189
+              },
+              "minimum_class_count": 20
+            }
+          ]
+        },
+        {
+          "folds": 3,
+          "per_class": 10,
+          "necessary_eligible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18
+          ],
+          "necessary_excluded_labels": [
+            17
+          ],
+          "individually_feasible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            18
+          ],
+          "individually_infeasible_labels": [
+            12,
+            16,
+            17
+          ],
+          "joint_plan_status": "passed",
+          "joint_plan_error": null,
+          "outer_folds": [
+            {
+              "fold": 0,
+              "roads": [
+                "00",
+                "01",
+                "03",
+                "04",
+                "05",
+                "06",
+                "12",
+                "15",
+                "22",
+                "23",
+                "32",
+                "33"
+              ],
+              "road_count": 12,
+              "class_histogram": {
+                "0": 1504,
+                "1": 935,
+                "2": 289,
+                "3": 215,
+                "4": 257,
+                "5": 22,
+                "6": 145,
+                "7": 217,
+                "8": 27,
+                "9": 32,
+                "10": 89,
+                "11": 89,
+                "13": 67,
+                "14": 202,
+                "15": 10,
+                "18": 194
+              },
+              "minimum_class_count": 10
+            },
+            {
+              "fold": 1,
+              "roads": [
+                "07",
+                "10",
+                "14",
+                "16",
+                "17",
+                "19",
+                "24",
+                "26",
+                "27",
+                "28",
+                "29"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 1216,
+                "1": 1274,
+                "2": 937,
+                "3": 156,
+                "4": 199,
+                "5": 149,
+                "6": 204,
+                "7": 144,
+                "8": 92,
+                "9": 67,
+                "10": 111,
+                "11": 95,
+                "13": 22,
+                "14": 12,
+                "15": 48,
+                "18": 284
+              },
+              "minimum_class_count": 12
+            },
+            {
+              "fold": 2,
+              "roads": [
+                "02",
+                "08",
+                "09",
+                "11",
+                "13",
+                "18",
+                "20",
+                "21",
+                "30",
+                "31",
+                "34"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 1489,
+                "1": 977,
+                "2": 225,
+                "3": 324,
+                "4": 44,
+                "5": 207,
+                "6": 89,
+                "7": 53,
+                "8": 64,
+                "9": 23,
+                "10": 43,
+                "11": 85,
+                "13": 103,
+                "14": 31,
+                "15": 59,
+                "18": 69
+              },
+              "minimum_class_count": 23
+            }
+          ]
+        },
+        {
+          "folds": 3,
+          "per_class": 5,
+          "necessary_eligible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18
+          ],
+          "necessary_excluded_labels": [
+            17
+          ],
+          "individually_feasible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18
+          ],
+          "individually_infeasible_labels": [
+            17
+          ],
+          "joint_plan_status": "passed",
+          "joint_plan_error": null,
+          "outer_folds": [
+            {
+              "fold": 0,
+              "roads": [
+                "01",
+                "02",
+                "03",
+                "04",
+                "05",
+                "06",
+                "07",
+                "08",
+                "12",
+                "15",
+                "21",
+                "27"
+              ],
+              "road_count": 12,
+              "class_histogram": {
+                "0": 1233,
+                "1": 931,
+                "2": 274,
+                "3": 246,
+                "4": 77,
+                "5": 209,
+                "6": 166,
+                "7": 217,
+                "8": 48,
+                "9": 22,
+                "10": 93,
+                "11": 104,
+                "12": 243,
+                "13": 107,
+                "14": 205,
+                "15": 41,
+                "16": 112,
+                "18": 210
+              },
+              "minimum_class_count": 22
+            },
+            {
+              "fold": 1,
+              "roads": [
+                "09",
+                "11",
+                "16",
+                "18",
+                "19",
+                "20",
+                "22",
+                "26",
+                "29",
+                "31",
+                "33"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 1620,
+                "1": 954,
+                "2": 249,
+                "3": 305,
+                "4": 211,
+                "5": 124,
+                "6": 107,
+                "7": 52,
+                "8": 119,
+                "9": 32,
+                "10": 54,
+                "11": 90,
+                "12": 8,
+                "13": 19,
+                "14": 29,
+                "15": 59,
+                "16": 5,
+                "18": 70
+              },
+              "minimum_class_count": 5
+            },
+            {
+              "fold": 2,
+              "roads": [
+                "00",
+                "10",
+                "13",
+                "14",
+                "17",
+                "23",
+                "24",
+                "28",
+                "30",
+                "32",
+                "34"
+              ],
+              "road_count": 11,
+              "class_histogram": {
+                "0": 1356,
+                "1": 1301,
+                "2": 928,
+                "3": 144,
+                "4": 212,
+                "5": 45,
+                "6": 165,
+                "7": 145,
+                "8": 16,
+                "9": 68,
+                "10": 96,
+                "11": 75,
+                "12": 11,
+                "13": 66,
+                "14": 11,
+                "15": 17,
+                "16": 5,
+                "18": 267
+              },
+              "minimum_class_count": 5
+            }
+          ]
+        },
+        {
+          "folds": 2,
+          "per_class": 30,
+          "necessary_eligible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "necessary_excluded_labels": [],
+          "individually_feasible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            17,
+            18
+          ],
+          "individually_infeasible_labels": [
+            12,
+            16
+          ],
+          "joint_plan_status": "passed",
+          "joint_plan_error": null,
+          "outer_folds": [
+            {
+              "fold": 0,
+              "roads": [
+                "01",
+                "02",
+                "03",
+                "04",
+                "05",
+                "08",
+                "09",
+                "11",
+                "12",
+                "14",
+                "18",
+                "20",
+                "21",
+                "24",
+                "27",
+                "30",
+                "31"
+              ],
+              "road_count": 17,
+              "class_histogram": {
+                "0": 2099,
+                "1": 1368,
+                "2": 456,
+                "3": 456,
+                "4": 106,
+                "5": 217,
+                "6": 217,
+                "7": 214,
+                "8": 86,
+                "9": 47,
+                "10": 111,
+                "11": 154,
+                "13": 118,
+                "14": 36,
+                "15": 65,
+                "17": 31,
+                "18": 271
+              },
+              "minimum_class_count": 31
+            },
+            {
+              "fold": 1,
+              "roads": [
+                "00",
+                "06",
+                "07",
+                "10",
+                "13",
+                "15",
+                "16",
+                "17",
+                "19",
+                "22",
+                "23",
+                "26",
+                "28",
+                "29",
+                "32",
+                "33",
+                "34"
+              ],
+              "road_count": 17,
+              "class_histogram": {
+                "0": 2110,
+                "1": 1818,
+                "2": 995,
+                "3": 239,
+                "4": 394,
+                "5": 161,
+                "6": 221,
+                "7": 200,
+                "8": 97,
+                "9": 75,
+                "10": 132,
+                "11": 115,
+                "13": 74,
+                "14": 209,
+                "15": 52,
+                "17": 82,
+                "18": 276
+              },
+              "minimum_class_count": 52
+            }
+          ]
+        },
+        {
+          "folds": 2,
+          "per_class": 10,
+          "necessary_eligible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "necessary_excluded_labels": [],
+          "individually_feasible_labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "individually_infeasible_labels": [],
+          "joint_plan_status": "passed",
+          "joint_plan_error": null,
+          "outer_folds": [
+            {
+              "fold": 0,
+              "roads": [
+                "00",
+                "01",
+                "02",
+                "03",
+                "04",
+                "06",
+                "07",
+                "08",
+                "11",
+                "12",
+                "13",
+                "15",
+                "20",
+                "21",
+                "27",
+                "32",
+                "33"
+              ],
+              "road_count": 17,
+              "class_histogram": {
+                "0": 1898,
+                "1": 1497,
+                "2": 290,
+                "3": 300,
+                "4": 105,
+                "5": 222,
+                "6": 263,
+                "7": 218,
+                "8": 57,
+                "9": 32,
+                "10": 114,
+                "11": 152,
+                "12": 251,
+                "13": 116,
+                "14": 205,
+                "15": 41,
+                "16": 112,
+                "17": 31,
+                "18": 242
+              },
+              "minimum_class_count": 31
+            },
+            {
+              "fold": 1,
+              "roads": [
+                "05",
+                "09",
+                "10",
+                "14",
+                "16",
+                "17",
+                "18",
+                "19",
+                "22",
+                "23",
+                "24",
+                "26",
+                "28",
+                "29",
+                "30",
+                "31",
+                "34"
+              ],
+              "road_count": 17,
+              "class_histogram": {
+                "0": 2311,
+                "1": 1689,
+                "2": 1161,
+                "3": 395,
+                "4": 395,
+                "5": 156,
+                "6": 175,
+                "7": 196,
+                "8": 126,
+                "9": 90,
+                "10": 129,
+                "11": 117,
+                "12": 11,
+                "13": 76,
+                "14": 40,
+                "15": 76,
+                "16": 10,
+                "17": 82,
+                "18": 305
+              },
+              "minimum_class_count": 10
+            }
+          ]
+        }
+      ],
+      "checks": {
+        "inventory_complete": true,
+        "all_19_classes_present": true,
+        "sample_keys_unique": true,
+        "class_counts_match_published_catalog": true,
+        "development_plus_official_equals_total": true,
+        "original_payload_exported": false,
+        "training_started": false
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1a_full_inventory\\audit\\validation.json",
+          "sha256": "0a5286fa75e085325b5a8422c4433f8af41c46185ccbc9f2cd501de27ec0d4ed"
+        },
+        "inventory": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1a_full_inventory\\inventory.json",
+          "bytes": 12976080,
+          "sha256": "adfedab7ead9cdde040436495480145bfd243c8e71033ca27c8afc526c2a722a"
+        },
+        "audit": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1a_full_inventory\\audit\\c1a_audit.json",
+          "bytes": 33068,
+          "sha256": "0eaa7fb23018276f460dd7ca3da29167c9c71606f7e6175e1ac388a188c5e8c1"
+        },
+        "class_road_coverage": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1a_full_inventory\\audit\\class_road_coverage.csv",
+          "bytes": 1613,
+          "sha256": "5e032582171ea76b1534833c6ec58ba71e4eee607fe0832a1dcc3fdf7587cc9a"
+        },
+        "road_class_matrix": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1a_full_inventory\\audit\\road_class_matrix.csv",
+          "bytes": 2038,
+          "sha256": "882a93b8ed7371c3f8fed850c1c9b61844e04adcac9a68376f3146c67bba02e1"
+        },
+        "figure": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1a_full_inventory\\audit\\class_road_coverage.png",
+          "bytes": 142407,
+          "sha256": "7a04481c1749a13098d4acc9a5304855018152158102516b50685ca0a9635993"
+        }
+      }
+    },
+    "C1b": {
+      "stage": "C1b",
+      "status": "complete",
+      "scope": "shared 19-class benchmark and 16-class road-domain manifests",
+      "summary": {
+        "shared_asset_count": 17134,
+        "benchmark_split_counts": {
+          "train": 13116,
+          "val": 570,
+          "test": 3448
+        },
+        "road_class_count": 16,
+        "road_sample_count_per_run": 13189,
+        "road_run_count": 3,
+        "shared_assets_p95_with_safety_bytes": 6143609875,
+        "free_disk_bytes": 220871356416
+      },
+      "checks": {
+        "shared_asset_keys_unique": true,
+        "benchmark_uses_every_shared_asset_once": true,
+        "official_test_only_in_benchmark_test": true,
+        "benchmark_validation_exact_per_class": true,
+        "benchmark_balanced_test_exact_per_class": true,
+        "road_track_has_16_classes": true,
+        "road_track_excludes_official_test": true,
+        "road_overlap_zero_every_run": true,
+        "road_balanced_eval_exact_every_run": true,
+        "road_training_minimum_every_run": true,
+        "road_sample_once_per_run": true,
+        "tracks_share_asset_paths": true,
+        "disk_safe_export_fits": true,
+        "assets_exported": false,
+        "training_started": false
+      },
+      "review_status": {},
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\validation.json",
+          "bytes": 2222,
+          "sha256": "c11db302bf15cfe75984d2641a8dfeb98b7b54dedb86dfbf68c312ec196f535e"
+        },
+        "plan": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\dual_track_plan.json",
+          "bytes": 14415,
+          "sha256": "dacc86250eca9fb2619d2078480163bf1996ccf067ce4217221505faff12c945"
+        },
+        "shared_assets": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\shared_assets.csv",
+          "bytes": 2095127,
+          "sha256": "f797d233f09139b9764accbf14194b29f8e51f6ce738c55301d96bc35bcd0abc"
+        },
+        "benchmark_19": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\benchmark_19.csv",
+          "bytes": 1982063,
+          "sha256": "90b2e50e210c2ea7e501a9d41680c48771f6aab46de8595e9b25bdf066838734"
+        },
+        "road_domain_16_samples": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\road_domain_16_samples.csv",
+          "bytes": 4618421,
+          "sha256": "730c0bd228b15b130b5fa6e9b0468165049aa570c5f54fab3070930208df43fa"
+        },
+        "road_domain_16_roads": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\road_domain_16_roads.csv",
+          "bytes": 5600,
+          "sha256": "cb2f44a393b7b7954a73456573482a3556d4de557223971bdfe6fce6c744044f"
+        },
+        "classes_19": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\classes_19.json",
+          "bytes": 2121,
+          "sha256": "f6cb5938b6a7b2d4f2a689b6918708fffbdbd3749035d73a6c7fd2604be10517"
+        },
+        "classes_16": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\classes_16.json",
+          "bytes": 1783,
+          "sha256": "1be7eee77012e25c6a2ff8d0c9c0422b949e638649e96437a1d17eee84f10f28"
+        },
+        "disk_budget": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\disk_budget.json",
+          "bytes": 1288,
+          "sha256": "048164c085862ca88e332929015937ba16d58c8efe094ac3dde951b4ca0c7c6d"
+        },
+        "disk_budget_csv": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\disk_budget.csv",
+          "bytes": 764,
+          "sha256": "0abe2a5698c7c8e6922edcf494015cf3a888cfc1ee926f3b157c7ef79135c2f3"
+        },
+        "figure": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1b_dual_track_plan\\dual_track_plan.png",
+          "bytes": 103101,
+          "sha256": "d11de0890b371ee550a9dbf03375116c4d1c3aa72d1b624962daa8ad0625fd56"
+        }
+      }
+    },
+    "C1c": {
+      "stage": "C1c",
+      "status": "complete",
+      "scope": "resumable 19-class shared-asset smoke export",
+      "summary": {
+        "sample_count": 19,
+        "class_count": 19,
+        "trajectory_count": 3,
+        "resume_run_count": 2,
+        "reused_asset_count": 8,
+        "minimum_crop_visible_fraction": 0.9989195029713668,
+        "shared_asset_bytes": 4280159,
+        "output_directory_bytes": 7922572
+      },
+      "checks": {
+        "selection_plan_integrity": true,
+        "source_files_unchanged": true,
+        "checkpoint_complete": true,
+        "all_19_classes_once": true,
+        "three_development_trajectories": true,
+        "resume_reuse_verified": true,
+        "assets_written_once": true,
+        "shared_paths_match_c1b": true,
+        "road_membership_matches_c1b": true,
+        "point_contract_valid": true,
+        "image_contract_valid": true,
+        "asset_hashes_match": true,
+        "quality_previews_complete": true,
+        "crop_visibility_acceptable": true,
+        "codex_visual_precheck_complete": true,
+        "disk_monitoring_recorded": true,
+        "smoke_output_under_100_mib": true,
+        "full_export_not_started": true,
+        "training_not_started": true
+      },
+      "review_status": {
+        "codex_visual_precheck": "complete",
+        "user_visual_review": {
+          "status": "pending",
+          "scope": "quality_sample",
+          "reviewed": 0,
+          "total": 19,
+          "remaining": 19,
+          "review_file": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\user_visual_review.json"
+        }
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\validation.json",
+          "bytes": 2525,
+          "sha256": "4c94665aff82f4ba80f2ffb88149171aa8c1c3254c99c83709364fd2f44b9cc1"
+        },
+        "selection_plan": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\selection_plan.json",
+          "bytes": 24259,
+          "sha256": "ce58913aeb21bb8f91afa3d6539f4ab0f5156026bd2afd02b6c236b501b61ee9"
+        },
+        "checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\export_checkpoint.json",
+          "bytes": 51481,
+          "sha256": "ccb2616357011de03786de6306226138c6b4ed90dc0f53e24c3cae21dab7ce53"
+        },
+        "manifest": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\manifest.json",
+          "bytes": 50530,
+          "sha256": "ccabbb2f8f1396be6efbf5aa04e03c55f21e37bf2ce95952b5bbbabfce351f50"
+        },
+        "manifest_csv": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\manifest.csv",
+          "bytes": 6551,
+          "sha256": "0225259ca3afdc3eafd3cefce9056db6322096d00b82a86fa3f8d87120aa70e1"
+        },
+        "summary": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\summary.json",
+          "bytes": 632,
+          "sha256": "d19966b2da61013f8f875dd9c352b470fef3255cdb13d04594cbcef196ab5ec2"
+        },
+        "contact_sheet": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\smoke_contact_sheet.jpg",
+          "bytes": 565327,
+          "sha256": "9cfa98495d8315ee5d17acfa18b87f9ee584bfc0d2b8a84332d54a6934fc4e46"
+        },
+        "visual_review": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\visual_review.json",
+          "bytes": 951,
+          "sha256": "f8ba4a2d59fe6fba4e4bd9b7bc323151aa6c905ca2b045beee66ea50e440bc39"
+        },
+        "progress": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1c_shared_asset_smoke\\progress.json",
+          "bytes": 218,
+          "sha256": "8a2f607b8dd14899c242a747ae7dff7a6c5a7eee8f79e57083edc90e53eeaa1a"
+        }
+      }
+    },
+    "C1": {
+      "stage": "C1",
+      "status": "complete",
+      "scope": "full 19-class shared multimodal dataset export",
+      "summary": {
+        "sample_count": 17134,
+        "trajectory_count": 110,
+        "class_count": 19,
+        "benchmark_split_histogram": {
+          "train": 13116,
+          "val": 570,
+          "test": 3448
+        },
+        "road_manifest_row_count": 39567,
+        "point_file_count": 17134,
+        "image_file_count": 17134,
+        "quality_preview_count": 38,
+        "minimum_crop_visible_fraction": 0.9945421467556095,
+        "shared_asset_bytes": 4183075621,
+        "output_directory_bytes": 4300540094,
+        "validation_elapsed_seconds": 56.514,
+        "codex_visual_precheck_included": true,
+        "user_visual_review_complete": false
+      },
+      "checks": {
+        "plan_integrity": true,
+        "source_files_unchanged": true,
+        "checkpoint_and_manifest_complete": true,
+        "trajectory_shards_intact": true,
+        "shared_sample_keys_exact": true,
+        "physical_asset_counts_exact": true,
+        "all_19_classes_present": true,
+        "all_110_trajectories_present": true,
+        "benchmark_manifest_exact": true,
+        "road_domain_manifest_exact": true,
+        "shared_paths_canonical": true,
+        "point_contract_valid": true,
+        "image_contract_valid": true,
+        "asset_hashes_match": true,
+        "asset_metadata_match_checkpoint": true,
+        "crop_visibility_acceptable": true,
+        "quality_previews_complete": true,
+        "resume_history_present": true,
+        "no_training_artifacts": true,
+        "codex_visual_precheck_complete": true
+      },
+      "review_status": {
+        "codex_visual_precheck": "complete",
+        "user_visual_review": {
+          "status": "pending",
+          "scope": "quality_sample",
+          "reviewed": 0,
+          "total": 38,
+          "remaining": 38,
+          "explicitly_completed": false,
+          "review_file": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\user_visual_review.json"
+        }
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\validation.json",
+          "bytes": 3648,
+          "sha256": "98a5d11ae28b4bed3f5bd5b429b7a061601ad8731925d72e1643a4f827f82871"
+        },
+        "plan": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\export_plan.json",
+          "bytes": 2584,
+          "sha256": "132fb0a75fdbb0d2fdc5d1be7cc7d5fcd268821477848426ca511eb3ce569a36"
+        },
+        "checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\export_checkpoint.json",
+          "bytes": 29921,
+          "sha256": "96e91b436bd3b06c545db2b21dbb532236480056d33654780fb8dbee6e448c8e"
+        },
+        "manifest": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\shared_manifest.json",
+          "bytes": 43226048,
+          "sha256": "d4b4098d79e9c06d3877477b175238439efab9da6bc6563b0daa24d179169274"
+        },
+        "shared_manifest_csv": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\shared_manifest.csv",
+          "bytes": 5656294,
+          "sha256": "2b8be2e3a9f10725e4edc07870d486b1416394a3e4446d7aaa1d12f67a45bfb4"
+        },
+        "benchmark_manifest": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\benchmark_19_manifest.csv",
+          "bytes": 5415746,
+          "sha256": "c08a978f2bdbfcd0ce18bffca38706f899c2f40caf3b286a64f0334ed70fc595"
+        },
+        "road_manifest": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\road_domain_16_manifest.csv",
+          "bytes": 12550973,
+          "sha256": "74c33a82dd9f9b7a8cc55388c85d3a47defaa7c5f6c8a7aa1de29572cc3e7f37"
+        },
+        "summary": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\summary.json",
+          "bytes": 779,
+          "sha256": "cd8f5fa592a03fe7be94642dd91190454c052c63fa5ffe443df910780f73b358"
+        },
+        "classes_19": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\classes_19.json",
+          "bytes": 2121,
+          "sha256": "f6cb5938b6a7b2d4f2a689b6918708fffbdbd3749035d73a6c7fd2604be10517"
+        },
+        "classes_16": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\classes_16.json",
+          "bytes": 1783,
+          "sha256": "1be7eee77012e25c6a2ff8d0c9c0422b949e638649e96437a1d17eee84f10f28"
+        },
+        "contact_sheet": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\quality_contact_sheet.jpg",
+          "bytes": 1149085,
+          "sha256": "a64726ddc189c2c86d9924f665bc8e4f609bc2548ea36ef9267ca90c544d16b5"
+        },
+        "validation_progress": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\validation_progress.json",
+          "bytes": 296,
+          "sha256": "092222acbec1f98793f664a195270a96a641f004ff028b0230a88c30056a97ef"
+        },
+        "visual_review": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\visual_review.json",
+          "bytes": 1199,
+          "sha256": "e5621de1483e5c1cf7f36fdd8d3919896e33f6b6833a062211f45872535d5e4a"
+        },
+        "user_visual_review": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\user_visual_review.json",
+          "bytes": 519,
+          "sha256": "75abdd863b9774da3f86b88a7e68b5d4ce2ee1fc52f71b0f965adef1bb9873a4"
+        }
+      }
+    },
+    "C2a": {
+      "stage": "C2a",
+      "status": "complete",
+      "scope": "19-class PTv2 cache, loading, and one-batch GPU smoke",
+      "summary": {
+        "sample_count": 17134,
+        "class_count": 19,
+        "split_sizes": {
+          "train": 13116,
+          "val": 570,
+          "test": 3448
+        },
+        "cache_bytes": 4491575680,
+        "cache_run_count": 2,
+        "cache_elapsed_seconds": 403.369,
+        "batch_size": 16,
+        "train_loss": 3.03859281539917,
+        "validation_loss": 3.0502305030822754,
+        "train_peak_allocated_mib": 4402.473,
+        "train_peak_reserved_mib": 5420.0,
+        "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+        "unit_test_count": 46
+      },
+      "checks": {
+        "dataset_view_validation_passed": true,
+        "physical_assets_not_duplicated": true,
+        "full_cache_validation_passed": true,
+        "all_cache_indices_in_range": true,
+        "partial_run_and_resume_proved": true,
+        "gpu_forward_backward_passed": true,
+        "optimizer_step_succeeded": true,
+        "validation_forward_passed": true,
+        "official_test_split_not_loaded_by_smoke": true,
+        "formal_training_not_started": true,
+        "model_checkpoint_not_written": true,
+        "unit_tests_passed": 46
+      },
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\validation.json",
+          "bytes": 2696,
+          "sha256": "a5306e553cca48576ef0a4dafdcd4a054117bc51b48af6398093400677fd581a"
+        },
+        "dataset_view_validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset\\ptv2_view_validation.json",
+          "bytes": 720,
+          "sha256": "83b128322a2db9b1d82810906400acc64724ebe21f4be1176f79e18bab3789b1"
+        },
+        "cache_validation": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8\\validation.json",
+          "bytes": 1574,
+          "sha256": "c779c04e15dcf8ad530b5b9570e6b6c27794b6f895bc3f24658bac2fb26a997a"
+        },
+        "cache_index": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8\\index.json",
+          "bytes": 396257,
+          "sha256": "8b67b930f1678094714b4e6393c386ce9b51fd2d75281e57ccb4014624c51820"
+        },
+        "cache_checkpoint": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8\\checkpoint.json",
+          "bytes": 1520,
+          "sha256": "2628c348621e83f04ad10ad48b51af82ab201dc0ae252716465a966a6e51936c"
+        },
+        "cache_progress": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8\\progress.json",
+          "bytes": 359,
+          "sha256": "de9e35b2d8e90b4cc87352923d2863772c051a73ba773e8f6458a516056a08cc"
+        },
+        "gpu_smoke_result": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\smoke_result.json",
+          "bytes": 6211,
+          "sha256": "029fb83e18ddc9963715225fb764240fbdb82051e39dd3f6cbd0182d1dc3b0c5"
+        }
+      }
+    },
+    "C2": {
+      "stage": "C2",
+      "status": "complete",
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run",
+      "model": "PTv2 mode-1 classification encoder reimplementation",
+      "configuration": {
+        "dataset_root": "E:\\C2_PTv2_Portable_20260731_READY\\input\\dataset",
+        "knn_cache": "E:\\C2_PTv2_Portable_20260731_READY\\input\\knn_cache",
+        "output_dir": "E:\\C2_PTv2_Portable_20260731_READY\\output\\run",
+        "epochs": 120,
+        "batch_size": 40,
+        "eval_batch_size": 48,
+        "learning_rate": 0.001,
+        "min_learning_rate": 1e-05,
+        "weight_decay": 0.05,
+        "label_smoothing": 0.1,
+        "patience": 20,
+        "seed": 20260731,
+        "workers": 0,
+        "progress_every": 10,
+        "smoke_steps": 0,
+        "resume": true,
+        "amp": true
+      },
+      "split_sizes": {
+        "train": 13116,
+        "val": 570,
+        "test": 3448
+      },
+      "parameter_count": 9394097,
+      "test_policy": "test split evaluated only after validation-selected training completes",
+      "class_names": [
+        "Platanus x acerifolia",
+        "Cinnamomum camphora",
+        "Lagerstroemia indica",
+        "Osmanthus fragrans",
+        "Koelreuteria paniculata",
+        "Prunus cerasifera 'atropurpurea'",
+        "Zelkova serrata",
+        "Cedrus deodara",
+        "Ginkgo biloba",
+        "Acer palmatum var. atropurpureum",
+        "Prunus serrulata",
+        "Ligustrum lucidum",
+        "Malus x micromalus",
+        "Magnolia grandiflora",
+        "Metasequoia glyptostroboides",
+        "Sophora japonica",
+        "Acer pictum subsp. mono",
+        "Photinia x fraseri",
+        "Others"
+      ],
+      "best_epoch": 48,
+      "epochs_completed": 68,
+      "metrics": {
+        "val": {
+          "accuracy": 0.6982456140350877,
+          "balanced_accuracy": 0.6982456140350877,
+          "macro_precision": 0.7660724855899247,
+          "macro_recall": 0.6982456140350877,
+          "macro_f1": 0.6880264483634875,
+          "confusion_matrix": [
+            [
+              24,
+              0,
+              0,
+              0,
+              0,
+              2,
+              2,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              29,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              27,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              26,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              19,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              24,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              27,
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              22,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              6
+            ],
+            [
+              5,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              21,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              11,
+              3,
+              0,
+              0,
+              2,
+              0,
+              0,
+              3,
+              0,
+              4
+            ],
+            [
+              1,
+              0,
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              23,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              11,
+              0,
+              1,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              15,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              3,
+              0,
+              18,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              22,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              29,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              7,
+              1,
+              0,
+              0,
+              3,
+              9,
+              0,
+              0,
+              0,
+              1,
+              3,
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              1,
+              0,
+              0,
+              23,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              1,
+              7,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              18,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              4,
+              0,
+              2,
+              1,
+              0,
+              0,
+              1,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              17
+            ]
+          ],
+          "per_class": [
+            {
+              "class_index": 0,
+              "support": 30,
+              "precision": 0.6857142857142857,
+              "recall": 0.8,
+              "f1": 0.7384615384615385,
+              "scientific_name": "Platanus x acerifolia"
+            },
+            {
+              "class_index": 1,
+              "support": 30,
+              "precision": 0.5178571428571429,
+              "recall": 0.9666666666666667,
+              "f1": 0.6744186046511628,
+              "scientific_name": "Cinnamomum camphora"
+            },
+            {
+              "class_index": 2,
+              "support": 30,
+              "precision": 0.48214285714285715,
+              "recall": 0.9,
+              "f1": 0.627906976744186,
+              "scientific_name": "Lagerstroemia indica"
+            },
+            {
+              "class_index": 3,
+              "support": 30,
+              "precision": 0.7647058823529411,
+              "recall": 0.8666666666666667,
+              "f1": 0.8125,
+              "scientific_name": "Osmanthus fragrans"
+            },
+            {
+              "class_index": 4,
+              "support": 30,
+              "precision": 0.95,
+              "recall": 0.6333333333333333,
+              "f1": 0.7599999999999999,
+              "scientific_name": "Koelreuteria paniculata"
+            },
+            {
+              "class_index": 5,
+              "support": 30,
+              "precision": 0.631578947368421,
+              "recall": 0.8,
+              "f1": 0.7058823529411765,
+              "scientific_name": "Prunus cerasifera 'atropurpurea'"
+            },
+            {
+              "class_index": 6,
+              "support": 30,
+              "precision": 0.5625,
+              "recall": 0.9,
+              "f1": 0.6923076923076923,
+              "scientific_name": "Zelkova serrata"
+            },
+            {
+              "class_index": 7,
+              "support": 30,
+              "precision": 0.9166666666666666,
+              "recall": 0.7333333333333333,
+              "f1": 0.8148148148148148,
+              "scientific_name": "Cedrus deodara"
+            },
+            {
+              "class_index": 8,
+              "support": 30,
+              "precision": 0.9130434782608695,
+              "recall": 0.7,
+              "f1": 0.7924528301886793,
+              "scientific_name": "Ginkgo biloba"
+            },
+            {
+              "class_index": 9,
+              "support": 30,
+              "precision": 0.8461538461538461,
+              "recall": 0.36666666666666664,
+              "f1": 0.5116279069767441,
+              "scientific_name": "Acer palmatum var. atropurpureum"
+            },
+            {
+              "class_index": 10,
+              "support": 30,
+              "precision": 0.575,
+              "recall": 0.7666666666666667,
+              "f1": 0.6571428571428571,
+              "scientific_name": "Prunus serrulata"
+            },
+            {
+              "class_index": 11,
+              "support": 30,
+              "precision": 0.6818181818181818,
+              "recall": 0.5,
+              "f1": 0.576923076923077,
+              "scientific_name": "Ligustrum lucidum"
+            },
+            {
+              "class_index": 12,
+              "support": 30,
+              "precision": 1.0,
+              "recall": 0.6,
+              "f1": 0.7499999999999999,
+              "scientific_name": "Malus x micromalus"
+            },
+            {
+              "class_index": 13,
+              "support": 30,
+              "precision": 0.7096774193548387,
+              "recall": 0.7333333333333333,
+              "f1": 0.7213114754098361,
+              "scientific_name": "Magnolia grandiflora"
+            },
+            {
+              "class_index": 14,
+              "support": 30,
+              "precision": 0.9666666666666667,
+              "recall": 0.9666666666666667,
+              "f1": 0.9666666666666667,
+              "scientific_name": "Metasequoia glyptostroboides"
+            },
+            {
+              "class_index": 15,
+              "support": 30,
+              "precision": 1.0,
+              "recall": 0.1,
+              "f1": 0.18181818181818182,
+              "scientific_name": "Sophora japonica"
+            },
+            {
+              "class_index": 16,
+              "support": 30,
+              "precision": 0.8518518518518519,
+              "recall": 0.7666666666666667,
+              "f1": 0.8070175438596491,
+              "scientific_name": "Acer pictum subsp. mono"
+            },
+            {
+              "class_index": 17,
+              "support": 30,
+              "precision": 1.0,
+              "recall": 0.6,
+              "f1": 0.7499999999999999,
+              "scientific_name": "Photinia x fraseri"
+            },
+            {
+              "class_index": 18,
+              "support": 30,
+              "precision": 0.5,
+              "recall": 0.5666666666666667,
+              "f1": 0.53125,
+              "scientific_name": "Others"
+            }
+          ],
+          "loss": 1.4500292276081286,
+          "sample_count": 570,
+          "elapsed_seconds": 5.961594599997625,
+          "peak_allocated_mib": 2230.162109375,
+          "successful_optimizer_steps": 0,
+          "skipped_optimizer_steps": 0,
+          "stage_point_counts": [
+            {
+              "stage": 0,
+              "minimum": 8192,
+              "maximum": 8192,
+              "mean": 8192.0
+            },
+            {
+              "stage": 1,
+              "minimum": 9,
+              "maximum": 3241,
+              "mean": 1195.6754385964912
+            },
+            {
+              "stage": 2,
+              "minimum": 3,
+              "maximum": 857,
+              "mean": 304.1456140350877
+            },
+            {
+              "stage": 3,
+              "minimum": 2,
+              "maximum": 164,
+              "mean": 68.13508771929824
+            },
+            {
+              "stage": 4,
+              "minimum": 2,
+              "maximum": 31,
+              "mean": 13.782456140350877
+            }
+          ]
+        },
+        "test": {
+          "accuracy": 0.7906032482598608,
+          "balanced_accuracy": 0.6397028431285239,
+          "macro_precision": 0.6520600336863623,
+          "macro_recall": 0.6397028431285239,
+          "macro_f1": 0.6229158605661018,
+          "confusion_matrix": [
+            [
+              905,
+              9,
+              0,
+              0,
+              2,
+              71,
+              30,
+              0,
+              2,
+              0,
+              14,
+              3,
+              0,
+              2,
+              0,
+              4,
+              3,
+              0,
+              6
+            ],
+            [
+              9,
+              675,
+              1,
+              21,
+              1,
+              7,
+              9,
+              0,
+              0,
+              0,
+              1,
+              14,
+              0,
+              6,
+              0,
+              0,
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              0,
+              334,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              3,
+              10,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              1,
+              2,
+              0,
+              160,
+              0,
+              2,
+              0,
+              0,
+              0,
+              1,
+              2,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              2
+            ],
+            [
+              4,
+              1,
+              1,
+              0,
+              56,
+              4,
+              33,
+              0,
+              3,
+              0,
+              1,
+              1,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              26,
+              0,
+              0,
+              61,
+              1,
+              0,
+              0,
+              2,
+              4,
+              0,
+              0,
+              4,
+              0,
+              0,
+              3,
+              0,
+              0
+            ],
+            [
+              8,
+              1,
+              1,
+              0,
+              7,
+              0,
+              65,
+              0,
+              3,
+              1,
+              5,
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              1,
+              0,
+              0,
+              0,
+              85,
+              2,
+              2,
+              2,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              16
+            ],
+            [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              3,
+              48,
+              0,
+              1,
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              2,
+              12,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              31,
+              3,
+              0,
+              1,
+              0,
+              0,
+              0,
+              6,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              15,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              47,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              27,
+              0,
+              6,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              31,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              30,
+              2,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              9,
+              0,
+              20,
+              0,
+              0,
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              52,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              12,
+              0,
+              1,
+              0,
+              2,
+              17,
+              0,
+              0,
+              0,
+              1,
+              10,
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              0,
+              9,
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              13,
+              24,
+              0,
+              1,
+              2,
+              0,
+              0,
+              52,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              3,
+              14,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              30,
+              1
+            ],
+            [
+              1,
+              3,
+              1,
+              3,
+              0,
+              4,
+              1,
+              2,
+              0,
+              1,
+              4,
+              0,
+              0,
+              10,
+              0,
+              0,
+              3,
+              2,
+              14
+            ]
+          ],
+          "per_class": [
+            {
+              "class_index": 0,
+              "support": 1051,
+              "precision": 0.9679144385026738,
+              "recall": 0.8610846812559467,
+              "f1": 0.9113796576032226,
+              "scientific_name": "Platanus x acerifolia"
+            },
+            {
+              "class_index": 1,
+              "support": 749,
+              "precision": 0.9183673469387755,
+              "recall": 0.9012016021361816,
+              "f1": 0.9097035040431267,
+              "scientific_name": "Cinnamomum camphora"
+            },
+            {
+              "class_index": 2,
+              "support": 354,
+              "precision": 0.7713625866050808,
+              "recall": 0.943502824858757,
+              "f1": 0.8487928843710292,
+              "scientific_name": "Lagerstroemia indica"
+            },
+            {
+              "class_index": 3,
+              "support": 173,
+              "precision": 0.7619047619047619,
+              "recall": 0.9248554913294798,
+              "f1": 0.835509138381201,
+              "scientific_name": "Osmanthus fragrans"
+            },
+            {
+              "class_index": 4,
+              "support": 109,
+              "precision": 0.8484848484848485,
+              "recall": 0.5137614678899083,
+              "f1": 0.64,
+              "scientific_name": "Koelreuteria paniculata"
+            },
+            {
+              "class_index": 5,
+              "support": 102,
+              "precision": 0.3836477987421384,
+              "recall": 0.5980392156862745,
+              "f1": 0.4674329501915709,
+              "scientific_name": "Prunus cerasifera 'atropurpurea'"
+            },
+            {
+              "class_index": 6,
+              "support": 96,
+              "precision": 0.41139240506329117,
+              "recall": 0.6770833333333334,
+              "f1": 0.5118110236220473,
+              "scientific_name": "Zelkova serrata"
+            },
+            {
+              "class_index": 7,
+              "support": 112,
+              "precision": 0.9239130434782609,
+              "recall": 0.7589285714285714,
+              "f1": 0.8333333333333331,
+              "scientific_name": "Cedrus deodara"
+            },
+            {
+              "class_index": 8,
+              "support": 67,
+              "precision": 0.8135593220338984,
+              "recall": 0.7164179104477612,
+              "f1": 0.761904761904762,
+              "scientific_name": "Ginkgo biloba"
+            },
+            {
+              "class_index": 9,
+              "support": 58,
+              "precision": 0.5740740740740741,
+              "recall": 0.5344827586206896,
+              "f1": 0.5535714285714285,
+              "scientific_name": "Acer palmatum var. atropurpureum"
+            },
+            {
+              "class_index": 10,
+              "support": 66,
+              "precision": 0.3643410852713178,
+              "recall": 0.7121212121212122,
+              "f1": 0.482051282051282,
+              "scientific_name": "Prunus serrulata"
+            },
+            {
+              "class_index": 11,
+              "support": 70,
+              "precision": 0.5254237288135594,
+              "recall": 0.44285714285714284,
+              "f1": 0.4806201550387597,
+              "scientific_name": "Ligustrum lucidum"
+            },
+            {
+              "class_index": 12,
+              "support": 66,
+              "precision": 0.8333333333333334,
+              "recall": 0.30303030303030304,
+              "f1": 0.4444444444444444,
+              "scientific_name": "Malus x micromalus"
+            },
+            {
+              "class_index": 13,
+              "support": 53,
+              "precision": 0.52,
+              "recall": 0.9811320754716981,
+              "f1": 0.6797385620915032,
+              "scientific_name": "Magnolia grandiflora"
+            },
+            {
+              "class_index": 14,
+              "support": 65,
+              "precision": 0.9836065573770492,
+              "recall": 0.9230769230769231,
+              "f1": 0.9523809523809524,
+              "scientific_name": "Metasequoia glyptostroboides"
+            },
+            {
+              "class_index": 15,
+              "support": 49,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "scientific_name": "Sophora japonica"
+            },
+            {
+              "class_index": 16,
+              "support": 109,
+              "precision": 0.7761194029850746,
+              "recall": 0.47706422018348627,
+              "f1": 0.5909090909090909,
+              "scientific_name": "Acer pictum subsp. mono"
+            },
+            {
+              "class_index": 17,
+              "support": 50,
+              "precision": 0.7894736842105263,
+              "recall": 0.6,
+              "f1": 0.6818181818181819,
+              "scientific_name": "Photinia x fraseri"
+            },
+            {
+              "class_index": 18,
+              "support": 49,
+              "precision": 0.2222222222222222,
+              "recall": 0.2857142857142857,
+              "f1": 0.25,
+              "scientific_name": "Others"
+            }
+          ],
+          "loss": 1.1672501721680857,
+          "sample_count": 3448,
+          "elapsed_seconds": 36.004079200094566,
+          "peak_allocated_mib": 2230.162109375,
+          "successful_optimizer_steps": 0,
+          "skipped_optimizer_steps": 0,
+          "stage_point_counts": [
+            {
+              "stage": 0,
+              "minimum": 8192,
+              "maximum": 8192,
+              "mean": 8192.0
+            },
+            {
+              "stage": 1,
+              "minimum": 4,
+              "maximum": 4197,
+              "mean": 1298.2801624129931
+            },
+            {
+              "stage": 2,
+              "minimum": 2,
+              "maximum": 1153,
+              "mean": 325.20852668213456
+            },
+            {
+              "stage": 3,
+              "minimum": 2,
+              "maximum": 201,
+              "mean": 70.62645011600928
+            },
+            {
+              "stage": 4,
+              "minimum": 2,
+              "maximum": 35,
+              "mean": 13.711136890951277
+            }
+          ]
+        }
+      },
+      "summary": {
+        "model": "PTv2 mode-1 classification encoder reimplementation",
+        "class_count": 19,
+        "split_sizes": {
+          "train": 13116,
+          "val": 570,
+          "test": 3448
+        },
+        "parameter_count": 9394097,
+        "best_epoch": 48,
+        "epochs_completed": 68,
+        "resume_epochs": [
+          6,
+          9,
+          22,
+          60
+        ],
+        "final_profile": {
+          "eval_batch_size": 48,
+          "created_at": "2026-08-03T20:35:20+08:00",
+          "schema_version": 1,
+          "workers": 0,
+          "name": "recovery-batch40",
+          "progress_every": 10,
+          "note": "Stable recovery profile after the epoch-61 process failure.",
+          "batch_size": 40
+        },
+        "validation_metrics": {
+          "loss": 1.4500292276081286,
+          "accuracy": 0.6982456140350877,
+          "macro_f1": 0.6880264483634875,
+          "sample_count": 570
+        },
+        "test_metrics": {
+          "loss": 1.1672501721680857,
+          "accuracy": 0.7906032482598608,
+          "macro_f1": 0.6229158605661018,
+          "sample_count": 3448
+        },
+        "result_file_count": 20,
+        "result_bytes": 159483102,
+        "history_epoch_seconds": 23541.502477100003,
+        "history_epoch_hours": 6.539306243638889
+      },
+      "checks": {
+        "required_artifacts_present": true,
+        "temporary_files_absent": true,
+        "run_and_launcher_complete": true,
+        "history_contiguous_and_finite": true,
+        "best_epoch_matches_history": true,
+        "best_and_last_checkpoints_load": true,
+        "checkpoint_class_contract_valid": true,
+        "model_parameter_contract_valid": true,
+        "local_cache_index_hash_matches": true,
+        "predictions_complete_and_unique": true,
+        "prediction_metrics_recomputed": true,
+        "probabilities_valid": true,
+        "test_access_locked_until_training_complete": true,
+        "early_stopping_recorded": true,
+        "recovery_profile_recorded": true,
+        "original_plots_are_valid_png": true,
+        "readable_diagnostics_complete": true
+      },
+      "warnings": [
+        "The run used multiple batch profiles; the best checkpoint was created with batch 48.",
+        "The original 19-class annotated confusion matrices are valid but visually crowded.",
+        "The benchmark test split is class-imbalanced and is not road-disjoint."
+      ],
+      "validation_status": "passed",
+      "artifacts": {
+        "validation": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_validation.json",
+          "bytes": 30946,
+          "sha256": "551a7631dcc4d4c34fe76e0dd307ae94b1b85e4feb53759d351aaebbe942fbc3"
+        },
+        "stage_report": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2b_完整19类PTv2结果收口_阶段报告.md",
+          "bytes": 6236,
+          "sha256": "8568c3dcda2a8c3922b9fb545b458cb4f465e53b791e3d63f6822ad30b83d015"
+        },
+        "best_pt": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\best.pt",
+          "bytes": 38123833,
+          "sha256": "0f99373406d73e27fa4a175353417fa46cf0bfeeaeae5194b4102a7bb4b9ac71"
+        },
+        "last_pt": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\last.pt",
+          "bytes": 113690016,
+          "sha256": "c4c774eae10c3c0a89720e24f8035cb0bd13e23a4c11760e85b5b175d5ba54a8"
+        },
+        "run_config_json": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\run_config.json",
+          "bytes": 4781,
+          "sha256": "101de1fd72c83e7347af9e5bc222ad32b6c06492a2bb0877829af98656a02fcb"
+        },
+        "training_history_json": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\training_history.json",
+          "bytes": 27395,
+          "sha256": "05cf472650597974c0dbbbed45a68b610dc49ff89d5c11c791a4cc6b05557823"
+        },
+        "training_history_csv": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\training_history.csv",
+          "bytes": 12016,
+          "sha256": "8a71fe8bfb9a7133137090df17f5ed5ffc5ab6d0496f3f5211357c14e10629b6"
+        },
+        "final_metrics_json": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\final_metrics.json",
+          "bytes": 23924,
+          "sha256": "ce3d3ef0f0d3bf1def931fb5fac7e3613fb14d4ebcb77a8a87f1731ad568a654"
+        },
+        "predictions_csv": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\predictions.csv",
+          "bytes": 1690838,
+          "sha256": "ebb832eebb0c7e9ee5715d23591d25ad6bb7ddc7308db72308035ace240ae788"
+        },
+        "training_curves_png": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\training_curves.png",
+          "bytes": 228249,
+          "sha256": "27680745afb74ced9308c06b8b36d318b5068a5b4f5a9583910170455b34ac99"
+        },
+        "confusion_matrix_val_png": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\confusion_matrix_val.png",
+          "bytes": 406516,
+          "sha256": "6825071eb9bf002f6341ea8509c57faa54231c544eae824730126a5de5235709"
+        },
+        "confusion_matrix_test_png": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\confusion_matrix_test.png",
+          "bytes": 448001,
+          "sha256": "8a304a75c30b599750e6c77264f46de8957631df0e4061930708861a52a6352a"
+        },
+        "train_log": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\train.log",
+          "bytes": 53241,
+          "sha256": "2611ebb18183a2b0b1b48fead84982f747280a142ee42de51c5e274c436edf82"
+        },
+        "run_state_json": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\run_state.json",
+          "bytes": 141,
+          "sha256": "b9b6acf60cf61bbc7d1f35f86d704c13e769ef003ec7ad29eed580c0f42af6f6"
+        },
+        "launcher_state_json": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\launcher_state.json",
+          "bytes": 276,
+          "sha256": "d55cb644e75d64c03eb92c65d192287db9f405281e896b9cd589e3e5e1b28111"
+        },
+        "training_profile_json": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run\\training_profile.json",
+          "bytes": 293,
+          "sha256": "5329d57d84a305e00c15cd81afb6c8f81791b37a5e9829e5fbba2668afc9a008"
+        },
+        "cache_index": {
+          "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8\\index.json",
+          "bytes": 396257,
+          "sha256": "8b67b930f1678094714b4e6393c386ce9b51fd2d75281e57ccb4014624c51820"
+        },
+        "C2_diagnostics_json": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_diagnostics.json",
+          "bytes": 8440,
+          "sha256": "f08a57db5c325291d9350e304f2819b503ab95c3e4fcb98dabaf7c8a8b63ce0f"
+        },
+        "C2_per_class_metrics_csv": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_per_class_metrics.csv",
+          "bytes": 3075,
+          "sha256": "742f700c5c791cf38ca07b48308a2757ab783768e083c84ba20b77be8158ecb1"
+        },
+        "C2_top_confusions_csv": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_top_confusions.csv",
+          "bytes": 15601,
+          "sha256": "04eaeaee6dbe13d67ad70dbe1880d89b560d1dfc5bcc8066fb8e64ca7297392d"
+        },
+        "C2_confusion_matrix_val_readable_png": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_confusion_matrix_val_readable.png",
+          "bytes": 307955,
+          "sha256": "beac018647817ae09f310a3f821fdf76f2604bd7400464f718ae20589b603c49"
+        },
+        "C2_confusion_matrix_test_readable_png": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_confusion_matrix_test_readable.png",
+          "bytes": 307341,
+          "sha256": "4d4c0482b058fe1a3784fbe3a4f2a92523afa61398180303d2394d01f0f9cf94"
+        },
+        "C2_test_per_class_metrics_png": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_test_per_class_metrics.png",
+          "bytes": 183706,
+          "sha256": "02bae30a33a506ec3943b9184208a4937b6867f29cb479126035ca078e355a86"
+        },
+        "C2_training_curves_readable_png": {
+          "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_training_curves_readable.png",
+          "bytes": 346758,
+          "sha256": "cc35fbac3aa4e9c3efdaaa0d5a5e7f82b66511fd5668d6b9c225e0d0a61b4e84"
+        }
+      }
+    }
+  },
+  "comparison": {
+    "path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B2_B3_prediction_comparison.json",
+    "left": {
+      "stage": "B2",
+      "model": "PointMLP"
+    },
+    "right": {
+      "stage": "B3",
+      "model": "ImageNet-pretrained ResNet50"
+    },
+    "three_model_path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B2_B3_B4_prediction_comparison.json",
+    "three_model_sha256": "8b4a547e3deae7814203db556d0e0805b4fa39edeb03e57de96dcca5cbf2c918",
+    "four_model_path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B2_B3_B4_B5_prediction_comparison.json",
+    "four_model_sha256": "ec9a9488534d1df12e2312cb419828d740d781ce671b3f0db7f13c94feaa81db"
+  },
+  "environment": {
+    "name": "whu-tscmdl",
+    "prefix": "D:\\TREE\\envs\\whu-tscmdl",
+    "lock_path": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\environment\\whu-tscmdl-environment.yml",
+    "sha256": "2373604589e8e5bf3700ca188fb55aef2de877bddeab01d9ba59395270fbd154",
+    "explicit_export_available": false,
+    "explicit_export_note": "Conda explicit export cannot represent the pip/external packages in this environment; the environment-yaml export includes them."
+  },
+  "known_unfinished": [
+    "full 19-class image and fusion baselines",
+    "full 19-class PTv2 three-seed repeatability study",
+    "non-PTv2 baseline three-seed repeatability study",
+    "road-grouped three-fold model training on the B5c protocol",
+    "automatic individual-tree segmentation baselines"
+  ]
+}

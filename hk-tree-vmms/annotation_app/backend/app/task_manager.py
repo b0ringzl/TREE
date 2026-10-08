@@ -25,6 +25,7 @@ from .config import (
     CROP_OUTPUT_SIZE,
     FRAME_COORDINATES,
     HEWENTIAN_STREAM_ID,
+    TREE_STREAM_IDS,
     NEARBY_TREES,
     PANORAMA_X_SIGN,
     PANORAMA_YAW_OFFSET_DEG,
@@ -43,6 +44,7 @@ from .schemas import CheckpointRequest, ImageAnnotation, SubmitRequest
 
 @dataclass(frozen=True)
 class FrameRecord:
+    stream_id: str
     frame_id: str
     seq_id: int
     utc_seconds: float
@@ -59,6 +61,7 @@ class FrameRecord:
 @dataclass(frozen=True)
 class TreeRecord:
     tree_id: str
+    route_id: str
     species: str
     source_dataset: str
     source_feature_index: str
@@ -85,6 +88,10 @@ class TaskManager:
     def __init__(self) -> None:
         ensure_dirs()
         self.frames = self._load_frames()
+        self.frames_by_stream = {
+            stream_id: [frame for frame in self.frames if frame.stream_id == stream_id]
+            for stream_id in TREE_STREAM_IDS
+        }
         self.trees = self._load_trees()
         self.trees_by_id = {tree.tree_id: tree for tree in self.trees}
         self.review_state_path = RUNTIME_DIR / "review_state.json"
@@ -92,6 +99,7 @@ class TaskManager:
         self.checkpoint_path = RUNTIME_DIR / "checkpoints.json"
         self.checkpoints = self._load_checkpoints()
         self.species: str | None = None
+        self.active_route = "all"
         self.target_count = 0
         self.queue: list[TreeRecord] = []
         self.cursor = 0
@@ -111,10 +119,11 @@ class TaskManager:
         records: list[FrameRecord] = []
         with FRAME_COORDINATES.open("r", encoding="utf-8-sig", newline="") as handle:
             for row in csv.DictReader(handle):
-                if row["stream_id"] != HEWENTIAN_STREAM_ID:
+                if row["stream_id"] not in TREE_STREAM_IDS:
                     continue
                 records.append(
                     FrameRecord(
+                        stream_id=row["stream_id"],
                         frame_id=row["frame_id"],
                         seq_id=int(row["seq_id"]),
                         utc_seconds=float(row["utc_seconds"]),
@@ -129,30 +138,35 @@ class TaskManager:
                     )
                 )
         if not records:
-            raise RuntimeError(f"No frames found for {HEWENTIAN_STREAM_ID}")
+            raise RuntimeError(f"No frames found for {TREE_STREAM_IDS}")
         return records
 
     def _load_trees(self) -> list[TreeRecord]:
         if not NEARBY_TREES.is_file():
             raise FileNotFoundError(NEARBY_TREES)
         records: list[TreeRecord] = []
-        duplicate_counts: dict[str, int] = {}
+        duplicate_counts: dict[tuple[str, str], int] = {}
         with NEARBY_TREES.open("r", encoding="utf-8-sig", newline="") as handle:
             for row in csv.DictReader(handle):
-                if row["nearest_route_id"] != HEWENTIAN_STREAM_ID:
+                route_id = row["nearest_route_id"]
+                if route_id not in TREE_STREAM_IDS:
                     continue
                 if float(row["distance_to_route_m"]) > TREE_DISTANCE_LIMIT_M:
                     continue
                 base_id = row["source_tree_id"].strip()
-                duplicate_counts[base_id] = duplicate_counts.get(base_id, 0) + 1
+                duplicate_key = (route_id, base_id)
+                duplicate_counts[duplicate_key] = duplicate_counts.get(duplicate_key, 0) + 1
                 tree_id = (
                     base_id
-                    if duplicate_counts[base_id] == 1
-                    else f"{base_id}_{duplicate_counts[base_id]}"
+                    if duplicate_counts[duplicate_key] == 1
+                    else f"{base_id}_{duplicate_counts[duplicate_key]}"
                 )
+                if route_id != HEWENTIAN_STREAM_ID:
+                    tree_id = f"{route_id}__{tree_id}"
                 records.append(
                     TreeRecord(
                         tree_id=tree_id,
+                        route_id=route_id,
                         species=row["species_name"].strip() or "Unknown 未知",
                         source_dataset=row["source_dataset"],
                         source_feature_index=row["source_feature_index"],
@@ -247,11 +261,41 @@ class TaskManager:
         )
         temporary.replace(self.checkpoint_path)
 
-    def list_species(self) -> list[str]:
-        return sorted({tree.species for tree in self.trees}, key=str.casefold)
+    def _check_route(self, route_id: str) -> None:
+        if route_id != "all" and route_id not in TREE_STREAM_IDS:
+            raise ValueError(f"Unknown VMMS route: {route_id}")
 
-    def species_info(self, species: str) -> str:
-        records = [tree for tree in self.trees if tree.species == species]
+    def _route_trees(self, route_id: str) -> list[TreeRecord]:
+        self._check_route(route_id)
+        return [tree for tree in self.trees if route_id == "all" or tree.route_id == route_id]
+
+    def list_routes(self) -> list[dict[str, Any]]:
+        names = {
+            "hewentian_pano": "何文田",
+            "jianshazui_pano_1": "尖沙咀 1",
+            "jianshazui_pano_2": "尖沙咀 2",
+            "stubbs_pano_0": "司徒拔道 0",
+            "stubbs_pano_1": "司徒拔道 1",
+        }
+        routes = [dict(id="all", name="全部轨迹", frames=len(self.frames),
+                       trees=len(self.trees), species=len(self.list_species()))]
+        for route_id in TREE_STREAM_IDS:
+            trees = self._route_trees(route_id)
+            routes.append(dict(id=route_id, name=names.get(route_id, route_id),
+                               frames=len(self.frames_by_stream[route_id]), trees=len(trees),
+                               species=len({tree.species for tree in trees})))
+        return routes
+
+    def list_species(self, route_id: str = "all") -> list[str]:
+        return sorted({tree.species for tree in self._route_trees(route_id)}, key=str.casefold)
+
+    @staticmethod
+    def _checkpoint_key(tree: TreeRecord) -> str:
+        # Preserve every historical He Wentian draft key and avoid cross-route collisions.
+        return tree.species if tree.route_id == HEWENTIAN_STREAM_ID else f"{tree.route_id}|{tree.species}"
+
+    def species_info(self, species: str, route_id: str = "all") -> str:
+        records = [tree for tree in self._route_trees(route_id) if tree.species == species]
         completed = sum(
             self.review_state.get(tree.tree_id, {}).get("status") == "accepted"
             for tree in records
@@ -261,7 +305,7 @@ class TaskManager:
             for tree in records
         )
         return (
-            f"何文田 VMMS 轨迹 50 m 走廊\n"
+            f"VMMS {route_id if route_id != 'all' else '全部轨迹'} · 50 m 走廊\n"
             f"树种：{species}\n"
             f"树点：{len(records)}\n"
             f"已保存：{completed}\n"
@@ -269,21 +313,24 @@ class TaskManager:
             "来源：香港 CSDI / 公园树木清单与本地 Ladybug 全景影像"
         )
 
-    def start(self, species: str, target_count: int) -> dict[str, Any]:
+    def start(self, species: str, target_count: int, route_id: str = "all") -> dict[str, Any]:
         with self._lock:
-            records = [tree for tree in self.trees if tree.species == species]
+            records = [tree for tree in self._route_trees(route_id) if tree.species == species]
             if not records:
-                raise ValueError(f"Unknown He Wentian species: {species}")
+                raise ValueError(f"No tree points for {species} on route {route_id}")
             pending = [
                 tree
                 for tree in records
                 if self.review_state.get(tree.tree_id, {}).get("status") not in {"accepted", "rejected"}
             ]
-            checkpoint = self.checkpoints.get(species)
-            resume_tree_id = checkpoint.get("tree_id") if checkpoint else None
+            pending_ids = {tree.tree_id for tree in pending}
+            resume_tree_id = next((self.checkpoints[self._checkpoint_key(tree)]["tree_id"]
+                for tree in records if self._checkpoint_key(tree) in self.checkpoints
+                and self.checkpoints[self._checkpoint_key(tree)].get("tree_id") in pending_ids), None)
             if resume_tree_id:
                 pending.sort(key=lambda tree: 0 if tree.tree_id == resume_tree_id else 1)
             self.species = species
+            self.active_route = route_id
             self.target_count = min(target_count, len(pending))
             self.queue = pending[: self.target_count]
             self.cursor = 0
@@ -301,7 +348,7 @@ class TaskManager:
                 "target_count": self.target_count,
                 "records": len(records),
                 "pending_records": len(pending),
-                "route_id": HEWENTIAN_STREAM_ID,
+                "route_id": route_id,
                 "source": "local_vmms",
                 "resume_tree_id": resume_tree_id,
             }
@@ -309,6 +356,7 @@ class TaskManager:
     def status(self) -> dict[str, Any]:
         return {
             "species": self.species,
+            "route_id": self.active_route,
             "target_count": self.target_count,
             "queued_count": len(self.queue),
             "reviewed_count": self.reviewed_count,
@@ -320,11 +368,13 @@ class TaskManager:
             "api_calls": dict(self.local_api_counts),
             "api_counts": dict(self.local_api_counts),
             "api_error_counts": {},
-            "source_mode": "local_vmms_hewentian",
+            "source_mode": "local_vmms_coordinate_matching",
             "source_frame_count": len(self.frames),
             "source_tree_count": len(self.trees),
             "source_species_count": len(self.list_species()),
-            "checkpoint_tree_id": self.checkpoints.get(self.species or "", {}).get("tree_id"),
+            "checkpoint_tree_id": next((self.checkpoints[self._checkpoint_key(tree)].get("tree_id")
+                for tree in self._route_trees(self.active_route) if tree.species == self.species
+                and self._checkpoint_key(tree) in self.checkpoints), None),
         }
 
     @staticmethod
@@ -337,7 +387,7 @@ class TaskManager:
 
     def _candidate_views(self, tree: TreeRecord) -> list[dict[str, Any]]:
         candidates: list[dict[str, Any]] = []
-        for frame in self.frames:
+        for frame in self.frames_by_stream[tree.route_id]:
             dx = tree.easting - frame.easting
             dy = tree.northing - frame.northing
             distance = math.hypot(dx, dy)
@@ -479,7 +529,7 @@ class TaskManager:
             "species": tree.species,
             "tree": tree_dict,
             "shots": candidates,
-            "source_mode": "local_vmms_hewentian",
+            "source_mode": "local_vmms_coordinate_matching",
             "orientation_assumption": (
                 "Ladybug panorama horizontal center is vehicle forward; "
                 f"x_sign={PANORAMA_X_SIGN:g}; yaw_offset={PANORAMA_YAW_OFFSET_DEG:g} deg"
@@ -495,7 +545,7 @@ class TaskManager:
             "当前裁剪使用车辆航向与全景中心对齐的初始假设，请确认目标树位于裁剪中心附近。",
             f"树点距采集轨迹最近距离约 {tree.distance_to_route_m:.1f} m。",
         ]
-        checkpoint = self.checkpoints.get(tree.species, {})
+        checkpoint = self.checkpoints.get(self._checkpoint_key(tree), {})
         draft_annotations = (
             checkpoint.get("annotations", [])
             if checkpoint.get("tree_id") == tree.tree_id
@@ -651,9 +701,10 @@ class TaskManager:
             }
             self._save_review_state()
             self._save_preprocess_manifest()
-            checkpoint = self.checkpoints.get(tree.species)
+            checkpoint_key = self._checkpoint_key(tree)
+            checkpoint = self.checkpoints.get(checkpoint_key)
             if checkpoint and checkpoint.get("tree_id") == tree.tree_id:
-                self.checkpoints.pop(tree.species, None)
+                self.checkpoints.pop(checkpoint_key, None)
                 self._save_checkpoints()
             self.reviewed_count += 1
             return {
@@ -674,7 +725,7 @@ class TaskManager:
                     f"Species mismatch for {payload.tree_id}: "
                     f"expected {tree.species}, received {payload.species}"
                 )
-            self.checkpoints[payload.species] = {
+            self.checkpoints[self._checkpoint_key(tree)] = {
                 "tree_id": payload.tree_id,
                 "species": payload.species,
                 "annotations": [item.model_dump() for item in payload.annotations],
@@ -721,9 +772,10 @@ class TaskManager:
             }
             self._save_review_state()
             self._save_preprocess_manifest()
-            checkpoint = self.checkpoints.get(tree.species)
+            checkpoint_key = self._checkpoint_key(tree)
+            checkpoint = self.checkpoints.get(checkpoint_key)
             if checkpoint and checkpoint.get("tree_id") == tree.tree_id:
-                self.checkpoints.pop(tree.species, None)
+                self.checkpoints.pop(checkpoint_key, None)
                 self._save_checkpoints()
             self.rejected_count += 1
             return {"status": "rejected", "tree_id": tree_id}

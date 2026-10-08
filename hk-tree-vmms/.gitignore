@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+annotation_app/frontend/node_modules/
+annotation_app/frontend/dist/
+derived/hewentian_labeler/view_cache/
+derived/hewentian_labeler/runtime/
+annotation_app/logs/

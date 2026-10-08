@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "verified_at": "2026-08-11T15:10:41+08:00",
+  "computer_name": "b0ring",
+  "root": "D:\\TREE\\Lidar\\C3_PTv2_24GB_AutoTune_Portable_20260811_READY",
+  "file_count": 17180,
+  "total_bytes": 9368347004,
+  "elapsed_seconds": 81.481,
+  "errors": []
+}

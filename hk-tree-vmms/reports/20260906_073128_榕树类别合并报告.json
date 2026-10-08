@@ -1,0 +1,15 @@
+{
+  "status": "applied",
+  "timestamp_utc": "20260906_073128",
+  "labeler_root": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\hk-tree-vmms\\derived\\exhaustive_species_frame_labeler",
+  "target_species": "榕树",
+  "old_class_count": 130,
+  "new_class_count": 127,
+  "target_class_id": 56,
+  "normalized_text_fields": 5990,
+  "confidences_added": 3985,
+  "json_files_scanned": 215,
+  "class_ids_rewritten": 1170,
+  "yolo_files_remapped": 192,
+  "backup": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\hk-tree-vmms\\derived\\exhaustive_species_frame_labeler\\runtime\\backups\\banyan_merge_20260906_073128"
+}

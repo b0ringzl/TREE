@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "validated_at": "2026-08-05T14:53:37+08:00",
+  "root": "D:\\TREE\\Lidar\\C3_PTv2_3Seed_Portable_20260805_READY",
+  "file_count": 17161,
+  "logical_total_gib": 8.725,
+  "sample_count": 17134,
+  "class_count": 19,
+  "fixed_config": {
+    "seeds": [
+      20260728,
+      20260729,
+      20260730
+    ],
+    "batch_size": 48,
+    "eval_batch_size": 64,
+    "epochs": 120,
+    "patience": 20
+  },
+  "errors": []
+}

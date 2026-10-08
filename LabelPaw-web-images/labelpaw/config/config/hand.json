@@ -1,0 +1,273 @@
+{
+    "name": "Hand",
+    "label": "hand",
+    "description": "Hand Keypoints (21 points)",
+    "kpt_shape": [
+        21,
+        3
+    ],
+    "keypoints": [
+        {
+            "name": "wrist",
+            "color": "#FF0000",
+            "default_pos": [
+                0.52373,
+                0.904
+            ]
+        },
+        {
+            "name": "thumb_cmc",
+            "color": "#FFA500",
+            "default_pos": [
+                0.4288,
+                0.7562
+            ]
+        },
+        {
+            "name": "thumb_mcp",
+            "color": "#FFA500",
+            "default_pos": [
+                0.33387,
+                0.60839
+            ]
+        },
+        {
+            "name": "thumb_ip",
+            "color": "#FFA500",
+            "default_pos": [
+                0.23893,
+                0.50985
+            ]
+        },
+        {
+            "name": "thumb_tip",
+            "color": "#FFA500",
+            "default_pos": [
+                0.144,
+                0.41132
+            ]
+        },
+        {
+            "name": "index_mcp",
+            "color": "#FFFF00",
+            "default_pos": [
+                0.47627,
+                0.55912
+            ]
+        },
+        {
+            "name": "index_pip",
+            "color": "#FFFF00",
+            "default_pos": [
+                0.44779,
+                0.36205
+            ]
+        },
+        {
+            "name": "index_dip",
+            "color": "#FFFF00",
+            "default_pos": [
+                0.4288,
+                0.21424
+            ]
+        },
+        {
+            "name": "index_tip",
+            "color": "#FFFF00",
+            "default_pos": [
+                0.40981,
+                0.11571
+            ]
+        },
+        {
+            "name": "middle_mcp",
+            "color": "#00FF00",
+            "default_pos": [
+                0.5712,
+                0.53941
+            ]
+        },
+        {
+            "name": "middle_pip",
+            "color": "#00FF00",
+            "default_pos": [
+                0.5712,
+                0.33249
+            ]
+        },
+        {
+            "name": "middle_dip",
+            "color": "#00FF00",
+            "default_pos": [
+                0.5712,
+                0.19454
+            ]
+        },
+        {
+            "name": "middle_tip",
+            "color": "#00FF00",
+            "default_pos": [
+                0.5712,
+                0.096
+            ]
+        },
+        {
+            "name": "ring_mcp",
+            "color": "#00FFFF",
+            "default_pos": [
+                0.66613,
+                0.56898
+            ]
+        },
+        {
+            "name": "ring_pip",
+            "color": "#00FFFF",
+            "default_pos": [
+                0.69461,
+                0.39161
+            ]
+        },
+        {
+            "name": "ring_dip",
+            "color": "#00FFFF",
+            "default_pos": [
+                0.7136,
+                0.26351
+            ]
+        },
+        {
+            "name": "ring_tip",
+            "color": "#00FFFF",
+            "default_pos": [
+                0.73259,
+                0.16498
+            ]
+        },
+        {
+            "name": "pinky_mcp",
+            "color": "#0000FF",
+            "default_pos": [
+                0.76107,
+                0.65766
+            ]
+        },
+        {
+            "name": "pinky_pip",
+            "color": "#0000FF",
+            "default_pos": [
+                0.80853,
+                0.50985
+            ]
+        },
+        {
+            "name": "pinky_dip",
+            "color": "#0000FF",
+            "default_pos": [
+                0.83701,
+                0.41132
+            ]
+        },
+        {
+            "name": "pinky_tip",
+            "color": "#0000FF",
+            "default_pos": [
+                0.856,
+                0.31278
+            ]
+        }
+    ],
+    "connections": [
+        [
+            0,
+            1
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            2,
+            3
+        ],
+        [
+            3,
+            4
+        ],
+        [
+            0,
+            5
+        ],
+        [
+            5,
+            6
+        ],
+        [
+            6,
+            7
+        ],
+        [
+            7,
+            8
+        ],
+        [
+            0,
+            9
+        ],
+        [
+            9,
+            10
+        ],
+        [
+            10,
+            11
+        ],
+        [
+            11,
+            12
+        ],
+        [
+            0,
+            13
+        ],
+        [
+            13,
+            14
+        ],
+        [
+            14,
+            15
+        ],
+        [
+            15,
+            16
+        ],
+        [
+            0,
+            17
+        ],
+        [
+            17,
+            18
+        ],
+        [
+            18,
+            19
+        ],
+        [
+            19,
+            20
+        ],
+        [
+            5,
+            9
+        ],
+        [
+            9,
+            13
+        ],
+        [
+            13,
+            17
+        ]
+    ]
+}

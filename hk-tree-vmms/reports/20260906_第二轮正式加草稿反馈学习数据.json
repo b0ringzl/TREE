@@ -1,0 +1,284 @@
+{
+  "status": "ready_for_training",
+  "created_at_utc": "2026-09-06T14:41:17.249281+00:00",
+  "cutoff_utc": "2026-09-06T13:04:08+00:00",
+  "feedback": {
+    "totals": {
+      "reviewed_frames": 15,
+      "status/unusable": 5,
+      "before_instances": 32,
+      "after_instances": 25,
+      "deleted_instances": 17,
+      "added_instances": 10,
+      "relabeled_instances": 2,
+      "status/annotated": 8,
+      "status/no_tree": 2
+    },
+    "relabel_confusion": {
+      "榕树 -> Albizia lebbeck": 1,
+      "Aleurites moluccana 石栗 -> 榕树": 1
+    },
+    "frames": [
+      {
+        "frame_key": "hewentian_pano__003442",
+        "status": "unusable",
+        "before": 1,
+        "after": 0,
+        "deleted": [
+          "Terminalia catappa 欖仁樹"
+        ],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "hewentian_pano__003460",
+        "status": "annotated",
+        "before": 1,
+        "after": 1,
+        "deleted": [],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "hewentian_pano__003478",
+        "status": "unusable",
+        "before": 1,
+        "after": 0,
+        "deleted": [
+          "Albizia lebbeck"
+        ],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "hewentian_pano__003496",
+        "status": "annotated",
+        "before": 1,
+        "after": 1,
+        "deleted": [],
+        "added": [],
+        "relabeled": [
+          {
+            "from": "榕树",
+            "to": "Albizia lebbeck"
+          }
+        ]
+      },
+      {
+        "frame_key": "hewentian_pano__003709",
+        "status": "annotated",
+        "before": 5,
+        "after": 4,
+        "deleted": [
+          "Aleurites moluccana 石栗"
+        ],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "hewentian_pano__005676",
+        "status": "annotated",
+        "before": 0,
+        "after": 2,
+        "deleted": [],
+        "added": [
+          "Aleurites moluccana 石栗",
+          "银合欢"
+        ],
+        "relabeled": []
+      },
+      {
+        "frame_key": "jianshazui_pano_2__000000",
+        "status": "annotated",
+        "before": 6,
+        "after": 5,
+        "deleted": [
+          "Aleurites moluccana 石栗",
+          "Aleurites moluccana 石栗",
+          "Araucaria columnaris",
+          "榕树",
+          "Wodyetia bifurcata 狐尾椰子"
+        ],
+        "added": [
+          "Garcinia subelliptica",
+          "Garcinia subelliptica",
+          "Garcinia subelliptica",
+          "Garcinia subelliptica"
+        ],
+        "relabeled": []
+      },
+      {
+        "frame_key": "jianshazui_pano_2__001323",
+        "status": "unusable",
+        "before": 1,
+        "after": 0,
+        "deleted": [
+          "Wodyetia bifurcata 狐尾椰子"
+        ],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "jianshazui_pano_2__001338",
+        "status": "unusable",
+        "before": 3,
+        "after": 0,
+        "deleted": [
+          "Wodyetia bifurcata 狐尾椰子",
+          "Livistona chinensis 蒲葵",
+          "Livistona chinensis 蒲葵"
+        ],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "jianshazui_pano_2__001353",
+        "status": "unusable",
+        "before": 3,
+        "after": 0,
+        "deleted": [
+          "Livistona chinensis 蒲葵",
+          "Wodyetia bifurcata 狐尾椰子",
+          "Livistona chinensis 蒲葵"
+        ],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "jianshazui_pano_2__001372",
+        "status": "no_tree",
+        "before": 0,
+        "after": 0,
+        "deleted": [],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "jianshazui_pano_2__001404",
+        "status": "no_tree",
+        "before": 0,
+        "after": 0,
+        "deleted": [],
+        "added": [],
+        "relabeled": []
+      },
+      {
+        "frame_key": "jianshazui_pano_2__002868",
+        "status": "annotated",
+        "before": 6,
+        "after": 4,
+        "deleted": [
+          "Albizia lebbeck",
+          "榕树"
+        ],
+        "added": [],
+        "relabeled": [
+          {
+            "from": "Aleurites moluccana 石栗",
+            "to": "榕树"
+          }
+        ]
+      },
+      {
+        "frame_key": "jianshazui_pano_2__002881",
+        "status": "annotated",
+        "before": 0,
+        "after": 4,
+        "deleted": [],
+        "added": [
+          "榕树",
+          "榕树",
+          "榕树",
+          "榕树"
+        ],
+        "relabeled": []
+      },
+      {
+        "frame_key": "stubbs_pano_1__003134",
+        "status": "annotated",
+        "before": 4,
+        "after": 4,
+        "deleted": [],
+        "added": [],
+        "relabeled": []
+      }
+    ]
+  },
+  "species_dataset": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\hk-tree-vmms\\derived\\review_replay_species_iteration2_full_20260906",
+  "species": {
+    "status": "ready",
+    "policy": "stable 15-class replay head; second-round submitted labels repeated only in train; novel species retained in a visual-memory sidecar; unusable/no-tree frames excluded from species",
+    "class_mapping": {
+      "Albizia lebbeck": "00_Albizia_lebbeck",
+      "Aleurites moluccana 石栗": "01_Aleurites_moluccana",
+      "Alstonia scholaris 糖膠樹": "02_Alstonia_scholaris",
+      "Araucaria heterophylla 异叶南洋杉": "03_Araucaria_heterophylla",
+      "Bauhinia purpurea 紅花羊蹄甲": "04_Bauhinia_purpurea",
+      "Bombax ceiba 木棉": "05_Bombax_ceiba",
+      "Celtis sinensis 朴樹": "06_Celtis_sinensis",
+      "Cinnamomum camphora 樟": "07_Cinnamomum_camphora",
+      "Delonix regia 鳳凰木": "08_Delonix_regia",
+      "Livistona chinensis 蒲葵": "09_Livistona_chinensis",
+      "Phoenix roebelenii 日本葵(軟葉刺葵)": "10_Phoenix_roebelenii",
+      "Schefflera heptaphylla 鵝掌柴(鴨腳木)": "11_Schefflera_heptaphylla",
+      "Terminalia catappa 欖仁樹": "12_Terminalia_catappa",
+      "Wodyetia bifurcata 狐尾椰子": "13_Wodyetia_bifurcata",
+      "榕树": "14_Ficus_banyan"
+    },
+    "train_crops": 2806,
+    "val_crops": 273,
+    "human_memory_crops": 206,
+    "unsaved_feedback_crops": 181,
+    "human_memory_per_species": {
+      "Albizia lebbeck": 10,
+      "榕树": 81,
+      "银合欢": 9,
+      "Aleurites moluccana 石栗": 15,
+      "Delonix regia 鳳凰木": 3,
+      "Garcinia subelliptica": 4,
+      "Caryota mitis 短穗魚尾葵(小魚尾葵)": 1,
+      "Ceiba pentandra": 3,
+      "Celtis sinensis 朴樹": 1,
+      "Wodyetia bifurcata 狐尾椰子": 45,
+      "Cinnamomum camphora 樟": 2,
+      "Bombax ceiba 木棉": 2,
+      "Bauhinia purpurea 紅花羊蹄甲": 12,
+      "Callistemon viminalis": 5,
+      "Livistona chinensis 蒲葵": 8,
+      "Araucaria heterophylla 异叶南洋杉": 5
+    },
+    "novel_memory_species": [
+      "Callistemon viminalis",
+      "Caryota mitis 短穗魚尾葵(小魚尾葵)",
+      "Ceiba pentandra",
+      "Garcinia subelliptica",
+      "银合欢"
+    ],
+    "materialized": {
+      "hardlink": 3079
+    }
+  },
+  "human_memory_manifest": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\hk-tree-vmms\\derived\\review_replay_species_iteration2_full_20260906\\human_memory\\manifest.csv",
+  "human_memory_samples": 206,
+  "detector_dataset": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\hk-tree-vmms\\derived\\tree_detector_iteration2_full_20260906",
+  "detector": {
+    "status": "ready",
+    "policy": "base route-block validation/test frozen; second-round annotated and no_tree frames train-only; unusable frames excluded; deleted proposals become background through complete frame supervision",
+    "split_frames_materialized": {
+      "train": 774,
+      "val": 61,
+      "test": 74
+    },
+    "new_review_frames": {
+      "excluded_unusable": 5,
+      "annotated": 8,
+      "no_tree": 2,
+      "unsaved_delta_frame": 104
+    },
+    "detector_repeat": 12,
+    "unsaved_detector_repeat": 3,
+    "materialized": {
+      "hardlink": 1386
+    }
+  }
+}

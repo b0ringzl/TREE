@@ -18,7 +18,7 @@ if (-not (Test-Path -LiteralPath $importSummary)) {
 $npmCommand = Get-Command npm.cmd -ErrorAction Stop
 New-Item -ItemType Directory -Force -Path $logRoot | Out-Null
 
-if (-not $env:VMMS_ROOT) { $env:VMMS_ROOT = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\..\vmms")) }
+$env:VMMS_ROOT = "C:\Users\25041725G\Desktop\receive\vmms"
 $env:VMMS_TREE_STREAM_ID = "hewentian_pano"
 $env:VMMS_FRAME_STREAM_IDS = "hewentian_pano,jianshazui_pano_1,jianshazui_pano_2,stubbs_pano_0,stubbs_pano_1"
 $env:VMMS_FRAME_LABELER_DATASET = "exhaustive_species_review"

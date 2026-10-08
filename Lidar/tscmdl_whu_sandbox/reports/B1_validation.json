@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "sample_count": 600,
+  "point_file_count": 600,
+  "image_file_count": 600,
+  "preview_file_count": 18,
+  "split_histogram": {
+    "test": {
+      "1": 30,
+      "2": 30,
+      "13": 30
+    },
+    "train": {
+      "1": 140,
+      "2": 140,
+      "13": 140
+    },
+    "val": {
+      "1": 30,
+      "2": 30,
+      "13": 30
+    }
+  },
+  "validation_roads": [
+    "06",
+    "23"
+  ],
+  "test_samples_are_official_references": true,
+  "source_below_8192_by_label": {
+    "1": 6,
+    "2": 184,
+    "13": 52
+  },
+  "minimum_sampled_unique_point_count": 185,
+  "maximum_normalized_centroid_error": 2.0611850004570442e-09,
+  "maximum_normalized_radius_error": 5.960464477539063e-08,
+  "minimum_crop_visible_fraction": 0.9959070021271186,
+  "dataset_file_count": 1224,
+  "dataset_size_bytes": 150051996
+}

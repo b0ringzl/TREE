@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Deliberately no INTERNET, camera, location or broad storage permissions. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <application android:label="SpaceScan Trees" android:icon="@drawable/ic_tree"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar"
+        android:allowBackup="false" android:fullBackupContent="false" android:dataExtractionRules="@xml/no_backup"
+        android:supportsRtl="true" android:usesCleartextTraffic="false">
+        <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <provider android:name=".CaptureProvider" android:authorities="${applicationId}.capture"
+            android:exported="false" android:grantUriPermissions="true" />
+    </application>
+</manifest>

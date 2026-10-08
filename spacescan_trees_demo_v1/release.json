@@ -1,0 +1,22 @@
+{
+  "release_id": "spacescan-official-20260927-h120-android-v04",
+  "classifier_version": "sstv1-aquilaria-user-crops-20260919-h120",
+  "android_classifier_version": "sstv1-aquilaria-user-crops-20260919-h120",
+  "release_date": "2026-09-27",
+  "selection": "Same H120 weights; whole/center equal probability inference selected from 11 development-only recipes, then passed frozen historical regression gates. No training or temperature change.",
+  "known_regressions": {"historical_corrected": 241, "historical_regressed": 49, "historical_overall_correct": [4472, 4664], "historical_n": 5146, "development_overall_correct": [2302, 2386], "development_n": 2650, "historical_Aquilaria_tp": [19, 21], "historical_Aquilaria_fp": [25, 14], "historical_Artocarpus_tp": [19, 19], "historical_Artocarpus_fp": [6, 5]},
+  "class_count": 148,
+  "web_pipeline": "sstv1-confirmed-target-whole-center-mean-v2",
+  "portable_windows_pipeline": "sstv1-tree-selection-perspective-padding-v1",
+  "portable_windows_current": false,
+  "android_pipeline": "sstv1-h120-whole-center-mean+sam-tight-single-fp32-v1",
+  "android_delivery": "deliverables/SpaceScan_Trees_Android_H120_20260927_v1",
+  "android_apk": "SpaceScan-Trees-SSTv1-H120-v0.4.apk",
+  "android_apk_sha256": "36113db87c09da342106dfbe0da0c29b23bc2b4861b5d8a1b868ca87c9ad6abe",
+  "android_model": "SSTv1-H120-20260927-Offline-Model.zip",
+  "android_model_sha256": "01b9dbe26dc75f515c6fef0016a027c00dd6a3a9ff159ebfead7787d18e62899",
+  "scope": "Current local web and Android image classifiers use the same H120 weights and original/manual-target whole+center policy. Android has no automatic detector, panorama reprojection or point-cloud fusion; its EfficientSAM-Ti mask proposals can differ from web SAM. Previously delivered Windows ZIP and Android v0.2 remain archived. Original teacher/PTv2 fusion unchanged. No Rhodoleia or Keteleeria output in the 148-class catalogue.",
+  "full_android_pipeline_parity": false,
+  "point_fusion_changed": false,
+  "training_performed": false
+}

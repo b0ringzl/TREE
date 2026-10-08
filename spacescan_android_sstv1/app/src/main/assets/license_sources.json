@@ -1,0 +1,38 @@
+[
+  {
+    "file": "APACHE-2.0.txt",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "bytes": 11358
+  },
+  {
+    "file": "AGPL-3.0.txt",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/LICENSE",
+    "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+    "bytes": 34523
+  },
+  {
+    "file": "ONNXRUNTIME-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/v1.23.2/LICENSE",
+    "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+    "bytes": 1073
+  },
+  {
+    "file": "ONNXRUNTIME-ThirdPartyNotices.txt",
+    "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/v1.23.2/ThirdPartyNotices.txt",
+    "sha256": "e9e90971a8e75a9a8ac0c6412e29c1202d079998389915aa485f46c816c3b4cc",
+    "bytes": 326866
+  },
+  {
+    "file": "PILLOW-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/python-pillow/Pillow/11.1.0/LICENSE",
+    "sha256": "17f240ae101143707e5e7303a5d800450d9ccc7475b463cedb555cefdb3c6ece",
+    "bytes": 1453
+  },
+  {
+    "file": "EFFICIENTSAM-APACHE-2.0.txt",
+    "url": "https://github.com/yformer/EfficientSAM/blob/main/LICENSE",
+    "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "bytes": 11558
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "validated_at": "2026-08-11T15:11:25+08:00",
+  "root": "D:\\TREE\\Lidar\\C3_PTv2_24GB_AutoTune_Portable_20260811_READY",
+  "immutable_file_count": 17180,
+  "immutable_total_bytes": 9368347004,
+  "sample_count": 17134,
+  "class_count": 19,
+  "training_config": {
+    "seeds": [
+      20260728,
+      20260729,
+      20260730
+    ],
+    "auto_tune_candidates": [
+      40,
+      48,
+      56,
+      64
+    ],
+    "selected_batch": null,
+    "selection_location": "target 24 GB GPU",
+    "eval_batch_size": 64,
+    "epochs": 120,
+    "patience": 20,
+    "amp": true
+  },
+  "checks": {
+    "python_syntax": "passed (6 files)",
+    "powershell_syntax": "passed (6 files)",
+    "simulated_auto_tune": "passed; batch 56 selected under the simulated 82 percent VRAM limit",
+    "keep_awake_lifecycle": "passed; active while owner lives and released after owner exits",
+    "pause_state_transition": "passed; requested to complete and no stale retrigger",
+    "pause_when_idle": "passed; exits without creating a request",
+    "fresh_output": "passed; zero output files",
+    "full_sha256_verification": "passed; 17180 files, zero errors"
+  },
+  "limitations": [
+    "The real selected training batch can only be measured on the target 24 GB GPU.",
+    "A full training run was not started on the local 8 GB GPU."
+  ],
+  "errors": []
+}

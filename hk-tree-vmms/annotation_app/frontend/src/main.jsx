@@ -712,6 +712,8 @@ function ApiKeyPanel({ onReady }) {
 }
 
 function SetupPanel({ onStart }) {
+  const [routes, setRoutes] = useState([]);
+  const [routeId, setRouteId] = useState("all");
   const [species, setSpecies] = useState([]);
   const [query, setQuery] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -721,14 +723,21 @@ function SetupPanel({ onStart }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch(`${API}/api/species/list`)
+    fetch(`${API}/api/routes`)
+      .then((res) => res.ok ? res.json() : { routes: [] })
+      .then((data) => setRoutes(data.routes || []))
+      .catch(() => setRoutes([]));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API}/api/species/list?route_id=${encodeURIComponent(routeId)}`)
       .then((res) => res.json())
       .then((data) => {
         setSpecies(data.species || []);
         setQuery((data.species || [])[0] || "");
       })
       .catch((err) => setError(err.message));
-  }, []);
+  }, [routeId]);
 
   const selectedSpecies = useMemo(() => species.find((item) => item.toLowerCase() === query.toLowerCase()) || "", [species, query]);
 
@@ -738,14 +747,14 @@ function SetupPanel({ onStart }) {
       return;
     }
     const controller = new AbortController();
-    fetch(`${API}/api/species/traits?species=${encodeURIComponent(selectedSpecies)}`, { signal: controller.signal })
+    fetch(`${API}/api/species/traits?species=${encodeURIComponent(selectedSpecies)}&route_id=${encodeURIComponent(routeId)}`, { signal: controller.signal })
       .then((res) => (res.ok ? res.json() : { traits: "" }))
       .then((data) => setTraits(data.traits || ""))
       .catch((err) => {
         if (err.name !== "AbortError") setTraits("");
     });
     return () => controller.abort();
-  }, [selectedSpecies]);
+  }, [selectedSpecies, routeId]);
 
   const filtered = useMemo(() => {
     const needle = pickerOpen && selectedSpecies === query ? "" : query.toLowerCase();
@@ -765,7 +774,7 @@ function SetupPanel({ onStart }) {
       const res = await fetch(`${API}/api/task/start`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ species: selectedSpecies, target_count: Number(targetCount) }),
+        body: JSON.stringify({ species: selectedSpecies, target_count: Number(targetCount), route_id: routeId }),
       });
       if (!res.ok) throw new Error((await res.json()).detail || "Failed to start task");
       onStart(selectedSpecies);
@@ -781,10 +790,18 @@ function SetupPanel({ onStart }) {
       <section className="setup-panel">
         <div className="title-row">
           <div>
-            <h1>何文田行道树人工标注</h1>
-            <p>从实采全景影像与附近树点中选取候选视图，人工确认目标树并绘制轮廓。</p>
+            <h1>{routes.length > 2 ? "香港 VMMS 全轨迹树木标注" : "何文田行道树人工标注"}</h1>
+            <p>按公开树点坐标匹配实采全景影像；候选视图须人工确认目标树，不能把坐标匹配直接视为树种真值。</p>
           </div>
         </div>
+        {routes.length > 0 && <label className="field compact">
+          <span>VMMS 轨迹 / Route</span>
+          <select value={routeId} onChange={(event) => { setRouteId(event.target.value); setPickerOpen(false); }}>
+            {routes.map((route) => <option key={route.id} value={route.id}>
+              {route.name} · {route.frames} 帧 · {route.trees} 树点{route.trees === 0 ? "（无 50 m 匹配）" : ""}
+            </option>)}
+          </select>
+        </label>}
         <label className="field">
           <span>Species</span>
           <div className="search-box">
@@ -847,13 +864,13 @@ function SetupPanel({ onStart }) {
           <input type="number" min="1" max="10000" value={targetCount} onChange={(event) => setTargetCount(event.target.value)} title="Number of tree samples to cache for this session" />
         </label>
         {error && <div className="error-line">{error}</div>}
-        <button className="primary" onClick={start} disabled={busy || !selectedSpecies} title="开始从何文田实采数据中加载候选目标树">
+        <button className="primary" onClick={start} disabled={busy || !selectedSpecies} title="从所选 VMMS 轨迹加载公开树点的候选全景视图">
           {busy ? <Loader2 className="spin" size={18} /> : <Play size={18} />}
           Start
         </button>
         <section className="traits-panel" title="Reference text loaded from traits.txt">
           <div className="traits-title">树种与数据状态</div>
-          <pre>{traits || "选择树种后显示何文田附近树点数量与已标注进度。"}</pre>
+          <pre>{traits || "选择轨迹和树种后显示附近树点数量与已标注进度。"}</pre>
         </section>
       </section>
     </main>
@@ -1315,7 +1332,7 @@ function Workspace({ species, onShowResults, onChangeSpecies }) {
       <header className="toolbar">
         <div>
           <h1>{sample ? sample.tree_id : species}</h1>
-          <p>{sample?.species || species}</p>
+          <p>{sample?.species || species}{sample?.tree?.route_id ? ` · ${sample.tree.route_id}` : ""}</p>
         </div>
         <div className="actions">
           <div className="sam-controls" title="Optional SAM2/SAM3-assisted polygon generation">

@@ -1,0 +1,61 @@
+{
+  "status": "ready_for_human_review",
+  "spacing_m": 15.0,
+  "hwt_reviewed_through_m": 1559.18,
+  "filter_threshold": 0.41,
+  "protected_autosaved_drafts": 124,
+  "frames": 181,
+  "stats": {
+    "retained_tree": 632,
+    "source/original_vmms_species_model": 488,
+    "frames": 181,
+    "empty_frames": 26,
+    "source/model_inventory_agreement": 26,
+    "filtered_false_positive": 164,
+    "source/full_feedback_specialist_override": 49,
+    "source/route_local_human_species_memory": 50,
+    "source/broad_species_high_confidence": 14,
+    "source/human_review_specialist_override": 5
+  },
+  "by_stream": {
+    "hewentian_pano": {
+      "retained_tree": 35,
+      "frames": 11,
+      "empty_frames": 1,
+      "filtered_false_positive": 8
+    },
+    "jianshazui_pano_1": {
+      "filtered_false_positive": 11,
+      "frames": 10,
+      "empty_frames": 1,
+      "retained_tree": 38
+    },
+    "jianshazui_pano_2": {
+      "retained_tree": 358,
+      "frames": 112,
+      "empty_frames": 22,
+      "filtered_false_positive": 96
+    },
+    "stubbs_pano_0": {
+      "retained_tree": 47,
+      "filtered_false_positive": 10,
+      "frames": 13,
+      "empty_frames": 1
+    },
+    "stubbs_pano_1": {
+      "retained_tree": 154,
+      "frames": 35,
+      "empty_frames": 1,
+      "filtered_false_positive": 39
+    }
+  },
+  "models": {
+    "tree_detector": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\hk-tree-vmms\\derived\\training_runs\\combined_tree_segmentation\\yolo11m_seg_1024_20260901_104757\\weights\\best.pt",
+    "false_positive_filter": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\runs\\classify\\binary_filter_iteration2\\yolo11s_binary_tree_filter_v2\\weights\\best.pt",
+    "species_router": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\runs\\classify\\review_replay_species\\species_fusion_adapter_v2\\router_rules.json",
+    "broad_species_fallback": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\full_image_species_baseline\\experiments\\full_web_yolo11s_cls_20260906_seed1\\finetune\\weights\\selected_by_val_group_macro_f1.pt",
+    "human_species_memory": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\runs\\classify\\review_replay_species\\human_memory_v1\\rules.json"
+  },
+  "backup": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\hk-tree-vmms\\backups\\species_15m_reprocess_20260907_014341",
+  "review_url": "http://127.0.0.1:5181/frame.html"
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpaceScan Trees · VMMS Corridor</title>
+  <link rel="stylesheet" href="/static/corridor.css?v=20261004-range1">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/image-only" aria-label="SpaceScan Trees home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 35V17M20 26C4 26 3 14 5 7c12 0 18 7 15 19ZM20 20C18 7 29 2 36 3c2 10-4 19-16 17Z"/></svg>
+      <span>SpaceScan <b>Trees</b></span>
+    </a>
+    <nav><a href="/image-only">Image / 影像</a><a href="/video">Video / 影片</a><a class="active" href="/corridor">VMMS / 走廊</a><a href="/references">Species / 物種</a></nav>
+    <span class="local"><i id="statusDot"></i><span id="health">Connecting / 連線中</span></span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">GEO-INDEXED PANORAMA CORRIDOR / 帶座標連續全景走廊</p>
+      <h1>From a panorama sequence to a tree corridor.<span>選擇內置軌跡或本機 VMMS 全景文件夾，自動完成連續採樣與多視角識別。</span></h1>
+    </section>
+
+    <section class="workspace">
+      <aside>
+        <p class="section-label">AUTOMATIC FLOW / 自動流程</p>
+        <ol>
+          <li><b>01</b><span>Sequence sampling<small>按距離或文件名順序採樣</small></span></li>
+          <li><b>02</b><span>Panorama views<small>球面全景轉透視視圖</small></span></li>
+          <li><b>03</b><span>Associate trees<small>跨位置關聯同一株樹</small></span></li>
+          <li><b>04</b><span>Combine evidence<small>多視角樹種識別</small></span></li>
+        </ol>
+        <p class="version">SSTv1-H120-DV · VMMS pilot · 2026-10-01</p>
+      </aside>
+
+      <div class="panel">
+        <div class="source-tabs" role="group" aria-label="Corridor data source">
+          <button id="useCatalog" class="source-tab active" type="button">Built-in route / 內置軌跡</button>
+          <button id="useFolder" class="source-tab" type="button">Local folder / 本機文件夾</button>
+        </div>
+        <div class="route-card">
+          <div><p class="eyebrow">LOCAL DATASET / 本機資料</p><h2 id="dataset">Loading route / 正在讀取軌跡</h2><p id="datasetMeta"></p></div>
+          <span class="badge">2:1 · 360°</span>
+        </div>
+        <div id="catalogFields" class="fields">
+          <label>Continuous route / 連續軌跡<select id="segment"></select></label>
+          <label>Start offset / 起點偏移（m）<input id="offset" type="number" min="0" step="5" value="0"></label>
+          <label>Spacing / 採樣間距（m）<input id="spacing" type="number" min="2" max="20" step="1" value="5"></label>
+          <label>Length / 測試長度（m）<input id="length" type="number" min="10" max="200" step="5" value="200"></label>
+        </div>
+        <div id="folderFields" hidden>
+          <div class="folder-picker">
+            <label>VMMS panorama folder / VMMS 全景文件夾
+              <input id="folderPath" type="text" placeholder="Select a folder or paste its full path / 選擇文件夾或貼上完整路徑">
+            </label>
+            <button id="chooseFolder" class="secondary choose-folder" type="button">Choose folder / 選擇文件夾</button>
+            <button id="inspectFolder" class="secondary choose-folder" type="button">Read folder / 讀取文件夾</button>
+          </div>
+          <div class="fields folder-options">
+            <label>First image / 起始張數<input id="folderStart" type="number" min="1" step="1" value="1"></label>
+            <label>Last image / 結束張數<input id="folderEnd" type="number" min="2" step="1" value="300"></label>
+            <label>Selected images / 採樣張數（最多 300）<input id="folderCount" type="number" min="2" max="300" step="1" value="300"></label>
+          </div>
+          <div class="range-actions" role="group" aria-label="Choose consecutive panorama range / 選擇連續照片範圍">
+            <button id="rangeFirst" class="secondary" type="button">First / 最前一段</button>
+            <button id="rangePrevious" class="secondary" type="button">← Previous / 上一段</button>
+            <button id="rangeNext" class="secondary" type="button">Next / 下一段 →</button>
+            <button id="rangeLast" class="secondary" type="button">Last / 最後一段</button>
+          </div>
+          <p id="folderSelection" class="folder-inspection" aria-live="polite"></p>
+          <details class="sampling-options"><summary>Sampling options / 採樣選項</summary>
+            <label>Frame step / 幀間隔<input id="folderStep" type="number" min="1" max="50" step="1" value="1"></label>
+            <p>1 = consecutive images / 1 為連續照片；序號按有效全景的文件名自然排序。</p>
+          </details>
+          <p id="folderInspection" class="folder-inspection">Select a flat folder containing VMMS-standard 2:1 panoramas. / 請選擇包含 VMMS 標準 2:1 全景的單層文件夾。</p>
+        </div>
+        <div class="summary"><b id="sampleSummary">41 panoramas / 41 張全景</b><span>Source panoramas stay in place; only previews and selected crops are saved. / 原始全景不複製，只保存預覽與所選切片。</span></div>
+        <button id="run" class="primary" disabled>Run corridor test / 開始走廊測試 →</button>
+        <div id="working" class="working" hidden>
+          <div class="progress-head"><b id="phase">Preparing / 正在準備</b><span id="percent">0%</span></div>
+          <div class="progress"><i id="bar"></i></div><p id="progressMeta"></p>
+        </div>
+        <div id="error" role="alert" hidden></div>
+      </div>
+    </section>
+
+    <section id="results" class="results" hidden>
+      <div class="result-head">
+        <div><p class="section-label">CORRIDOR RESULTS / 走廊結果</p><h2>Recognised tree candidates<span id="resultSummary"></span></h2></div>
+        <div><button id="exportCsv" class="secondary">CSV</button><button id="exportJson" class="secondary">JSON</button></div>
+      </div>
+      <div id="metrics" class="metrics"></div>
+      <p id="identityNotice" class="folder-inspection" hidden></p>
+      <p id="trackCoverage" class="folder-inspection" hidden></p>
+      <h3 class="subhead">Frame results / 逐幀結果</h3>
+      <section id="frameViewer" class="frame-viewer" aria-label="Processed frame viewer / 處理結果逐幀閱覽" tabindex="0" hidden>
+        <div class="frame-toolbar">
+          <button id="previousFrame" class="secondary" type="button">← Previous / 上一幀</button>
+          <label class="frame-number-label">Frame / 幀 <input id="frameNumber" type="number" min="1" step="1" value="1" aria-label="Frame number / 幀序號"></label>
+          <button id="goToFrame" class="secondary" type="button">Go / 跳轉</button>
+          <span id="frameReadout" class="frame-readout" aria-live="polite"></span>
+          <button id="nextFrame" class="secondary" type="button">Next / 下一幀 →</button>
+          <button id="enlargeFrame" class="secondary" type="button">⛶ Enlarge / 放大</button>
+        </div>
+        <input id="frameRange" class="frame-range" type="range" min="1" max="1" value="1" step="1" aria-label="Browse processed frames / 拖動閱覽處理結果">
+        <img id="frameImage" class="frame-image" alt="Processed panorama / 已處理全景">
+        <p id="frameMeta" class="frame-meta"></p>
+      </section>
+      <div id="filmstrip" class="filmstrip"></div>
+      <h3 class="subhead">Tracked tree candidates / 樹木追蹤候選</h3>
+      <div id="tracks" class="track-grid"></div>
+      <details class="limitations"><summary>How to read this pilot / 如何理解本次小測</summary><ul id="limitations"></ul></details>
+    </section>
+  </main>
+  <dialog id="frameDialog" class="frame-dialog">
+    <div class="frame-toolbar">
+      <button id="detailPreviousFrame" class="secondary" type="button">← Previous / 上一幀</button>
+      <span id="detailFrameReadout" class="frame-readout" aria-live="polite"></span>
+      <button id="detailNextFrame" class="secondary" type="button">Next / 下一幀 →</button>
+      <button id="closeFrameDialog" class="secondary" type="button">Close / 關閉 ✕</button>
+    </div>
+    <img id="detailFrameImage" class="frame-image" alt="Enlarged processed panorama / 放大處理結果">
+    <p id="detailFrameMeta" class="frame-meta"></p>
+  </dialog>
+  <footer><span>SpaceScan Trees</span><span>Local VMMS corridor analysis / 本機 VMMS 走廊分析</span></footer>
+  <script src="/static/corridor-range.js?v=20261004-range1"></script>
+  <script src="/static/corridor.js?v=20261004-range2"></script>
+</body>
+</html>

@@ -1,19 +1,19 @@
 from __future__ import annotations
 
+import asyncio
 from dataclasses import dataclass
+from itertools import combinations
 from pathlib import Path
 
 import httpx
 
-from .config import GOOGLE_MAPS_API_KEY, STATIC_IMAGE_SIZE
+from .config import STATIC_IMAGE_SIZE, load_google_maps_api_key
 from .geometry import (
     bearing_deg,
-    detail_fov_for_distance,
     fov_for_distance,
     haversine_m,
     offset_point,
     pitch_deg,
-    trunk_fov_for_distance,
 )
 
 
@@ -48,27 +48,65 @@ class StreetViewClient:
     image_url = "https://maps.googleapis.com/maps/api/streetview"
 
     def __init__(self, api_key: str | None = None) -> None:
-        self.api_key = api_key or GOOGLE_MAPS_API_KEY
-        self.http = httpx.AsyncClient(timeout=30)
+        self.api_key = api_key or load_google_maps_api_key()
+        self.http = httpx.AsyncClient(
+            timeout=httpx.Timeout(30.0, connect=10.0, read=30.0, write=10.0),
+            limits=httpx.Limits(max_connections=24, max_keepalive_connections=0),
+            headers={"User-Agent": "hk-tree-labeler/0.1"},
+        )
         self.api_counts: dict[str, int] = {
             "Google Street View Metadata API": 0,
             "Google Street View Static API": 0,
         }
+        self.api_error_counts: dict[str, int] = {}
 
     def _count_api(self, name: str) -> None:
         self.api_counts[name] = self.api_counts.get(name, 0) + 1
 
+    def _count_api_error(self, name: str) -> None:
+        self.api_error_counts[name] = self.api_error_counts.get(name, 0) + 1
+
     def _require_key(self) -> None:
+        if not self.api_key:
+            self.api_key = load_google_maps_api_key()
         if not self.api_key:
             raise RuntimeError("GOOGLE_MAPS_API_KEY is required for Street View downloads")
 
     async def close(self) -> None:
         await self.http.aclose()
 
+    async def _get_with_retries(
+        self,
+        api_name: str,
+        url: str,
+        params: dict,
+        retries: int = 3,
+    ) -> httpx.Response:
+        last_error: Exception | None = None
+        for attempt in range(1, retries + 1):
+            self._count_api(api_name)
+            try:
+                response = await self.http.get(url, params=params)
+                if response.status_code in {429, 500, 502, 503, 504}:
+                    raise httpx.HTTPStatusError(
+                        f"Retryable HTTP status {response.status_code}",
+                        request=response.request,
+                        response=response,
+                    )
+                response.raise_for_status()
+                return response
+            except (httpx.RemoteProtocolError, httpx.ConnectError, httpx.ReadError, httpx.WriteError, httpx.TimeoutException, httpx.HTTPStatusError) as exc:
+                last_error = exc
+                self._count_api_error(api_name)
+                if attempt >= retries:
+                    break
+                await asyncio.sleep(0.4 * attempt)
+        raise RuntimeError(f"{api_name} request failed after {retries} attempts: {last_error}") from last_error
+
     async def validate_api_key(self) -> None:
         self._require_key()
-        self._count_api("Google Street View Metadata API")
-        response = await self.http.get(
+        response = await self._get_with_retries(
+            "Google Street View Metadata API",
             self.metadata_url,
             params={
                 "location": "22.2819,114.1589",
@@ -77,7 +115,6 @@ class StreetViewClient:
                 "key": self.api_key,
             },
         )
-        response.raise_for_status()
         payload = response.json()
         status = payload.get("status")
         if status in {"OK", "ZERO_RESULTS", "NOT_FOUND"}:
@@ -87,8 +124,8 @@ class StreetViewClient:
 
     async def metadata(self, lat: float, lon: float, radius: int = 30) -> dict | None:
         self._require_key()
-        self._count_api("Google Street View Metadata API")
-        response = await self.http.get(
+        response = await self._get_with_retries(
+            "Google Street View Metadata API",
             self.metadata_url,
             params={
                 "location": f"{lat},{lon}",
@@ -97,7 +134,6 @@ class StreetViewClient:
                 "key": self.api_key,
             },
         )
-        response.raise_for_status()
         payload = response.json()
         if payload.get("status") != "OK":
             return None
@@ -109,9 +145,18 @@ class StreetViewClient:
         tree_lon: float,
         tree_height_m: float,
     ) -> list[StreetViewCandidate]:
+        return await self.discover_candidates(tree_lat, tree_lon, tree_height_m, limit=3)
+
+    async def discover_candidates(
+        self,
+        tree_lat: float,
+        tree_lon: float,
+        tree_height_m: float,
+        limit: int = 12,
+    ) -> list[StreetViewCandidate]:
         probes = [(tree_lat, tree_lon)]
-        for distance in (8, 16, 24):
-            for angle in range(0, 360, 45):
+        for distance in (6, 10, 16, 24, 30):
+            for angle in range(0, 360, 30):
                 probes.append(offset_point(tree_lat, tree_lon, angle, distance))
 
         by_pano: dict[str, StreetViewCandidate] = {}
@@ -141,7 +186,7 @@ class StreetViewClient:
             current = by_pano.get(candidate.pano_id)
             if current is None or self._candidate_rank(candidate) < self._candidate_rank(current):
                 by_pano[candidate.pano_id] = candidate
-        return sorted(by_pano.values(), key=self._candidate_rank)[:3]
+        return sorted(by_pano.values(), key=self._candidate_rank)[:limit]
 
     def _candidate_rank(self, candidate: StreetViewCandidate) -> tuple[int, float]:
         return (-self._date_value(candidate.date), candidate.distance_m)
@@ -157,7 +202,60 @@ class StreetViewClient:
         except (TypeError, ValueError):
             return 0
 
-    def build_feature_shots(
+    def angular_gap(self, first: float, second: float) -> float:
+        diff = abs((first - second) % 360)
+        return min(diff, 360 - diff)
+
+    def heading_spread_score(self, candidates: list[StreetViewCandidate]) -> float:
+        if len(candidates) <= 1:
+            return 0.0
+        return min(self.angular_gap(a.heading, b.heading) for a, b in combinations(candidates, 2))
+
+    def select_angle_fan_candidates(
+        self,
+        candidates: list[StreetViewCandidate],
+        count: int = 3,
+        step_degrees: int = 60,
+    ) -> list[StreetViewCandidate]:
+        if len(candidates) <= count:
+            return sorted(candidates, key=self._candidate_rank)
+
+        best_group: list[StreetViewCandidate] | None = None
+        best_score: tuple[float, float, int, float] | None = None
+        ordered = sorted(candidates, key=self._candidate_rank)
+        for anchor in ordered:
+            for direction in (1, -1):
+                selected: list[StreetViewCandidate] = []
+                errors: list[float] = []
+                used: set[str] = set()
+                for index in range(count):
+                    target = (anchor.heading + direction * step_degrees * index) % 360
+                    available = [item for item in ordered if item.pano_id not in used]
+                    if not available:
+                        break
+                    picked = min(
+                        available,
+                        key=lambda item: (
+                            self.angular_gap(item.heading, target),
+                            self._candidate_rank(item),
+                        ),
+                    )
+                    selected.append(picked)
+                    used.add(picked.pano_id)
+                    errors.append(self.angular_gap(picked.heading, target))
+
+                if len(selected) != count:
+                    continue
+                date_score = sum(self._date_value(item.date) for item in selected)
+                distance_score = sum(item.distance_m for item in selected)
+                score = (-max(errors), -sum(errors), date_score, -distance_score)
+                if best_score is None or score > best_score:
+                    best_score = score
+                    best_group = selected
+
+        return best_group or ordered[:count]
+
+    def build_angle_shots(
         self,
         candidates: list[StreetViewCandidate],
         tree_height_m: float,
@@ -165,55 +263,32 @@ class StreetViewClient:
         if not candidates:
             return []
 
-        ordered = sorted(candidates, key=lambda item: item.distance_m)
-        newest_ordered = sorted(candidates, key=self._candidate_rank)
-        closest = ordered[0]
-        overview_source = next((item for item in newest_ordered if item.distance_m >= 8), newest_ordered[0])
-        detail_source = closest
-
-        return [
-            StreetViewShot(
-                view_type="feature_overview",
-                filename="feature_overview.jpg",
-                pano_id=overview_source.pano_id,
-                lat=overview_source.lat,
-                lon=overview_source.lon,
-                date=overview_source.date,
-                distance_m=overview_source.distance_m,
-                heading=overview_source.heading,
-                pitch=pitch_deg(tree_height_m, overview_source.distance_m, target_ratio=0.65, max_pitch=42.0),
-                fov=fov_for_distance(overview_source.distance_m),
-            ),
-            StreetViewShot(
-                view_type="trunk_texture",
-                filename="trunk_texture.jpg",
-                pano_id=closest.pano_id,
-                lat=closest.lat,
-                lon=closest.lon,
-                date=closest.date,
-                distance_m=closest.distance_m,
-                heading=closest.heading,
-                pitch=0.0,
-                fov=trunk_fov_for_distance(closest.distance_m),
-            ),
-            StreetViewShot(
-                view_type="detail_closeup",
-                filename="detail_closeup.jpg",
-                pano_id=detail_source.pano_id,
-                lat=detail_source.lat,
-                lon=detail_source.lon,
-                date=detail_source.date,
-                distance_m=detail_source.distance_m,
-                heading=detail_source.heading,
-                pitch=pitch_deg(tree_height_m, detail_source.distance_m, target_ratio=0.78, max_pitch=55.0),
-                fov=detail_fov_for_distance(detail_source.distance_m),
-            ),
-        ]
+        fan = self.select_angle_fan_candidates(candidates, count=3, step_degrees=60)
+        if len(fan) < 3:
+            return []
+        labels = ("0", "60", "120")
+        shots: list[StreetViewShot] = []
+        for label, source in zip(labels, fan):
+            shots.append(
+                StreetViewShot(
+                    view_type=f"view_{label}",
+                    filename=f"view_{label}.jpg",
+                    pano_id=source.pano_id,
+                    lat=source.lat,
+                    lon=source.lon,
+                    date=source.date,
+                    distance_m=source.distance_m,
+                    heading=source.heading,
+                    pitch=pitch_deg(tree_height_m, source.distance_m, target_ratio=0.65, max_pitch=42.0),
+                    fov=fov_for_distance(source.distance_m),
+                )
+            )
+        return shots
 
     async def download_image(self, shot: StreetViewShot, output_path: Path) -> None:
         self._require_key()
-        self._count_api("Google Street View Static API")
-        response = await self.http.get(
+        response = await self._get_with_retries(
+            "Google Street View Static API",
             self.image_url,
             params={
                 "size": STATIC_IMAGE_SIZE,
@@ -226,7 +301,6 @@ class StreetViewClient:
                 "key": self.api_key,
             },
         )
-        response.raise_for_status()
         content_type = response.headers.get("content-type", "")
         if "image" not in content_type:
             raise RuntimeError(f"Street View response was not an image: {content_type}")

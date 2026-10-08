@@ -1,0 +1,628 @@
+{
+  "generated_on": "2026-09-06",
+  "scope": {
+    "sampling_spacing_m": 5.0,
+    "requested_first_frames": 280,
+    "reviewed_primary_frames": 212,
+    "missing_primary_frames": [
+      "hewentian_pano__000384",
+      "hewentian_pano__000391",
+      "hewentian_pano__000399",
+      "hewentian_pano__000402",
+      "hewentian_pano__000415",
+      "hewentian_pano__000645",
+      "hewentian_pano__000663",
+      "hewentian_pano__000672",
+      "hewentian_pano__000681",
+      "hewentian_pano__000856",
+      "hewentian_pano__000869",
+      "hewentian_pano__001245",
+      "hewentian_pano__001270",
+      "hewentian_pano__001316",
+      "hewentian_pano__001329",
+      "hewentian_pano__001337",
+      "hewentian_pano__001360",
+      "hewentian_pano__001381",
+      "hewentian_pano__001436",
+      "hewentian_pano__001450",
+      "hewentian_pano__001546",
+      "hewentian_pano__001562",
+      "hewentian_pano__001587",
+      "hewentian_pano__001972",
+      "hewentian_pano__002002",
+      "hewentian_pano__002329",
+      "hewentian_pano__002339",
+      "hewentian_pano__002384",
+      "hewentian_pano__002430",
+      "hewentian_pano__002437",
+      "hewentian_pano__002444",
+      "hewentian_pano__002476",
+      "hewentian_pano__003110",
+      "hewentian_pano__003115",
+      "hewentian_pano__003121",
+      "hewentian_pano__003127",
+      "hewentian_pano__003133",
+      "hewentian_pano__003139",
+      "hewentian_pano__003145",
+      "hewentian_pano__003151",
+      "hewentian_pano__003157",
+      "hewentian_pano__003163",
+      "hewentian_pano__003169",
+      "hewentian_pano__003175",
+      "hewentian_pano__003181",
+      "hewentian_pano__003313",
+      "hewentian_pano__003319",
+      "hewentian_pano__003325",
+      "hewentian_pano__003331",
+      "hewentian_pano__003337",
+      "hewentian_pano__003343",
+      "hewentian_pano__003349",
+      "hewentian_pano__003355",
+      "hewentian_pano__003361",
+      "hewentian_pano__003367",
+      "hewentian_pano__003369",
+      "hewentian_pano__003370",
+      "hewentian_pano__003376",
+      "hewentian_pano__003382",
+      "hewentian_pano__003388",
+      "hewentian_pano__003394",
+      "hewentian_pano__003406",
+      "hewentian_pano__003412",
+      "hewentian_pano__003418",
+      "hewentian_pano__003424",
+      "hewentian_pano__003430",
+      "hewentian_pano__003436",
+      "hewentian_pano__003442"
+    ],
+    "formally_saved_frames_outside_primary": [
+      "hewentian_pano__000342"
+    ],
+    "iou_matching_threshold": 0.2
+  },
+  "frame_status": {
+    "annotated": 190,
+    "no_tree": 1,
+    "unusable": 21
+  },
+  "before_after_species_prelabel": {
+    "pre_review_predictions": 638,
+    "retained_after_review": 455,
+    "deleted_during_review": 183,
+    "species_corrected_during_review": 85,
+    "unchanged_correct": 370,
+    "accuracy_including_deleted_as_errors": 0.5799373040752351,
+    "retained_only_top1_accuracy": 0.8131868131868132,
+    "retained_only_macro_f1": 0.6353798571547311,
+    "retained_only_weighted_f1": 0.8010797604763448,
+    "missing_pre_review_prediction": 18
+  },
+  "by_tier": {
+    "high": {
+      "before": 103,
+      "retained": 79,
+      "deleted": 24,
+      "species_corrected": 15,
+      "correct": 64,
+      "accuracy_including_deleted": 0.6213592233009708,
+      "retained_top1_accuracy": 0.810126582278481
+    },
+    "low": {
+      "before": 303,
+      "retained": 198,
+      "deleted": 105,
+      "species_corrected": 52,
+      "correct": 146,
+      "accuracy_including_deleted": 0.48184818481848185,
+      "retained_top1_accuracy": 0.7373737373737373
+    },
+    "medium": {
+      "before": 232,
+      "retained": 178,
+      "deleted": 54,
+      "species_corrected": 18,
+      "correct": 160,
+      "accuracy_including_deleted": 0.6896551724137931,
+      "retained_top1_accuracy": 0.898876404494382
+    }
+  },
+  "by_confidence": {
+    "0.90–0.99": {
+      "before": 148,
+      "retained": 105,
+      "deleted": 43,
+      "species_corrected": 13,
+      "correct": 92,
+      "accuracy_including_deleted": 0.6216216216216216,
+      "retained_top1_accuracy": 0.8761904761904762
+    },
+    "0.50–0.70": {
+      "before": 111,
+      "retained": 75,
+      "deleted": 36,
+      "species_corrected": 23,
+      "correct": 52,
+      "accuracy_including_deleted": 0.46846846846846846,
+      "retained_top1_accuracy": 0.6933333333333334
+    },
+    "0.70–0.90": {
+      "before": 131,
+      "retained": 90,
+      "deleted": 41,
+      "species_corrected": 21,
+      "correct": 69,
+      "accuracy_including_deleted": 0.5267175572519084,
+      "retained_top1_accuracy": 0.7666666666666667
+    },
+    "≥0.99": {
+      "before": 183,
+      "retained": 145,
+      "deleted": 38,
+      "species_corrected": 13,
+      "correct": 132,
+      "accuracy_including_deleted": 0.7213114754098361,
+      "retained_top1_accuracy": 0.9103448275862069
+    },
+    "<0.50": {
+      "before": 51,
+      "retained": 32,
+      "deleted": 19,
+      "species_corrected": 8,
+      "correct": 24,
+      "accuracy_including_deleted": 0.47058823529411764,
+      "retained_top1_accuracy": 0.75
+    },
+    "无可比模型分数": {
+      "before": 14,
+      "retained": 8,
+      "deleted": 6,
+      "species_corrected": 7,
+      "correct": 1,
+      "accuracy_including_deleted": 0.07142857142857142,
+      "retained_top1_accuracy": 0.125
+    }
+  },
+  "by_predicted_species": {
+    "榕树": {
+      "before": 170,
+      "retained": 157,
+      "deleted": 13,
+      "species_corrected": 8,
+      "correct": 149,
+      "accuracy_including_deleted": 0.8764705882352941,
+      "retained_top1_accuracy": 0.9490445859872612
+    },
+    "Aleurites moluccana 石栗": {
+      "before": 110,
+      "retained": 90,
+      "deleted": 20,
+      "species_corrected": 15,
+      "correct": 75,
+      "accuracy_including_deleted": 0.6818181818181818,
+      "retained_top1_accuracy": 0.8333333333333334
+    },
+    "Livistona chinensis 蒲葵": {
+      "before": 109,
+      "retained": 80,
+      "deleted": 29,
+      "species_corrected": 31,
+      "correct": 49,
+      "accuracy_including_deleted": 0.44954128440366975,
+      "retained_top1_accuracy": 0.6125
+    },
+    "Wodyetia bifurcata 狐尾椰子": {
+      "before": 71,
+      "retained": 26,
+      "deleted": 45,
+      "species_corrected": 9,
+      "correct": 17,
+      "accuracy_including_deleted": 0.23943661971830985,
+      "retained_top1_accuracy": 0.6538461538461539
+    },
+    "Delonix regia 鳳凰木": {
+      "before": 42,
+      "retained": 34,
+      "deleted": 8,
+      "species_corrected": 16,
+      "correct": 18,
+      "accuracy_including_deleted": 0.42857142857142855,
+      "retained_top1_accuracy": 0.5294117647058824
+    },
+    "Alstonia scholaris 糖膠樹": {
+      "before": 39,
+      "retained": 30,
+      "deleted": 9,
+      "species_corrected": 0,
+      "correct": 30,
+      "accuracy_including_deleted": 0.7692307692307693,
+      "retained_top1_accuracy": 1.0
+    },
+    "Albizia lebbeck": {
+      "before": 33,
+      "retained": 7,
+      "deleted": 26,
+      "species_corrected": 1,
+      "correct": 6,
+      "accuracy_including_deleted": 0.18181818181818182,
+      "retained_top1_accuracy": 0.8571428571428571
+    },
+    "Bombax ceiba 木棉": {
+      "before": 13,
+      "retained": 9,
+      "deleted": 4,
+      "species_corrected": 1,
+      "correct": 8,
+      "accuracy_including_deleted": 0.6153846153846154,
+      "retained_top1_accuracy": 0.8888888888888888
+    },
+    "Schefflera heptaphylla 鵝掌柴(鴨腳木)": {
+      "before": 10,
+      "retained": 10,
+      "deleted": 0,
+      "species_corrected": 0,
+      "correct": 10,
+      "accuracy_including_deleted": 1.0,
+      "retained_top1_accuracy": 1.0
+    },
+    "Terminalia catappa 欖仁樹": {
+      "before": 10,
+      "retained": 3,
+      "deleted": 7,
+      "species_corrected": 1,
+      "correct": 2,
+      "accuracy_including_deleted": 0.2,
+      "retained_top1_accuracy": 0.6666666666666666
+    },
+    "Celtis sinensis 朴樹": {
+      "before": 9,
+      "retained": 1,
+      "deleted": 8,
+      "species_corrected": 0,
+      "correct": 1,
+      "accuracy_including_deleted": 0.1111111111111111,
+      "retained_top1_accuracy": 1.0
+    },
+    "Bauhinia purpurea 紅花羊蹄甲": {
+      "before": 8,
+      "retained": 3,
+      "deleted": 5,
+      "species_corrected": 3,
+      "correct": 0,
+      "accuracy_including_deleted": 0.0,
+      "retained_top1_accuracy": 0.0
+    },
+    "Areca catechu": {
+      "before": 5,
+      "retained": 1,
+      "deleted": 4,
+      "species_corrected": 0,
+      "correct": 1,
+      "accuracy_including_deleted": 0.2,
+      "retained_top1_accuracy": 1.0
+    },
+    "Archontophoenix alexandrae": {
+      "before": 3,
+      "retained": 0,
+      "deleted": 3,
+      "species_corrected": 0,
+      "correct": 0,
+      "accuracy_including_deleted": 0.0,
+      "retained_top1_accuracy": null
+    },
+    "Araucaria heterophylla 异叶南洋杉": {
+      "before": 2,
+      "retained": 2,
+      "deleted": 0,
+      "species_corrected": 0,
+      "correct": 2,
+      "accuracy_including_deleted": 1.0,
+      "retained_top1_accuracy": 1.0
+    },
+    "Acacia confusa 台灣相思": {
+      "before": 1,
+      "retained": 0,
+      "deleted": 1,
+      "species_corrected": 0,
+      "correct": 0,
+      "accuracy_including_deleted": 0.0,
+      "retained_top1_accuracy": null
+    },
+    "Ailanthus fordii": {
+      "before": 1,
+      "retained": 1,
+      "deleted": 0,
+      "species_corrected": 0,
+      "correct": 1,
+      "accuracy_including_deleted": 1.0,
+      "retained_top1_accuracy": 1.0
+    },
+    "Albizia lebbeck 大葉合歡": {
+      "before": 1,
+      "retained": 0,
+      "deleted": 1,
+      "species_corrected": 0,
+      "correct": 0,
+      "accuracy_including_deleted": 0.0,
+      "retained_top1_accuracy": null
+    },
+    "Araucaria columnaris": {
+      "before": 1,
+      "retained": 1,
+      "deleted": 0,
+      "species_corrected": 0,
+      "correct": 1,
+      "accuracy_including_deleted": 1.0,
+      "retained_top1_accuracy": 1.0
+    }
+  },
+  "by_species": {
+    "榕树": {
+      "actual": 175,
+      "predicted": 157,
+      "correct": 149,
+      "precision": 0.9490445859872612,
+      "recall": 0.8514285714285714,
+      "f1": 0.8975903614457831
+    },
+    "Aleurites moluccana 石栗": {
+      "actual": 83,
+      "predicted": 90,
+      "correct": 75,
+      "precision": 0.8333333333333334,
+      "recall": 0.9036144578313253,
+      "f1": 0.8670520231213873
+    },
+    "Livistona chinensis 蒲葵": {
+      "actual": 56,
+      "predicted": 80,
+      "correct": 49,
+      "precision": 0.6125,
+      "recall": 0.875,
+      "f1": 0.7205882352941178
+    },
+    "Alstonia scholaris 糖膠樹": {
+      "actual": 37,
+      "predicted": 30,
+      "correct": 30,
+      "precision": 1.0,
+      "recall": 0.8108108108108109,
+      "f1": 0.8955223880597014
+    },
+    "Wodyetia bifurcata 狐尾椰子": {
+      "actual": 23,
+      "predicted": 26,
+      "correct": 17,
+      "precision": 0.6538461538461539,
+      "recall": 0.7391304347826086,
+      "f1": 0.693877551020408
+    },
+    "Delonix regia 鳳凰木": {
+      "actual": 20,
+      "predicted": 34,
+      "correct": 18,
+      "precision": 0.5294117647058824,
+      "recall": 0.9,
+      "f1": 0.6666666666666667
+    },
+    "Phoenix roebelenii 日本葵(軟葉刺葵)": {
+      "actual": 13,
+      "predicted": 0,
+      "correct": 0,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "Schefflera heptaphylla 鵝掌柴(鴨腳木)": {
+      "actual": 10,
+      "predicted": 10,
+      "correct": 10,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "Araucaria heterophylla 异叶南洋杉": {
+      "actual": 10,
+      "predicted": 2,
+      "correct": 2,
+      "precision": 1.0,
+      "recall": 0.2,
+      "f1": 0.33333333333333337
+    },
+    "Bombax ceiba 木棉": {
+      "actual": 8,
+      "predicted": 9,
+      "correct": 8,
+      "precision": 0.8888888888888888,
+      "recall": 1.0,
+      "f1": 0.9411764705882353
+    },
+    "Albizia lebbeck": {
+      "actual": 6,
+      "predicted": 7,
+      "correct": 6,
+      "precision": 0.8571428571428571,
+      "recall": 1.0,
+      "f1": 0.923076923076923
+    },
+    "Celtis sinensis 朴樹": {
+      "actual": 5,
+      "predicted": 1,
+      "correct": 1,
+      "precision": 1.0,
+      "recall": 0.2,
+      "f1": 0.33333333333333337
+    },
+    "Terminalia catappa 欖仁樹": {
+      "actual": 2,
+      "predicted": 3,
+      "correct": 2,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8
+    },
+    "Lagerstroemia indica 紫薇": {
+      "actual": 2,
+      "predicted": 0,
+      "correct": 0,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "Ailanthus fordii": {
+      "actual": 1,
+      "predicted": 1,
+      "correct": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "Araucaria columnaris": {
+      "actual": 1,
+      "predicted": 1,
+      "correct": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "Areca catechu": {
+      "actual": 1,
+      "predicted": 1,
+      "correct": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "Archontophoenix alexandrae": {
+      "actual": 1,
+      "predicted": 0,
+      "correct": 0,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "Ravenala madagascariensis 旅人蕉": {
+      "actual": 1,
+      "predicted": 0,
+      "correct": 0,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "Bauhinia purpurea 紅花羊蹄甲": {
+      "actual": 0,
+      "predicted": 3,
+      "correct": 0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0
+    }
+  },
+  "top_confusions": [
+    {
+      "predicted": "Delonix regia 鳳凰木",
+      "final": "榕树",
+      "count": 14
+    },
+    {
+      "predicted": "Livistona chinensis 蒲葵",
+      "final": "Phoenix roebelenii 日本葵(軟葉刺葵)",
+      "count": 13
+    },
+    {
+      "predicted": "Aleurites moluccana 石栗",
+      "final": "榕树",
+      "count": 9
+    },
+    {
+      "predicted": "Wodyetia bifurcata 狐尾椰子",
+      "final": "Livistona chinensis 蒲葵",
+      "count": 7
+    },
+    {
+      "predicted": "榕树",
+      "final": "Aleurites moluccana 石栗",
+      "count": 6
+    },
+    {
+      "predicted": "Livistona chinensis 蒲葵",
+      "final": "Alstonia scholaris 糖膠樹",
+      "count": 5
+    },
+    {
+      "predicted": "Livistona chinensis 蒲葵",
+      "final": "Wodyetia bifurcata 狐尾椰子",
+      "count": 5
+    },
+    {
+      "predicted": "Livistona chinensis 蒲葵",
+      "final": "Araucaria heterophylla 异叶南洋杉",
+      "count": 4
+    },
+    {
+      "predicted": "Bauhinia purpurea 紅花羊蹄甲",
+      "final": "榕树",
+      "count": 3
+    },
+    {
+      "predicted": "Aleurites moluccana 石栗",
+      "final": "Araucaria heterophylla 异叶南洋杉",
+      "count": 3
+    },
+    {
+      "predicted": "Wodyetia bifurcata 狐尾椰子",
+      "final": "Alstonia scholaris 糖膠樹",
+      "count": 2
+    },
+    {
+      "predicted": "榕树",
+      "final": "Celtis sinensis 朴樹",
+      "count": 2
+    },
+    {
+      "predicted": "Livistona chinensis 蒲葵",
+      "final": "Delonix regia 鳳凰木",
+      "count": 2
+    },
+    {
+      "predicted": "Delonix regia 鳳凰木",
+      "final": "Celtis sinensis 朴樹",
+      "count": 1
+    },
+    {
+      "predicted": "Aleurites moluccana 石栗",
+      "final": "Celtis sinensis 朴樹",
+      "count": 1
+    },
+    {
+      "predicted": "Livistona chinensis 蒲葵",
+      "final": "Ravenala madagascariensis 旅人蕉",
+      "count": 1
+    },
+    {
+      "predicted": "Aleurites moluccana 石栗",
+      "final": "Wodyetia bifurcata 狐尾椰子",
+      "count": 1
+    },
+    {
+      "predicted": "Delonix regia 鳳凰木",
+      "final": "Lagerstroemia indica 紫薇",
+      "count": 1
+    },
+    {
+      "predicted": "Aleurites moluccana 石栗",
+      "final": "Lagerstroemia indica 紫薇",
+      "count": 1
+    },
+    {
+      "predicted": "Livistona chinensis 蒲葵",
+      "final": "Archontophoenix alexandrae",
+      "count": 1
+    }
+  ],
+  "prior_independent_benchmark": {
+    "model": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\runs\\classify\\hk-tree-vmms\\derived\\training_runs\\vmms_species_classifier\\yolo11s_cls_blocksplit_20260906\\weights\\best.pt",
+    "suggested_instances": 4049,
+    "formal_labels_changed": 0,
+    "held_out_top1_accuracy": 0.645320197044335,
+    "held_out_accuracy_at_confidence_0.99": 0.845360824742268
+  }
+}

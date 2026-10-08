@@ -1,0 +1,43 @@
+{
+  "seed": 20260906,
+  "per_route": 60,
+  "selection": "auto_review_required frames with at least one proposal; randomized round-robin over route blocks",
+  "rows": 120,
+  "route_counts": {
+    "jianshazui": 60,
+    "stubbs_road": 60
+  },
+  "holdout_blocks": [
+    "jianshazui_pano_1_0002",
+    "jianshazui_pano_1_0003",
+    "jianshazui_pano_1_0004",
+    "jianshazui_pano_1_0005",
+    "jianshazui_pano_1_0006",
+    "jianshazui_pano_1_0007",
+    "jianshazui_pano_1_0008",
+    "jianshazui_pano_2_0000",
+    "jianshazui_pano_2_0001",
+    "jianshazui_pano_2_0002",
+    "jianshazui_pano_2_0003",
+    "jianshazui_pano_2_0004",
+    "jianshazui_pano_2_0005",
+    "jianshazui_pano_2_0006",
+    "jianshazui_pano_2_0007",
+    "jianshazui_pano_2_0008",
+    "jianshazui_pano_2_0009",
+    "jianshazui_pano_2_0010",
+    "jianshazui_pano_2_0011",
+    "jianshazui_pano_2_0014",
+    "jianshazui_pano_2_0017",
+    "jianshazui_pano_2_0025",
+    "stubbs_pano_0_0000",
+    "stubbs_pano_0_0001",
+    "stubbs_pano_1_0000",
+    "stubbs_pano_1_0001",
+    "stubbs_pano_1_0002",
+    "stubbs_pano_1_0003",
+    "stubbs_pano_1_0004",
+    "stubbs_pano_1_0005"
+  ],
+  "note": "Keep these frames out of future tuning until accuracy is finalized."
+}

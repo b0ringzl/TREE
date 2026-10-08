@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d D:\TREE\hk-tree-labeler
+cd /d "%~dp0"
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\run-session.ps1"
 echo.
 echo Press any key to close this window.

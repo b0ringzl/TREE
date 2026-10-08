@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tree Atlas · Teacher / 樹識 · 教師模型</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><header><div><h1>Tree Atlas / 樹識</h1><p>Teacher image recognition / 教師模型影像識別</p></div><span id="health" role="status">Loading model / 正在載入模型</span></header>
+<main><nav><span>Experimental edition / 實驗版</span><a href="http://127.0.0.1:8037/" target="_blank" rel="noopener">Multimodal Demo ↗ / 多模態版本 ↗</a></nav>
+<div class="workspace"><section class="panel"><h2>Input image / 輸入影像</h2><form id="form">
+<label for="mode">Model / 模型</label><select id="mode"><option value="adapted">BioCLIP 2.5 + MLP / 教師＋適配分類頭</option><option value="teacher">BioCLIP 2.5 / 原始教師</option></select>
+<p>148 classes · Image only / 148 類 · 僅影像</p><label for="image">Single-tree photo / 單木照片</label><input id="image" type="file" accept="image/jpeg,image/png,image/webp" required>
+<p class="muted">JPG / PNG / WEBP · ≤ 20 MB<br>Crop one tree or its diagnostic detail. / 請裁切單一樹木或其辨識細節。</p>
+<img id="preview" alt="Uploaded image / 上傳影像" hidden><button id="run" disabled>Recognize → / 開始識別 →</button></form><p id="error" role="alert"></p></section>
+<section class="panel" aria-live="polite"><h2>Result & evidence / 結果與依據</h2><div id="empty" class="empty">Upload an image to begin. / 上傳影像以開始。</div><div id="result" hidden>
+<p id="model"></p><h3>Most likely candidates / 最可能的候選樹種</h3><p class="muted">Candidate ranking, not a confirmed identification.<br>候選排序，並非已確認的鑑定。</p><p>Confidence (model score) / 置信度（模型分數）</p><ol id="candidates"></ol>
+<div id="quality" class="notice"></div><details open><summary>Model evidence / 模型判讀依據</summary><p id="agreement"></p><p id="timing"></p><p class="muted">Scores come from image–text similarity; the adapted mode adds three trained MLP heads. Neither supplies verified leaf or bark traits.<br>分數來自影像與文字特徵相似度；適配模式加入三個已訓練的 MLP 分類頭。兩者均不提供經驗證的葉片或樹皮特徵解釋。</p><figure><img id="crop" alt="224 × 224 model input / 模型實際輸入"><figcaption>Actual center crop / 實際中央裁切</figcaption></figure></details><button id="download" class="secondary">Download result / 下載結果</button>
+</div></section></div>
+<details class="panel scope"><summary>Scope & species / 適用範圍與樹種</summary><p>Image-only classification, not panorama detection or point-cloud fusion. Scores are not field accuracy; species beyond these 148 classes may be misclassified.<br>僅作影像分類，並非全景偵測或點雲融合。分數並非實地正確率；不屬於這 148 類的物種仍可能誤判。</p><p>Images are processed locally and are not retained after inference. The original Demo and its weights remain separate.<br>影像僅在本機處理，推理後不予保留。原版 Demo 與其權重保持獨立。</p><p>Ficus microcarpa and Ficus benjamina share the banyan label. The Araucaria label retains the existing merged class.<br>細葉榕與垂葉榕共用榕樹標籤；南洋杉保留現有合併類別定義。</p><div id="catalog"></div></details>
+</main><script src="/static/app.js"></script></body></html>

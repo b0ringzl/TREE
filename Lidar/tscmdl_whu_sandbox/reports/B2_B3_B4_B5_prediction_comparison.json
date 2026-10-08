@@ -1,0 +1,150 @@
+{
+  "status": "passed",
+  "generated_at": "2026-07-28T15:07:22+08:00",
+  "class_names": [
+    "Cinnamomum camphora",
+    "Lagerstroemia indica",
+    "Magnolia grandiflora"
+  ],
+  "runs": {
+    "B2": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b2_pointmlp\\run_batch3_seed20260714",
+    "B3": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b3_resnet50\\run_batch8_seed20260723",
+    "B4": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727",
+    "B5": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728"
+  },
+  "metrics": {
+    "B2": {
+      "val": {
+        "accuracy": 0.5444444444444444,
+        "balanced_accuracy": 0.5444444444444444,
+        "macro_f1": 0.5341808854689417
+      },
+      "test": {
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.6666666666666666,
+        "macro_f1": 0.6610548962049267
+      }
+    },
+    "B3": {
+      "val": {
+        "accuracy": 0.9111111111111111,
+        "balanced_accuracy": 0.9111111111111111,
+        "macro_f1": 0.9109838787258142
+      },
+      "test": {
+        "accuracy": 0.8,
+        "balanced_accuracy": 0.7999999999999999,
+        "macro_f1": 0.8019105077928609
+      }
+    },
+    "B4": {
+      "val": {
+        "accuracy": 0.8,
+        "balanced_accuracy": 0.7999999999999999,
+        "macro_f1": 0.7993216506500848
+      },
+      "test": {
+        "accuracy": 0.8333333333333334,
+        "balanced_accuracy": 0.8333333333333334,
+        "macro_f1": 0.8332422088572992
+      }
+    },
+    "B5": {
+      "val": {
+        "accuracy": 0.7555555555555555,
+        "balanced_accuracy": 0.7555555555555555,
+        "macro_f1": 0.7393223010244286
+      },
+      "test": {
+        "accuracy": 0.9666666666666667,
+        "balanced_accuracy": 0.9666666666666668,
+        "macro_f1": 0.9669830137392966
+      }
+    }
+  },
+  "correctness_overlap": {
+    "model_order": [
+      "B2",
+      "B3",
+      "B4",
+      "B5"
+    ],
+    "by_split": {
+      "test": {
+        "sample_count": 90,
+        "model_order": [
+          "B2",
+          "B3",
+          "B4",
+          "B5"
+        ],
+        "pattern_counts": {
+          "0001": 5,
+          "0011": 2,
+          "0101": 1,
+          "0110": 1,
+          "0111": 21,
+          "1001": 7,
+          "1011": 4,
+          "1100": 1,
+          "1101": 1,
+          "1110": 1,
+          "1111": 46
+        },
+        "correct_by_model": {
+          "B2": 60,
+          "B3": 72,
+          "B4": 75,
+          "B5": 87
+        },
+        "only_correct": {
+          "B2": 0,
+          "B3": 0,
+          "B4": 0,
+          "B5": 5
+        },
+        "all_correct": 46,
+        "none_correct": 0,
+        "any_model_oracle_accuracy": 1.0
+      },
+      "val": {
+        "sample_count": 90,
+        "model_order": [
+          "B2",
+          "B3",
+          "B4",
+          "B5"
+        ],
+        "pattern_counts": {
+          "0001": 2,
+          "0010": 1,
+          "0011": 1,
+          "0100": 5,
+          "0101": 3,
+          "0110": 11,
+          "0111": 18,
+          "1001": 3,
+          "1011": 1,
+          "1101": 5,
+          "1110": 5,
+          "1111": 35
+        },
+        "correct_by_model": {
+          "B2": 49,
+          "B3": 82,
+          "B4": 72,
+          "B5": 68
+        },
+        "only_correct": {
+          "B2": 0,
+          "B3": 5,
+          "B4": 1,
+          "B5": 2
+        },
+        "all_correct": 35,
+        "none_correct": 0,
+        "any_model_oracle_accuracy": 1.0
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 param(
-    [string]$WorkspaceRoot = ([IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\..\.."))),
-    [string]$SuiteRoot = (Join-Path $WorkspaceRoot "lidar data\whu\derived\tscmdl\d1_fusion_clean_repeats\20260818_protocol_v1")
+    [string]$WorkspaceRoot = "C:\Users\25041725G\Desktop\receive\TREE",
+    [string]$SuiteRoot = "C:\Users\25041725G\Desktop\receive\TREE\lidar data\whu\derived\tscmdl\d1_fusion_clean_repeats\20260818_protocol_v1"
 )
 
 $ErrorActionPreference = "Stop"

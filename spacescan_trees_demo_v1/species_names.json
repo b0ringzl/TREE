@@ -1,0 +1,909 @@
+{
+  "Acacia auriculiformis": {
+    "scientific_name": "Acacia auriculiformis",
+    "chinese_name": "耳果相思",
+    "source_species": "Acacia auriculiformis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8995"
+  },
+  "Acacia confusa": {
+    "scientific_name": "Acacia confusa",
+    "chinese_name": "台灣相思",
+    "source_species": "Acacia confusa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7299"
+  },
+  "Acacia mangium": {
+    "scientific_name": "Acacia mangium",
+    "chinese_name": "大葉相思",
+    "source_species": "Acacia mangium",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7305"
+  },
+  "Adenanthera microsperma": {
+    "scientific_name": "Adenanthera microsperma",
+    "chinese_name": "海紅豆",
+    "source_species": "Adenanthera microsperma",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3017"
+  },
+  "Adinandra millettii": {
+    "scientific_name": "Adinandra millettii",
+    "chinese_name": "黃瑞木",
+    "source_species": "Adinandra millettii",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7140"
+  },
+  "Ailanthus fordii": {
+    "scientific_name": "Ailanthus fordii",
+    "chinese_name": "常綠臭椿",
+    "source_species": "Ailanthus fordii",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7040"
+  },
+  "Alangium chinense": {
+    "scientific_name": "Alangium chinense",
+    "chinese_name": "八角楓",
+    "source_species": "Alangium chinense",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3369"
+  },
+  "Albizia lebbeck": {
+    "scientific_name": "Albizia lebbeck",
+    "chinese_name": "大葉合歡",
+    "source_species": "Albizia lebbeck",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3022"
+  },
+  "Aleurites moluccana": {
+    "scientific_name": "Aleurites moluccana",
+    "chinese_name": "石栗",
+    "source_species": "Aleurites moluccana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8135"
+  },
+  "Alstonia scholaris": {
+    "scientific_name": "Alstonia scholaris",
+    "chinese_name": "糖膠樹",
+    "source_species": "Alstonia scholaris",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6754"
+  },
+  "Antirhea chinensis": {
+    "scientific_name": "Antirhea chinensis",
+    "chinese_name": "毛茶",
+    "source_species": "Antirhea chinensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2780"
+  },
+  "Aquilaria sinensis": {
+    "scientific_name": "Aquilaria sinensis",
+    "chinese_name": "土沉香",
+    "source_species": "Aquilaria sinensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6214"
+  },
+  "Araucaria columnaris(Araucaria heterophylla)": {
+    "scientific_name": "Araucaria spp.",
+    "chinese_name": "南洋杉",
+    "source_species": "Araucaria columnaris / Araucaria heterophylla",
+    "source_url": null,
+    "naming_note": "Presentation-only genus-level alias for the pooled class. Model label and scores retained; not evidence of distinguishing the two species."
+  },
+  "Archontophoenix alexandrae": {
+    "scientific_name": "Archontophoenix alexandrae",
+    "chinese_name": "假檳榔",
+    "source_species": "Archontophoenix alexandrae",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3652"
+  },
+  "Areca catechu": {
+    "scientific_name": "Areca catechu",
+    "chinese_name": "檳榔",
+    "source_species": "Areca catechu",
+    "source_url": "https://www.greening.gov.hk/tc/community-outreach/qrcode-tree-labels/index_id_106.html"
+  },
+  "Artocarpus heterophyllus": {
+    "scientific_name": "Artocarpus heterophyllus",
+    "chinese_name": "菠蘿蜜",
+    "source_species": "Artocarpus heterophyllus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3033"
+  },
+  "Artocarpus hypargyreus": {
+    "scientific_name": "Artocarpus hypargyreus",
+    "chinese_name": "白桂木",
+    "source_species": "Artocarpus hypargyreus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9207"
+  },
+  "Bauhinia purpurea": {
+    "scientific_name": "Bauhinia purpurea",
+    "chinese_name": "紅花羊蹄甲",
+    "source_species": "Bauhinia purpurea",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8335"
+  },
+  "Bauhinia variegata": {
+    "scientific_name": "Bauhinia variegata",
+    "chinese_name": "宮粉羊蹄甲",
+    "source_species": "Bauhinia variegata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8337"
+  },
+  "Bauhinia x blakeana": {
+    "scientific_name": "Bauhinia x blakeana",
+    "chinese_name": "洋紫荊",
+    "source_species": "Bauhinia x blakeana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8328"
+  },
+  "Bauhinia group": {
+    "scientific_name": "Bauhinia group",
+    "chinese_name": "洋紫荊",
+    "source_species": "Bauhinia purpurea / Bauhinia variegata / Bauhinia x blakeana",
+    "source_url": "https://www.greening.gov.hk/en/resource-centre/plant-species-knowledge/special-topics/index.html",
+    "naming_note": "Presentation-only three-species group. Hong Kong Orchid Tree is the English common name of B. x blakeana alone; model scores do not confirm a species."
+  },
+  "Bischofia javanica": {
+    "scientific_name": "Bischofia javanica",
+    "chinese_name": "秋楓",
+    "source_species": "Bischofia javanica",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8147"
+  },
+  "Bombax ceiba": {
+    "scientific_name": "Bombax ceiba",
+    "chinese_name": "木棉",
+    "source_species": "Bombax ceiba",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4526"
+  },
+  "Bridelia tomentosa(Bridelia insulana)": {
+    "scientific_name": "Bridelia tomentosa(Bridelia insulana)",
+    "chinese_name": "土蜜樹",
+    "source_species": "Bridelia tomentosa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4177"
+  },
+  "Broussonetia papyrifera": {
+    "scientific_name": "Broussonetia papyrifera",
+    "chinese_name": "構樹",
+    "source_species": "Broussonetia papyrifera",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3039"
+  },
+  "Callistemon viminalis": {
+    "scientific_name": "Callistemon viminalis",
+    "chinese_name": "串錢柳",
+    "source_species": "Callistemon viminalis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3518"
+  },
+  "Canthium dicoccum": {
+    "scientific_name": "Canthium dicoccum",
+    "chinese_name": "魚骨木",
+    "source_species": "Canthium dicoccum",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2790"
+  },
+  "Carallia brachiata": {
+    "scientific_name": "Carallia brachiata",
+    "chinese_name": "竹節樹",
+    "source_species": "Carallia brachiata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6365"
+  },
+  "Caryota mitis": {
+    "scientific_name": "Caryota mitis",
+    "chinese_name": "短穗魚尾葵",
+    "source_species": "Caryota mitis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3161"
+  },
+  "Cassia fistula": {
+    "scientific_name": "Cassia fistula",
+    "chinese_name": "臘腸樹",
+    "source_species": "Cassia fistula",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8351"
+  },
+  "Castanopsis fissa": {
+    "scientific_name": "Castanopsis fissa",
+    "chinese_name": "黧蒴錐",
+    "source_species": "Castanopsis fissa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3786"
+  },
+  "Casuarina equisetifolia": {
+    "scientific_name": "Casuarina equisetifolia",
+    "chinese_name": "木麻黃",
+    "source_species": "Casuarina equisetifolia",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8377"
+  },
+  "Celtis sinensis": {
+    "scientific_name": "Celtis sinensis",
+    "chinese_name": "朴樹",
+    "source_species": "Celtis sinensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7326"
+  },
+  "Celtis timorensis": {
+    "scientific_name": "Celtis timorensis",
+    "chinese_name": "假玉桂",
+    "source_species": "Celtis timorensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7327"
+  },
+  "Cerbera manghas": {
+    "scientific_name": "Cerbera manghas",
+    "chinese_name": "海杧果",
+    "source_species": "Cerbera manghas",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4069"
+  },
+  "Choerospondias axillaris": {
+    "scientific_name": "Choerospondias axillaris",
+    "chinese_name": "南酸棗",
+    "source_species": "Choerospondias axillaris",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3717"
+  },
+  "Chukrasia tabularis": {
+    "scientific_name": "Chukrasia tabularis",
+    "chinese_name": "麻楝",
+    "source_species": "Chukrasia tabularis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=11094"
+  },
+  "Cinnamomum burmannii": {
+    "scientific_name": "Cinnamomum burmannii",
+    "chinese_name": "陰香",
+    "source_species": "Cinnamomum burmannii",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6132"
+  },
+  "Cinnamomum camphora": {
+    "scientific_name": "Cinnamomum camphora",
+    "chinese_name": "樟",
+    "source_species": "Cinnamomum camphora",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8770"
+  },
+  "Cinnamomum parthenoxylon": {
+    "scientific_name": "Cinnamomum parthenoxylon",
+    "chinese_name": "黃樟",
+    "source_species": "Cinnamomum parthenoxylon",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6136"
+  },
+  "Citrus maxima": {
+    "scientific_name": "Citrus maxima",
+    "chinese_name": "柚",
+    "source_species": "Citrus maxima",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=11340"
+  },
+  "Clausena lansium": {
+    "scientific_name": "Clausena lansium",
+    "chinese_name": "黃皮",
+    "source_species": "Clausena lansium",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2521"
+  },
+  "Cleistocalyx nervosum": {
+    "scientific_name": "Cleistocalyx nervosum",
+    "chinese_name": "水翁",
+    "source_species": "Cleistocalyx nervosum",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3520"
+  },
+  "Crateva unilocularis": {
+    "scientific_name": "Crateva unilocularis",
+    "chinese_name": "樹頭菜",
+    "source_species": "Crateva unilocularis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4563"
+  },
+  "Cratoxylum cochinchinense": {
+    "scientific_name": "Cratoxylum cochinchinense",
+    "chinese_name": "黃牛木",
+    "source_species": "Cratoxylum cochinchinense",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5832"
+  },
+  "Delonix regia": {
+    "scientific_name": "Delonix regia",
+    "chinese_name": "鳳凰木",
+    "source_species": "Delonix regia",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8057"
+  },
+  "Dimocarpus longan": {
+    "scientific_name": "Dimocarpus longan",
+    "chinese_name": "龍眼",
+    "source_species": "Dimocarpus longan",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2865"
+  },
+  "Diospyros eriantha": {
+    "scientific_name": "Diospyros eriantha",
+    "chinese_name": "烏柿",
+    "source_species": "Diospyros eriantha",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5469"
+  },
+  "Diospyros morrisiana": {
+    "scientific_name": "Diospyros morrisiana",
+    "chinese_name": "羅浮柿",
+    "source_species": "Diospyros morrisiana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5475"
+  },
+  "Dypsis lutescens": {
+    "scientific_name": "Dypsis lutescens",
+    "chinese_name": "散尾葵",
+    "source_species": "Dypsis lutescens",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3165"
+  },
+  "Elaeocarpus hainanensis": {
+    "scientific_name": "Elaeocarpus hainanensis",
+    "chinese_name": "水石榕",
+    "source_species": "Elaeocarpus hainanensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7759"
+  },
+  "Elaeocarpus sylvestris": {
+    "scientific_name": "Elaeocarpus sylvestris",
+    "chinese_name": "山杜英",
+    "source_species": "Elaeocarpus sylvestris",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7764"
+  },
+  "Erythrina variegata": {
+    "scientific_name": "Erythrina variegata",
+    "chinese_name": "刺桐",
+    "source_species": "Erythrina variegata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6971"
+  },
+  "Eucalyptus camaldulensis": {
+    "scientific_name": "Eucalyptus camaldulensis",
+    "chinese_name": "赤桉",
+    "source_species": "Eucalyptus camaldulensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=11443"
+  },
+  "Eucalyptus citriodora": {
+    "scientific_name": "Eucalyptus citriodora",
+    "chinese_name": "檸檬桉",
+    "source_species": "Corymbia citriodora",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6271"
+  },
+  "Eucalyptus exserta": {
+    "scientific_name": "Eucalyptus exserta",
+    "chinese_name": "窿緣桉",
+    "source_species": "Eucalyptus exserta",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6327"
+  },
+  "Eucalyptus robusta": {
+    "scientific_name": "Eucalyptus robusta",
+    "chinese_name": "大葉桉",
+    "source_species": "Eucalyptus robusta",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6913"
+  },
+  "Eucalyptus tereticornis": {
+    "scientific_name": "Eucalyptus tereticornis",
+    "chinese_name": "細葉桉",
+    "source_species": "Eucalyptus tereticornis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6919"
+  },
+  "Eucalyptus torelliana": {
+    "scientific_name": "Eucalyptus torelliana",
+    "chinese_name": "毛葉桉",
+    "source_species": "Corymbia torelliana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6922"
+  },
+  "Eucalyptus urophylla": {
+    "scientific_name": "Eucalyptus urophylla",
+    "chinese_name": "尾葉桉",
+    "source_species": "Eucalyptus urophylla",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=11087"
+  },
+  "Eurya nitida": {
+    "scientific_name": "Eurya nitida",
+    "chinese_name": "細齒葉柃",
+    "source_species": "Eurya nitida",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2601"
+  },
+  "Ficus altissima": {
+    "scientific_name": "Ficus altissima",
+    "chinese_name": "高山榕",
+    "source_species": "Ficus altissima",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6895"
+  },
+  "Ficus microcarpa / Ficus benjamina (榕樹)": {
+    "scientific_name": "Ficus microcarpa",
+    "chinese_name": "榕樹（細葉榕）",
+    "source_species": "Ficus microcarpa / Ficus benjamina",
+    "source_url": null,
+    "naming_note": "User-requested display alias, 2026-09-10. Underlying merged model label and scores retained; not evidence of distinguishing F. benjamina."
+  },
+  "Ficus elastica": {
+    "scientific_name": "Ficus elastica",
+    "chinese_name": "印度榕",
+    "source_species": "Ficus elastica",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6901"
+  },
+  "Ficus hispida": {
+    "scientific_name": "Ficus hispida",
+    "chinese_name": "對葉榕",
+    "source_species": "Ficus hispida",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3052"
+  },
+  "Ficus religiosa": {
+    "scientific_name": "Ficus religiosa",
+    "chinese_name": "菩提樹",
+    "source_species": "Ficus religiosa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6933"
+  },
+  "Ficus subpisocarpa": {
+    "scientific_name": "Ficus subpisocarpa",
+    "chinese_name": "筆管榕",
+    "source_species": "Ficus subpisocarpa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7306"
+  },
+  "Ficus variegata": {
+    "scientific_name": "Ficus variegata",
+    "chinese_name": "青果榕",
+    "source_species": "Ficus variegata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7309"
+  },
+  "Ficus virens": {
+    "scientific_name": "Ficus virens",
+    "chinese_name": "黃葛樹",
+    "source_species": "Ficus virens",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3484"
+  },
+  "Garcinia oblongifolia": {
+    "scientific_name": "Garcinia oblongifolia",
+    "chinese_name": "嶺南山竹子",
+    "source_species": "Garcinia oblongifolia",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8441"
+  },
+  "Garcinia subelliptica": {
+    "scientific_name": "Garcinia subelliptica",
+    "chinese_name": "菲島福木",
+    "source_species": "Garcinia subelliptica",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8444"
+  },
+  "Grevillea robusta": {
+    "scientific_name": "Grevillea robusta",
+    "chinese_name": "銀樺",
+    "source_species": "Grevillea robusta",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7636"
+  },
+  "Hibiscus tiliaceus": {
+    "scientific_name": "Hibiscus tiliaceus",
+    "chinese_name": "黃槿",
+    "source_species": "Hibiscus tiliaceus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5698"
+  },
+  "Hyophorbe lagenicaulis": {
+    "scientific_name": "Hyophorbe lagenicaulis",
+    "chinese_name": "酒瓶椰子",
+    "source_species": "Hyophorbe lagenicaulis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9784"
+  },
+  "Ilex rotunda": {
+    "scientific_name": "Ilex rotunda",
+    "chinese_name": "鐵冬青",
+    "source_species": "Ilex rotunda",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6208"
+  },
+  "Itea chinensis": {
+    "scientific_name": "Itea chinensis",
+    "chinese_name": "老鼠刺",
+    "source_species": "Itea chinensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8118"
+  },
+  "Jacaranda mimosifolia": {
+    "scientific_name": "Jacaranda mimosifolia",
+    "chinese_name": "藍花楹",
+    "source_species": "Jacaranda mimosifolia",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9676"
+  },
+  "Juniperus chinensis": {
+    "scientific_name": "Juniperus chinensis",
+    "chinese_name": "圓柏",
+    "source_species": "Juniperus chinensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9376"
+  },
+  "Khaya senegalensis": {
+    "scientific_name": "Khaya senegalensis",
+    "chinese_name": "非洲楝",
+    "source_species": "Khaya senegalensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9584"
+  },
+  "Koelreuteria bipinnata": {
+    "scientific_name": "Koelreuteria bipinnata",
+    "chinese_name": "複羽葉欒樹",
+    "source_species": "Koelreuteria bipinnata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2869"
+  },
+  "Lagerstroemia indica": {
+    "scientific_name": "Lagerstroemia indica",
+    "chinese_name": "紫薇",
+    "source_species": "Lagerstroemia indica",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3428"
+  },
+  "Lagerstroemia speciosa": {
+    "scientific_name": "Lagerstroemia speciosa",
+    "chinese_name": "大花紫薇",
+    "source_species": "Lagerstroemia speciosa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3429"
+  },
+  "Ligustrum sinense": {
+    "scientific_name": "Ligustrum sinense",
+    "chinese_name": "山指甲",
+    "source_species": "Ligustrum sinense",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6352"
+  },
+  "Liquidambar formosana": {
+    "scientific_name": "Liquidambar formosana",
+    "chinese_name": "楓香",
+    "source_species": "Liquidambar formosana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5127"
+  },
+  "Litchi chinensis": {
+    "scientific_name": "Litchi chinensis",
+    "chinese_name": "荔枝",
+    "source_species": "Litchi chinensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2870"
+  },
+  "Litsea cubeba": {
+    "scientific_name": "Litsea cubeba",
+    "chinese_name": "木薑子",
+    "source_species": "Litsea cubeba",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4978"
+  },
+  "Litsea glutinosa": {
+    "scientific_name": "Litsea glutinosa",
+    "chinese_name": "潺槁樹",
+    "source_species": "Litsea glutinosa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4439"
+  },
+  "Litsea monopetala": {
+    "scientific_name": "Litsea monopetala",
+    "chinese_name": "假柿木薑子",
+    "source_species": "Litsea monopetala",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4442"
+  },
+  "Litsea rotundifolia": {
+    "scientific_name": "Litsea rotundifolia",
+    "chinese_name": "圓葉豺皮樟",
+    "source_species": "Litsea rotundifolia",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4444"
+  },
+  "Livistona chinensis": {
+    "scientific_name": "Livistona chinensis",
+    "chinese_name": "蒲葵",
+    "source_species": "Livistona chinensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6777"
+  },
+  "Lophostemon confertus": {
+    "scientific_name": "Lophostemon confertus",
+    "chinese_name": "紅膠木",
+    "source_species": "Lophostemon confertus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3064"
+  },
+  "Macaranga tanarius": {
+    "scientific_name": "Macaranga tanarius",
+    "chinese_name": "血桐",
+    "source_species": "Macaranga tanarius var. tomentosa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3749"
+  },
+  "Machilus breviflora": {
+    "scientific_name": "Machilus breviflora",
+    "chinese_name": "短序潤楠",
+    "source_species": "Machilus breviflora",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4448"
+  },
+  "Machilus chekiangensis": {
+    "scientific_name": "Machilus chekiangensis",
+    "chinese_name": "浙江潤楠",
+    "source_species": "Machilus chekiangensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8795"
+  },
+  "Machilus pauhoi": {
+    "scientific_name": "Machilus pauhoi",
+    "chinese_name": "刨花潤楠",
+    "source_species": "Machilus pauhoi",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8931"
+  },
+  "Machilus velutina": {
+    "scientific_name": "Machilus velutina",
+    "chinese_name": "絨毛潤楠",
+    "source_species": "Machilus velutina",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5337"
+  },
+  "Magnolia grandiflora": {
+    "scientific_name": "Magnolia grandiflora",
+    "chinese_name": "荷花玉蘭",
+    "source_species": "Magnolia grandiflora",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6595"
+  },
+  "Mallotus paniculatus": {
+    "scientific_name": "Mallotus paniculatus",
+    "chinese_name": "白楸",
+    "source_species": "Mallotus paniculatus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3760"
+  },
+  "Mangifera indica": {
+    "scientific_name": "Mangifera indica",
+    "chinese_name": "杧果",
+    "source_species": "Mangifera indica",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3721"
+  },
+  "Melaleuca cajuputi": {
+    "scientific_name": "Melaleuca cajuputi",
+    "chinese_name": "白千層",
+    "source_species": "Melaleuca cajuputi subsp. cumingiana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3069"
+  },
+  "Melia azedarach": {
+    "scientific_name": "Melia azedarach",
+    "chinese_name": "楝",
+    "source_species": "Melia azedarach",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7002"
+  },
+  "Michelia x alba": {
+    "scientific_name": "Michelia x alba",
+    "chinese_name": "白蘭",
+    "source_species": "Michelia x alba",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3433"
+  },
+  "Microcos nervosa": {
+    "scientific_name": "Microcos nervosa",
+    "chinese_name": "破布葉",
+    "source_species": "Microcos nervosa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2970"
+  },
+  "Morus alba": {
+    "scientific_name": "Morus alba",
+    "chinese_name": "桑",
+    "source_species": "Morus alba",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3487"
+  },
+  "Myrsine seguinii": {
+    "scientific_name": "Myrsine seguinii",
+    "chinese_name": "密花樹",
+    "source_species": "Myrsine seguinii",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3500"
+  },
+  "Peltophorum pterocarpum": {
+    "scientific_name": "Peltophorum pterocarpum",
+    "chinese_name": "盾柱木",
+    "source_species": "Peltophorum pterocarpum",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4544"
+  },
+  "Pentaphylax euryoides": {
+    "scientific_name": "Pentaphylax euryoides",
+    "chinese_name": "五列木",
+    "source_species": "Pentaphylax euryoides",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6545"
+  },
+  "Phoenix roebelenii": {
+    "scientific_name": "Phoenix roebelenii",
+    "chinese_name": "江邊刺葵",
+    "source_species": "Phoenix roebelenii",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3169"
+  },
+  "Photinia benthamiana": {
+    "scientific_name": "Photinia benthamiana",
+    "chinese_name": "閩粵石楠",
+    "source_species": "Photinia benthamiana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7182"
+  },
+  "Phyllanthus emblica": {
+    "scientific_name": "Phyllanthus emblica",
+    "chinese_name": "餘甘子",
+    "source_species": "Phyllanthus emblica",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5901"
+  },
+  "Pinus elliottii": {
+    "scientific_name": "Pinus elliottii",
+    "chinese_name": "濕地松",
+    "source_species": "Pinus elliottii",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7468"
+  },
+  "Pinus massoniana": {
+    "scientific_name": "Pinus massoniana",
+    "chinese_name": "馬尾松",
+    "source_species": "Pinus massoniana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9353"
+  },
+  "Plumeria rubra": {
+    "scientific_name": "Plumeria rubra",
+    "chinese_name": "雞蛋花",
+    "source_species": "Plumeria rubra",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5857"
+  },
+  "Podocarpus macrophyllus": {
+    "scientific_name": "Podocarpus macrophyllus",
+    "chinese_name": "羅漢松",
+    "source_species": "Podocarpus macrophyllus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9338"
+  },
+  "Polyspora axillaris(Gordonia axillaris)": {
+    "scientific_name": "Polyspora axillaris(Gordonia axillaris)",
+    "chinese_name": "大頭茶",
+    "source_species": "Polyspora axillaris",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7703"
+  },
+  "Pongamia pinnata": {
+    "scientific_name": "Pongamia pinnata",
+    "chinese_name": "水黃皮",
+    "source_species": "Pongamia pinnata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6495"
+  },
+  "Prunus phaeosticta": {
+    "scientific_name": "Prunus phaeosticta",
+    "chinese_name": "腺葉桂櫻",
+    "source_species": "Prunus phaeosticta",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7233"
+  },
+  "Pterocarpus indicus": {
+    "scientific_name": "Pterocarpus indicus",
+    "chinese_name": "紫檀",
+    "source_species": "Pterocarpus indicus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3235"
+  },
+  "Ravenala madagascariensis": {
+    "scientific_name": "Ravenala madagascariensis",
+    "chinese_name": "旅人蕉",
+    "source_species": "Ravenala madagascariensis",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9824"
+  },
+  "Reevesia thyrsoidea": {
+    "scientific_name": "Reevesia thyrsoidea",
+    "chinese_name": "梭羅樹",
+    "source_species": "Reevesia thyrsoidea",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7984"
+  },
+  "Rhaphiolepis indica": {
+    "scientific_name": "Rhaphiolepis indica",
+    "chinese_name": "石斑木",
+    "source_species": "Rhaphiolepis indica",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2774"
+  },
+  "Rhus succedanea": {
+    "scientific_name": "Rhus succedanea",
+    "chinese_name": "木蠟樹",
+    "source_species": "Rhus succedanea",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=6398"
+  },
+  "Roystonea regia": {
+    "scientific_name": "Roystonea regia",
+    "chinese_name": "王棕",
+    "source_species": "Roystonea regia",
+    "source_url": "https://www.epd.gov.hk/eia/files/applications/en/pp_175/vep_4264/progress/action_23824/13emar202204.pdf"
+  },
+  "Sapium discolor": {
+    "scientific_name": "Sapium discolor",
+    "chinese_name": "山烏桕",
+    "source_species": "Sapium discolor",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3763"
+  },
+  "Sapium sebiferum": {
+    "scientific_name": "Sapium sebiferum",
+    "chinese_name": "烏桕",
+    "source_species": "Sapium sebiferum",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3768"
+  },
+  "Schefflera actinophylla": {
+    "scientific_name": "Schefflera actinophylla",
+    "chinese_name": "輻葉鵝掌柴",
+    "source_species": "Schefflera actinophylla",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4477"
+  },
+  "Schefflera heptaphylla": {
+    "scientific_name": "Schefflera heptaphylla",
+    "chinese_name": "鵝掌柴",
+    "source_species": "Schefflera heptaphylla",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4480"
+  },
+  "Schima superba": {
+    "scientific_name": "Schima superba",
+    "chinese_name": "木荷",
+    "source_species": "Schima superba",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7705"
+  },
+  "Scolopia saeva": {
+    "scientific_name": "Scolopia saeva",
+    "chinese_name": "廣東刺柊",
+    "source_species": "Scolopia saeva",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5280"
+  },
+  "Senna siamea": {
+    "scientific_name": "Senna siamea",
+    "chinese_name": "鐵刀木",
+    "source_species": "Senna siamea",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8361"
+  },
+  "Spathodea campanulata": {
+    "scientific_name": "Spathodea campanulata",
+    "chinese_name": "火焰樹",
+    "source_species": "Spathodea campanulata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=4521"
+  },
+  "Sterculia lanceolata": {
+    "scientific_name": "Sterculia lanceolata",
+    "chinese_name": "假蘋婆",
+    "source_species": "Sterculia lanceolata",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7987"
+  },
+  "Syagrus romanzoffiana": {
+    "scientific_name": "Syagrus romanzoffiana",
+    "chinese_name": "皇后葵",
+    "source_species": "Syagrus romanzoffiana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=3178"
+  },
+  "Syzygium cumini": {
+    "scientific_name": "Syzygium cumini",
+    "chinese_name": "烏墨",
+    "source_species": "Syzygium cumini",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7061"
+  },
+  "Syzygium hancei": {
+    "scientific_name": "Syzygium hancei",
+    "chinese_name": "韓氏蒲桃",
+    "source_species": "Syzygium hancei",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7067"
+  },
+  "Syzygium jambos": {
+    "scientific_name": "Syzygium jambos",
+    "chinese_name": "蒲桃",
+    "source_species": "Syzygium jambos",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7068"
+  },
+  "Syzygium levinei": {
+    "scientific_name": "Syzygium levinei",
+    "chinese_name": "山蒲桃",
+    "source_species": "Syzygium levinei",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=7070"
+  },
+  "Tabebuia chrysantha": {
+    "scientific_name": "Tabebuia chrysantha",
+    "chinese_name": "黃鐘木",
+    "source_species": "Tabebuia chrysantha",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5061"
+  },
+  "Tabebuia impetiginosa": {
+    "scientific_name": "Tabebuia impetiginosa",
+    "chinese_name": "紫花風鈴木",
+    "source_species": "Tabebuia impetiginosa",
+    "source_url": "https://www.fa.gov.hk/zh/tabebuia-pentaphylla.html"
+  },
+  "Taxodium distichum": {
+    "scientific_name": "Taxodium distichum",
+    "chinese_name": "落羽杉",
+    "source_species": "Taxodium distichum",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9369"
+  },
+  "Terminalia catappa": {
+    "scientific_name": "Terminalia catappa",
+    "chinese_name": "欖仁樹",
+    "source_species": "Terminalia catappa",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=8454"
+  },
+  "Terminalia mantaly": {
+    "scientific_name": "Terminalia mantaly",
+    "chinese_name": "小葉欖仁",
+    "source_species": "Terminalia mantaly",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=9978"
+  },
+  "Tetradium glabrifolium": {
+    "scientific_name": "Tetradium glabrifolium",
+    "chinese_name": "楝葉吳茱萸",
+    "source_species": "Tetradium glabrifolium",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2834"
+  },
+  "Thevetia peruviana": {
+    "scientific_name": "Thevetia peruviana",
+    "chinese_name": "黃花夾竹桃",
+    "source_species": "Thevetia peruviana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=11572"
+  },
+  "Vernicia montana": {
+    "scientific_name": "Vernicia montana",
+    "chinese_name": "木油樹",
+    "source_species": "Vernicia montana",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5942"
+  },
+  "Viburnum odoratissimum": {
+    "scientific_name": "Viburnum odoratissimum",
+    "chinese_name": "珊瑚樹",
+    "source_species": "Viburnum odoratissimum",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=5256"
+  },
+  "Xanthostemon chrysanthus": {
+    "scientific_name": "Xanthostemon chrysanthus",
+    "chinese_name": "金蒲桃",
+    "source_species": "Xanthostemon chrysanthus",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=11090"
+  },
+  "Zanthoxylum avicennae": {
+    "scientific_name": "Zanthoxylum avicennae",
+    "chinese_name": "簕欓花椒",
+    "source_species": "Zanthoxylum avicennae",
+    "source_url": "https://www.herbarium.gov.hk/tc/hk-plant-database/plant-detail/index.html?pType=species&oID=2838"
+  },
+  "Wodyetia bifurcata": {
+    "scientific_name": "Wodyetia bifurcata",
+    "chinese_name": "狐尾椰子",
+    "source_species": "Wodyetia bifurcata",
+    "source_url": "https://www.lcsd.gov.hk/tc/green/education/greeningknowledge/plantphoto/tree_passage/wodyetia_bifurcata.html"
+  },
+  "Ficus microcarpa": {
+    "scientific_name": "Ficus microcarpa",
+    "chinese_name": "榕樹（細葉榕）",
+    "naming_note": "User-requested display name, 2026-09-10; no training relabel."
+  },
+  "Ficus benjamina": {
+    "scientific_name": "Ficus benjamina",
+    "chinese_name": "榕樹",
+    "naming_note": "Existing user-requested display grouping; no training relabel."
+  }
+}

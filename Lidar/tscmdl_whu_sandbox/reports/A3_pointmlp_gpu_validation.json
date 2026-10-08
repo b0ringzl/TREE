@@ -1,0 +1,30 @@
+﻿{
+  "sample_count": 4,
+  "tree_ids": [
+    3959,
+    3963,
+    3966,
+    4015
+  ],
+  "benchmark_label_ids": [
+    18,
+    13,
+    11,
+    1
+  ],
+  "input_shape": [
+    4,
+    3,
+    8192
+  ],
+  "output_shape": [
+    4,
+    19
+  ],
+  "finite_output": true,
+  "elapsed_seconds": 1.2901,
+  "peak_allocated_mib": 1211.3,
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8"
+}

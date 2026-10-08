@@ -1,0 +1,22 @@
+# Observed desktop runtime, 2026-10-08. Install CUDA torch/torchvision separately.
+# Current local CUDA runtime: torch 2.11.0+cu128 / torchvision 0.26.0+cu128.
+fastapi==0.138.1
+uvicorn==0.49.0
+python-multipart==0.0.32
+jinja2==3.1.6
+requests==2.34.2
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.7.2
+joblib==1.5.3
+pillow==12.3.0
+opencv-python==4.11.0.86
+ultralytics==8.4.53
+open_clip_torch==3.3.0
+safetensors==0.7.0
+laspy==2.7.0
+lazrs==0.8.1
+pyproj==3.7.1
+
+# SAM 2.1, detector transformers and point encoders have additional component
+# requirements. See their upstream licenses and ASSETS_REQUIRED.md.

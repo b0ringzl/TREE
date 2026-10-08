@@ -1,0 +1,172 @@
+{
+  "args": {
+    "dataset_root": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset",
+    "knn_cache": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8",
+    "output_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\run_batch16_seed20260731",
+    "epochs": 120,
+    "batch_size": 16,
+    "eval_batch_size": 16,
+    "learning_rate": 0.001,
+    "min_learning_rate": 1e-05,
+    "weight_decay": 0.05,
+    "label_smoothing": 0.1,
+    "patience": 20,
+    "seed": 20260731,
+    "workers": 0,
+    "progress_every": 20,
+    "smoke_steps": 0,
+    "resume": false,
+    "amp": true
+  },
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "class_names": [
+    "Platanus x acerifolia",
+    "Cinnamomum camphora",
+    "Lagerstroemia indica",
+    "Osmanthus fragrans",
+    "Koelreuteria paniculata",
+    "Prunus cerasifera 'atropurpurea'",
+    "Zelkova serrata",
+    "Cedrus deodara",
+    "Ginkgo biloba",
+    "Acer palmatum var. atropurpureum",
+    "Prunus serrulata",
+    "Ligustrum lucidum",
+    "Malus x micromalus",
+    "Magnolia grandiflora",
+    "Metasequoia glyptostroboides",
+    "Sophora japonica",
+    "Acer pictum subsp. mono",
+    "Photinia x fraseri",
+    "Others"
+  ],
+  "parameter_count": 9394097,
+  "split_sizes": {
+    "train": 13116,
+    "val": 570,
+    "test": 3448
+  },
+  "augmentation": "random Z rotation and isotropic 0.9-1.1 scale; both preserve the cached Euclidean neighbour graph",
+  "model": "PTv2 mode-1 classification encoder reimplementation",
+  "model_config": {
+    "in_channels": 3,
+    "patch_depth": 1,
+    "patch_channels": 48,
+    "patch_groups": 6,
+    "patch_neighbours": 8,
+    "encoder_depths": [
+      2,
+      2,
+      6,
+      2
+    ],
+    "encoder_channels": [
+      96,
+      192,
+      384,
+      384
+    ],
+    "encoder_groups": [
+      12,
+      24,
+      48,
+      48
+    ],
+    "encoder_neighbours": [
+      16,
+      16,
+      16,
+      16
+    ],
+    "grid_sizes": [
+      0.06,
+      0.12,
+      0.24,
+      0.48
+    ],
+    "qkv_bias": true,
+    "pe_multiplier": true,
+    "pe_bias": true,
+    "attention_dropout": 0.0,
+    "drop_path_rate": 0.1,
+    "classifier_hidden": 256,
+    "classifier_dropout": 0.5,
+    "num_classes": 19
+  },
+  "implementation": {
+    "core_modules": [
+      "grouped vector attention",
+      "grouped linear weight encoding",
+      "position encoding multiplier and bias",
+      "partition-based grid pooling",
+      "global average classification head"
+    ],
+    "native_pytorch_backend": true,
+    "pointops_extension_used": false,
+    "official_reference": "https://github.com/Pointcept/PointTransformerV2",
+    "paper": "https://arxiv.org/abs/2210.05666"
+  },
+  "knn_cache": {
+    "schema_version": 2,
+    "cache_type": "ptv2_memmap_knn",
+    "created_at": "2026-07-31T13:48:41+08:00",
+    "dataset_root": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c1_full_shared_dataset",
+    "manifest_sha256": "9b7badbad925e5bddf207780a4db19e024d5287120a4c942cb1ce00ab8689eaf",
+    "classes_sha256": "f6cb5938b6a7b2d4f2a689b6918708fffbdbd3749035d73a6c7fd2604be10517",
+    "point_count": 8192,
+    "neighbours": 8,
+    "distance": "exact Euclidean kNN within each tree instance",
+    "split_sizes": {
+      "train": 13116,
+      "val": 570,
+      "test": 3448
+    },
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "torch": "2.11.0+cu128",
+    "cuda_runtime": "12.8",
+    "elapsed_seconds_all_runs": 403.369,
+    "run_count": 2,
+    "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8",
+    "bytes": 396257,
+    "sha256": "8b67b930f1678094714b4e6393c386ce9b51fd2d75281e57ccb4014624c51820",
+    "index_sha256": "8b67b930f1678094714b4e6393c386ce9b51fd2d75281e57ccb4014624c51820",
+    "files": {
+      "train": {
+        "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8\\train_reference_index.npy",
+        "bytes": 3438280832,
+        "sha256": "5e468f4071b4da5b7fd0a37b06f33b85a045f0a1706ce2be43681971b7372c8d",
+        "shape": [
+          13116,
+          8192,
+          8
+        ]
+      },
+      "val": {
+        "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2a_ptv2\\knn_memmap_k8\\val_reference_index.npy",
+        "bytes": 149422208,
+        "sha256": "8b4d5072511e657db7cc65b7e3b51831489af65e76c443add9cc570a1e916c1c",
+        "shape": [
+          570,
+          8192,
+          8
+        ]
+      }
+    },
+    "tensor_shapes": {
+      "train": [
+        13116,
+        8192,
+        8
+      ],
+      "val": [
+        570,
+        8192,
+        8
+      ]
+    }
+  },
+  "test_policy": "test split evaluated only after validation-selected training completes",
+  "test_loaded_during_training": false
+}

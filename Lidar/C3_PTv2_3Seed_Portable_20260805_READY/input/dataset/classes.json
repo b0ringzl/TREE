@@ -1,0 +1,97 @@
+[
+  {
+    "class_index": 0,
+    "benchmark_label_id": 0,
+    "scientific_name": "Platanus x acerifolia"
+  },
+  {
+    "class_index": 1,
+    "benchmark_label_id": 1,
+    "scientific_name": "Cinnamomum camphora"
+  },
+  {
+    "class_index": 2,
+    "benchmark_label_id": 2,
+    "scientific_name": "Lagerstroemia indica"
+  },
+  {
+    "class_index": 3,
+    "benchmark_label_id": 3,
+    "scientific_name": "Osmanthus fragrans"
+  },
+  {
+    "class_index": 4,
+    "benchmark_label_id": 4,
+    "scientific_name": "Koelreuteria paniculata"
+  },
+  {
+    "class_index": 5,
+    "benchmark_label_id": 5,
+    "scientific_name": "Prunus cerasifera 'atropurpurea'"
+  },
+  {
+    "class_index": 6,
+    "benchmark_label_id": 6,
+    "scientific_name": "Zelkova serrata"
+  },
+  {
+    "class_index": 7,
+    "benchmark_label_id": 7,
+    "scientific_name": "Cedrus deodara"
+  },
+  {
+    "class_index": 8,
+    "benchmark_label_id": 8,
+    "scientific_name": "Ginkgo biloba"
+  },
+  {
+    "class_index": 9,
+    "benchmark_label_id": 9,
+    "scientific_name": "Acer palmatum var. atropurpureum"
+  },
+  {
+    "class_index": 10,
+    "benchmark_label_id": 10,
+    "scientific_name": "Prunus serrulata"
+  },
+  {
+    "class_index": 11,
+    "benchmark_label_id": 11,
+    "scientific_name": "Ligustrum lucidum"
+  },
+  {
+    "class_index": 12,
+    "benchmark_label_id": 12,
+    "scientific_name": "Malus x micromalus"
+  },
+  {
+    "class_index": 13,
+    "benchmark_label_id": 13,
+    "scientific_name": "Magnolia grandiflora"
+  },
+  {
+    "class_index": 14,
+    "benchmark_label_id": 14,
+    "scientific_name": "Metasequoia glyptostroboides"
+  },
+  {
+    "class_index": 15,
+    "benchmark_label_id": 15,
+    "scientific_name": "Sophora japonica"
+  },
+  {
+    "class_index": 16,
+    "benchmark_label_id": 16,
+    "scientific_name": "Acer pictum subsp. mono"
+  },
+  {
+    "class_index": 17,
+    "benchmark_label_id": 17,
+    "scientific_name": "Photinia x fraseri"
+  },
+  {
+    "class_index": 18,
+    "benchmark_label_id": 18,
+    "scientific_name": "Others"
+  }
+]

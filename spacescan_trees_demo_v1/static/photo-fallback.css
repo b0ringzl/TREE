@@ -1,0 +1,8 @@
+.photo-fallback{width:min(850px,94vw);max-height:90vh;overflow:auto;padding:28px;border:1px solid #b6ccbd;border-radius:20px;color:#173e33}
+.photo-fallback-preview{text-align:center;background:#edf2e9;border-radius:12px}
+.photo-fallback canvas{display:block;margin:auto;max-width:100%;height:auto;touch-action:none;cursor:crosshair}
+.photo-fallback-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.photo-fallback-fields{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;border:1px solid #cdd9ce}
+.photo-fallback-fields label{display:grid;gap:4px;font-size:13px}
+.photo-fallback-fields input{width:110px;padding:8px}
+.photo-fallback [hidden]{display:none!important}

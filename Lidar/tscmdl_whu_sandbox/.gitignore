@@ -1,0 +1,29 @@
+# Local environments and Python caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Upstream repositories are pinned in source_lock.json and kept outside commits
+vendor/
+
+# Heavy or generated artifacts
+data/
+cache/
+runs/
+checkpoints/
+outputs/
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.npz
+*.npy
+
+# Logs and local settings
+*.log
+.env
+.vscode/
+.idea/
+

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "stage": "C3",
+  "purpose": "fixed-configuration three-seed PTv2 repeat",
+  "seeds": [
+    20260728,
+    20260729,
+    20260730
+  ],
+  "epochs": 120,
+  "batch_size": 48,
+  "eval_batch_size": 64,
+  "learning_rate": 0.001,
+  "min_learning_rate": 1e-05,
+  "weight_decay": 0.05,
+  "label_smoothing": 0.1,
+  "patience": 20,
+  "workers": 0,
+  "progress_every": 10,
+  "amp": true,
+  "checkpoint_policy": "fresh start per seed; exact same-seed resume only",
+  "test_policy": "evaluate locked official test split after best validation selection",
+  "historical_c2_policy": "C2 seed 20260731 remains a non-repeat historical baseline"
+}

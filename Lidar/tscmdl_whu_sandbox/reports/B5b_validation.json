@@ -1,0 +1,1455 @@
+{
+  "status": "passed",
+  "stage": "B5b",
+  "seeds": [
+    20260728,
+    20260729,
+    20260730
+  ],
+  "class_names": [
+    "Cinnamomum camphora",
+    "Lagerstroemia indica",
+    "Magnolia grandiflora"
+  ],
+  "locked_configuration": {
+    "dataset_root": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b1_three_species\\dataset",
+    "knn_cache": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\knn_cache_k8.pt",
+    "epochs": 200,
+    "batch_size": 16,
+    "eval_batch_size": 16,
+    "learning_rate": 0.001,
+    "min_learning_rate": 1e-05,
+    "weight_decay": 0.05,
+    "label_smoothing": 0.1,
+    "patience": 40,
+    "workers": 0,
+    "progress_every": 27,
+    "smoke_steps": 0,
+    "amp": true,
+    "model_config": {
+      "in_channels": 3,
+      "patch_depth": 1,
+      "patch_channels": 48,
+      "patch_groups": 6,
+      "patch_neighbours": 8,
+      "encoder_depths": [
+        2,
+        2,
+        6,
+        2
+      ],
+      "encoder_channels": [
+        96,
+        192,
+        384,
+        384
+      ],
+      "encoder_groups": [
+        12,
+        24,
+        48,
+        48
+      ],
+      "encoder_neighbours": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "grid_sizes": [
+        0.06,
+        0.12,
+        0.24,
+        0.48
+      ],
+      "qkv_bias": true,
+      "pe_multiplier": true,
+      "pe_bias": true,
+      "attention_dropout": 0.0,
+      "drop_path_rate": 0.1,
+      "classifier_hidden": 256,
+      "classifier_dropout": 0.5,
+      "num_classes": 3
+    }
+  },
+  "per_seed": {
+    "20260728": {
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5_ptv2\\run_batch16_seed20260728",
+      "best_epoch": 59,
+      "epochs_completed": 99,
+      "training_session_elapsed_seconds": 1809.4868735999917,
+      "metrics": {
+        "val": {
+          "accuracy": 0.7555555555555555,
+          "balanced_accuracy": 0.7555555555555555,
+          "macro_f1": 0.7393223010244286
+        },
+        "test": {
+          "accuracy": 0.9666666666666667,
+          "balanced_accuracy": 0.9666666666666668,
+          "macro_f1": 0.9669830137392966
+        }
+      }
+    },
+    "20260729": {
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5b_ptv2_repeats\\run_batch16_seed20260729",
+      "best_epoch": 50,
+      "epochs_completed": 90,
+      "training_session_elapsed_seconds": 2702.7419739000034,
+      "metrics": {
+        "val": {
+          "accuracy": 0.7777777777777778,
+          "balanced_accuracy": 0.7777777777777778,
+          "macro_f1": 0.7719926353509536
+        },
+        "test": {
+          "accuracy": 0.9222222222222223,
+          "balanced_accuracy": 0.9222222222222222,
+          "macro_f1": 0.922332356089162
+        }
+      }
+    },
+    "20260730": {
+      "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b5b_ptv2_repeats\\run_batch16_seed20260730",
+      "best_epoch": 29,
+      "epochs_completed": 69,
+      "training_session_elapsed_seconds": 1246.9461774000083,
+      "metrics": {
+        "val": {
+          "accuracy": 0.7666666666666667,
+          "balanced_accuracy": 0.7666666666666667,
+          "macro_f1": 0.7636236779093922
+        },
+        "test": {
+          "accuracy": 0.9444444444444444,
+          "balanced_accuracy": 0.9444444444444443,
+          "macro_f1": 0.9444351826124541
+        }
+      }
+    }
+  },
+  "aggregate": {
+    "val": {
+      "accuracy": {
+        "count": 3,
+        "mean": 0.7666666666666667,
+        "std": 0.009072184232530303,
+        "minimum": 0.7555555555555555,
+        "maximum": 0.7777777777777778
+      },
+      "balanced_accuracy": {
+        "count": 3,
+        "mean": 0.7666666666666667,
+        "std": 0.009072184232530303,
+        "minimum": 0.7555555555555555,
+        "maximum": 0.7777777777777778
+      },
+      "macro_f1": {
+        "count": 3,
+        "mean": 0.7583128714282582,
+        "std": 0.013856194411688732,
+        "minimum": 0.7393223010244286,
+        "maximum": 0.7719926353509536
+      }
+    },
+    "test": {
+      "accuracy": {
+        "count": 3,
+        "mean": 0.9444444444444444,
+        "std": 0.01814436846506056,
+        "minimum": 0.9222222222222223,
+        "maximum": 0.9666666666666667
+      },
+      "balanced_accuracy": {
+        "count": 3,
+        "mean": 0.9444444444444444,
+        "std": 0.01814436846506065,
+        "minimum": 0.9222222222222222,
+        "maximum": 0.9666666666666668
+      },
+      "macro_f1": {
+        "count": 3,
+        "mean": 0.9445835174803042,
+        "std": 0.018228856420012512,
+        "minimum": 0.922332356089162,
+        "maximum": 0.9669830137392966
+      }
+    }
+  },
+  "ensemble_metrics": {
+    "val": {
+      "accuracy": 0.7666666666666667,
+      "balanced_accuracy": 0.7666666666666666,
+      "macro_precision": 0.7755691056910569,
+      "macro_recall": 0.7666666666666666,
+      "macro_f1": 0.7591312182861478,
+      "confusion_matrix": [
+        [
+          30,
+          0,
+          0
+        ],
+        [
+          9,
+          18,
+          3
+        ],
+        [
+          2,
+          7,
+          21
+        ]
+      ],
+      "per_class": [
+        {
+          "class_index": 0,
+          "support": 30,
+          "precision": 0.7317073170731707,
+          "recall": 1.0,
+          "f1": 0.8450704225352113
+        },
+        {
+          "class_index": 1,
+          "support": 30,
+          "precision": 0.72,
+          "recall": 0.6,
+          "f1": 0.6545454545454547
+        },
+        {
+          "class_index": 2,
+          "support": 30,
+          "precision": 0.875,
+          "recall": 0.7,
+          "f1": 0.7777777777777777
+        }
+      ]
+    },
+    "test": {
+      "accuracy": 0.9666666666666667,
+      "balanced_accuracy": 0.9666666666666668,
+      "macro_precision": 0.9696969696969697,
+      "macro_recall": 0.9666666666666668,
+      "macro_f1": 0.9669830137392966,
+      "confusion_matrix": [
+        [
+          30,
+          0,
+          0
+        ],
+        [
+          1,
+          29,
+          0
+        ],
+        [
+          2,
+          0,
+          28
+        ]
+      ],
+      "per_class": [
+        {
+          "class_index": 0,
+          "support": 30,
+          "precision": 0.9090909090909091,
+          "recall": 1.0,
+          "f1": 0.9523809523809523
+        },
+        {
+          "class_index": 1,
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.9666666666666667,
+          "f1": 0.983050847457627
+        },
+        {
+          "class_index": 2,
+          "support": 30,
+          "precision": 1.0,
+          "recall": 0.9333333333333333,
+          "f1": 0.9655172413793104
+        }
+      ]
+    }
+  },
+  "pairwise_prediction_agreement": {
+    "20260728-20260729": {
+      "val": 0.8333333333333334,
+      "test": 0.9555555555555556
+    },
+    "20260728-20260730": {
+      "val": 0.7666666666666667,
+      "test": 0.9444444444444444
+    },
+    "20260729-20260730": {
+      "val": 0.8111111111111111,
+      "test": 0.9
+    }
+  },
+  "road_split_structure": {
+    "train_roads": [
+      "02",
+      "03",
+      "04",
+      "05",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "13",
+      "15",
+      "17",
+      "18",
+      "20",
+      "21",
+      "24",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33"
+    ],
+    "val_roads": [
+      "06",
+      "23"
+    ],
+    "test_roads": [
+      "02",
+      "03",
+      "08",
+      "09",
+      "10",
+      "11",
+      "17",
+      "20",
+      "25",
+      "28",
+      "29",
+      "31",
+      "33"
+    ],
+    "val_seen_in_train": [],
+    "val_unseen_in_train": [
+      "06",
+      "23"
+    ],
+    "test_seen_in_train": [
+      "02",
+      "03",
+      "08",
+      "09",
+      "10",
+      "11",
+      "17",
+      "20",
+      "28",
+      "29",
+      "31",
+      "33"
+    ],
+    "test_unseen_in_train": [
+      "25"
+    ],
+    "val_samples_on_seen_roads": 0,
+    "test_samples_on_seen_roads": 89
+  },
+  "road_summaries": {
+    "val": {
+      "06": {
+        "sample_count": 42,
+        "class_histogram": {
+          "0": 12,
+          "1": 30
+        },
+        "source_point_count": {
+          "count": 42,
+          "mean": 24902.238095238095,
+          "std": 31064.39809324642,
+          "minimum": 2668.0,
+          "maximum": 121492.0,
+          "median": 11605.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1824.7857142857142,
+          444.92857142857144,
+          91.30952380952381,
+          17.952380952380953
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.6190476190476191,
+          "20260729": 0.7142857142857143,
+          "20260730": 0.8333333333333334
+        },
+        "ensemble_accuracy": 0.7142857142857143,
+        "seen_in_train": false
+      },
+      "23": {
+        "sample_count": 48,
+        "class_histogram": {
+          "0": 18,
+          "2": 30
+        },
+        "source_point_count": {
+          "count": 48,
+          "mean": 12925.416666666666,
+          "std": 12071.131091425894,
+          "minimum": 737.0,
+          "maximum": 50394.0,
+          "median": 6888.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1247.5416666666667,
+          312.1458333333333,
+          69.0,
+          13.979166666666666
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.875,
+          "20260729": 0.8333333333333334,
+          "20260730": 0.7083333333333334
+        },
+        "ensemble_accuracy": 0.8125,
+        "seen_in_train": false
+      }
+    },
+    "test": {
+      "02": {
+        "sample_count": 2,
+        "class_histogram": {
+          "0": 2
+        },
+        "source_point_count": {
+          "count": 2,
+          "mean": 49574.5,
+          "std": 11578.5,
+          "minimum": 37996.0,
+          "maximum": 61153.0,
+          "median": 49574.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1007.5,
+          220.5,
+          42.0,
+          8.5
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "03": {
+        "sample_count": 8,
+        "class_histogram": {
+          "1": 8
+        },
+        "source_point_count": {
+          "count": 8,
+          "mean": 1103.625,
+          "std": 613.8552226502597,
+          "minimum": 608.0,
+          "maximum": 2588.0,
+          "median": 863.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          472.0,
+          176.625,
+          55.375,
+          13.125
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "08": {
+        "sample_count": 31,
+        "class_histogram": {
+          "0": 1,
+          "2": 30
+        },
+        "source_point_count": {
+          "count": 31,
+          "mean": 30464.935483870966,
+          "std": 13787.026870624482,
+          "minimum": 11474.0,
+          "maximum": 80954.0,
+          "median": 26292.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1690.8064516129032,
+          425.48387096774195,
+          94.6774193548387,
+          17.741935483870968
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.9354838709677419,
+          "20260729": 0.8709677419354839,
+          "20260730": 0.9354838709677419
+        },
+        "ensemble_accuracy": 0.9354838709677419,
+        "seen_in_train": true
+      },
+      "09": {
+        "sample_count": 8,
+        "class_histogram": {
+          "0": 1,
+          "1": 7
+        },
+        "source_point_count": {
+          "count": 8,
+          "mean": 3327.5,
+          "std": 3081.35355809748,
+          "minimum": 185.0,
+          "maximum": 10944.0,
+          "median": 2633.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          645.625,
+          206.5,
+          60.125,
+          14.625
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.875,
+          "20260729": 0.875,
+          "20260730": 0.75
+        },
+        "ensemble_accuracy": 0.875,
+        "seen_in_train": true
+      },
+      "10": {
+        "sample_count": 19,
+        "class_histogram": {
+          "0": 4,
+          "1": 15
+        },
+        "source_point_count": {
+          "count": 19,
+          "mean": 9798.578947368422,
+          "std": 16656.35966203707,
+          "minimum": 800.0,
+          "maximum": 62793.0,
+          "median": 1815.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          740.6842105263158,
+          197.05263157894737,
+          48.31578947368421,
+          10.526315789473685
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 0.8947368421052632,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "11": {
+        "sample_count": 5,
+        "class_histogram": {
+          "0": 5
+        },
+        "source_point_count": {
+          "count": 5,
+          "mean": 51453.8,
+          "std": 17010.579430460326,
+          "minimum": 25100.0,
+          "maximum": 78806.0,
+          "median": 51599.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1718.4,
+          402.8,
+          84.2,
+          15.4
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "17": {
+        "sample_count": 3,
+        "class_histogram": {
+          "0": 3
+        },
+        "source_point_count": {
+          "count": 3,
+          "mean": 78546.66666666667,
+          "std": 58750.48338146296,
+          "minimum": 30308.0,
+          "maximum": 161251.0,
+          "median": 44081.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1393.3333333333333,
+          328.6666666666667,
+          72.66666666666667,
+          15.333333333333334
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "20": {
+        "sample_count": 3,
+        "class_histogram": {
+          "0": 3
+        },
+        "source_point_count": {
+          "count": 3,
+          "mean": 70082.0,
+          "std": 30141.481416811617,
+          "minimum": 36930.0,
+          "maximum": 109863.0,
+          "median": 63453.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1694.3333333333333,
+          388.6666666666667,
+          74.33333333333333,
+          13.333333333333334
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "25": {
+        "sample_count": 1,
+        "class_histogram": {
+          "0": 1
+        },
+        "source_point_count": {
+          "count": 1,
+          "mean": 13782.0,
+          "std": 0.0,
+          "minimum": 13782.0,
+          "maximum": 13782.0,
+          "median": 13782.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          990.0,
+          320.0,
+          97.0,
+          21.0
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": false
+      },
+      "28": {
+        "sample_count": 1,
+        "class_histogram": {
+          "0": 1
+        },
+        "source_point_count": {
+          "count": 1,
+          "mean": 41115.0,
+          "std": 0.0,
+          "minimum": 41115.0,
+          "maximum": 41115.0,
+          "median": 41115.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1062.0,
+          221.0,
+          42.0,
+          6.0
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "29": {
+        "sample_count": 3,
+        "class_histogram": {
+          "0": 3
+        },
+        "source_point_count": {
+          "count": 3,
+          "mean": 7541.333333333333,
+          "std": 4895.2133309545925,
+          "minimum": 1871.0,
+          "maximum": 13816.0,
+          "median": 6937.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          643.6666666666666,
+          136.66666666666666,
+          28.0,
+          4.666666666666667
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 0.6666666666666666
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "31": {
+        "sample_count": 5,
+        "class_histogram": {
+          "0": 5
+        },
+        "source_point_count": {
+          "count": 5,
+          "mean": 88086.0,
+          "std": 49790.9331545413,
+          "minimum": 39717.0,
+          "maximum": 178572.0,
+          "median": 68298.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1156.0,
+          246.2,
+          48.8,
+          10.2
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      },
+      "33": {
+        "sample_count": 1,
+        "class_histogram": {
+          "0": 1
+        },
+        "source_point_count": {
+          "count": 1,
+          "mean": 31886.0,
+          "std": 0.0,
+          "minimum": 31886.0,
+          "maximum": 31886.0,
+          "median": 31886.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1848.0,
+          480.0,
+          105.0,
+          18.0
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "seen_in_train": true
+      }
+    }
+  },
+  "class_summaries": {
+    "val": {
+      "0": {
+        "sample_count": 30,
+        "class_histogram": {
+          "0": 30
+        },
+        "source_point_count": {
+          "count": 30,
+          "mean": 40696.86666666667,
+          "std": 30057.523282015252,
+          "minimum": 10040.0,
+          "maximum": 121492.0,
+          "median": 31525.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1754.6,
+          402.6666666666667,
+          78.93333333333334,
+          14.633333333333333
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.9666666666666667,
+          "20260729": 1.0,
+          "20260730": 0.9333333333333333
+        },
+        "ensemble_accuracy": 1.0,
+        "scientific_name": "Cinnamomum camphora"
+      },
+      "1": {
+        "sample_count": 30,
+        "class_histogram": {
+          "1": 30
+        },
+        "source_point_count": {
+          "count": 30,
+          "mean": 9486.466666666667,
+          "std": 4831.532067114484,
+          "minimum": 2668.0,
+          "maximum": 22391.0,
+          "median": 9172.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          2035.6,
+          505.56666666666666,
+          104.03333333333333,
+          20.233333333333334
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.4666666666666667,
+          "20260729": 0.6,
+          "20260730": 0.7666666666666667
+        },
+        "ensemble_accuracy": 0.6,
+        "scientific_name": "Lagerstroemia indica"
+      },
+      "2": {
+        "sample_count": 30,
+        "class_histogram": {
+          "2": 30
+        },
+        "source_point_count": {
+          "count": 30,
+          "mean": 5360.466666666666,
+          "std": 4224.967839982795,
+          "minimum": 737.0,
+          "maximum": 21065.0,
+          "median": 4195.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          760.5666666666667,
+          214.1,
+          55.266666666666666,
+          12.633333333333333
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.8333333333333334,
+          "20260729": 0.7333333333333333,
+          "20260730": 0.6
+        },
+        "ensemble_accuracy": 0.7,
+        "scientific_name": "Magnolia grandiflora"
+      }
+    },
+    "test": {
+      "0": {
+        "sample_count": 30,
+        "class_histogram": {
+          "0": 30
+        },
+        "source_point_count": {
+          "count": 30,
+          "mean": 52849.5,
+          "std": 40000.680216507986,
+          "minimum": 1871.0,
+          "maximum": 178572.0,
+          "median": 42598.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1304.1333333333334,
+          299.26666666666665,
+          62.93333333333333,
+          12.2
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 0.9666666666666667
+        },
+        "ensemble_accuracy": 1.0,
+        "scientific_name": "Cinnamomum camphora"
+      },
+      "1": {
+        "sample_count": 30,
+        "class_histogram": {
+          "1": 30
+        },
+        "source_point_count": {
+          "count": 30,
+          "mean": 1748.9333333333334,
+          "std": 998.1998107704801,
+          "minimum": 185.0,
+          "maximum": 4113.0,
+          "median": 1567.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          561.5666666666667,
+          181.63333333333333,
+          51.63333333333333,
+          12.033333333333333
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.9666666666666667,
+          "20260729": 0.9,
+          "20260730": 0.9333333333333333
+        },
+        "ensemble_accuracy": 0.9666666666666667,
+        "scientific_name": "Lagerstroemia indica"
+      },
+      "2": {
+        "sample_count": 30,
+        "class_histogram": {
+          "2": 30
+        },
+        "source_point_count": {
+          "count": 30,
+          "mean": 29340.766666666666,
+          "std": 12539.607603332552,
+          "minimum": 11474.0,
+          "maximum": 80954.0,
+          "median": 25934.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1697.9666666666667,
+          428.03333333333336,
+          95.26666666666667,
+          17.833333333333332
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.9333333333333333,
+          "20260729": 0.8666666666666667,
+          "20260730": 0.9333333333333333
+        },
+        "ensemble_accuracy": 0.9333333333333333,
+        "scientific_name": "Magnolia grandiflora"
+      }
+    }
+  },
+  "source_point_count_bins": {
+    "val": {
+      "<8192": {
+        "sample_count": 40,
+        "class_histogram": {
+          "1": 14,
+          "2": 26
+        },
+        "source_point_count": {
+          "count": 40,
+          "mean": 4452.05,
+          "std": 1909.6469038804005,
+          "minimum": 737.0,
+          "maximum": 8074.0,
+          "median": 4375.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1054.775,
+          296.575,
+          72.4,
+          16.025
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.85,
+          "20260729": 0.8,
+          "20260730": 0.7
+        },
+        "ensemble_accuracy": 0.775,
+        "mean_seed_accuracy": 0.7833333333333333
+      },
+      "8192-19999": {
+        "sample_count": 27,
+        "class_histogram": {
+          "0": 9,
+          "1": 15,
+          "2": 3
+        },
+        "source_point_count": {
+          "count": 27,
+          "mean": 13895.37037037037,
+          "std": 3513.5060694216577,
+          "minimum": 8779.0,
+          "maximum": 19899.0,
+          "median": 13684.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1991.7407407407406,
+          460.77777777777777,
+          88.81481481481481,
+          16.25925925925926
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.4444444444444444,
+          "20260729": 0.5925925925925926,
+          "20260730": 0.7407407407407407
+        },
+        "ensemble_accuracy": 0.5925925925925926,
+        "mean_seed_accuracy": 0.5925925925925926
+      },
+      "20000-49999": {
+        "sample_count": 15,
+        "class_histogram": {
+          "0": 13,
+          "1": 1,
+          "2": 1
+        },
+        "source_point_count": {
+          "count": 15,
+          "mean": 29215.866666666665,
+          "std": 6634.685401902808,
+          "minimum": 20751.0,
+          "maximum": 42861.0,
+          "median": 31023.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1778.5333333333333,
+          407.8,
+          79.86666666666666,
+          14.533333333333333
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.9333333333333333,
+          "20260729": 0.9333333333333333,
+          "20260730": 0.8666666666666667
+        },
+        "ensemble_accuracy": 0.9333333333333333,
+        "mean_seed_accuracy": 0.9111111111111111
+      },
+      ">=50000": {
+        "sample_count": 8,
+        "class_histogram": {
+          "0": 8
+        },
+        "source_point_count": {
+          "count": 8,
+          "mean": 84352.375,
+          "std": 24281.58732423346,
+          "minimum": 50394.0,
+          "maximum": 121492.0,
+          "median": 88025.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1734.625,
+          406.125,
+          81.875,
+          15.875
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "mean_seed_accuracy": 1.0
+      }
+    },
+    "test": {
+      "<8192": {
+        "sample_count": 32,
+        "class_histogram": {
+          "0": 2,
+          "1": 30
+        },
+        "source_point_count": {
+          "count": 32,
+          "mean": 1914.875,
+          "std": 1322.1886389146596,
+          "minimum": 185.0,
+          "maximum": 6937.0,
+          "median": 1680.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          565.75,
+          178.78125,
+          50.03125,
+          11.59375
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.96875,
+          "20260729": 0.90625,
+          "20260730": 0.90625
+        },
+        "ensemble_accuracy": 0.96875,
+        "mean_seed_accuracy": 0.9270833333333334
+      },
+      "8192-19999": {
+        "sample_count": 6,
+        "class_histogram": {
+          "0": 3,
+          "2": 3
+        },
+        "source_point_count": {
+          "count": 6,
+          "mean": 13390.833333333334,
+          "std": 2334.844350034685,
+          "minimum": 10944.0,
+          "maximum": 18030.0,
+          "median": 13040.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1177.1666666666667,
+          299.5,
+          75.0,
+          15.0
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 0.8333333333333334
+        },
+        "ensemble_accuracy": 1.0,
+        "mean_seed_accuracy": 0.9444444444444444
+      },
+      "20000-49999": {
+        "sample_count": 38,
+        "class_histogram": {
+          "0": 12,
+          "2": 26
+        },
+        "source_point_count": {
+          "count": 38,
+          "mean": 31304.815789473683,
+          "std": 7731.621617389688,
+          "minimum": 20371.0,
+          "maximum": 49567.0,
+          "median": 29476.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1582.078947368421,
+          387.5,
+          84.60526315789474,
+          15.68421052631579
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.9473684210526315,
+          "20260729": 0.8947368421052632,
+          "20260730": 0.9736842105263158
+        },
+        "ensemble_accuracy": 0.9473684210526315,
+        "mean_seed_accuracy": 0.9385964912280702
+      },
+      ">=50000": {
+        "sample_count": 14,
+        "class_histogram": {
+          "0": 13,
+          "2": 1
+        },
+        "source_point_count": {
+          "count": 14,
+          "mean": 84783.71428571429,
+          "std": 38757.52442969452,
+          "minimum": 51599.0,
+          "maximum": 178572.0,
+          "median": 66244.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1544.5714285714287,
+          358.92857142857144,
+          73.5,
+          14.642857142857142
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 1.0,
+        "mean_seed_accuracy": 1.0
+      }
+    }
+  },
+  "stage4_point_count_bins": {
+    "val": {
+      "<=8": {
+        "sample_count": 17,
+        "class_histogram": {
+          "0": 5,
+          "1": 2,
+          "2": 10
+        },
+        "source_point_count": {
+          "count": 17,
+          "mean": 13751.35294117647,
+          "std": 13177.345849606378,
+          "minimum": 737.0,
+          "maximum": 51045.0,
+          "median": 6861.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          649.8235294117648,
+          145.41176470588235,
+          32.294117647058826,
+          6.529411764705882
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.8823529411764706,
+          "20260729": 0.8235294117647058,
+          "20260730": 0.7058823529411765
+        },
+        "ensemble_accuracy": 0.8235294117647058,
+        "mean_seed_accuracy": 0.803921568627451
+      },
+      "9-16": {
+        "sample_count": 34,
+        "class_histogram": {
+          "0": 15,
+          "1": 5,
+          "2": 14
+        },
+        "source_point_count": {
+          "count": 34,
+          "mean": 20004.117647058825,
+          "std": 23735.88249981413,
+          "minimum": 2045.0,
+          "maximum": 108883.0,
+          "median": 10695.5
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1291.4411764705883,
+          300.0882352941176,
+          64.0,
+          12.705882352941176
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.8823529411764706,
+          "20260729": 0.8823529411764706,
+          "20260730": 0.8235294117647058
+        },
+        "ensemble_accuracy": 0.8823529411764706,
+        "mean_seed_accuracy": 0.8627450980392156
+      },
+      "17-24": {
+        "sample_count": 27,
+        "class_histogram": {
+          "0": 8,
+          "1": 14,
+          "2": 5
+        },
+        "source_point_count": {
+          "count": 27,
+          "mean": 23152.703703703704,
+          "std": 31001.968249122765,
+          "minimum": 1231.0,
+          "maximum": 121492.0,
+          "median": 11860.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          2049.814814814815,
+          506.55555555555554,
+          104.81481481481481,
+          20.333333333333332
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.5925925925925926,
+          "20260729": 0.6296296296296297,
+          "20260730": 0.7407407407407407
+        },
+        "ensemble_accuracy": 0.6296296296296297,
+        "mean_seed_accuracy": 0.654320987654321
+      },
+      ">=25": {
+        "sample_count": 12,
+        "class_histogram": {
+          "0": 2,
+          "1": 9,
+          "2": 1
+        },
+        "source_point_count": {
+          "count": 12,
+          "mean": 10606.5,
+          "std": 8598.62048528716,
+          "minimum": 1670.0,
+          "maximum": 33450.0,
+          "median": 7072.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          2185.1666666666665,
+          609.8333333333334,
+          132.66666666666666,
+          27.75
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.5833333333333334,
+          "20260729": 0.75,
+          "20260730": 0.75
+        },
+        "ensemble_accuracy": 0.6666666666666666,
+        "mean_seed_accuracy": 0.6944444444444444
+      }
+    },
+    "test": {
+      "<=8": {
+        "sample_count": 19,
+        "class_histogram": {
+          "0": 7,
+          "1": 10,
+          "2": 2
+        },
+        "source_point_count": {
+          "count": 19,
+          "mean": 11925.052631578947,
+          "std": 14536.287973546117,
+          "minimum": 185.0,
+          "maximum": 41115.0,
+          "median": 3353.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          604.6842105263158,
+          144.05263157894737,
+          32.578947368421055,
+          6.578947368421052
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.9473684210526315,
+          "20260729": 0.7894736842105263,
+          "20260730": 0.8421052631578947
+        },
+        "ensemble_accuracy": 0.9473684210526315,
+        "mean_seed_accuracy": 0.8596491228070176
+      },
+      "9-16": {
+        "sample_count": 41,
+        "class_histogram": {
+          "0": 17,
+          "1": 13,
+          "2": 11
+        },
+        "source_point_count": {
+          "count": 41,
+          "mean": 33419.29268292683,
+          "std": 35974.52693039279,
+          "minimum": 651.0,
+          "maximum": 178572.0,
+          "median": 25100.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1128.5121951219512,
+          279.609756097561,
+          63.951219512195124,
+          12.512195121951219
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.975609756097561,
+          "20260729": 0.9512195121951219,
+          "20260730": 1.0
+        },
+        "ensemble_accuracy": 0.975609756097561,
+        "mean_seed_accuracy": 0.975609756097561
+      },
+      "17-24": {
+        "sample_count": 25,
+        "class_histogram": {
+          "0": 6,
+          "1": 6,
+          "2": 13
+        },
+        "source_point_count": {
+          "count": 25,
+          "mean": 30877.92,
+          "std": 31521.308584410006,
+          "minimum": 806.0,
+          "maximum": 161251.0,
+          "median": 27118.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1604.56,
+          421.0,
+          97.44,
+          19.28
+        ],
+        "accuracy_by_seed": {
+          "20260728": 0.96,
+          "20260729": 0.96,
+          "20260730": 0.96
+        },
+        "ensemble_accuracy": 0.96,
+        "mean_seed_accuracy": 0.96
+      },
+      ">=25": {
+        "sample_count": 5,
+        "class_histogram": {
+          "1": 1,
+          "2": 4
+        },
+        "source_point_count": {
+          "count": 5,
+          "mean": 29892.2,
+          "std": 27375.222149966197,
+          "minimum": 1431.0,
+          "maximum": 80954.0,
+          "median": 25438.0
+        },
+        "stage_point_count_mean": [
+          8192.0,
+          1807.6,
+          508.4,
+          123.6,
+          28.4
+        ],
+        "accuracy_by_seed": {
+          "20260728": 1.0,
+          "20260729": 1.0,
+          "20260730": 0.8
+        },
+        "ensemble_accuracy": 1.0,
+        "mean_seed_accuracy": 0.9333333333333333
+      }
+    }
+  },
+  "artifacts": {
+    "sample_csv": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_sample_diagnostics.csv",
+    "metrics_plot": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_seed_metrics.png",
+    "roads_plot": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_road_domain.png",
+    "structure_plot": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\B5b_point_structure.png"
+  }
+}

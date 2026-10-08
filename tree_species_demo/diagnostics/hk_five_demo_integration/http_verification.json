@@ -1,0 +1,187 @@
+{
+  "new_sample_calls": [
+    {
+      "id": "hk5_hewentian_pano__000672__6c5bc86e54",
+      "mode": "image",
+      "decision": "Delonix regia",
+      "branches": [
+        "image"
+      ],
+      "reference_split": "training_example_not_test"
+    },
+    {
+      "id": "hk5_hewentian_pano__000672__6c5bc86e54",
+      "mode": "point",
+      "decision": "Unknown",
+      "branches": [
+        "point"
+      ],
+      "reference_split": "training_example_not_test"
+    },
+    {
+      "id": "hk5_hewentian_pano__000672__6c5bc86e54",
+      "mode": "both",
+      "decision": "Delonix regia",
+      "branches": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "reference_split": "training_example_not_test"
+    },
+    {
+      "id": "hk5_hewentian_pano__002687__84ab5961b4",
+      "mode": "image",
+      "decision": "Unknown",
+      "branches": [
+        "image"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_hewentian_pano__002687__84ab5961b4",
+      "mode": "point",
+      "decision": "Unknown",
+      "branches": [
+        "point"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_hewentian_pano__002687__84ab5961b4",
+      "mode": "both",
+      "decision": "Unknown",
+      "branches": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_hewentian_pano__003656__412bf2513d",
+      "mode": "image",
+      "decision": "Leucaena leucocephala",
+      "branches": [
+        "image"
+      ],
+      "reference_split": "training_example_not_test"
+    },
+    {
+      "id": "hk5_hewentian_pano__003656__412bf2513d",
+      "mode": "point",
+      "decision": "Unknown",
+      "branches": [
+        "point"
+      ],
+      "reference_split": "training_example_not_test"
+    },
+    {
+      "id": "hk5_hewentian_pano__003656__412bf2513d",
+      "mode": "both",
+      "decision": "Leucaena leucocephala",
+      "branches": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "reference_split": "training_example_not_test"
+    },
+    {
+      "id": "hk5_hewentian_pano__004070__dee2d51b51",
+      "mode": "image",
+      "decision": "Aleurites moluccana",
+      "branches": [
+        "image"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_hewentian_pano__004070__dee2d51b51",
+      "mode": "point",
+      "decision": "Unknown",
+      "branches": [
+        "point"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_hewentian_pano__004070__dee2d51b51",
+      "mode": "both",
+      "decision": "Unknown",
+      "branches": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_stubbs_pano_0__000433__86377718ac",
+      "mode": "image",
+      "decision": "Unknown",
+      "branches": [
+        "image"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_stubbs_pano_0__000433__86377718ac",
+      "mode": "point",
+      "decision": "Araucaria columnaris(Araucaria heterophylla)",
+      "branches": [
+        "point"
+      ],
+      "reference_split": "pilot_heldout"
+    },
+    {
+      "id": "hk5_stubbs_pano_0__000433__86377718ac",
+      "mode": "both",
+      "decision": "Araucaria columnaris(Araucaria heterophylla)",
+      "branches": [
+        "image",
+        "point"
+      ],
+      "reference_split": "pilot_heldout"
+    }
+  ],
+  "negative_cases": [
+    "unpaired",
+    "dark_image",
+    "planar_cloud",
+    "missing_input",
+    "malformed_cloud"
+  ],
+  "filename_not_used_for_classification": true,
+  "sparse_1081_points_not_padded": true,
+  "old_domain_regressions": [
+    {
+      "domain": "wuhan",
+      "id": "wuhan_039",
+      "branches": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    },
+    {
+      "domain": "hongkong",
+      "id": "hongkong_001",
+      "branches": [
+        "image"
+      ]
+    },
+    {
+      "domain": "hongkong_vmms",
+      "id": "hk3_stubbs_pano_1__001557__416df9d91a",
+      "branches": [
+        "image",
+        "point",
+        "fusion"
+      ]
+    }
+  ],
+  "protected_sources_and_models_unchanged": true,
+  "real_review_posts": 0,
+  "scope": "Integration smoke test, not accuracy validation"
+}

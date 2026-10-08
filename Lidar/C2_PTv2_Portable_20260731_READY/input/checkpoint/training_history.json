@@ -1,0 +1,74 @@
+[
+  {
+    "epoch": 1,
+    "learning_rate": 0.001,
+    "train_loss": 1.8327124733210847,
+    "train_accuracy": 0.5526075022872827,
+    "train_macro_f1": 0.17344960177255242,
+    "val_loss": 2.8043936194035046,
+    "val_accuracy": 0.25263157894736843,
+    "val_macro_f1": 0.14290082087972228,
+    "epoch_seconds": 744.8359585000435,
+    "peak_allocated_mib": 4918.1708984375
+  },
+  {
+    "epoch": 2,
+    "learning_rate": 0.0009998303758629009,
+    "train_loss": 1.5815708938987199,
+    "train_accuracy": 0.6490545898139677,
+    "train_macro_f1": 0.2502124797590354,
+    "val_loss": 2.2699135299314532,
+    "val_accuracy": 0.34385964912280703,
+    "val_macro_f1": 0.24730077200037148,
+    "epoch_seconds": 622.9712902000174,
+    "peak_allocated_mib": 5575.94091796875
+  },
+  {
+    "epoch": 3,
+    "learning_rate": 0.000999321619703514,
+    "train_loss": 1.4618238804725003,
+    "train_accuracy": 0.6898444647758463,
+    "train_macro_f1": 0.31970294460962306,
+    "val_loss": 2.8569087839963143,
+    "val_accuracy": 0.21403508771929824,
+    "val_macro_f1": 0.14060948926126388,
+    "epoch_seconds": 628.5756278999615,
+    "peak_allocated_mib": 5079.39404296875
+  },
+  {
+    "epoch": 4,
+    "learning_rate": 0.0009984740801978985,
+    "train_loss": 1.378008676978574,
+    "train_accuracy": 0.7197316254955779,
+    "train_macro_f1": 0.36599391692505945,
+    "val_loss": 2.317453896371942,
+    "val_accuracy": 0.3543859649122807,
+    "val_macro_f1": 0.27917157990021263,
+    "epoch_seconds": 635.781071400037,
+    "peak_allocated_mib": 5384.6552734375
+  },
+  {
+    "epoch": 5,
+    "learning_rate": 0.0009972883382072953,
+    "train_loss": 1.3213592237290466,
+    "train_accuracy": 0.7405458981396768,
+    "train_macro_f1": 0.402623400732113,
+    "val_loss": 2.160268709115815,
+    "val_accuracy": 0.41754385964912283,
+    "val_macro_f1": 0.3658434253208751,
+    "epoch_seconds": 792.6143241000827,
+    "peak_allocated_mib": 4959.49560546875
+  },
+  {
+    "epoch": 6,
+    "learning_rate": 0.0009957652063800363,
+    "train_loss": 1.2832404840061598,
+    "train_accuracy": 0.754193351631595,
+    "train_macro_f1": 0.42622483315966886,
+    "val_loss": 2.573509648808262,
+    "val_accuracy": 0.30526315789473685,
+    "val_macro_f1": 0.23088022365255279,
+    "epoch_seconds": 2093.04972000001,
+    "peak_allocated_mib": 5205.71728515625
+  }
+]

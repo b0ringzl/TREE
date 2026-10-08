@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "verified_at": "2026-08-05T15:03:55+08:00",
+  "computer_name": "b0ring",
+  "root": "D:\\TREE\\Lidar\\C3_PTv2_3Seed_Portable_20260805_READY",
+  "file_count": 17161,
+  "total_bytes": 9368125336,
+  "elapsed_seconds": 610.708,
+  "errors": []
+}

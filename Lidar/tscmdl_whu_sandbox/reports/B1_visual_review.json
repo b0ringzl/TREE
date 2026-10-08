@@ -1,0 +1,36 @@
+{
+  "stage": "B1",
+  "review_type": "codex_visual_precheck",
+  "reviewer": "Codex",
+  "review_method": "Codex 按 train/val/test 和三类分层初步检查点云投影叠加图，非用户验收",
+  "user_review_status": "pending",
+  "user_decision": null,
+  "summary": {
+    "reviewed": 18,
+    "excellent": 6,
+    "good": 6,
+    "acceptable": 5,
+    "poor": 1,
+    "projection_failed": 0
+  },
+  "reviews": [
+    {"sample_key": "02_2_8051", "split": "train", "class_index": 0, "quality": "good", "note": "树冠和主干对齐，灯杆遮挡部分树干。"},
+    {"sample_key": "02_2_8065", "split": "train", "class_index": 0, "quality": "excellent", "note": "目标完整，树冠和主干均清晰对齐。"},
+    {"sample_key": "03_2_8424", "split": "train", "class_index": 1, "quality": "good", "note": "落叶小乔木投影对齐，背景较杂。"},
+    {"sample_key": "03_2_8426", "split": "train", "class_index": 1, "quality": "acceptable", "note": "几何对齐成立，但邻近同形态树木重叠明显。"},
+    {"sample_key": "03_5_9107", "split": "train", "class_index": 2, "quality": "good", "note": "主干和主要树冠对齐，周围存在邻树。"},
+    {"sample_key": "03_5_9130", "split": "train", "class_index": 2, "quality": "acceptable", "note": "投影正确，但图像存在运动模糊和前景树干干扰。"},
+    {"sample_key": "06_3_10021", "split": "val", "class_index": 0, "quality": "excellent", "note": "树冠和主干完整清晰。"},
+    {"sample_key": "06_3_10044", "split": "val", "class_index": 0, "quality": "acceptable", "note": "树冠可见，车辆遮挡下部主干。"},
+    {"sample_key": "06_3_10001", "split": "val", "class_index": 1, "quality": "good", "note": "目标与点云对齐，背景包含其他树木。"},
+    {"sample_key": "06_3_10009", "split": "val", "class_index": 1, "quality": "acceptable", "note": "目标位置正确，密集植被和邻树造成干扰。"},
+    {"sample_key": "23_1_2502", "split": "val", "class_index": 2, "quality": "poor", "note": "投影几何正确，但公交车严重遮挡树体，影像分类价值较低。"},
+    {"sample_key": "23_1_2503", "split": "val", "class_index": 2, "quality": "acceptable", "note": "目标位置正确，天空过曝且树冠较稀疏。"},
+    {"sample_key": "02_1_8225", "split": "test", "class_index": 0, "quality": "excellent", "note": "目标完整，树冠和主干高度对齐。"},
+    {"sample_key": "02_1_8247", "split": "test", "class_index": 0, "quality": "excellent", "note": "目标完整且边界清晰。"},
+    {"sample_key": "03_3_8776", "split": "test", "class_index": 1, "quality": "good", "note": "落叶树投影对齐，背景车辆较多。"},
+    {"sample_key": "03_3_8779", "split": "test", "class_index": 1, "quality": "good", "note": "目标几何对齐，邻近树枝进入裁剪。"},
+    {"sample_key": "08_1-1_10734", "split": "test", "class_index": 2, "quality": "excellent", "note": "常绿树冠完整并与点云高度对齐。"},
+    {"sample_key": "08_1-1_10735", "split": "test", "class_index": 2, "quality": "excellent", "note": "目标完整，叶片纹理清晰。"}
+  ]
+}

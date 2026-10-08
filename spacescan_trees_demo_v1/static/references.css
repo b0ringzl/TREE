@@ -1,0 +1,4 @@
+.reference-item { min-width: 0; }
+.reference-item .reference-tile { width: 100%; }
+.reference-credit { margin: 7px 2px 0; font-size: 10px; line-height: 1.5; color: #607569; overflow-wrap: anywhere; }
+.reference-credit a { color: #35624a; }

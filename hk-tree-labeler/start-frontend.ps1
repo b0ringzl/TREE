@@ -1,9 +1,10 @@
 $ErrorActionPreference = "Stop"
-Set-Location "D:\TREE\hk-tree-labeler\frontend"
+$Frontend = Join-Path $PSScriptRoot "frontend"
+Set-Location $Frontend
 try {
-    npm run dev -- --host 127.0.0.1 --port 5173 *>> "D:\TREE\hk-tree-labeler\frontend\vite.log"
+    npm run dev -- --host 127.0.0.1 --port 5173 *>> (Join-Path $Frontend "vite.log")
 }
 catch {
-    $_ | Out-String | Out-File "D:\TREE\hk-tree-labeler\frontend\vite.err.log" -Append
+    $_ | Out-String | Out-File (Join-Path $Frontend "vite.err.log") -Append
     throw
 }

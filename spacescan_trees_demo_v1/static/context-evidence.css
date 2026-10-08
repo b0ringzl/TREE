@@ -1,0 +1,5 @@
+/* Two actual model inputs must still fit the mobile evidence panel. */
+.evidence > div { display: flex; flex-wrap: wrap; gap: 16px; }
+.evidence > div > p { flex: 1 1 260px; min-width: 0; }
+.evidence > div > img { max-width: calc(50% - 8px); object-fit: contain; }
+.evidence > div > img[hidden] { display: none; }

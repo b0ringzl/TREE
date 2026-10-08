@@ -1,0 +1,10 @@
+{
+  "version": "ptv2-seven-20260913-v1",
+  "model": "spacescan_trees_demo_v1\\models\\ptv2_seven_20260913_v1\\model.joblib",
+  "model_sha256": "e35d9375c61f4ee142d917c38958a6d28a3100d5a8585a21d0606936f7681c55",
+  "encoder": "experiments\\whu18_yolo11_ptv2_fusion_20260826\\ptv2\\run\\best.pt",
+  "encoder_sha256": "796bfbaef7d3a8d9eed31be41f427c87640efb30561c08a9b9e39288529ad803",
+  "backup": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\point_live_deployment_20260913_v1\\pre_training_backup",
+  "source": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\aquilaria_ptv2_fewshot_20260913_44056021\\runs\\final_3shot\\model.joblib",
+  "fusion_point_weight": 0.5
+}

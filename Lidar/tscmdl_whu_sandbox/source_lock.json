@@ -1,0 +1,27 @@
+{
+  "locked_at": "2026-07-14T12:39:30+08:00",
+  "sources": {
+    "pointmlp": {
+      "repository": "https://github.com/ma-xu/pointMLP-pytorch.git",
+      "commit": "1ab7f04e88d2aeb8fd16921a2b2fc4fba950b6df",
+      "license": "Apache-2.0",
+      "role": "Point-cloud classification backbone reference",
+      "local_compatibility_patch": "patches/pointnet2_ops_windows_cuda128.patch"
+    },
+    "whu_stree": {
+      "repository": "https://github.com/WHU-USI3DV/WHU-STree.git",
+      "commit": "3b8faeffcb146ff34de925337952adb72d15a7b4",
+      "role": "Dataset documentation and benchmark protocol reference"
+    },
+    "tscmdl_paper": {
+      "url": "https://ieeexplore.ieee.org/document/10098635",
+      "doi": "10.1109/TGRS.2023.3266057",
+      "role": "Original multimodal architecture reference"
+    },
+    "whu_stree_paper_text": {
+      "path": "D:\\TREE\\paper reading\\output\\1-s2.0-S0924271626000626-main_extracted.txt",
+      "parser": "PyMuPDF in pdf-reading conda environment",
+      "role": "Local benchmark and appendix evidence"
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-08-11T16:48:46+08:00",
+  "left": {
+    "stage": "B2",
+    "model": "PointMLP"
+  },
+  "right": {
+    "stage": "B3",
+    "model": "ImageNet-pretrained ResNet50"
+  },
+  "class_names": [
+    "Cinnamomum camphora",
+    "Lagerstroemia indica",
+    "Magnolia grandiflora"
+  ],
+  "overall": {
+    "sample_count": 180,
+    "both_correct": 94,
+    "left_only_correct": 15,
+    "right_only_correct": 60,
+    "neither_correct": 11,
+    "same_prediction": 100,
+    "different_prediction": 80,
+    "left_accuracy": 0.6055555555555555,
+    "right_accuracy": 0.8555555555555555,
+    "either_model_oracle_accuracy": 0.9388888888888889,
+    "right_net_corrections": 45
+  },
+  "by_split": {
+    "test": {
+      "sample_count": 90,
+      "both_correct": 49,
+      "left_only_correct": 11,
+      "right_only_correct": 23,
+      "neither_correct": 7,
+      "same_prediction": 52,
+      "different_prediction": 38,
+      "left_accuracy": 0.6666666666666666,
+      "right_accuracy": 0.8,
+      "either_model_oracle_accuracy": 0.9222222222222223,
+      "right_net_corrections": 12
+    },
+    "val": {
+      "sample_count": 90,
+      "both_correct": 45,
+      "left_only_correct": 4,
+      "right_only_correct": 37,
+      "neither_correct": 4,
+      "same_prediction": 48,
+      "different_prediction": 42,
+      "left_accuracy": 0.5444444444444444,
+      "right_accuracy": 0.9111111111111111,
+      "either_model_oracle_accuracy": 0.9555555555555556,
+      "right_net_corrections": 33
+    }
+  },
+  "by_split_and_class": {
+    "test": {
+      "0": {
+        "sample_count": 30,
+        "both_correct": 15,
+        "left_only_correct": 7,
+        "right_only_correct": 6,
+        "neither_correct": 2,
+        "same_prediction": 16,
+        "different_prediction": 14,
+        "left_accuracy": 0.7333333333333333,
+        "right_accuracy": 0.7,
+        "either_model_oracle_accuracy": 0.9333333333333333,
+        "right_net_corrections": -1
+      },
+      "1": {
+        "sample_count": 30,
+        "both_correct": 14,
+        "left_only_correct": 0,
+        "right_only_correct": 12,
+        "neither_correct": 4,
+        "same_prediction": 16,
+        "different_prediction": 14,
+        "left_accuracy": 0.4666666666666667,
+        "right_accuracy": 0.8666666666666667,
+        "either_model_oracle_accuracy": 0.8666666666666667,
+        "right_net_corrections": 12
+      },
+      "2": {
+        "sample_count": 30,
+        "both_correct": 20,
+        "left_only_correct": 4,
+        "right_only_correct": 5,
+        "neither_correct": 1,
+        "same_prediction": 20,
+        "different_prediction": 10,
+        "left_accuracy": 0.8,
+        "right_accuracy": 0.8333333333333334,
+        "either_model_oracle_accuracy": 0.9666666666666667,
+        "right_net_corrections": 1
+      }
+    },
+    "val": {
+      "0": {
+        "sample_count": 30,
+        "both_correct": 18,
+        "left_only_correct": 1,
+        "right_only_correct": 10,
+        "neither_correct": 1,
+        "same_prediction": 19,
+        "different_prediction": 11,
+        "left_accuracy": 0.6333333333333333,
+        "right_accuracy": 0.9333333333333333,
+        "either_model_oracle_accuracy": 0.9666666666666667,
+        "right_net_corrections": 9
+      },
+      "1": {
+        "sample_count": 30,
+        "both_correct": 9,
+        "left_only_correct": 1,
+        "right_only_correct": 20,
+        "neither_correct": 0,
+        "same_prediction": 9,
+        "different_prediction": 21,
+        "left_accuracy": 0.3333333333333333,
+        "right_accuracy": 0.9666666666666667,
+        "either_model_oracle_accuracy": 1.0,
+        "right_net_corrections": 19
+      },
+      "2": {
+        "sample_count": 30,
+        "both_correct": 18,
+        "left_only_correct": 2,
+        "right_only_correct": 7,
+        "neither_correct": 3,
+        "same_prediction": 20,
+        "different_prediction": 10,
+        "left_accuracy": 0.6666666666666666,
+        "right_accuracy": 0.8333333333333334,
+        "either_model_oracle_accuracy": 0.9,
+        "right_net_corrections": 5
+      }
+    }
+  }
+}

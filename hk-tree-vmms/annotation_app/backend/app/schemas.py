@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field, field_validator
 class StartTaskRequest(BaseModel):
     species: str
     target_count: int = Field(ge=1, le=10_000)
+    route_id: str = "all"
 
 
 class Box(BaseModel):

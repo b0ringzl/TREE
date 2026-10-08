@@ -1,0 +1,18 @@
+sam2/
+sam3/
+ultralytics/
+关键点测试/
+整合包/
+界面图片/
+# 忽略 IDE 配置文件
+.idea/
+.vscode/
+
+# 忽略 Python 缓存文件
+__pycache__/
+
+yolotest/
+.runtime/
+Ultralytics/
+weights/
+exports/

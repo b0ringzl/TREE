@@ -1,0 +1,95 @@
+﻿{
+  "road_id": "26",
+  "trajectory_id": "1",
+  "sampling_strategy": "uniform random without replacement; retain all then pad with replacement when short",
+  "normalization_strategy": "sample centroid plus unit maximum radius",
+  "base_seed": 20260714,
+  "target_point_count": 8192,
+  "elapsed_seconds": 0.9641,
+  "outputs": [
+    {
+      "tree_id": 3959,
+      "raw_label_id": 29,
+      "benchmark_label_id": 18,
+      "source_point_count": 1066,
+      "target_point_count": 8192,
+      "used_replacement": true,
+      "unique_sample_index_count": 1066,
+      "seed": 20264673,
+      "normalization_centroid": [
+        -7.948436260223389,
+        -88.78935343027115,
+        0.005028537437169689
+      ],
+      "normalization_scale": 3.9702077025237026,
+      "normalized_centroid_max_abs": 1.58033799380064e-08,
+      "normalized_max_radius": 0.9999999403953552,
+      "output_path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\a3_samples\\26_1\\26_1_tree_3959.npz",
+      "output_size_bytes": 87955,
+      "sha256": "44521394D659FA0B61DA470A5A44B358BDC2060ED1C6615DC96645301A282D65"
+    },
+    {
+      "tree_id": 3963,
+      "raw_label_id": 13,
+      "benchmark_label_id": 13,
+      "source_point_count": 7529,
+      "target_point_count": 8192,
+      "used_replacement": true,
+      "unique_sample_index_count": 7529,
+      "seed": 20264677,
+      "normalization_centroid": [
+        -7.847204029560089,
+        -116.62390691041946,
+        0.18327054951945598
+      ],
+      "normalization_scale": 6.762048802911532,
+      "normalized_centroid_max_abs": 1.4351826393976808e-09,
+      "normalized_max_radius": 0.9999999403953552,
+      "output_path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\a3_samples\\26_1\\26_1_tree_3963.npz",
+      "output_size_bytes": 171277,
+      "sha256": "59516DD232E21AB48E14C95BCC00DCD76DF1568242CE3CE66918BDAE539301C1"
+    },
+    {
+      "tree_id": 3966,
+      "raw_label_id": 11,
+      "benchmark_label_id": 11,
+      "source_point_count": 9576,
+      "target_point_count": 8192,
+      "used_replacement": false,
+      "unique_sample_index_count": 8192,
+      "seed": 20264680,
+      "normalization_centroid": [
+        35.875491976737976,
+        111.16758444905281,
+        1.1150373904090536
+      ],
+      "normalization_scale": 6.242881527176629,
+      "normalized_centroid_max_abs": 4.816683940589428e-09,
+      "normalized_max_radius": 1.0,
+      "output_path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\a3_samples\\26_1\\26_1_tree_3966.npz",
+      "output_size_bytes": 172569,
+      "sha256": "D60EE3E68F19E67DB9EEE7D65D0FDCB2E21BE7195DE2E2F12F2F344620B320E7"
+    },
+    {
+      "tree_id": 4015,
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "source_point_count": 82080,
+      "target_point_count": 8192,
+      "used_replacement": false,
+      "unique_sample_index_count": 8192,
+      "seed": 20264729,
+      "normalization_centroid": [
+        9.984128475189209,
+        100.28325591981411,
+        1.4151002618628041
+      ],
+      "normalization_scale": 5.509973213078194,
+      "normalized_centroid_max_abs": 1.1186784831807017e-09,
+      "normalized_max_radius": 1.0,
+      "output_path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\a3_samples\\26_1\\26_1_tree_4015.npz",
+      "output_size_bytes": 188035,
+      "sha256": "D5996DEE19DBE4C97E48D0BD1A9A75EA316D5507B0589776527F19046A193B65"
+    }
+  ]
+}

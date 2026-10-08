@@ -1,0 +1,225 @@
+{
+    "name": "Person (COCO)",
+    "label": "person",
+    "description": "COCO human body pose estimation",
+    "kpt_shape": [
+        17,
+        3
+    ],
+    "keypoints": [
+        {
+            "name": "nose",
+            "color": "#FF0000",
+            "default_pos": [
+                0.5,
+                0.11453
+            ]
+        },
+        {
+            "name": "left_eye",
+            "color": "#FF5500",
+            "default_pos": [
+                0.45262,
+                0.096
+            ]
+        },
+        {
+            "name": "right_eye",
+            "color": "#FF0055",
+            "default_pos": [
+                0.54727,
+                0.096
+            ]
+        },
+        {
+            "name": "left_ear",
+            "color": "#FFAA00",
+            "default_pos": [
+                0.40483,
+                0.11453
+            ]
+        },
+        {
+            "name": "right_ear",
+            "color": "#FF00AA",
+            "default_pos": [
+                0.59517,
+                0.11453
+            ]
+        },
+        {
+            "name": "left_shoulder",
+            "color": "#FFFF00",
+            "default_pos": [
+                0.32179,
+                0.25375
+            ]
+        },
+        {
+            "name": "right_shoulder",
+            "color": "#AAFF00",
+            "default_pos": [
+                0.67821,
+                0.25375
+            ]
+        },
+        {
+            "name": "left_elbow",
+            "color": "#55FF00",
+            "default_pos": [
+                0.20341,
+                0.41168
+            ]
+        },
+        {
+            "name": "right_elbow",
+            "color": "#00FF00",
+            "default_pos": [
+                0.79649,
+                0.41168
+            ]
+        },
+        {
+            "name": "left_wrist",
+            "color": "#00FF55",
+            "default_pos": [
+                0.144,
+                0.53242
+            ]
+        },
+        {
+            "name": "right_wrist",
+            "color": "#00FFAA",
+            "default_pos": [
+                0.856,
+                0.53242
+            ]
+        },
+        {
+            "name": "left_hip",
+            "color": "#00FFFF",
+            "default_pos": [
+                0.38119,
+                0.53242
+            ]
+        },
+        {
+            "name": "right_hip",
+            "color": "#00AAFF",
+            "default_pos": [
+                0.61881,
+                0.53242
+            ]
+        },
+        {
+            "name": "left_knee",
+            "color": "#0055FF",
+            "default_pos": [
+                0.35745,
+                0.7182
+            ]
+        },
+        {
+            "name": "right_knee",
+            "color": "#0000FF",
+            "default_pos": [
+                0.64244,
+                0.7182
+            ]
+        },
+        {
+            "name": "left_ankle",
+            "color": "#5500FF",
+            "default_pos": [
+                0.33382,
+                0.904
+            ]
+        },
+        {
+            "name": "right_ankle",
+            "color": "#AA00FF",
+            "default_pos": [
+                0.66608,
+                0.904
+            ]
+        }
+    ],
+    "connections": [
+        [
+            15,
+            13
+        ],
+        [
+            13,
+            11
+        ],
+        [
+            16,
+            14
+        ],
+        [
+            14,
+            12
+        ],
+        [
+            11,
+            12
+        ],
+        [
+            5,
+            11
+        ],
+        [
+            6,
+            12
+        ],
+        [
+            5,
+            6
+        ],
+        [
+            5,
+            7
+        ],
+        [
+            6,
+            8
+        ],
+        [
+            7,
+            9
+        ],
+        [
+            8,
+            10
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            0,
+            1
+        ],
+        [
+            0,
+            2
+        ],
+        [
+            1,
+            3
+        ],
+        [
+            2,
+            4
+        ],
+        [
+            3,
+            5
+        ],
+        [
+            4,
+            6
+        ]
+    ]
+}

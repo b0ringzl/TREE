@@ -1,0 +1,46 @@
+{
+  "stage": "E1-four-class-multimodal-acceptance-application",
+  "status": "pass",
+  "validated_at": "2026-08-23T19:12:52+08:00",
+  "application_url": "http://127.0.0.1:8771/",
+  "sample_count": 241,
+  "seeds": [20260728, 20260729, 20260730],
+  "accuracy": {
+    "image": 0.8049792531120332,
+    "point": 0.8796680497925311,
+    "fusion": 0.8879668049792531,
+    "quality_aware_candidate": 0.8838174273858921
+  },
+  "relationship_counts": {
+    "all_agree": 194,
+    "point_rescue": 23,
+    "negative_transfer": 6,
+    "fusion_rescue": 1,
+    "disagreement": 17
+  },
+  "quality_counts": {
+    "automatic_image_risk": 18,
+    "point_pass": 214,
+    "point_caution": 25,
+    "point_fail": 2
+  },
+  "checks": {
+    "python_compile": "pass",
+    "summary_endpoint": "pass",
+    "catalog_filter_endpoint": "pass",
+    "sample_endpoint": "pass",
+    "image_endpoint": "pass",
+    "point_render_endpoint": "pass",
+    "responsive_layout": "pass",
+    "point_rescue_filter": "pass",
+    "quality_aware_output_visible": "pass"
+  },
+  "training_started": false,
+  "weights_modified": false,
+  "external_upload_enabled": false,
+  "limitations": [
+    "Only frozen D1 validation/test samples are available in E1.",
+    "Quality-aware routing is an uncalibrated candidate and is not more accurate than the fusion baseline overall.",
+    "Arbitrary field-data inference requires the E2 preprocessing and checkpoint-serving contract."
+  ]
+}

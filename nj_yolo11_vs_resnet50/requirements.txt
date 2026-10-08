@@ -1,0 +1,2 @@
+ultralytics==8.4.127
+scikit-learn==1.7.2

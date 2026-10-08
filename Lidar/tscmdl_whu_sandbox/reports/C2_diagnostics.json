@@ -1,0 +1,278 @@
+{
+  "status": "passed",
+  "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\received_24gb_20260803\\run",
+  "best_epoch": 48,
+  "epochs_completed": 68,
+  "metrics": {
+    "val": {
+      "accuracy": 0.6982456140350877,
+      "macro_f1": 0.6880264483634875,
+      "loss": 1.4500292276081286
+    },
+    "test": {
+      "accuracy": 0.7906032482598608,
+      "macro_f1": 0.6229158605661018,
+      "loss": 1.1672501721680857
+    },
+    "test_accuracy_minus_macro_f1": 0.16768738769375902
+  },
+  "weakest_test_classes": [
+    {
+      "split": "test",
+      "class_index": 15,
+      "support": 49,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "scientific_name": "Sophora japonica"
+    },
+    {
+      "split": "test",
+      "class_index": 18,
+      "support": 49,
+      "precision": 0.2222222222222222,
+      "recall": 0.2857142857142857,
+      "f1": 0.25,
+      "scientific_name": "Others"
+    },
+    {
+      "split": "test",
+      "class_index": 12,
+      "support": 66,
+      "precision": 0.8333333333333334,
+      "recall": 0.30303030303030304,
+      "f1": 0.4444444444444444,
+      "scientific_name": "Malus x micromalus"
+    },
+    {
+      "split": "test",
+      "class_index": 5,
+      "support": 102,
+      "precision": 0.3836477987421384,
+      "recall": 0.5980392156862745,
+      "f1": 0.4674329501915709,
+      "scientific_name": "Prunus cerasifera 'atropurpurea'"
+    },
+    {
+      "split": "test",
+      "class_index": 11,
+      "support": 70,
+      "precision": 0.5254237288135594,
+      "recall": 0.44285714285714284,
+      "f1": 0.4806201550387597,
+      "scientific_name": "Ligustrum lucidum"
+    }
+  ],
+  "strongest_test_classes": [
+    {
+      "split": "test",
+      "class_index": 14,
+      "support": 65,
+      "precision": 0.9836065573770492,
+      "recall": 0.9230769230769231,
+      "f1": 0.9523809523809524,
+      "scientific_name": "Metasequoia glyptostroboides"
+    },
+    {
+      "split": "test",
+      "class_index": 0,
+      "support": 1051,
+      "precision": 0.9679144385026738,
+      "recall": 0.8610846812559467,
+      "f1": 0.9113796576032226,
+      "scientific_name": "Platanus x acerifolia"
+    },
+    {
+      "split": "test",
+      "class_index": 1,
+      "support": 749,
+      "precision": 0.9183673469387755,
+      "recall": 0.9012016021361816,
+      "f1": 0.9097035040431267,
+      "scientific_name": "Cinnamomum camphora"
+    },
+    {
+      "split": "test",
+      "class_index": 2,
+      "support": 354,
+      "precision": 0.7713625866050808,
+      "recall": 0.943502824858757,
+      "f1": 0.8487928843710292,
+      "scientific_name": "Lagerstroemia indica"
+    },
+    {
+      "split": "test",
+      "class_index": 3,
+      "support": 173,
+      "precision": 0.7619047619047619,
+      "recall": 0.9248554913294798,
+      "f1": 0.835509138381201,
+      "scientific_name": "Osmanthus fragrans"
+    }
+  ],
+  "top_test_confusions": [
+    {
+      "split": "test",
+      "true_class_index": 12,
+      "true_class": "Malus x micromalus",
+      "predicted_class_index": 2,
+      "predicted_class": "Lagerstroemia indica",
+      "count": 30,
+      "true_class_support": 66,
+      "share_of_true_class": 0.45454545454545453
+    },
+    {
+      "split": "test",
+      "true_class_index": 11,
+      "true_class": "Ligustrum lucidum",
+      "predicted_class_index": 1,
+      "predicted_class": "Cinnamomum camphora",
+      "count": 27,
+      "true_class_support": 70,
+      "share_of_true_class": 0.38571428571428573
+    },
+    {
+      "split": "test",
+      "true_class_index": 15,
+      "true_class": "Sophora japonica",
+      "predicted_class_index": 6,
+      "predicted_class": "Zelkova serrata",
+      "count": 17,
+      "true_class_support": 49,
+      "share_of_true_class": 0.3469387755102041
+    },
+    {
+      "split": "test",
+      "true_class_index": 4,
+      "true_class": "Koelreuteria paniculata",
+      "predicted_class_index": 6,
+      "predicted_class": "Zelkova serrata",
+      "count": 33,
+      "true_class_support": 109,
+      "share_of_true_class": 0.30275229357798167
+    },
+    {
+      "split": "test",
+      "true_class_index": 17,
+      "true_class": "Photinia x fraseri",
+      "predicted_class_index": 3,
+      "predicted_class": "Osmanthus fragrans",
+      "count": 14,
+      "true_class_support": 50,
+      "share_of_true_class": 0.28
+    },
+    {
+      "split": "test",
+      "true_class_index": 5,
+      "true_class": "Prunus cerasifera 'atropurpurea'",
+      "predicted_class_index": 2,
+      "predicted_class": "Lagerstroemia indica",
+      "count": 26,
+      "true_class_support": 102,
+      "share_of_true_class": 0.2549019607843137
+    },
+    {
+      "split": "test",
+      "true_class_index": 15,
+      "true_class": "Sophora japonica",
+      "predicted_class_index": 1,
+      "predicted_class": "Cinnamomum camphora",
+      "count": 12,
+      "true_class_support": 49,
+      "share_of_true_class": 0.24489795918367346
+    },
+    {
+      "split": "test",
+      "true_class_index": 10,
+      "true_class": "Prunus serrulata",
+      "predicted_class_index": 2,
+      "predicted_class": "Lagerstroemia indica",
+      "count": 15,
+      "true_class_support": 66,
+      "share_of_true_class": 0.22727272727272727
+    },
+    {
+      "split": "test",
+      "true_class_index": 16,
+      "true_class": "Acer pictum subsp. mono",
+      "predicted_class_index": 10,
+      "predicted_class": "Prunus serrulata",
+      "count": 24,
+      "true_class_support": 109,
+      "share_of_true_class": 0.22018348623853212
+    },
+    {
+      "split": "test",
+      "true_class_index": 9,
+      "true_class": "Acer palmatum var. atropurpureum",
+      "predicted_class_index": 2,
+      "predicted_class": "Lagerstroemia indica",
+      "count": 12,
+      "true_class_support": 58,
+      "share_of_true_class": 0.20689655172413793
+    },
+    {
+      "split": "test",
+      "true_class_index": 15,
+      "true_class": "Sophora japonica",
+      "predicted_class_index": 11,
+      "predicted_class": "Ligustrum lucidum",
+      "count": 10,
+      "true_class_support": 49,
+      "share_of_true_class": 0.20408163265306123
+    },
+    {
+      "split": "test",
+      "true_class_index": 18,
+      "true_class": "Others",
+      "predicted_class_index": 13,
+      "predicted_class": "Magnolia grandiflora",
+      "count": 10,
+      "true_class_support": 49,
+      "share_of_true_class": 0.20408163265306123
+    },
+    {
+      "split": "test",
+      "true_class_index": 7,
+      "true_class": "Cedrus deodara",
+      "predicted_class_index": 18,
+      "predicted_class": "Others",
+      "count": 16,
+      "true_class_support": 112,
+      "share_of_true_class": 0.14285714285714285
+    },
+    {
+      "split": "test",
+      "true_class_index": 12,
+      "true_class": "Malus x micromalus",
+      "predicted_class_index": 10,
+      "predicted_class": "Prunus serrulata",
+      "count": 9,
+      "true_class_support": 66,
+      "share_of_true_class": 0.13636363636363635
+    },
+    {
+      "split": "test",
+      "true_class_index": 16,
+      "true_class": "Acer pictum subsp. mono",
+      "predicted_class_index": 9,
+      "predicted_class": "Acer palmatum var. atropurpureum",
+      "count": 13,
+      "true_class_support": 109,
+      "share_of_true_class": 0.11926605504587157
+    }
+  ],
+  "artifacts": {
+    "per_class_csv": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_per_class_metrics.csv",
+    "confusions_csv": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_top_confusions.csv",
+    "confusion_matrix_val": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_confusion_matrix_val_readable.png",
+    "confusion_matrix_test": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_confusion_matrix_test_readable.png",
+    "test_per_class_metrics": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_test_per_class_metrics.png",
+    "training_curves": "D:\\TREE\\Lidar\\tscmdl_whu_sandbox\\reports\\C2_training_curves_readable.png"
+  },
+  "interpretation": [
+    "Training converged but validation metrics remained highly variable.",
+    "The test split is imbalanced; macro F1 is the primary class-balanced metric.",
+    "Sophora japonica has zero test F1 and requires targeted follow-up."
+  ]
+}

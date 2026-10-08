@@ -1,0 +1,79 @@
+﻿{
+  "road_id": "02",
+  "trajectory_id": "1",
+  "ply_path": "D:\\TREE\\lidar data\\whu\\02\\PCD\\1.ply",
+  "format": "binary_little_endian",
+  "vertex_count": 8876647,
+  "properties": [
+    [
+      "x",
+      "float64"
+    ],
+    [
+      "y",
+      "float64"
+    ],
+    [
+      "z",
+      "float64"
+    ],
+    [
+      "intensity",
+      "float64"
+    ]
+  ],
+  "record_size": 32,
+  "data_offset": 154,
+  "file_size": 284052858,
+  "expected_file_size": 284052858,
+  "chunk_size": 1000000,
+  "chunk_count": 9,
+  "annotation_source": "reference",
+  "reference_path": "D:\\TREE\\lidar data\\whu\\reference_data\\02_1.npy",
+  "first_sample": {
+    "start": 0,
+    "stop": 4096,
+    "length": 4096,
+    "sample_count": 4096,
+    "xyz_first": [
+      -21.005076407745946,
+      -100.44040077272803,
+      4.874222933516162
+    ],
+    "intensity_sample_range": [
+      3072.0,
+      35584.0
+    ],
+    "tree_sample_range": [
+      8249.0,
+      8249.0
+    ],
+    "label_sample_range": [
+      1,
+      1
+    ]
+  },
+  "last_sample": {
+    "start": 8872551,
+    "stop": 8876647,
+    "length": 4096,
+    "sample_count": 4096,
+    "xyz_first": [
+      2.860920906707179,
+      99.39859229978174,
+      -4.207776845231397
+    ],
+    "intensity_sample_range": [
+      256.0,
+      65280.0
+    ],
+    "tree_sample_range": [
+      0.0,
+      0.0
+    ],
+    "label_sample_range": [
+      -1,
+      -1
+    ]
+  }
+}

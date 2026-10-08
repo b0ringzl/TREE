@@ -1,0 +1,7 @@
+.gradle/
+**/build/
+local.properties
+app/src/main/assets/tree_model.onnx
+app/src/main/assets/model_manifest.json
+app/src/main/assets/species.json
+*.keystore

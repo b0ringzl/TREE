@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpaceScan Trees · Video / 影片</title>
+  <link rel="stylesheet" href="/static/video.css?v=20261001-2">
+  <link rel="stylesheet" href="/static/video-overlay.css?v=20261001-2">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/image-only" aria-label="SpaceScan Trees home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 35V17M20 26C4 26 3 14 5 7c12 0 18 7 15 19ZM20 20C18 7 29 2 36 3c2 10-4 19-16 17Z"/></svg>
+      <span>SpaceScan <b>Trees</b></span>
+    </a>
+    <nav><a href="/image-only">Image / 影像</a><a class="active" href="/video">Video / 影片</a><a href="/corridor">VMMS / 走廊</a><a href="/references">Species / 物種</a></nav>
+    <span class="local"><i id="statusDot"></i><span id="health">Connecting / 連線中</span></span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">MULTI-VIEW TREE RECOGNITION / 多視角樹種識別</p>
+      <h1>One video. One result for each tracked tree.<span>一段影片，逐株追蹤並綜合多視角結果。</span></h1>
+    </section>
+
+    <section class="workspace">
+      <aside>
+        <p class="section-label">AUTOMATIC FLOW / 自動流程</p>
+        <ol>
+          <li><b>01</b><span>Sample frames<small>影片分幀採樣</small></span></li>
+          <li><b>02</b><span>Detect &amp; track<small>多樹偵測與持續 ID</small></span></li>
+          <li><b>03</b><span>Collect views<small>按 ID 選取清晰視角</small></span></li>
+          <li><b>04</b><span>Recognise<small>逐樹多視角識別</small></span></li>
+        </ol>
+        <p class="version">SSTv1-H120-DV · Video 10/15/20 fps · 2026-10-01</p>
+      </aside>
+
+      <div class="panel">
+        <div id="empty" class="empty">
+          <div class="film" aria-hidden="true">▶</div>
+          <h2>Import a tree video<span>導入樹木影片</span></h2>
+          <p>MP4 · MOV · M4V · AVI · WEBM · MKV · Up to 2 GB · First 5 minutes</p>
+          <button id="choose" class="primary">＋ Choose video / 選擇影片</button>
+          <input id="videoFile" type="file" accept="video/mp4,video/quicktime,video/webm,video/x-matroska,video/x-msvideo,.m4v" hidden>
+        </div>
+
+        <div id="loaded" hidden>
+          <div class="preview-wrap"><video id="preview" controls playsinline></video><canvas id="overlay" aria-hidden="true"></canvas></div>
+          <div class="file-row"><div><b id="fileName"></b><small id="fileMeta"></small></div><button id="replace" class="link">Replace / 更換</button></div>
+          <div class="run-row">
+            <label>Analysis detail / 分析精細度
+              <select id="profile">
+                <option value="balanced" selected>Balanced · track 15 frames/s / 平衡</option>
+                <option value="fast">Fast · track 10 frames/s / 快速</option>
+                <option value="detail">Detailed · track 20 frames/s / 精細</option>
+              </select>
+            </label>
+            <button id="run" class="primary">Analyse video / 分析影片 →</button>
+          </div>
+        </div>
+
+        <div id="working" class="working" hidden>
+          <div class="progress-head"><b id="phase">Preparing / 正在準備</b><span id="percent">0%</span></div>
+          <div class="progress"><i id="bar"></i></div>
+          <p id="progressMeta"></p>
+        </div>
+        <div id="error" role="alert" hidden></div>
+      </div>
+    </section>
+
+    <section id="results" class="results" hidden>
+      <div class="result-head">
+        <div><p class="section-label">TRACKED RESULTS / 追蹤結果</p><h2>Recognised trees<span id="resultSummary"></span></h2></div>
+        <div><button id="exportCsv" class="secondary">CSV</button><button id="exportJson" class="secondary">JSON</button></div>
+      </div>
+      <div id="resultMeta" class="meta"></div>
+      <div id="tracks" class="track-grid"></div>
+      <details class="limitations"><summary>How to read these results / 如何理解結果</summary><ul id="limitations"></ul></details>
+    </section>
+  </main>
+  <footer><span>SpaceScan Trees</span><span>Local video analysis / 本機影片分析</span></footer>
+  <script src="/static/video.js?v=20261001-6"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "capability": [12, 0],
+  "pointnet2_extension": {
+    "file": "vendor/pointMLP-pytorch/pointnet2_ops_lib/pointnet2_ops/_ext.cp310-win_amd64.pyd",
+    "size_bytes": 321536,
+    "sha256": "8A63C5E05F5E177BDB2361D360250A4D1F7201909FF261ACDC4C9F9EA14ECBAD",
+    "cuda_cubins": 4,
+    "cuda_architecture": "sm_120"
+  },
+  "fps": {
+    "input_shape": [2, 256, 3],
+    "output_shape": [2, 64],
+    "dtype": "torch.int32",
+    "min_index": 0,
+    "max_index": 255
+  },
+  "pointmlp_1024": {
+    "input_shape": [1, 3, 1024],
+    "output_shape": [1, 40],
+    "elapsed_seconds": 0.3629,
+    "peak_allocated_mib": 94.8,
+    "finite_output": true
+  },
+  "pointmlp_8192": {
+    "input_shape": [1, 3, 8192],
+    "output_shape": [1, 40],
+    "elapsed_seconds": 0.2199,
+    "peak_allocated_mib": 347.9,
+    "finite_output": true
+  },
+  "timing_note": "Smoke-test timings include unequal CUDA warm-up effects and are not benchmarks."
+}

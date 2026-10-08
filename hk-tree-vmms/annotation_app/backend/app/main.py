@@ -10,6 +10,7 @@ from .config import (
     FRAME_LABELER_DATASET,
     FRAME_LABELER_TITLE,
     FRAME_STREAM_IDS,
+    TREE_LABELER_TITLE,
     VIEW_CACHE_DIR,
     ensure_dirs,
 )
@@ -29,7 +30,7 @@ from .task_manager import manager
 
 
 ensure_dirs()
-app = FastAPI(title=f"HK Tree VMMS {FRAME_LABELER_TITLE}")
+app = FastAPI(title=f"HK Tree VMMS {TREE_LABELER_TITLE}")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -70,6 +71,7 @@ def health() -> dict:
         "frames": len(manager.frames),
         "trees": len(manager.trees),
         "species": len(manager.list_species()),
+        "tree_routes": manager.list_routes(),
     }
 
 
@@ -83,20 +85,31 @@ def config_status() -> dict:
     }
 
 
+@app.get("/api/routes")
+def routes() -> dict:
+    return {"routes": manager.list_routes()}
+
+
 @app.get("/api/species/list")
-def species_list() -> dict:
-    return {"species": manager.list_species()}
+def species_list(route_id: str = "all") -> dict:
+    try:
+        return {"species": manager.list_species(route_id), "route_id": route_id}
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
 
 
 @app.get("/api/species/traits")
-def species_traits(species: str) -> dict:
-    return {"species": species, "traits": manager.species_info(species)}
+def species_traits(species: str, route_id: str = "all") -> dict:
+    try:
+        return {"species": species, "traits": manager.species_info(species, route_id)}
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
 
 
 @app.post("/api/task/start")
 def start_task(payload: StartTaskRequest) -> dict:
     try:
-        return manager.start(payload.species, payload.target_count)
+        return manager.start(payload.species, payload.target_count, payload.route_id)
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
 

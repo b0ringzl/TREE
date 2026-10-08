@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(r"C:\Users\25041725G\Desktop\receive\TREE")
 BASE = ROOT / "lidar data" / "whu" / "derived" / "tscmdl" / "d2_exposure_stratified_evaluation"
 OUT = BASE / "20260823_paper_evidence_package_v1"
 FIG = OUT / "figures"

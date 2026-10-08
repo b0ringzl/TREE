@@ -1,0 +1,19 @@
+SpaceScan Trees SSTv1 Offline mobile evaluation build, 2026-09-19.
+Application source is provided under GNU AGPL-3.0-or-later with this evaluation package.
+No training images or third-party reference photographs are bundled.
+
+Model: BioCLIP 2.5 Huge (ViT-H/14) with the same three SSTv1 adapted classifier heads deployed on 2026-09-18. No YOLO classifier is bundled. Exported for CPU with segmented execution, without further fitting. Model card declares MIT: https://huggingface.co/imageomics/bioclip-2.5-vith14
+OpenCLIP software: MIT; full licence is in OPENCLIP-LICENSE.txt. The existing application source licence (AGPL-3.0-or-later) is retained; full text is in AGPL-3.0.txt.
+
+ONNX Runtime: MIT License, copyright Microsoft Corporation. https://github.com/microsoft/onnxruntime
+Full licence is bundled in ONNXRUNTIME-LICENSE.txt. Third-party notices from the runtime distribution are provided in the source package.
+
+The image-resizing implementation follows the Pillow antialiased bicubic convention; Pillow licensing notice is in PILLOW-LICENSE.txt.
+
+AndroidX ExifInterface 1.4.2: Copyright The Android Open Source Project, Apache License 2.0. Full licence is bundled in APACHE-2.0.txt. https://developer.android.com/jetpack/androidx/releases/exifinterface
+
+EfficientSAM-Ti (point-prompted segmentation only): Apache License 2.0. Official source and ONNX encoder/decoder: https://github.com/yformer/EfficientSAM . Full upstream license is bundled in EFFICIENTSAM-APACHE-2.0.txt. This mask proposer is independent of the SSTv1 tree-species classifier; no accuracy improvement is claimed solely from using it.
+
+This is a private evaluation build. Public distribution of project-derived model weights requires a separate review of training-data rights. Open-source notices are not a grant of rights to source photographs.
+
+影像僅在本機處理；沒有網絡權限。刪除應用程式會刪除其本機紀錄。系統相機、相簿或檔案選擇器是獨立應用程式，其自身網絡行為不由本應用程式控制。

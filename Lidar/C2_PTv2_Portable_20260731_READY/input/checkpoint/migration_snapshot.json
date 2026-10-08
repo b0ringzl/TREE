@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-07-31T16:59:32+08:00",
+  "source_run": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\c2_ptv2\\run_batch16_seed20260731",
+  "checkpoint_epoch": 6,
+  "best_epoch": 5,
+  "history_rows": 6,
+  "last_sha256": "229a556e2a5f43c91e08c22efc7a67021717dbe416247789122ce453866c5459",
+  "best_sha256": "0910bfd94c60ba0a2a1b461ca8fb8076dcfceb3942b96206915b724caba8b58a",
+  "continuation_policy": "exact batch-16 resume"
+}

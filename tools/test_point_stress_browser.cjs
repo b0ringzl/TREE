@@ -1,0 +1,24 @@
+const {chromium}=require('C:/Users/25041725G/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs'),assert=require('assert'),path=require('path');
+const out=path.resolve('outputs/hk_point_counterfactual_20260911_v1');
+(async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
+ const page=await browser.newPage({viewport:{width:1400,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const res=await page.request.get('http://127.0.0.1:8043/api/point-stress');assert.equal(res.status(),200);const data=await res.json();
+ assert.equal(data.views,10);assert.equal(data.groups,7);assert.equal(data.records.length,80);assert.equal(data.production_model_changed,false);
+ assert.equal((await page.request.get('http://127.0.0.1:8043/api/point-stress/image/no-such-condition/no-such-id')).status(),404);
+ await page.goto('http://127.0.0.1:8043/point-stress');await page.waitForFunction(()=>document.querySelector('#stressImage').naturalWidth>0);
+ assert.equal(await page.locator('#stressSample option').count(),10);assert.equal(await page.locator('#stressCondition option').count(),8);assert.equal(await page.locator('#stressTable tr').count(),8);
+ assert.match(await page.locator('#stressImpact').innerText(),/6\/10 → 5\/10/);const hash=await page.locator('#stressHash').innerText();
+ await page.screenshot({path:path.join(out,'demo-original.png'),fullPage:true});
+ await page.locator('#stressCondition').selectOption('lowres_mild');await page.waitForFunction(()=>document.querySelector('#stressImage').complete&&document.querySelector('#stressImage').naturalWidth>0&&Math.max(document.querySelector('#stressImage').naturalWidth,document.querySelector('#stressImage').naturalHeight)===64);
+ assert.match(await page.locator('#stressImpact').innerText(),/2\/10 → 6\/10/);assert.match(await page.locator('#stressStats').innerText(),/糾正 4/);assert.match(await page.locator('#stressStats').innerText(),/由對變錯 0/);assert.equal(await page.locator('#stressHash').innerText(),hash);
+ await page.screenshot({path:path.join(out,'demo-lowres64.png'),fullPage:true});
+ await page.locator('details summary').click();await page.locator('#stressCloud canvas').waitFor();assert.match(await page.locator('#stressCloud .pe-policy').innerText(),/Recorded experimental fusion/);
+ await page.locator('#stressCondition').selectOption('dark_severe');assert.match(await page.locator('#stressImpact').innerText(),/4\/10 → 6\/10/);
+ await page.locator('#playStress').click();await page.waitForFunction(()=>document.querySelector('#stressCondition').value==='blur_mild');await page.locator('#playStress').click();assert.match(await page.locator('#playStress').innerText(),/Compare levels/);
+ await page.locator('#stressCondition').selectOption('original');assert.match(await page.locator('#stressImpact').innerText(),/6\/10 → 5\/10/);
+ await page.setViewportSize({width:760,height:1000});await page.screenshot({path:path.join(out,'demo-mobile.png'),fullPage:true});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);assert.deepEqual(errors,[]);
+ const result={passed:true,views:10,groups:7,conditions:8,records:80,actual_saved_image_rendered:true,same_point_hash:true,all_conditions_displayed:true,original_regression_visible:true,invalid_asset_404:true,play_pause:true,mobile_no_horizontal_overflow:true,page_errors:errors};
+ fs.writeFileSync(path.join(out,'browser-verification.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});

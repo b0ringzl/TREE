@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {selection,ending,move}=require('../spacescan_trees_demo_v1/static/corridor-range.js');
+let r=selection(7421,1,300);assert.deepEqual([r.start,r.end,r.count,r.step],[1,300,300,1]);
+r=selection(7421,301,300);assert.equal(r.end,600);
+r=ending(7421,301,450);assert.equal(r.count,150);assert.equal(r.end,450);
+r=ending(7421,301,1000);assert.equal(r.end,600);assert.equal(r.count,300);
+r=move(7421,selection(7421,1,300),'next');assert.deepEqual([r.start,r.end],[301,600]);
+r=move(7421,r,'previous');assert.equal(r.start,1);
+r=move(7421,r,'last');assert.deepEqual([r.start,r.end,r.count],[7122,7421,300]);
+r=selection(136,1,300);assert.equal(r.end,136);assert.equal(r.count,136);
+r=selection(7421,7350,300);assert.deepEqual([r.start,r.end,r.count],[7350,7421,72]);
+r=selection(10,10,300);assert.deepEqual([r.start,r.end,r.count],[9,10,2]);
+r=selection(10,9,3,50);assert.equal(r.step,1);assert.equal(r.count,2);
+r=selection(100,1,3,2);assert.deepEqual([r.start,r.end,r.count,r.step],[1,5,3,2]);
+assert.throws(()=>selection(1,1,300));
+console.log('13 consecutive-range and boundary checks passed');

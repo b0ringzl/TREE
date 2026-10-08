@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4a_fusion_smoke\\run_seed20260727",
+  "run_type": "b4a_frozen_fusion_smoke",
+  "steps": 2,
+  "class_names": [
+    "Cinnamomum camphora",
+    "Lagerstroemia indica",
+    "Magnolia grandiflora"
+  ],
+  "split_sizes": {
+    "train": 420,
+    "val": 90,
+    "test": 90
+  },
+  "feature_shapes": {
+    "point_raw": [
+      2,
+      1024
+    ],
+    "image_raw": [
+      2,
+      2048
+    ],
+    "point_normalized": [
+      2,
+      1024
+    ],
+    "image_normalized": [
+      2,
+      1024
+    ],
+    "fused": [
+      2,
+      2048
+    ]
+  },
+  "checkpoint_load": {
+    "b2_epoch": 19,
+    "b3_epoch": 166,
+    "b2_strict_load": true,
+    "b3_strict_load": true,
+    "point_feature_dim": 1024,
+    "image_feature_dim": 2048,
+    "modal_feature_dim": 1024,
+    "fused_feature_dim": 2048
+  },
+  "parameter_counts": {
+    "point_backbone": 13228995,
+    "image_backbone": 23508032,
+    "fusion_trainable": 3284995,
+    "total": 40022022,
+    "frozen": 36737027
+  },
+  "checks": {
+    "backbones_frozen": true,
+    "backbone_gradient_free": true,
+    "fusion_gradient_finite": true,
+    "checkpoint_restore_verified": true,
+    "metrics_are_smoke_only": true
+  },
+  "optimizer_steps": {
+    "successful": 2,
+    "skipped": 0
+  },
+  "memory_mib": {
+    "peak_allocated": 598.791015625,
+    "peak_reserved": 736.0
+  },
+  "elapsed_seconds": 13.775926400034223,
+  "source_checkpoint_sha256": {
+    "b2_best": "ef98e0b262e44fd20009b6f52eb4388ad76e7775455db3c8343001731bed8ae1",
+    "b3_best": "554282889f4386f23873eabd8419b05b0fd24f81becf5e2ddbff1fb0a8ff32b6"
+  },
+  "last_checkpoint": {
+    "bytes": 173839551,
+    "sha256": "479d4d4f2651ca03828d5e9ff7cfc000584042813d62e3d83856c71aa09bc310"
+  },
+  "temporary_files": [],
+  "note": "Validation metrics are one-batch smoke checks, not performance results."
+}

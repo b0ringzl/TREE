@@ -1,50 +1,55 @@
-# Tree Atlas — Core source snapshot / 樹識核心原始碼
+# Tree Species Identification — current Demo source
 
-Current recognition demo and supporting image, point-cloud, fusion, cleaning and review code. The demo uses English + Traditional Chinese and capability-based model names. / 目前識別演示及配套影像、點雲、融合、清洗與驗收程式；演示採用英文加繁體中文，模型以功能命名。
+截至 2026-10-08 的代码快照。主要入口为桌面 SpaceScan Trees 与离线安卓 SST。
 
-This is a **source-only research archive, not a ready-to-run distribution**. This upload excludes datasets, panorama photos, LiDAR assets, human review records, trained weights, environments and private credentials. / 本版本**僅為研究原始碼歸檔，並非可直接執行的獨立安裝包**；本次上傳不包含資料集、全景照片、LiDAR 資產、人工驗收紀錄、權重、環境及私人憑證。
+## 当前功能
 
-## Code map / 程式碼導覽
+- 桌面单源影像：自动选树、SAM 智能裁剪、多边形裁剪、参考图片浏览、候选结果与记录导出。
+- 香港范围默认使用 SSTv1-H120-DV：148 个原始模型输出，146 个展示类别。洋紫荊三类合并展示。
+- 世界模型：独立植物目录候选。范围外或不确定结果弹窗提供查看世界模型的选项；用户确认后切换，可返回同一次 SST 结果，不自动切换、不混合两套模型分数。
+- OneDrive / Dropbox：配置自己的公开应用 ID / Chooser App key 后，只导入用户选择的图片，不写入云端原件。
+- 视频：导入、方向处理、采样、树木检测、多目标跟踪、多视角选择与识别结果导出。
+- VMMS 走廊：连续全景文件夹选择、连续照片范围与距离采样、透视重投影、跨帧关联及逐帧处理结果浏览。
+- 双源照片入口：同株图片与点云辅助分析，保留独立的七类点云流程，不代表 146 类点云融合。
+- 安卓 SST：离线识别、轻量 SAM 选树、简约界面、物种范围与参考图浏览、低分不确定提示。
 
-| Path / 路徑 | Purpose / 用途 |
-| --- | --- |
-| `tree_species_demo/` | FastAPI inference, quality checks, bilingual UI, top-three candidates / 推理、質檢、雙語介面及前三候選 |
-| `hk-tree-vmms/tools/` | Panorama/LiDAR pairing, tree cleaning, stem recovery, metric-height audits, review replay and training / 全景與點雲配對、清洗、樹幹恢復、高度檢查、驗收回放及訓練 |
-| `hk-tree-vmms/annotation_app/` | Annotation and review frontend/backend / 標註驗收前後端 |
-| `Lidar/tscmdl_whu_sandbox/src/tscmdl_whu/` | Projection, sampling, PTv2 and fusion / 投影、採樣、PTv2 及融合 |
-| `Lidar/tscmdl_whu_sandbox/scripts/` | Training, evaluation and experiment preparation / 訓練、評估及實驗準備 |
-| `full_image_species_baseline/scripts/` | Image classification and segmentation baselines / 影像分類及分割基線 |
-| `yolo11_species_baseline/scripts/` | YOLO data preparation, training and evaluation / YOLO 資料準備、訓練及評估 |
-| `tools/tree_species_label_merge_map.csv` | Label configuration, not sample data / 標籤設定，並非樣本資料 |
+## 入口
 
-The existing `hk-tree-labeler/` on the main branch is unchanged. Historical source names remain for compatibility, but are not displayed as model names in the active demo. / 主分支既有標註工具保持不變；歷史原始碼名稱保留以維持相容性，但演示不以此顯示模型名稱。
+| 用途 | 文件 / URL |
+|---|---|
+| 桌面单源 | `START_SPACESCAN_IMAGE.cmd` / `http://127.0.0.1:8043/image-only` |
+| 桌面双源 | `START_SPACESCAN_MULTIMODAL.cmd` / `http://127.0.0.1:8043/multimodal` |
+| 视频 | `http://127.0.0.1:8043/video` |
+| VMMS 走廊 | `http://127.0.0.1:8043/corridor` |
+| 应用版本页 | `http://127.0.0.1:8043/apps` |
+| 安卓当前源码 | `spacescan_android_sstv1/` |
+| 历史安卓 / 识别 Demo | `spacescan_android/`、`tree_species_demo/` |
 
-## Setup / 環境與執行
+## 安装与本地运行
 
-Use Python 3.10+; first install GPU-compatible torch and torchvision. The working local environment used torch 2.11.0+cu128 and torchvision 0.26.0+cu128. `requirements-core.txt` records non-PyTorch package versions, not a portable lockfile. / 使用 Python 3.10 以上版本，先安裝適合顯示卡的 torch／torchvision；原驗證環境使用上述版本。需求檔記錄非 PyTorch 套件版本，並非跨平台鎖定檔。
+这不是包含模型的大型离线安装包。Git 仅保存源码、测试、启动脚本、非敏感配置及必要说明；不上传私有训练权重、原图、点云、用户审核数据库或 APK。
 
-```sh
-python -m pip install -r requirements-core.txt
+1. 使用 Python 3.10/3.11，按设备安装 CUDA 兼容的 PyTorch / torchvision。
+2. 安装 `requirements-demo.txt`。历史研究工具的单独依赖见对应目录。
+3. 按 `ASSETS_REQUIRED.md` 恢复已授权的本地模型和元数据；不能仅凭 Git 源码获得当前 H120 权重。
+4. Windows 可设置 `SPACESCAN_PYTHON` 为 Python 可执行文件，再使用上述 CMD 入口。当前 BioCLIP 服务需要 NVIDIA CUDA。
+5. 未使用启动脚本时，在仓库根目录分别运行：
+
+```powershell
+python -m uvicorn tree_species_teacher_demo.server:app --host 127.0.0.1 --port 8039
+python -m uvicorn spacescan_trees_demo_v1.server:app --host 127.0.0.1 --port 8043
 ```
 
-Restore authorized assets described in [ASSETS_REQUIRED.md](ASSETS_REQUIRED.md) before launching. Some historical experiments also require separately obtained third-party backbones. / 啟動前恢復資產說明列出的已獲授權資產；部分歷史實驗亦須另行取得第三方骨幹模型。
+仅绑定本机环回地址。不要将未经加固的 Demo 暴露到公网。云端导入凭据使用环境变量，不能提交 App secret、令牌、学校账户会话或私钥。
 
-```sh
-cd tree_species_demo
-python server.py
+## 验证与限制
+
+```powershell
+python -m unittest spacescan_trees_demo_v1.test_flora_scope tree_species_teacher_demo.test_flora spacescan_trees_demo_v1.test_sam_single_view spacescan_trees_demo_v1.test_presentation_groups
 ```
 
-Visit http://127.0.0.1:8037 on the same computer; keep the server running. This upload does not deploy a public website. / 在同一台電腦開啟該網址，並保持服務執行；本次上傳不會部署公開網站。
+世界模型是候选目录扩展，不是已验证的全球物种准确率。相关小测试与已知回归见 `docs/validation/`。原始模型版本、哈希与识别来源仍保留在代码及导出记录中。
 
-The UI accepts uploads without an example selector. Low-confidence decisions show up to three candidates with unchanged scores; names have no catalog-status suffix. Quality and conflict diagnostics remain visible. / 介面直接接受上傳，不顯示示例選擇器；低置信度結果顯示最多三個候選及原始分數，名稱不附加清單狀態；品質及分歧診斷仍然保留。
+历史便携 Windows 包、安卓旧包和当前网页的功能不完全相同；不把归档包冒称为最新版。历史研究脚本可能引用原机器路径，运行前需调整配置，恢复模型/数据并遵守 `AGENTS.md` 的备份要求。
 
-## Verification and limits / 驗證與限制
-
-```sh
-cd tree_species_demo
-python -m unittest test_demo_locale
-```
-
-Most other tests require local assets or a running service. A source checkout alone does not reproduce accuracy experiments. Scores are uncalibrated, and experimental fusion is not guaranteed to improve identification. Flame tree and white leadtree lack independent class evaluation in the five-class pilot. / 多數其他測試需要本地資產或執行中的服務；下載原始碼不等於重現精度實驗。分數未校準，實驗融合不保證改善識別；五類實驗的鳳凰木及銀合歡尚無獨立類別評估。
-
-This snapshot grants no new blanket license to third-party code, weights or datasets. Respect upstream licenses and data permissions. / 此歸檔不會对第三方程式、權重或資料集授予新的概括授權；請遵守原授權及資料使用權限。
+新数据、参考图片、模型和第三方组件保留各自许可证；源码入库不等于有权再次分发原始图片或实验权重。

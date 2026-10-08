@@ -12,7 +12,7 @@ set "PYTHON=%LOCALAPPDATA%\miniconda3\envs\yolo\python.exe"
 set "BACKEND_LOG=%LOGS%\backend.log"
 set "FRONTEND_LOG=%LOGS%\frontend.log"
 
-if not defined VMMS_ROOT set "VMMS_ROOT=%~dp0..\..\vmms"
+set "VMMS_ROOT=C:\Users\25041725G\Desktop\receive\vmms"
 set "VMMS_TREE_STREAM_ID=jianshazui_pano_1"
 set "VMMS_FRAME_STREAM_IDS=jianshazui_pano_1,jianshazui_pano_2"
 set "VMMS_FRAME_LABELER_DATASET=jianshazui"

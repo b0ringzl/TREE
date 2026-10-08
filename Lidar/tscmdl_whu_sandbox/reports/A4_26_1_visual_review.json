@@ -1,0 +1,73 @@
+{
+  "stage": "A4",
+  "road_id": "26",
+  "trajectory_id": "1",
+  "review_type": "codex_visual_precheck",
+  "reviewer": "Codex",
+  "review_method": "Codex 初步检查点云投影叠加图，非用户验收",
+  "user_review_status": "pending",
+  "user_decision": null,
+  "quality_scale": {
+    "excellent": "目标树干和树冠整体高度对齐，适合作为配对样本",
+    "good": "投影对齐可靠，但有少量遮挡或邻树干扰",
+    "acceptable": "几何对齐成立，但目标与邻树冠重叠明显，训练前需质量筛选",
+    "failed": "存在系统性投影错位，不应进入后续数据集"
+  },
+  "summary": {
+    "pair_count": 8,
+    "excellent": 2,
+    "good": 4,
+    "acceptable": 2,
+    "failed": 0
+  },
+  "reviews": [
+    {
+      "tree_id": 3959,
+      "view_rank": 1,
+      "quality": "good",
+      "note": "点云与中央落叶树的主干和枝条对齐，天空高亮但不影响几何判断。"
+    },
+    {
+      "tree_id": 3959,
+      "view_rank": 2,
+      "quality": "good",
+      "note": "主干和分枝对齐可靠，邻树和建筑背景带来一定干扰。"
+    },
+    {
+      "tree_id": 3963,
+      "view_rank": 1,
+      "quality": "acceptable",
+      "note": "投影沿目标树干和树冠分布，但邻树枝冠遮挡和重叠明显。"
+    },
+    {
+      "tree_id": 3963,
+      "view_rank": 2,
+      "quality": "acceptable",
+      "note": "点云几何位置成立，密集枝冠与邻树重叠使单树图像边界不清晰。"
+    },
+    {
+      "tree_id": 3966,
+      "view_rank": 1,
+      "quality": "good",
+      "note": "目标树干和右侧树冠对齐，画面仍包含邻树及建筑背景。"
+    },
+    {
+      "tree_id": 3966,
+      "view_rank": 2,
+      "quality": "good",
+      "note": "树干和树冠轮廓对齐，背景建筑不影响投影正确性判断。"
+    },
+    {
+      "tree_id": 4015,
+      "view_rank": 1,
+      "quality": "excellent",
+      "note": "大树树冠和主干均高度对齐，目标完整且距离较近。"
+    },
+    {
+      "tree_id": 4015,
+      "view_rank": 2,
+      "quality": "excellent",
+      "note": "树冠和主干高度对齐；稳健裁剪仅排除极少量垂直离群投影点。"
+    }
+  ]
+}

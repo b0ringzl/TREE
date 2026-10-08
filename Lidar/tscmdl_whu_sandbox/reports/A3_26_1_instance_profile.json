@@ -1,0 +1,1953 @@
+﻿{
+  "total_point_count": 7003704,
+  "background_point_count": 5135927,
+  "foreground_point_count": 1867777,
+  "background_label_counts": {
+    "-1": 5135927
+  },
+  "instance_count": 74,
+  "classification_valid_count": 44,
+  "unlabeled_count": 30,
+  "inconsistent_count": 0,
+  "instances": [
+    {
+      "tree_id": 3943,
+      "point_count": 52162,
+      "label_counts": {
+        "1": 52162
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -2.231730620318558,
+        -0.5702798422425985,
+        -4.253255846873049
+      ],
+      "max_xyz": [
+        4.751179535931442,
+        7.7317221108824015,
+        4.368743893727537
+      ],
+      "dimensions": [
+        6.98291015625,
+        8.302001953125,
+        8.621999740600586
+      ]
+    },
+    {
+      "tree_id": 3944,
+      "point_count": 50814,
+      "label_counts": {
+        "1": 50814
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        0.6911209421814419,
+        104.3786947671324,
+        -3.835255625620608
+      ],
+      "max_xyz": [
+        8.587117035931442,
+        113.0117514077574,
+        6.897743222340818
+      ],
+      "dimensions": [
+        7.89599609375,
+        8.633056640625,
+        10.732998847961426
+      ]
+    },
+    {
+      "tree_id": 3945,
+      "point_count": 9589,
+      "label_counts": {
+        "0": 9589
+      },
+      "raw_label_id": 0,
+      "benchmark_label_id": 0,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        28.831257660931442,
+        109.4407064858824,
+        -3.290256503000979
+      ],
+      "max_xyz": [
+        31.662312348431442,
+        113.1487142983824,
+        0.07674407683300544
+      ],
+      "dimensions": [
+        2.8310546875,
+        3.7080078125,
+        3.3670005798339844
+      ]
+    },
+    {
+      "tree_id": 3946,
+      "point_count": 61611,
+      "label_counts": {
+        "1": 61611
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -14.824992339068558,
+        3.8297445718199015,
+        -4.163255694285159
+      ],
+      "max_xyz": [
+        -3.647746245318558,
+        11.938753360882401,
+        7.14374351225781
+      ],
+      "dimensions": [
+        11.17724609375,
+        8.1090087890625,
+        11.306999206542969
+      ]
+    },
+    {
+      "tree_id": 3947,
+      "point_count": 22082,
+      "label_counts": {
+        "1": 22082
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -2.161906401568558,
+        -31.8952310141176,
+        -3.1772556332500024
+      ],
+      "max_xyz": [
+        5.908406098431442,
+        -22.8902261313051,
+        5.054744717702146
+      ],
+      "dimensions": [
+        8.0703125,
+        9.0050048828125,
+        8.232000350952148
+      ]
+    },
+    {
+      "tree_id": 3948,
+      "point_count": 43903,
+      "label_counts": {
+        "4": 43903
+      },
+      "raw_label_id": 4,
+      "benchmark_label_id": 4,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -12.084757964068558,
+        -126.1282632406801,
+        -4.250255587473635
+      ],
+      "max_xyz": [
+        -3.047648589068558,
+        -117.1452310141176,
+        8.612743374928709
+      ],
+      "dimensions": [
+        9.037109375,
+        8.9830322265625,
+        12.862998962402344
+      ]
+    },
+    {
+      "tree_id": 3949,
+      "point_count": 32335,
+      "label_counts": {
+        "4": 32335
+      },
+      "raw_label_id": 4,
+      "benchmark_label_id": 4,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -20.412882964068558,
+        -117.5902993734926,
+        -4.159255984202151
+      ],
+      "max_xyz": [
+        -14.108683745318558,
+        -111.6573159750551,
+        6.495744702443357
+      ],
+      "dimensions": [
+        6.30419921875,
+        5.9329833984375,
+        10.655000686645508
+      ]
+    },
+    {
+      "tree_id": 3950,
+      "point_count": 54068,
+      "label_counts": {
+        "1": 54068
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -0.03592983906855807,
+        65.9297201577574,
+        -3.524255755320315
+      ],
+      "max_xyz": [
+        8.722370942181442,
+        73.7997152749449,
+        4.926744458302732
+      ],
+      "dimensions": [
+        8.75830078125,
+        7.8699951171875,
+        8.451000213623047
+      ]
+    },
+    {
+      "tree_id": 3951,
+      "point_count": 5948,
+      "label_counts": {
+        "1": 5948
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        2.571980317181442,
+        -8.233243709430099,
+        -4.20525551117969
+      ],
+      "max_xyz": [
+        6.789265473431442,
+        -3.5533120688050985,
+        2.295743939503904
+      ],
+      "dimensions": [
+        4.21728515625,
+        4.679931640625,
+        6.500999450683594
+      ]
+    },
+    {
+      "tree_id": 3952,
+      "point_count": 34686,
+      "label_counts": {
+        "11": 34686
+      },
+      "raw_label_id": 11,
+      "benchmark_label_id": 11,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        32.66914828593144,
+        111.8867514077574,
+        -3.353256228342776
+      ],
+      "max_xyz": [
+        38.35811312968144,
+        118.3688070718199,
+        3.4417438479511695
+      ],
+      "dimensions": [
+        5.68896484375,
+        6.4820556640625,
+        6.795000076293945
+      ]
+    },
+    {
+      "tree_id": 3953,
+      "point_count": 37430,
+      "label_counts": {
+        "4": 37430
+      },
+      "raw_label_id": 4,
+      "benchmark_label_id": 4,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -16.878703276568558,
+        -122.6163003500551,
+        -4.233255389109377
+      ],
+      "max_xyz": [
+        -8.968058745318558,
+        -114.3622720297426,
+        6.966743466481443
+      ],
+      "dimensions": [
+        7.91064453125,
+        8.2540283203125,
+        11.19999885559082
+      ]
+    },
+    {
+      "tree_id": 3954,
+      "point_count": 2655,
+      "label_counts": {
+        "29": 2655
+      },
+      "raw_label_id": 29,
+      "benchmark_label_id": 18,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -13.245890776568558,
+        -90.5472085531801,
+        -4.022255900278811
+      ],
+      "max_xyz": [
+        -8.575968901568558,
+        -87.5583169516176,
+        3.1877441378681617
+      ],
+      "dimensions": [
+        4.669921875,
+        2.9888916015625,
+        7.210000038146973
+      ]
+    },
+    {
+      "tree_id": 3955,
+      "point_count": 10157,
+      "label_counts": {
+        "4": 10157
+      },
+      "raw_label_id": 4,
+      "benchmark_label_id": 4,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -43.57499233906856,
+        -103.8432290609926,
+        -3.8112564114482446
+      ],
+      "max_xyz": [
+        -34.99393765156856,
+        -95.4002358969301,
+        13.460744855031248
+      ],
+      "dimensions": [
+        8.5810546875,
+        8.4429931640625,
+        17.272001266479492
+      ]
+    },
+    {
+      "tree_id": 3956,
+      "point_count": 22186,
+      "label_counts": {
+        "4": 22186
+      },
+      "raw_label_id": 4,
+      "benchmark_label_id": 4,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -38.69364468281856,
+        -108.0352456625551,
+        -4.279255869761233
+      ],
+      "max_xyz": [
+        -29.268839995318558,
+        -98.7782876547426,
+        7.5797443362324195
+      ],
+      "dimensions": [
+        9.4248046875,
+        9.2569580078125,
+        11.859000205993652
+      ]
+    },
+    {
+      "tree_id": 3957,
+      "point_count": 39513,
+      "label_counts": {
+        "1": 39513
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -17.183879057818558,
+        -36.4832437094301,
+        -4.140255930796389
+      ],
+      "max_xyz": [
+        -9.469035307818558,
+        -28.4772622641176,
+        4.607744214162107
+      ],
+      "dimensions": [
+        7.71484375,
+        8.0059814453125,
+        8.748000144958496
+      ]
+    },
+    {
+      "tree_id": 3958,
+      "point_count": 45595,
+      "label_counts": {
+        "1": 45595
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -10.202922026568558,
+        -51.1652505453676,
+        -4.203255656138186
+      ],
+      "max_xyz": [
+        -2.539836089068558,
+        -42.9142739828676,
+        3.058744427785154
+      ],
+      "dimensions": [
+        7.6630859375,
+        8.2509765625,
+        7.26200008392334
+      ]
+    },
+    {
+      "tree_id": 3959,
+      "point_count": 1066,
+      "label_counts": {
+        "29": 1066
+      },
+      "raw_label_id": 29,
+      "benchmark_label_id": 18,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -8.761027495318558,
+        -89.8372476156801,
+        -3.954256060496096
+      ],
+      "max_xyz": [
+        -7.121867339068558,
+        -87.4922769125551,
+        3.495744702443357
+      ],
+      "dimensions": [
+        1.63916015625,
+        2.344970703125,
+        7.450000762939453
+      ]
+    },
+    {
+      "tree_id": 3960,
+      "point_count": 15163,
+      "label_counts": {
+        "1": 15163
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -20.469035307818558,
+        -38.7203042563051,
+        -4.034255984202151
+      ],
+      "max_xyz": [
+        -11.785929839068558,
+        -32.2382485922426,
+        5.212743756398435
+      ],
+      "dimensions": [
+        8.68310546875,
+        6.4820556640625,
+        9.246999740600586
+      ]
+    },
+    {
+      "tree_id": 3961,
+      "point_count": 24048,
+      "label_counts": {
+        "1": 24048
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        2.807331879681442,
+        -35.5102212484926,
+        -4.186256411448245
+      ],
+      "max_xyz": [
+        10.197956879681442,
+        -28.1772134359926,
+        4.110744473561521
+      ],
+      "dimensions": [
+        7.390625,
+        7.3330078125,
+        8.297000885009766
+      ]
+    },
+    {
+      "tree_id": 3962,
+      "point_count": 43020,
+      "label_counts": {
+        "1": 43020
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -6.164836089068558,
+        -31.3352944906801,
+        -4.275256159678225
+      ],
+      "max_xyz": [
+        1.810261567181442,
+        -22.9982583578676,
+        3.15474319182324
+      ],
+      "dimensions": [
+        7.97509765625,
+        8.3370361328125,
+        7.429999351501465
+      ]
+    },
+    {
+      "tree_id": 3963,
+      "point_count": 7529,
+      "label_counts": {
+        "13": 7529
+      },
+      "raw_label_id": 13,
+      "benchmark_label_id": 13,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -10.480754057818558,
+        -118.5512368734926,
+        -2.949255946055178
+      ],
+      "max_xyz": [
+        -4.757609526568558,
+        -115.3252847250551,
+        6.13274383269238
+      ],
+      "dimensions": [
+        5.72314453125,
+        3.2259521484375,
+        9.081999778747559
+      ]
+    },
+    {
+      "tree_id": 3964,
+      "point_count": 35183,
+      "label_counts": {
+        "1": 35183
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -4.977824370318558,
+        -53.7952554281801,
+        -3.770256045237307
+      ],
+      "max_xyz": [
+        3.263386567181442,
+        -43.8702066000551,
+        3.4587440463154273
+      ],
+      "dimensions": [
+        8.2412109375,
+        9.925048828125,
+        7.229000091552734
+      ]
+    },
+    {
+      "tree_id": 3965,
+      "point_count": 33309,
+      "label_counts": {
+        "1": 33309
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        1.404988129681442,
+        117.5677816811949,
+        -3.8912563351542993
+      ],
+      "max_xyz": [
+        8.482136567181442,
+        124.1727621499449,
+        5.165744778737302
+      ],
+      "dimensions": [
+        7.0771484375,
+        6.60498046875,
+        9.057001113891602
+      ]
+    },
+    {
+      "tree_id": 3966,
+      "point_count": 9576,
+      "label_counts": {
+        "11": 9576
+      },
+      "raw_label_id": 11,
+      "benchmark_label_id": 11,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        33.77901156718144,
+        109.1708090249449,
+        -3.2782554654033227
+      ],
+      "max_xyz": [
+        41.14131625468144,
+        112.9717123452574,
+        4.163743970021482
+      ],
+      "dimensions": [
+        7.3623046875,
+        3.8009033203125,
+        7.441999435424805
+      ]
+    },
+    {
+      "tree_id": 3967,
+      "point_count": 13701,
+      "label_counts": {
+        "4": 13701
+      },
+      "raw_label_id": 4,
+      "benchmark_label_id": 4,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -4.396769682818558,
+        -130.2072427328676,
+        -4.865255358591799
+      ],
+      "max_xyz": [
+        2.257038910931442,
+        -124.3162515219301,
+        6.727743146046873
+      ],
+      "dimensions": [
+        6.65380859375,
+        5.8909912109375,
+        11.592998504638672
+      ]
+    },
+    {
+      "tree_id": 3968,
+      "point_count": 29652,
+      "label_counts": {
+        "1": 29652
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -2.496867339068558,
+        -9.665250545367599,
+        -4.370256426707034
+      ],
+      "max_xyz": [
+        3.661335785931442,
+        -2.6582925375550985,
+        2.716743466481443
+      ],
+      "dimensions": [
+        6.158203125,
+        7.0069580078125,
+        7.086999893188477
+      ]
+    },
+    {
+      "tree_id": 3969,
+      "point_count": 23463,
+      "label_counts": {
+        "1": 23463
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        5.808308442181442,
+        -44.9331948813051,
+        -3.907256129160647
+      ],
+      "max_xyz": [
+        14.480183442181442,
+        -38.7752358969301,
+        3.6757450076191382
+      ],
+      "dimensions": [
+        8.671875,
+        6.157958984375,
+        7.583001136779785
+      ]
+    },
+    {
+      "tree_id": 3970,
+      "point_count": 52061,
+      "label_counts": {
+        "1": 52061
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -19.305949370318558,
+        -44.9942300375551,
+        -3.164256098643069
+      ],
+      "max_xyz": [
+        -10.699992339068558,
+        -37.7212808188051,
+        4.839744565114255
+      ],
+      "dimensions": [
+        8.60595703125,
+        7.27294921875,
+        8.004000663757324
+      ]
+    },
+    {
+      "tree_id": 3971,
+      "point_count": 49747,
+      "label_counts": {
+        "4": 49747
+      },
+      "raw_label_id": 4,
+      "benchmark_label_id": 4,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -33.91092983906856,
+        -109.8243081625551,
+        -4.076255801096682
+      ],
+      "max_xyz": [
+        -25.743937651568558,
+        -102.4882485922426,
+        7.397743222340818
+      ],
+      "dimensions": [
+        8.1669921875,
+        7.3360595703125,
+        11.4739990234375
+      ]
+    },
+    {
+      "tree_id": 3972,
+      "point_count": 4562,
+      "label_counts": {
+        "1": 4562
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        0.19942172343144193,
+        120.5847494546324,
+        -2.8182563809306664
+      ],
+      "max_xyz": [
+        4.007038910931442,
+        124.5637533608824,
+        1.8957443209736304
+      ],
+      "dimensions": [
+        3.8076171875,
+        3.97900390625,
+        4.714000701904297
+      ]
+    },
+    {
+      "tree_id": 3973,
+      "point_count": 28635,
+      "label_counts": {
+        "1": 28635
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        2.603230317181442,
+        71.7967855874449,
+        -3.5592556027324243
+      ],
+      "max_xyz": [
+        8.672077973431442,
+        79.2867758218199,
+        3.7247447939960914
+      ],
+      "dimensions": [
+        6.06884765625,
+        7.489990234375,
+        7.284000396728516
+      ]
+    },
+    {
+      "tree_id": 3974,
+      "point_count": 18160,
+      "label_counts": {
+        "1": 18160
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        6.085163910931442,
+        -12.027311092242599,
+        -2.9182558087260766
+      ],
+      "max_xyz": [
+        10.753132660931442,
+        -5.2253091391175985,
+        2.4517440768330054
+      ],
+      "dimensions": [
+        4.66796875,
+        6.802001953125,
+        5.369999885559082
+      ]
+    },
+    {
+      "tree_id": 3975,
+      "point_count": 46510,
+      "label_counts": {
+        "1": 46510
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -8.619914214068558,
+        6.4017660561949015,
+        -4.202256205454592
+      ],
+      "max_xyz": [
+        -1.749797026568558,
+        14.690706485882401,
+        5.80774497710156
+      ],
+      "dimensions": [
+        6.8701171875,
+        8.2889404296875,
+        10.010001182556152
+      ]
+    },
+    {
+      "tree_id": 3976,
+      "point_count": 60657,
+      "label_counts": {
+        "1": 60657
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        2.781941254681442,
+        87.3027670327574,
+        -3.8672561673076196
+      ],
+      "max_xyz": [
+        11.406941254681442,
+        95.4516928140074,
+        4.627744671925779
+      ],
+      "dimensions": [
+        8.625,
+        8.14892578125,
+        8.495000839233398
+      ]
+    },
+    {
+      "tree_id": 3977,
+      "point_count": 42228,
+      "label_counts": {
+        "1": 42228
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        26.076374848431442,
+        92.9387533608824,
+        -2.353256228342776
+      ],
+      "max_xyz": [
+        36.41328891093144,
+        104.1887533608824,
+        6.1097431155292945
+      ],
+      "dimensions": [
+        10.3369140625,
+        11.25,
+        8.46299934387207
+      ]
+    },
+    {
+      "tree_id": 3978,
+      "point_count": 7290,
+      "label_counts": {
+        "13": 7290
+      },
+      "raw_label_id": 13,
+      "benchmark_label_id": 13,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -14.677043120318558,
+        -113.9482095297426,
+        -3.0522556332500024
+      ],
+      "max_xyz": [
+        -11.897746245318558,
+        -111.8122232016176,
+        1.4047431918232398
+      ],
+      "dimensions": [
+        2.779296875,
+        2.135986328125,
+        4.456998825073242
+      ]
+    },
+    {
+      "tree_id": 3979,
+      "point_count": 17739,
+      "label_counts": {
+        "1": 17739
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        3.589070160931442,
+        -3.5321939047425985,
+        -4.010255816355471
+      ],
+      "max_xyz": [
+        8.443074067181442,
+        3.8996908608824015,
+        2.8127441378681617
+      ],
+      "dimensions": [
+        4.85400390625,
+        7.431884765625,
+        6.822999954223633
+      ]
+    },
+    {
+      "tree_id": 3980,
+      "point_count": 19159,
+      "label_counts": {
+        "1": 19159
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        8.954304535931442,
+        -39.7072427328676,
+        -4.214256289377932
+      ],
+      "max_xyz": [
+        14.822956879681442,
+        -34.5872476156801,
+        3.354743954762693
+      ],
+      "dimensions": [
+        5.86865234375,
+        5.1199951171875,
+        7.569000244140625
+      ]
+    },
+    {
+      "tree_id": 3981,
+      "point_count": 32813,
+      "label_counts": {
+        "1": 32813
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        0.5563553171814419,
+        58.7698080483824,
+        -3.93125534333301
+      ],
+      "max_xyz": [
+        7.331257660931442,
+        65.3006918374449,
+        2.683744427785154
+      ],
+      "dimensions": [
+        6.77490234375,
+        6.5308837890625,
+        6.614999771118164
+      ]
+    },
+    {
+      "tree_id": 3982,
+      "point_count": 8614,
+      "label_counts": {
+        "-1": 8614
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        26.606160004681442,
+        109.1697103921324,
+        -3.142255785837893
+      ],
+      "max_xyz": [
+        29.026081879681442,
+        112.1067221108824,
+        -0.21925545014453363
+      ],
+      "dimensions": [
+        2.419921875,
+        2.93701171875,
+        2.9230003356933594
+      ]
+    },
+    {
+      "tree_id": 3983,
+      "point_count": 17127,
+      "label_counts": {
+        "-1": 17127
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -4.913859526568558,
+        115.5807211343199,
+        -3.7962560681254907
+      ],
+      "max_xyz": [
+        0.09834750468144193,
+        121.0198080483824,
+        4.696744916066404
+      ],
+      "dimensions": [
+        5.01220703125,
+        5.4390869140625,
+        8.493000984191895
+      ]
+    },
+    {
+      "tree_id": 3984,
+      "point_count": 29581,
+      "label_counts": {
+        "-1": 29581
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -3.252726714068558,
+        43.4537680093199,
+        -3.6662559536845727
+      ],
+      "max_xyz": [
+        1.153035004681442,
+        48.5707113686949,
+        1.5197448702900367
+      ],
+      "dimensions": [
+        4.40576171875,
+        5.116943359375,
+        5.186000823974609
+      ]
+    },
+    {
+      "tree_id": 3985,
+      "point_count": 17904,
+      "label_counts": {
+        "-1": 17904
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -2.180949370318558,
+        51.8266928140074,
+        -3.1172561673076196
+      ],
+      "max_xyz": [
+        2.316120942181442,
+        56.6357748452574,
+        1.466743466481443
+      ],
+      "dimensions": [
+        4.4970703125,
+        4.80908203125,
+        4.5839996337890625
+      ]
+    },
+    {
+      "tree_id": 3986,
+      "point_count": 35161,
+      "label_counts": {
+        "-1": 35161
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        14.324421723431442,
+        49.7527182046324,
+        -2.9262561825664086
+      ],
+      "max_xyz": [
+        20.885945160931442,
+        56.2187826577574,
+        2.0237445803730445
+      ],
+      "dimensions": [
+        6.5615234375,
+        6.466064453125,
+        4.950000762939453
+      ]
+    },
+    {
+      "tree_id": 3987,
+      "point_count": 28012,
+      "label_counts": {
+        "-1": 28012
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        15.174031098431442,
+        55.9747641030699,
+        -3.5162563351542993
+      ],
+      "max_xyz": [
+        21.453327973431442,
+        61.7057211343199,
+        1.7687435122578101
+      ],
+      "dimensions": [
+        6.279296875,
+        5.73095703125,
+        5.284999847412109
+      ]
+    },
+    {
+      "tree_id": 3988,
+      "point_count": 28725,
+      "label_counts": {
+        "-1": 28725
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        22.233113129681442,
+        105.4988119546324,
+        -3.45725631989551
+      ],
+      "max_xyz": [
+        26.998249848431442,
+        109.7447836343199,
+        2.1297435732929664
+      ],
+      "dimensions": [
+        4.76513671875,
+        4.2459716796875,
+        5.586999893188477
+      ]
+    },
+    {
+      "tree_id": 3989,
+      "point_count": 24123,
+      "label_counts": {
+        "-1": 24123
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        13.542195160931442,
+        44.7527182046324,
+        -3.380255701914553
+      ],
+      "max_xyz": [
+        19.728230317181442,
+        50.3316976968199,
+        1.3687438937275367
+      ],
+      "dimensions": [
+        6.18603515625,
+        5.5789794921875,
+        4.74899959564209
+      ]
+    },
+    {
+      "tree_id": 3990,
+      "point_count": 22520,
+      "label_counts": {
+        "-1": 22520
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        16.991413910931442,
+        61.1597006265074,
+        -3.534255984202151
+      ],
+      "max_xyz": [
+        20.482136567181442,
+        66.2977621499449,
+        1.439744946583982
+      ],
+      "dimensions": [
+        3.49072265625,
+        5.1380615234375,
+        4.974000930786133
+      ]
+    },
+    {
+      "tree_id": 3991,
+      "point_count": 31545,
+      "label_counts": {
+        "-1": 31545
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        11.646199067181442,
+        33.8638021890074,
+        -3.4872560528667016
+      ],
+      "max_xyz": [
+        17.845417817181442,
+        40.0506918374449,
+        2.084743496999021
+      ],
+      "dimensions": [
+        6.19921875,
+        6.1868896484375,
+        5.571999549865723
+      ]
+    },
+    {
+      "tree_id": 3992,
+      "point_count": 33328,
+      "label_counts": {
+        "-1": 33328
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        10.512410004681442,
+        28.3607504311949,
+        -3.5522556332500024
+      ],
+      "max_xyz": [
+        17.317097504681442,
+        35.0417807046324,
+        2.02974319182324
+      ],
+      "dimensions": [
+        6.8046875,
+        6.6810302734375,
+        5.581998825073242
+      ]
+    },
+    {
+      "tree_id": 3993,
+      "point_count": 33030,
+      "label_counts": {
+        "-1": 33030
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        12.489949067181442,
+        39.2947103921324,
+        -3.4992561367900414
+      ],
+      "max_xyz": [
+        20.248249848431442,
+        45.6448080483824,
+        2.3597431155292945
+      ],
+      "dimensions": [
+        7.75830078125,
+        6.35009765625,
+        5.858999252319336
+      ]
+    },
+    {
+      "tree_id": 3994,
+      "point_count": 39556,
+      "label_counts": {
+        "1": 39556
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        1.985066254681442,
+        19.2586996499449,
+        -4.143256190195803
+      ],
+      "max_xyz": [
+        8.738972504681442,
+        27.1607992593199,
+        3.488744732960935
+      ],
+      "dimensions": [
+        6.75390625,
+        7.902099609375,
+        7.632000923156738
+      ]
+    },
+    {
+      "tree_id": 3995,
+      "point_count": 28522,
+      "label_counts": {
+        "-1": 28522
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -5.298625151568558,
+        -65.9522378500551,
+        -4.131256106272463
+      ],
+      "max_xyz": [
+        -1.079875151568558,
+        -60.4472329672426,
+        1.7017440768330054
+      ],
+      "dimensions": [
+        4.21875,
+        5.5050048828125,
+        5.833000183105469
+      ]
+    },
+    {
+      "tree_id": 3996,
+      "point_count": 56511,
+      "label_counts": {
+        "1": 56511
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        7.334187348431442,
+        13.451692814007401,
+        -4.2342557934672875
+      ],
+      "max_xyz": [
+        17.304402192181442,
+        23.8047201577574,
+        6.085744855031248
+      ],
+      "dimensions": [
+        9.97021484375,
+        10.35302734375,
+        10.320000648498535
+      ]
+    },
+    {
+      "tree_id": 3997,
+      "point_count": 25532,
+      "label_counts": {
+        "-1": 25532
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -6.981730620318558,
+        -77.2432534750551,
+        -2.6122560528667016
+      ],
+      "max_xyz": [
+        -2.408000151568558,
+        -72.3532388266176,
+        2.3027439089863257
+      ],
+      "dimensions": [
+        4.57373046875,
+        4.8900146484375,
+        4.914999961853027
+      ]
+    },
+    {
+      "tree_id": 3998,
+      "point_count": 28860,
+      "label_counts": {
+        "-1": 28860
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -6.347941557818558,
+        -71.5232827719301,
+        -3.771255495920901
+      ],
+      "max_xyz": [
+        -1.777629057818558,
+        -66.2992837484926,
+        1.9757442446796851
+      ],
+      "dimensions": [
+        4.5703125,
+        5.2239990234375,
+        5.746999740600586
+      ]
+    },
+    {
+      "tree_id": 3999,
+      "point_count": 2706,
+      "label_counts": {
+        "-1": 2706
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -11.839640776568558,
+        -97.0712564047426,
+        -3.80625534333301
+      ],
+      "max_xyz": [
+        -9.283000151568558,
+        -94.0052163656801,
+        0.46474456511425544
+      ],
+      "dimensions": [
+        2.556640625,
+        3.0660400390625,
+        4.270999908447266
+      ]
+    },
+    {
+      "tree_id": 4000,
+      "point_count": 10469,
+      "label_counts": {
+        "-1": 10469
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -7.999797026568558,
+        -82.4792153891176,
+        -3.8502559689433618
+      ],
+      "max_xyz": [
+        -3.982707182818558,
+        -78.6402261313051,
+        -0.21225548066211175
+      ],
+      "dimensions": [
+        4.01708984375,
+        3.8389892578125,
+        3.63800048828125
+      ]
+    },
+    {
+      "tree_id": 4001,
+      "point_count": 1794,
+      "label_counts": {
+        "-1": 1794
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -17.270793120318558,
+        -106.6202066000551,
+        -4.107255938425784
+      ],
+      "max_xyz": [
+        -15.951945464068558,
+        -104.9372232016176,
+        0.49474334441113044
+      ],
+      "dimensions": [
+        1.31884765625,
+        1.6829833984375,
+        4.601999282836914
+      ]
+    },
+    {
+      "tree_id": 4002,
+      "point_count": 617,
+      "label_counts": {
+        "-1": 617
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -14.324015776568558,
+        -87.1142251547426,
+        -4.186256411448245
+      ],
+      "max_xyz": [
+        -13.145793120318558,
+        -85.8083169516176,
+        -0.3142566708476586
+      ],
+      "dimensions": [
+        1.17822265625,
+        1.305908203125,
+        3.871999740600586
+      ]
+    },
+    {
+      "tree_id": 4003,
+      "point_count": 2482,
+      "label_counts": {
+        "-1": 2482
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -11.802043120318558,
+        -87.9853189047426,
+        -3.888256075754885
+      ],
+      "max_xyz": [
+        -10.056925932818558,
+        -86.2082192953676,
+        -0.5002555874736352
+      ],
+      "dimensions": [
+        1.7451171875,
+        1.777099609375,
+        3.38800048828125
+      ]
+    },
+    {
+      "tree_id": 4004,
+      "point_count": 6259,
+      "label_counts": {
+        "-1": 6259
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -16.185832182818558,
+        -109.9622476156801,
+        -3.880255701914553
+      ],
+      "max_xyz": [
+        -13.039836089068558,
+        -106.9472329672426,
+        2.4707431765644507
+      ],
+      "dimensions": [
+        3.14599609375,
+        3.0150146484375,
+        6.350998878479004
+      ]
+    },
+    {
+      "tree_id": 4005,
+      "point_count": 20273,
+      "label_counts": {
+        "13": 20273
+      },
+      "raw_label_id": 13,
+      "benchmark_label_id": 13,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -17.827922026568558,
+        -112.3472573813051,
+        -2.9182558087260766
+      ],
+      "max_xyz": [
+        -14.056925932818558,
+        -108.6352212484926,
+        5.356744763478513
+      ],
+      "dimensions": [
+        3.77099609375,
+        3.7120361328125,
+        8.27500057220459
+      ]
+    },
+    {
+      "tree_id": 4006,
+      "point_count": 3463,
+      "label_counts": {
+        "-1": 3463
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -15.300578276568558,
+        -99.3212564047426,
+        -3.905256274119143
+      ],
+      "max_xyz": [
+        -13.012980620318558,
+        -97.1003091391176,
+        -0.9642562893779321
+      ],
+      "dimensions": [
+        2.28759765625,
+        2.220947265625,
+        2.940999984741211
+      ]
+    },
+    {
+      "tree_id": 4007,
+      "point_count": 1851,
+      "label_counts": {
+        "-1": 1851
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -15.521769682818558,
+        -102.0063149984926,
+        -3.8082561520488305
+      ],
+      "max_xyz": [
+        -13.549601714068558,
+        -100.1072671469301,
+        -1.328255656138186
+      ],
+      "dimensions": [
+        1.97216796875,
+        1.8990478515625,
+        2.4800004959106445
+      ]
+    },
+    {
+      "tree_id": 4008,
+      "point_count": 3881,
+      "label_counts": {
+        "-1": 3881
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -13.741984526568558,
+        -92.1372964438051,
+        -4.005255701914553
+      ],
+      "max_xyz": [
+        -10.633586089068558,
+        -89.7142007406801,
+        0.6937446566669898
+      ],
+      "dimensions": [
+        3.1083984375,
+        2.423095703125,
+        4.699000358581543
+      ]
+    },
+    {
+      "tree_id": 4009,
+      "point_count": 3229,
+      "label_counts": {
+        "-1": 3229
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -17.526652495318558,
+        -104.9552896078676,
+        -4.054256441965823
+      ],
+      "max_xyz": [
+        -15.944621245318558,
+        -103.5552651938051,
+        1.4067440005390601
+      ],
+      "dimensions": [
+        1.58203125,
+        1.4000244140625,
+        5.461000442504883
+      ]
+    },
+    {
+      "tree_id": 4010,
+      "point_count": 1127,
+      "label_counts": {
+        "-1": 1127
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -17.186808745318558,
+        -109.3952310141176,
+        -4.024255755320315
+      ],
+      "max_xyz": [
+        -15.469035307818558,
+        -107.9922769125551,
+        1.6327438326923804
+      ],
+      "dimensions": [
+        1.7177734375,
+        1.4029541015625,
+        5.656999588012695
+      ]
+    },
+    {
+      "tree_id": 4011,
+      "point_count": 2571,
+      "label_counts": {
+        "-1": 2571
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -14.731730620318558,
+        -90.0882241781801,
+        -4.159255984202151
+      ],
+      "max_xyz": [
+        -13.074992339068558,
+        -88.2802407797426,
+        0.2997436495869117
+      ],
+      "dimensions": [
+        1.65673828125,
+        1.8079833984375,
+        4.4589996337890625
+      ]
+    },
+    {
+      "tree_id": 4012,
+      "point_count": 1682,
+      "label_counts": {
+        "-1": 1682
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -17.807902495318558,
+        -108.6812417563051,
+        -4.008255961313967
+      ],
+      "max_xyz": [
+        -16.183879057818558,
+        -106.5982339438051,
+        0.5527439089863257
+      ],
+      "dimensions": [
+        1.6240234375,
+        2.0830078125,
+        4.560999870300293
+      ]
+    },
+    {
+      "tree_id": 4013,
+      "point_count": 40212,
+      "label_counts": {
+        "-1": 40212
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -27.390910307818558,
+        -86.1012857016176,
+        -3.8222560910136743
+      ],
+      "max_xyz": [
+        -20.188761870318558,
+        -80.1912515219301,
+        2.525743481740232
+      ],
+      "dimensions": [
+        7.2021484375,
+        5.9100341796875,
+        6.347999572753906
+      ]
+    },
+    {
+      "tree_id": 4014,
+      "point_count": 40587,
+      "label_counts": {
+        "-1": 40587
+      },
+      "raw_label_id": -1,
+      "benchmark_label_id": null,
+      "is_label_consistent": true,
+      "is_classification_valid": false,
+      "min_xyz": [
+        -24.805949370318558,
+        -77.4172036703676,
+        -3.8202562359721703
+      ],
+      "max_xyz": [
+        -18.387980620318558,
+        -71.5102212484926,
+        2.6487445803730445
+      ],
+      "dimensions": [
+        6.41796875,
+        5.906982421875,
+        6.469000816345215
+      ]
+    },
+    {
+      "tree_id": 4015,
+      "point_count": 82080,
+      "label_counts": {
+        "1": 82080
+      },
+      "raw_label_id": 1,
+      "benchmark_label_id": 1,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        5.881062348431442,
+        96.6587240640074,
+        -3.826255801096682
+      ],
+      "max_xyz": [
+        12.769245942181442,
+        105.3497641030699,
+        5.726743695363279
+      ],
+      "dimensions": [
+        6.88818359375,
+        8.6910400390625,
+        9.552999496459961
+      ]
+    },
+    {
+      "tree_id": 4016,
+      "point_count": 13838,
+      "label_counts": {
+        "13": 13838
+      },
+      "raw_label_id": 13,
+      "benchmark_label_id": 13,
+      "is_label_consistent": true,
+      "is_classification_valid": true,
+      "min_xyz": [
+        -13.340617339068558,
+        -116.8932778891176,
+        -3.3672561673076196
+      ],
+      "max_xyz": [
+        -8.633586089068558,
+        -112.1672036703676,
+        3.3587436648457007
+      ],
+      "dimensions": [
+        4.70703125,
+        4.72607421875,
+        6.72599983215332
+      ]
+    }
+  ],
+  "road_id": "26",
+  "trajectory_id": "1",
+  "ply_path": "D:\\TREE\\lidar data\\whu\\26\\PCD\\1.ply",
+  "annotation_source": "embedded",
+  "chunk_size": 1000000,
+  "chunk_count": 8,
+  "benchmark_instance_histogram": {
+    "0": 1,
+    "1": 28,
+    "4": 7,
+    "11": 2,
+    "13": 4,
+    "18": 2
+  },
+  "elapsed_seconds": 0.5233
+}

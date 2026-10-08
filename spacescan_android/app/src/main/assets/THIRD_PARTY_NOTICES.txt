@@ -1,0 +1,17 @@
+SpaceScan Trees Offline mobile evaluation build, 2026-09-18.
+Application source is provided under GNU AGPL-3.0-or-later with this evaluation package.
+No training images or third-party reference photographs are bundled.
+
+Model: Ultralytics YOLO11s-cls architecture, existing project-trained weights and a previously fitted, validation-locked KD classifier head; exported without further fitting. Ultralytics: AGPL-3.0, https://github.com/ultralytics/ultralytics
+Full AGPL text is bundled in AGPL-3.0.txt.
+
+ONNX Runtime: MIT License, copyright Microsoft Corporation. https://github.com/microsoft/onnxruntime
+Full licence is bundled in ONNXRUNTIME-LICENSE.txt. Third-party notices from the runtime distribution are provided in the source package.
+
+The image-resizing implementation follows the Pillow antialiased bicubic convention; Pillow licensing notice is in PILLOW-LICENSE.txt.
+
+AndroidX ExifInterface 1.4.2: Copyright The Android Open Source Project, Apache License 2.0. Full licence is bundled in APACHE-2.0.txt. https://developer.android.com/jetpack/androidx/releases/exifinterface
+
+This is a private evaluation build. Public distribution of project-derived model weights requires a separate review of training-data rights. Open-source notices are not a grant of rights to source photographs.
+
+影像僅在本機處理；沒有網絡權限。刪除應用程式會刪除其本機紀錄。系統相機、相簿或檔案選擇器是獨立應用程式，其自身網絡行為不由本應用程式控制。

@@ -1,0 +1,12 @@
+{
+  "arcpy_launcher": "C:\\Program Files\\ArcGIS\\Pro\\bin\\Python\\Scripts\\propy.bat",
+  "windows_user_profile": "C:\\Users\\57680",
+  "allowed_input_roots": [
+    "D:\\TREE"
+  ],
+  "allowed_output_roots": [
+    "D:\\TREE\\gis_output"
+  ],
+  "worker_timeout_seconds": 600,
+  "audit_log": "D:\\TREE\\tools\\arcgis-pro-mcp\\logs\\tool_calls.jsonl"
+}

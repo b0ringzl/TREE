@@ -1,0 +1,58 @@
+{
+  "model": "SSTv1",
+  "output_count": 148,
+  "encoder_sha256": "ac2e37c2f89ef8e6b889176a9a3f418970ad9db15a218bd29e3321e95c46ae97",
+  "temperature": 1.8877486253633864,
+  "ensemble": "three member probability mean; unchanged foxtail zero-shot extension",
+  "version": "sstv1-aquilaria-user-crops-20260919-h120",
+  "display_version": "SSTv1-H120",
+  "release_date": "2026-09-19",
+  "members": [
+    {
+      "file": "member_1.pt",
+      "sha256": "8150d64e1a026e36477d0add6689e388a28efa44987e60fe37cedeb18d4a7da9",
+      "step": 120,
+      "source": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\SSTv1_Aquilaria_UserCrops_20260919_v2\\H_crops_targeted_002\\step_120.pt"
+    },
+    {
+      "file": "member_2.pt",
+      "sha256": "0086fc8bce0f8e26d377c7f73193f3b43ae088d4af180dd4a66e5458940bf0ff",
+      "step": 120,
+      "source": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\SSTv1_Aquilaria_UserCrops_20260919_v2\\H_crops_targeted_002\\step_120.pt"
+    },
+    {
+      "file": "member_3.pt",
+      "sha256": "bbdfb4065c94c488b1986662bc82f5d58cebe3185b73c83630c75db017a2bd21",
+      "step": 120,
+      "source": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\SSTv1_Aquilaria_UserCrops_20260919_v2\\H_crops_targeted_002\\step_120.pt"
+    }
+  ],
+  "source_run": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\SSTv1_Aquilaria_UserCrops_20260919_v2",
+  "source_checkpoint": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\SSTv1_Aquilaria_UserCrops_20260919_v2\\H_crops_targeted_002\\step_120.pt",
+  "source_checkpoint_sha256": "9ded1187ad1ed71b825b8959f5002c3060bc1965153ce6d71155a9d618e87488",
+  "labels_sha256": "0f36ce2f3b5a3eaec909ab4e872e9b1c369041a70168799905bd44650569b925",
+  "pre_deployment_backup": "C:\\Users\\25041725G\\Desktop\\receive\\TREE\\outputs\\SSTv1_Aquilaria_H120_deployment_20260919_v1\\pre_training_backup",
+  "user_authorized": true,
+  "authorization": "没关系，先替换正式demo",
+  "training_performed_during_deployment": false,
+  "selection": "Explicit user-authorized H120 override, NOT the validation-selected checkpoint",
+  "validation_gate_passed": false,
+  "preserved_selection_lock_sha256": "5e8626426caff76df04e7aaa06cdcd002f1f8f8423d0e89029047f06acd46007",
+  "known_regressions": {
+    "development_Aquilaria_FP": [
+      7,
+      10
+    ],
+    "development_Artocarpus_TP": [
+      10,
+      9
+    ],
+    "development_overall_correct": [
+      2304,
+      2302
+    ],
+    "development_overall_n": 2650
+  },
+  "scope": "Formal Web/Windows single-image branch only; unchanged image preprocessing, original teacher/PTv2 fusion and Android package",
+  "rights": "Private local evaluation only; not a public redistribution grant"
+}

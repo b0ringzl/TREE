@@ -1,0 +1,1014 @@
+{
+  "status": "passed",
+  "scope": "quality-selected demo subset, NOT generalization benchmark",
+  "checks": [
+    "image_only_passed",
+    "point_only_passed",
+    "multipart_paired_False_passed",
+    "multipart_paired_True_passed",
+    "unsupported_hk_point_unknown_passed",
+    "empty_input_rejected",
+    "nonfinite_points_rejected",
+    "npz_label_metadata_ignored",
+    "quality_dark_rejected",
+    "quality_blur_rejected",
+    "all_36_known_classes_have_two_samples"
+  ],
+  "sample_count": 76,
+  "known_sample_results": {
+    "hongkong": {
+      "total": 38,
+      "correct": 26,
+      "unknown": 11
+    },
+    "wuhan": {
+      "total": 34,
+      "correct": 24,
+      "unknown": 7
+    }
+  },
+  "details": [
+    {
+      "id": "hongkong_001",
+      "domain": "hongkong",
+      "truth": "Ravenala madagascariensis",
+      "prediction": "Ravenala madagascariensis",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.44
+    },
+    {
+      "id": "hongkong_002",
+      "domain": "hongkong",
+      "truth": "Ravenala madagascariensis",
+      "prediction": "Ravenala madagascariensis",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_003",
+      "domain": "hongkong",
+      "truth": "Araucaria columnaris(Araucaria heterophylla)",
+      "prediction": "Araucaria columnaris(Araucaria heterophylla)",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_004",
+      "domain": "hongkong",
+      "truth": "Araucaria columnaris(Araucaria heterophylla)",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_005",
+      "domain": "hongkong",
+      "truth": "Livistona chinensis",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_006",
+      "domain": "hongkong",
+      "truth": "Livistona chinensis",
+      "prediction": "Livistona chinensis",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_007",
+      "domain": "hongkong",
+      "truth": "Thevetia peruviana",
+      "prediction": "Thevetia peruviana",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_008",
+      "domain": "hongkong",
+      "truth": "Thevetia peruviana",
+      "prediction": "Thevetia peruviana",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_009",
+      "domain": "hongkong",
+      "truth": "Casuarina equisetifolia",
+      "prediction": "Casuarina equisetifolia",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.03
+    },
+    {
+      "id": "hongkong_010",
+      "domain": "hongkong",
+      "truth": "Casuarina equisetifolia",
+      "prediction": "Casuarina equisetifolia",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_011",
+      "domain": "hongkong",
+      "truth": "Michelia x alba",
+      "prediction": "Michelia x alba",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_012",
+      "domain": "hongkong",
+      "truth": "Michelia x alba",
+      "prediction": "Michelia x alba",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_013",
+      "domain": "hongkong",
+      "truth": "Macaranga tanarius",
+      "prediction": "Macaranga tanarius",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_014",
+      "domain": "hongkong",
+      "truth": "Macaranga tanarius",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_015",
+      "domain": "hongkong",
+      "truth": "Eucalyptus urophylla",
+      "prediction": "Eucalyptus urophylla",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_016",
+      "domain": "hongkong",
+      "truth": "Eucalyptus urophylla",
+      "prediction": "Eucalyptus urophylla",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_017",
+      "domain": "hongkong",
+      "truth": "Machilus velutina",
+      "prediction": "Machilus velutina",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_018",
+      "domain": "hongkong",
+      "truth": "Machilus velutina",
+      "prediction": "Machilus velutina",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_019",
+      "domain": "hongkong",
+      "truth": "Plumeria rubra",
+      "prediction": "Plumeria rubra",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_020",
+      "domain": "hongkong",
+      "truth": "Plumeria rubra",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_021",
+      "domain": "hongkong",
+      "truth": "Elaeocarpus hainanensis",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_022",
+      "domain": "hongkong",
+      "truth": "Elaeocarpus hainanensis",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_023",
+      "domain": "hongkong",
+      "truth": "Podocarpus macrophyllus",
+      "prediction": "Livistona chinensis",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_024",
+      "domain": "hongkong",
+      "truth": "Podocarpus macrophyllus",
+      "prediction": "Podocarpus macrophyllus",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_025",
+      "domain": "hongkong",
+      "truth": "Lagerstroemia speciosa",
+      "prediction": "Lagerstroemia speciosa",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_026",
+      "domain": "hongkong",
+      "truth": "Lagerstroemia speciosa",
+      "prediction": "Lagerstroemia speciosa",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_027",
+      "domain": "hongkong",
+      "truth": "Caryota mitis",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_028",
+      "domain": "hongkong",
+      "truth": "Caryota mitis",
+      "prediction": "Caryota mitis",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_029",
+      "domain": "hongkong",
+      "truth": "Reevesia thyrsoidea",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_030",
+      "domain": "hongkong",
+      "truth": "Reevesia thyrsoidea",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_031",
+      "domain": "hongkong",
+      "truth": "Terminalia catappa",
+      "prediction": "Terminalia catappa",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_032",
+      "domain": "hongkong",
+      "truth": "Terminalia catappa",
+      "prediction": "Terminalia catappa",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_033",
+      "domain": "hongkong",
+      "truth": "Celtis sinensis",
+      "prediction": "Celtis sinensis",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_034",
+      "domain": "hongkong",
+      "truth": "Celtis sinensis",
+      "prediction": "Celtis sinensis",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_035",
+      "domain": "hongkong",
+      "truth": "Diospyros eriantha",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_036",
+      "domain": "hongkong",
+      "truth": "Diospyros eriantha",
+      "prediction": "Diospyros eriantha",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "hongkong_037",
+      "domain": "hongkong",
+      "truth": "Roystonea regia",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "hongkong_038",
+      "domain": "hongkong",
+      "truth": "Roystonea regia",
+      "prediction": "Roystonea regia",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "wuhan_039",
+      "domain": "wuhan",
+      "truth": "Cedrus deodara",
+      "prediction": "Cedrus deodara",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.42
+    },
+    {
+      "id": "wuhan_040",
+      "domain": "wuhan",
+      "truth": "Cedrus deodara",
+      "prediction": "Cedrus deodara",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_041",
+      "domain": "wuhan",
+      "truth": "Malus x micromalus",
+      "prediction": "Prunus cerasifera 'atropurpurea'",
+      "correct": false,
+      "quality_caution": true,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_042",
+      "domain": "wuhan",
+      "truth": "Malus x micromalus",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": true,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_043",
+      "domain": "wuhan",
+      "truth": "Metasequoia glyptostroboides",
+      "prediction": "Metasequoia glyptostroboides",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_044",
+      "domain": "wuhan",
+      "truth": "Metasequoia glyptostroboides",
+      "prediction": "Metasequoia glyptostroboides",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_045",
+      "domain": "wuhan",
+      "truth": "Prunus cerasifera 'atropurpurea'",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_046",
+      "domain": "wuhan",
+      "truth": "Prunus cerasifera 'atropurpurea'",
+      "prediction": "Prunus cerasifera 'atropurpurea'",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_047",
+      "domain": "wuhan",
+      "truth": "Photinia x fraseri",
+      "prediction": "Photinia x fraseri",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_048",
+      "domain": "wuhan",
+      "truth": "Photinia x fraseri",
+      "prediction": "Photinia x fraseri",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_049",
+      "domain": "wuhan",
+      "truth": "Zelkova serrata",
+      "prediction": "Zelkova serrata",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_050",
+      "domain": "wuhan",
+      "truth": "Zelkova serrata",
+      "prediction": "Zelkova serrata",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_051",
+      "domain": "wuhan",
+      "truth": "Koelreuteria paniculata",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_052",
+      "domain": "wuhan",
+      "truth": "Koelreuteria paniculata",
+      "prediction": "Koelreuteria paniculata",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_053",
+      "domain": "wuhan",
+      "truth": "Magnolia grandiflora",
+      "prediction": "Magnolia grandiflora",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_054",
+      "domain": "wuhan",
+      "truth": "Magnolia grandiflora",
+      "prediction": "Magnolia grandiflora",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_055",
+      "domain": "wuhan",
+      "truth": "Lagerstroemia indica",
+      "prediction": "Platanus x acerifolia",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_056",
+      "domain": "wuhan",
+      "truth": "Lagerstroemia indica",
+      "prediction": "Lagerstroemia indica",
+      "correct": true,
+      "quality_caution": true,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_057",
+      "domain": "wuhan",
+      "truth": "Ginkgo biloba",
+      "prediction": "Ginkgo biloba",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_058",
+      "domain": "wuhan",
+      "truth": "Ginkgo biloba",
+      "prediction": "Ginkgo biloba",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_059",
+      "domain": "wuhan",
+      "truth": "Osmanthus fragrans",
+      "prediction": "Osmanthus fragrans",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_060",
+      "domain": "wuhan",
+      "truth": "Osmanthus fragrans",
+      "prediction": "Osmanthus fragrans",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.13
+    },
+    {
+      "id": "wuhan_061",
+      "domain": "wuhan",
+      "truth": "Acer pictum subsp. mono",
+      "prediction": "Zelkova serrata",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_062",
+      "domain": "wuhan",
+      "truth": "Acer pictum subsp. mono",
+      "prediction": "Acer pictum subsp. mono",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_063",
+      "domain": "wuhan",
+      "truth": "Platanus x acerifolia",
+      "prediction": "Platanus x acerifolia",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_064",
+      "domain": "wuhan",
+      "truth": "Platanus x acerifolia",
+      "prediction": "Platanus x acerifolia",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_065",
+      "domain": "wuhan",
+      "truth": "Prunus serrulata",
+      "prediction": "Prunus serrulata",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_066",
+      "domain": "wuhan",
+      "truth": "Prunus serrulata",
+      "prediction": "Prunus serrulata",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "wuhan_067",
+      "domain": "wuhan",
+      "truth": "Acer palmatum var. atropurpureum",
+      "prediction": "Acer palmatum var. atropurpureum",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_068",
+      "domain": "wuhan",
+      "truth": "Acer palmatum var. atropurpureum",
+      "prediction": "Acer palmatum var. atropurpureum",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_069",
+      "domain": "wuhan",
+      "truth": "Sophora japonica",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_070",
+      "domain": "wuhan",
+      "truth": "Sophora japonica",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_071",
+      "domain": "wuhan",
+      "truth": "Ligustrum lucidum",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "wuhan_072",
+      "domain": "wuhan",
+      "truth": "Ligustrum lucidum",
+      "prediction": "Unknown",
+      "correct": false,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.06
+    },
+    {
+      "id": "hongkong_073",
+      "domain": "hongkong",
+      "truth": "Unknown",
+      "prediction": "Unknown",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.02
+    },
+    {
+      "id": "wuhan_074",
+      "domain": "wuhan",
+      "truth": "Unknown",
+      "prediction": "Unknown",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image",
+        "point",
+        "fusion"
+      ],
+      "elapsed_seconds": 0.05
+    },
+    {
+      "id": "quality_dark",
+      "domain": "hongkong",
+      "truth": "Unknown",
+      "prediction": "Unknown",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    },
+    {
+      "id": "quality_blur",
+      "domain": "hongkong",
+      "truth": "Unknown",
+      "prediction": "Unknown",
+      "correct": true,
+      "quality_caution": false,
+      "mode_outputs": [
+        "image"
+      ],
+      "elapsed_seconds": 0.01
+    }
+  ]
+}

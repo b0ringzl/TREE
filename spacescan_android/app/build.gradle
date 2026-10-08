@@ -1,0 +1,22 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'org.spacescan.trees.offline'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'org.spacescan.trees.offline'
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0-offline'
+        ndk { abiFilters 'arm64-v8a', 'x86_64' }
+    }
+    buildTypes { debug { debuggable true }; release { minifyEnabled false } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    androidResources { noCompress += ['onnx'] }
+    packaging { resources { excludes += ['META-INF/INDEX.LIST', 'META-INF/DEPENDENCIES'] } }
+}
+dependencies {
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.23.2'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'
+}

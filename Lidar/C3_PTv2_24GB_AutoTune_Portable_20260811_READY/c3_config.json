@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "stage": "C3",
+  "purpose": "fresh fixed-configuration three-seed PTv2 repeat on a 24 GB GPU",
+  "seeds": [
+    20260728,
+    20260729,
+    20260730
+  ],
+  "epochs": 120,
+  "batch_size": 48,
+  "eval_batch_size": 64,
+  "learning_rate": 0.001,
+  "min_learning_rate": 0.00001,
+  "weight_decay": 0.05,
+  "label_smoothing": 0.1,
+  "patience": 20,
+  "workers": 0,
+  "progress_every": 10,
+  "amp": true,
+  "checkpoint_policy": "all seeds start fresh; exact same-seed resume only after interruption",
+  "test_policy": "evaluate locked official test split after best validation selection",
+  "auto_tune": {
+    "enabled": true,
+    "candidates": [
+      40,
+      48,
+      56,
+      64
+    ],
+    "warmup_steps": 2,
+    "smoke_steps": 20,
+    "max_peak_allocated_fraction": 0.82,
+    "selection_metric": "training samples per second",
+    "selected_batch": null,
+    "selected_at": null
+  },
+  "power_guard": {
+    "keep_display_on": true,
+    "prevent_system_sleep": true,
+    "scope": "setup, tuning, and training only"
+  },
+  "historical_c2_policy": "C2 seed 20260731 remains a non-repeat historical baseline"
+}

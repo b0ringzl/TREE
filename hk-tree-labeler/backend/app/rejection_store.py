@@ -9,6 +9,7 @@ from typing import Any
 
 from .config import ROOT_DIR, assert_inside_root, safe_name
 from .data_access import TreeRecord
+from .geometry import haversine_m
 
 
 class RejectionStore:
@@ -60,11 +61,71 @@ class RejectionStore:
             lon = float(item.get("lon", 0))
         return f"{pano_id}|{lat:.7f}|{lon:.7f}"
 
-    def is_tree_rejected(self, species: str, record: TreeRecord) -> bool:
+    def is_tree_rejected(self, species: str, record: TreeRecord | dict[str, Any]) -> bool:
         with self._lock:
             data = self._load()
             bucket = self._bucket(data, species)
             return self.tree_key(record) in bucket.get("trees", {})
+
+    def tree_proximity_penalty(self, species: str, record: TreeRecord | dict[str, Any], radius_m: float) -> dict[str, float | int | bool]:
+        if isinstance(record, TreeRecord):
+            lat = record.lat
+            lon = record.lon
+        else:
+            lat = float(record.get("lat", 0))
+            lon = float(record.get("lon", 0))
+        with self._lock:
+            data = self._load()
+            bucket = self._bucket(data, species)
+            rejected = bucket.get("trees", {})
+            nearest = float("inf")
+            nearby_count = 0
+            for item in rejected.values():
+                tree = item.get("tree", {})
+                try:
+                    distance = haversine_m(lat, lon, float(tree["lat"]), float(tree["lon"]))
+                except (KeyError, TypeError, ValueError):
+                    continue
+                nearest = min(nearest, distance)
+                if distance <= radius_m:
+                    nearby_count += 1
+            return {
+                "nearby": nearby_count > 0,
+                "nearby_count": nearby_count,
+                "nearest_rejected_m": nearest,
+            }
+
+    def unreject_tree(self, species: str, tree_id: str) -> None:
+        with self._lock:
+            data = self._load()
+            bucket = self._bucket(data, species)
+            safe_tree_id = safe_name(tree_id)
+            removed_trees = [
+                key
+                for key, value in bucket.get("trees", {}).items()
+                if safe_name(str(value.get("tree", {}).get("tree_id", ""))) == safe_tree_id
+            ]
+            removed_views = [
+                key
+                for key, value in bucket.get("views", {}).items()
+                if safe_name(str(value.get("tree_id", ""))) == safe_tree_id
+            ]
+            for key in removed_trees:
+                bucket["trees"].pop(key, None)
+            for key in removed_views:
+                bucket["views"].pop(key, None)
+            if removed_trees or removed_views:
+                data.setdefault("events", []).append(
+                    {
+                        "type": "unreject_tree",
+                        "species": species,
+                        "tree_id": tree_id,
+                        "created_at": datetime.now(timezone.utc).isoformat(),
+                        "tree_count": len(removed_trees),
+                        "view_count": len(removed_views),
+                    }
+                )
+                self._save(data)
 
     def is_view_rejected(self, species: str, item: Any) -> bool:
         with self._lock:

@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-09-07T01:49:15+08:00",
+  "scope": "box_metrics_only",
+  "validation_frames": 61,
+  "validation_instances": 101,
+  "data_yaml": "C:/Users/25041725G/Desktop/receive/TREE/hk-tree-vmms/derived/tree_detector_iteration2_full_20260906/data.yaml",
+  "baseline": {
+    "weights": "C:/Users/25041725G/Desktop/receive/TREE/hk-tree-vmms/derived/training_runs/combined_tree_segmentation/yolo11m_seg_1024_20260901_104757/weights/best.pt",
+    "box_precision": 0.778374387108202,
+    "box_recall": 0.7425742574257426,
+    "box_map50": 0.7950085903136634,
+    "box_map50_95": 0.4235733303596921
+  },
+  "active_review_candidate": {
+    "weights": "C:/Users/25041725G/Desktop/receive/TREE/hk-tree-vmms/derived/training_runs/combined_tree_segmentation/yolo11m_seg_active_review_v2_20260906/weights/best.pt",
+    "box_precision": 0.7141978180445023,
+    "box_recall": 0.7029702970297029,
+    "box_map50": 0.7885844402575136,
+    "box_map50_95": 0.4381201094304702
+  },
+  "delta_candidate_minus_baseline": {
+    "box_precision": -0.0641765690636997,
+    "box_recall": -0.0396039603960397,
+    "box_map50": -0.0064241500561498,
+    "box_map50_95": 0.0145467790707781
+  },
+  "deployment_decision": "keep_baseline_detector",
+  "reason": "The candidate improves high-IoU localization but regresses precision, recall, and mAP50 on the same box-only validation set."
+}

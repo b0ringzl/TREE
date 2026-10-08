@@ -1,0 +1,113 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "WHU-STree 用户视觉质检" [level=1] [ref=e3]
+    - generic [ref=e4]: 用户已评价 0 / 38
+  - generic [ref=e5]:
+    - combobox [ref=e6]:
+      - option "分层抽检样本" [selected]
+      - option "全部 17,134 样本"
+    - combobox [ref=e7]:
+      - option "全部类别" [selected]
+      - option "0 · Platanus x acerifolia"
+      - option "1 · Cinnamomum camphora"
+      - option "2 · Lagerstroemia indica"
+      - option "3 · Osmanthus fragrans"
+      - option "4 · Koelreuteria paniculata"
+      - option "5 · Prunus cerasifera 'atropurpurea'"
+      - option "6 · Zelkova serrata"
+      - option "7 · Cedrus deodara"
+      - option "8 · Ginkgo biloba"
+      - option "9 · Acer palmatum var. atropurpureum"
+      - option "10 · Prunus serrulata"
+      - option "11 · Ligustrum lucidum"
+      - option "12 · Malus x micromalus"
+      - option "13 · Magnolia grandiflora"
+      - option "14 · Metasequoia glyptostroboides"
+      - option "15 · Sophora japonica"
+      - option "16 · Acer pictum subsp. mono"
+      - option "17 · Photinia x fraseri"
+      - option "18 · Others"
+    - combobox [ref=e8]:
+      - option "全部划分" [selected]
+      - option "train"
+      - option "val"
+      - option "test"
+    - combobox [ref=e9]:
+      - option "全部状态" [selected]
+      - option "未评价"
+      - option "通过"
+      - option "勉强可用"
+      - option "不通过"
+    - searchbox "查找 sample key / tree ID" [ref=e10]
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: 尚未选择样本
+        - generic [ref=e15]:
+          - button "点云叠加" [ref=e16] [cursor=pointer]
+          - button "原始裁剪" [ref=e17] [cursor=pointer]
+      - generic [ref=e18]:
+        - img "当前质检样本" [ref=e19]
+        - generic [ref=e20]: 正在载入
+      - generic [ref=e21]:
+        - button "上一棵" [ref=e22] [cursor=pointer]
+        - generic [ref=e23]: 0 / 0
+        - button "下一棵" [ref=e24] [cursor=pointer]
+    - complementary [ref=e25]:
+      - heading "样本信息" [level=2] [ref=e27]
+      - generic [ref=e28]:
+        - heading "你的评价" [level=2] [ref=e29]
+        - generic [ref=e30]:
+          - button "通过" [ref=e31] [cursor=pointer]
+          - button "勉强可用" [ref=e32] [cursor=pointer]
+          - button "不通过" [ref=e33] [cursor=pointer]
+      - generic [ref=e34]:
+        - heading "问题原因" [level=2] [ref=e35]
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - checkbox "投影错位" [ref=e38]
+            - text: 投影错位
+          - generic [ref=e39]:
+            - checkbox "目标缺失" [ref=e40]
+            - text: 目标缺失
+          - generic [ref=e41]:
+            - checkbox "严重遮挡" [ref=e42]
+            - text: 严重遮挡
+          - generic [ref=e43]:
+            - checkbox "邻树干扰" [ref=e44]
+            - text: 邻树干扰
+          - generic [ref=e45]:
+            - checkbox "模糊或曝光" [ref=e46]
+            - text: 模糊或曝光
+          - generic [ref=e47]:
+            - checkbox "背景干扰" [ref=e48]
+            - text: 背景干扰
+          - generic [ref=e49]:
+            - checkbox "疑似树种错误" [ref=e50]
+            - text: 疑似树种错误
+          - generic [ref=e51]:
+            - checkbox "其他" [ref=e52]
+            - text: 其他
+      - generic [ref=e53]:
+        - generic [ref=e54]: 处理动作
+        - combobox "处理动作" [ref=e55]:
+          - option "请选择" [selected]
+          - option "保留点云与图像"
+          - option "仅排除图像，保留点云"
+          - option "改用其他全景视角"
+          - option "加入重新裁剪队列"
+          - option "整棵从派生训练清单排除"
+      - generic [ref=e56]:
+        - generic [ref=e57]: 你的备注
+        - textbox "你的备注" [ref=e58]:
+          - /placeholder: 记录你看到的问题或处理要求
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - button "保存评价" [ref=e61] [cursor=pointer]
+          - button "保存并下一棵" [ref=e62] [cursor=pointer]
+        - generic [ref=e63]: 评价由你提交后才计入正式质检。
+      - generic [ref=e64]:
+        - heading "处理与收口" [level=2] [ref=e65]
+        - generic [ref=e66]:
+          - button "生成处理清单" [ref=e67] [cursor=pointer]
+          - button "完成当前范围质检" [ref=e68] [cursor=pointer]

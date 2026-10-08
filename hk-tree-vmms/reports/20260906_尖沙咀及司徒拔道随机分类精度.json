@@ -1,0 +1,19 @@
+{
+  "status": "in_progress",
+  "sample_frames": 120,
+  "overall": {
+    "unreviewed_frames": 120,
+    "adjusted_accuracy": null
+  },
+  "by_route": {
+    "jianshazui": {
+      "unreviewed_frames": 60,
+      "adjusted_accuracy": null
+    },
+    "stubbs_road": {
+      "unreviewed_frames": 60,
+      "adjusted_accuracy": null
+    }
+  },
+  "scoring": "deleted predictions are errors; corrected species are errors; unchanged species are correct; Ficus labels are merged to 榕树"
+}

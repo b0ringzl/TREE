@@ -1,0 +1,293 @@
+{
+  "status": "passed",
+  "run_dir": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_tscmdl\\run_batch8_l2_lr001_seed20260727",
+  "run_type": "b4b_frozen_feature_fusion",
+  "best_epoch": 19,
+  "epochs_completed": 300,
+  "class_names": [
+    "Cinnamomum camphora",
+    "Lagerstroemia indica",
+    "Magnolia grandiflora"
+  ],
+  "split_sizes": {
+    "train": 420,
+    "val": 90,
+    "test": 90
+  },
+  "parameter_count": 3280899,
+  "history_epoch_seconds": 75.81756249989849,
+  "history_epoch_hours": 0.02106043402774958,
+  "reported_session_seconds": 80.04895899997791,
+  "resumed": false,
+  "best_validation_score": {
+    "macro_f1": 0.7993216506500848,
+    "accuracy": 0.8
+  },
+  "final_metrics": {
+    "val": {
+      "accuracy": 0.8,
+      "balanced_accuracy": 0.7999999999999999,
+      "macro_precision": 0.7995391705069125,
+      "macro_recall": 0.7999999999999999,
+      "macro_f1": 0.7993216506500848,
+      "confusion_matrix": [
+        [
+          24,
+          3,
+          3
+        ],
+        [
+          6,
+          22,
+          2
+        ],
+        [
+          1,
+          3,
+          26
+        ]
+      ],
+      "per_class": [
+        {
+          "class_index": 0,
+          "support": 30,
+          "precision": 0.7741935483870968,
+          "recall": 0.8,
+          "f1": 0.7868852459016393,
+          "scientific_name": "Cinnamomum camphora"
+        },
+        {
+          "class_index": 1,
+          "support": 30,
+          "precision": 0.7857142857142857,
+          "recall": 0.7333333333333333,
+          "f1": 0.7586206896551724,
+          "scientific_name": "Lagerstroemia indica"
+        },
+        {
+          "class_index": 2,
+          "support": 30,
+          "precision": 0.8387096774193549,
+          "recall": 0.8666666666666667,
+          "f1": 0.8524590163934426,
+          "scientific_name": "Magnolia grandiflora"
+        }
+      ],
+      "loss": 0.5697786331176757,
+      "sample_count": 90,
+      "elapsed_seconds": 0.021501599985640496,
+      "peak_allocated_mib": 68.33056640625
+    },
+    "test": {
+      "accuracy": 0.8333333333333334,
+      "balanced_accuracy": 0.8333333333333334,
+      "macro_precision": 0.8340517241379309,
+      "macro_recall": 0.8333333333333334,
+      "macro_f1": 0.8332422088572992,
+      "confusion_matrix": [
+        [
+          24,
+          4,
+          2
+        ],
+        [
+          2,
+          26,
+          2
+        ],
+        [
+          3,
+          2,
+          25
+        ]
+      ],
+      "per_class": [
+        {
+          "class_index": 0,
+          "support": 30,
+          "precision": 0.8275862068965517,
+          "recall": 0.8,
+          "f1": 0.8135593220338982,
+          "scientific_name": "Cinnamomum camphora"
+        },
+        {
+          "class_index": 1,
+          "support": 30,
+          "precision": 0.8125,
+          "recall": 0.8666666666666667,
+          "f1": 0.8387096774193549,
+          "scientific_name": "Lagerstroemia indica"
+        },
+        {
+          "class_index": 2,
+          "support": 30,
+          "precision": 0.8620689655172413,
+          "recall": 0.8333333333333334,
+          "f1": 0.847457627118644,
+          "scientific_name": "Magnolia grandiflora"
+        }
+      ],
+      "loss": 0.42775358955065407,
+      "sample_count": 90,
+      "elapsed_seconds": 0.023829000012483448,
+      "peak_allocated_mib": 68.33056640625
+    }
+  },
+  "predictions": {
+    "row_count": 180,
+    "split_counts": {
+      "test": 90,
+      "val": 90
+    },
+    "quality_marked_rows": 12,
+    "quality_histogram": {
+      "acceptable": 3,
+      "excellent": 5,
+      "good": 3,
+      "poor": 1
+    },
+    "metrics_recomputed_from_predictions": {
+      "val": {
+        "accuracy": 0.8,
+        "balanced_accuracy": 0.7999999999999999,
+        "macro_precision": 0.7995391705069125,
+        "macro_recall": 0.7999999999999999,
+        "macro_f1": 0.7993216506500848,
+        "confusion_matrix": [
+          [
+            24,
+            3,
+            3
+          ],
+          [
+            6,
+            22,
+            2
+          ],
+          [
+            1,
+            3,
+            26
+          ]
+        ],
+        "per_class": [
+          {
+            "class_index": 0,
+            "support": 30,
+            "precision": 0.7741935483870968,
+            "recall": 0.8,
+            "f1": 0.7868852459016393
+          },
+          {
+            "class_index": 1,
+            "support": 30,
+            "precision": 0.7857142857142857,
+            "recall": 0.7333333333333333,
+            "f1": 0.7586206896551724
+          },
+          {
+            "class_index": 2,
+            "support": 30,
+            "precision": 0.8387096774193549,
+            "recall": 0.8666666666666667,
+            "f1": 0.8524590163934426
+          }
+        ]
+      },
+      "test": {
+        "accuracy": 0.8333333333333334,
+        "balanced_accuracy": 0.8333333333333334,
+        "macro_precision": 0.8340517241379309,
+        "macro_recall": 0.8333333333333334,
+        "macro_f1": 0.8332422088572992,
+        "confusion_matrix": [
+          [
+            24,
+            4,
+            2
+          ],
+          [
+            2,
+            26,
+            2
+          ],
+          [
+            3,
+            2,
+            25
+          ]
+        ],
+        "per_class": [
+          {
+            "class_index": 0,
+            "support": 30,
+            "precision": 0.8275862068965517,
+            "recall": 0.8,
+            "f1": 0.8135593220338982
+          },
+          {
+            "class_index": 1,
+            "support": 30,
+            "precision": 0.8125,
+            "recall": 0.8666666666666667,
+            "f1": 0.8387096774193549
+          },
+          {
+            "class_index": 2,
+            "support": 30,
+            "precision": 0.8620689655172413,
+            "recall": 0.8333333333333334,
+            "f1": 0.847457627118644
+          }
+        ]
+      }
+    }
+  },
+  "plot_dimensions": {
+    "training_curves.png": [
+      2700,
+      810
+    ],
+    "confusion_matrix_val.png": [
+      1260,
+      1080
+    ],
+    "confusion_matrix_test.png": [
+      1260,
+      1080
+    ]
+  },
+  "checkpoint_epochs": {
+    "best": 19,
+    "last": 300
+  },
+  "feature_cache": {
+    "path": "D:\\TREE\\lidar data\\whu\\derived\\tscmdl\\b4_frozen_features\\b2e19_b3e166_center224\\features.pt",
+    "sha256": "372377bca02d98b7c559fe59cf7ee4fe2b5b315da705984be626f9a065b73ae3",
+    "bytes": 7393989
+  },
+  "source_checkpoint_sha256": {
+    "b2_best": "ef98e0b262e44fd20009b6f52eb4388ad76e7775455db3c8343001731bed8ae1",
+    "b3_best": "554282889f4386f23873eabd8419b05b0fd24f81becf5e2ddbff1fb0a8ff32b6"
+  },
+  "file_sizes_bytes": {
+    "best.pt": 13137645,
+    "last.pt": 26306441,
+    "run_config.json": 2906,
+    "training_history.json": 120177,
+    "training_history.csv": 51902,
+    "final_metrics.json": 3343,
+    "predictions.csv": 15943,
+    "training_curves.png": 275336,
+    "confusion_matrix_val.png": 77784,
+    "confusion_matrix_test.png": 78173,
+    "train.log": 50586
+  },
+  "sha256": {
+    "best.pt": "c34709d3d59873e53bfd51df7dc861e958eeb2e0bca7f8f3dadec0930fc79ea7",
+    "last.pt": "0cb1f5fb884d71d847e7115b7a0ed599c6861e817f8e1ccbdd8f3777279d73ed",
+    "final_metrics.json": "a2d19f7871eb28026bb6795ee5a0ae8cee59f8df0ba8dd4aad3d6d9b3fde3060",
+    "predictions.csv": "940bb2ed575ac875ced6dfe2510454b356bcf75388731c862352466703ca13ae"
+  },
+  "temporary_files": []
+}
