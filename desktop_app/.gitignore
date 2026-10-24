@@ -1,0 +1,10 @@
+dist/
+repair_backups/
+**/bin/
+**/obj/
+**/__pycache__/
+*.pyc
+**/Assets/*-source.jpg
+**/Assets/*-edit-source.png
+**/Assets/*-reference.png
+**/Assets/*-preview.jpg
