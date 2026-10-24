@@ -42,9 +42,10 @@ python desktop_app/release/build_release.py `
   --source-commit FULL_40_CHARACTER_COMMIT_SHA
 ```
 
-Run `python desktop_app/release/test_release.py -v` before building. Add the
-part files, the `.release.json` manifest, the source snapshot and installer
-scripts to the same **private** GitHub Release tag. The guarded
+Run `python desktop_app/release/test_release.py` before building. Keep the
+dirty-tree source snapshot local: it is a rollback copy, not a release asset.
+Add the part files, the `.release.json` manifest and installer scripts to the
+same **private** GitHub Release tag. The guarded
 `Publish-PrivateRelease.ps1` checks repository privacy and remote SHA-256
 before making a draft release downloadable. A GitHub source-code ZIP is not
 the desktop installer.

@@ -39,9 +39,10 @@ try {
         }
         $assets += $file
     }
+    # The full dirty-tree source snapshot is a local rollback artifact only.
+    # It can contain machine-specific paths and is never uploaded to GitHub.
     foreach ($name in @('Install-SpaceScanTrees.ps1','Install-FromGitHub.ps1',
-                       'Switch-SpaceScanTreesVersion.ps1','source-snapshot.zip',
-                       'source-snapshot-manifest.json')) {
+                       'Switch-SpaceScanTreesVersion.ps1')) {
         $file = Join-Path $bundle $name
         if (-not (Test-Path -LiteralPath $file)) { throw "Release asset absent: $name" }
         $assets += $file
