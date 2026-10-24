@@ -47,20 +47,26 @@ try {
         if (-not (Test-Path -LiteralPath $file)) { throw "Release asset absent: $name" }
         $assets += $file
     }
-    $existing = & $gh.Source api "repos/$Repository/releases/tags/$Version" 2>$null
-    if ($LASTEXITCODE -ne 0) {
+    $listed = & $gh.Source api "repos/$Repository/releases?per_page=100"
+    if ($LASTEXITCODE -ne 0) { throw 'Cannot inspect existing releases' }
+    $matches = @($listed | ConvertFrom-Json | Where-Object { $_.tag_name -eq $Version })
+    if ($matches.Count -eq 0) {
         & $gh.Source release create $Version --repo $Repository --target main `
             --draft --prerelease --title "SpaceScan Trees Desktop $Version (private evaluation)" `
             --notes 'Private Windows evaluation build. Verify GPU, WebView2, inference and cloud login on each new PC. Prior versions remain available for rollback.'
         if ($LASTEXITCODE -ne 0) { throw 'Unable to create draft release' }
-    } else {
-        $release = $existing | ConvertFrom-Json
-        if (-not $release.draft) { throw 'Release is already published; refusing to mutate assets' }
+        $listed = & $gh.Source api "repos/$Repository/releases?per_page=100"
+        if ($LASTEXITCODE -ne 0) { throw 'Cannot inspect newly created release' }
+        $matches = @($listed | ConvertFrom-Json | Where-Object { $_.tag_name -eq $Version })
     }
+    if ($matches.Count -ne 1 -or -not $matches[0].draft) {
+        throw 'Expected one draft release; refusing to mutate a published release'
+    }
+    $releaseId = [long]$matches[0].id
 
     foreach ($file in $assets) {
         $name = [IO.Path]::GetFileName($file)
-        $remote = & $gh.Source api "repos/$Repository/releases/tags/$Version"
+        $remote = & $gh.Source api "repos/$Repository/releases/$releaseId"
         if ($LASTEXITCODE -ne 0) { throw 'Cannot read release asset list' }
         $release = $remote | ConvertFrom-Json
         $found = @($release.assets | Where-Object { $_.name -eq $name })
@@ -70,7 +76,7 @@ try {
             if ($LASTEXITCODE -ne 0) { throw "Upload failed: $name" }
         }
     }
-    $remote = & $gh.Source api "repos/$Repository/releases/tags/$Version"
+    $remote = & $gh.Source api "repos/$Repository/releases/$releaseId"
     if ($LASTEXITCODE -ne 0) { throw 'Cannot verify uploaded assets' }
     $release = $remote | ConvertFrom-Json
     foreach ($file in $assets) {
