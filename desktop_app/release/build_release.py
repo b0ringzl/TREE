@@ -183,6 +183,62 @@ def tar_info(name: str, size: int) -> tarfile.TarInfo:
     return info
 
 
+def portable_overrides(stage: Path, files: list[SourceFile]) -> dict[str, bytes]:
+    """Remove local-machine paths in a copy, preserving the staged installation."""
+    source_root = json.loads((stage / "BUILD_INFO.json").read_text(encoding="utf-8")).get("source", "")
+    root_prefix = source_root.replace("\\", "/").rstrip("/") + "/"
+
+    def clean(value):
+        if isinstance(value, str):
+            normalized = value.replace("\\", "/")
+            if normalized.lower().startswith(root_prefix.lower()):
+                return "app/" + normalized[len(root_prefix):]
+            return value
+        if isinstance(value, list):
+            return [clean(item) for item in value]
+        if isinstance(value, dict):
+            return {clean(key): clean(item) for key, item in value.items()}
+        return value
+
+    overrides: dict[str, bytes] = {}
+    identity = "app/tools/demo_runtime_identity.py"
+    identity_path = stage / identity
+    if identity_path.is_file():
+        body = identity_path.read_text(encoding="utf-8")
+        patched, count = re.subn(
+            r"expected_python = Path\('[^']+python\.exe'\)\.resolve\(\)",
+            "expected_python = Path(sys.executable).resolve()", body,
+        )
+        if count != 1:
+            raise RuntimeError("Cannot make runtime process check portable")
+        patched = patched.replace("import json\n", "import json\nimport sys\n", 1)
+        overrides[identity] = patched.encode("utf-8")
+
+    for name in ("protocol.json", "selection_lock.json"):
+        relative = f"app/outputs/distillation/bioclip_probe_20260908_0227/{name}"
+        path = stage / relative
+        if path.is_file():
+            original = json.loads(path.read_text(encoding="utf-8"))
+            revised = clean(original)
+            overrides[relative] = (json.dumps(revised, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+            if source_root.lower().encode("utf-8") in overrides[relative].lower():
+                raise RuntimeError(f"Private path remains in {relative}")
+
+    model_manifest = json.loads((stage / "model_manifest.json").read_text(encoding="utf-8"))
+    listed = {row["file"] for row in model_manifest}
+    if not set(overrides).issubset(listed):
+        raise RuntimeError("Portable overrides are not in the verified model manifest")
+    for row in model_manifest:
+        data = overrides.get(row["file"])
+        if data is not None:
+            row["bytes"] = len(data)
+            row["sha256"] = hashlib.sha256(data).hexdigest()
+    overrides["model_manifest.json"] = (json.dumps(model_manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    if not set(overrides).issubset({row.relative for row in files}):
+        raise RuntimeError("Override target missing from package inventory")
+    return overrides
+
+
 def build(stage: Path, base: Path, output: Path, version: str,
           source_commit: str, part_bytes: int,
           source_snapshot_manifest: Path | None = None) -> Path:
@@ -218,9 +274,10 @@ def build(stage: Path, base: Path, output: Path, version: str,
         "model_weights_changed": False, "external_vmms_folder_not_bundled": True,
     }, ensure_ascii=False, indent=2).encode("utf-8")
     settings = b'{"vmms_root":"","dropbox_app_key":"","onedrive_client_id":""}\n'
-    generated = {"BUILD_INFO.json": build_info, "desktop-settings.json": settings}
+    generated = portable_overrides(stage, files)
+    generated.update({"BUILD_INFO.json": build_info, "desktop-settings.json": settings})
     records = [{"path": row.relative, "bytes": row.size, "sha256": row.sha256}
-               for row in files]
+               for row in files if row.relative not in generated]
     records += [{"path": name, "bytes": len(data),
                  "sha256": hashlib.sha256(data).hexdigest()}
                 for name, data in generated.items()]
@@ -233,6 +290,8 @@ def build(stage: Path, base: Path, output: Path, version: str,
             with tarfile.open(fileobj=compressed, mode="w|",
                               format=tarfile.PAX_FORMAT) as archive:
                 for row in files:
+                    if row.relative in generated:
+                        continue
                     with row.path.open("rb") as stream:
                         archive.addfile(tar_info(row.relative, row.size), stream)
                 for name, data in generated.items():

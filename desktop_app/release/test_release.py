@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from build_release import build, safe_relative, verify_parts
+from build_release import SourceFile, build, portable_overrides, safe_relative, verify_parts
 
 
 def sha(path: Path) -> str:
@@ -16,6 +16,42 @@ def sha(path: Path) -> str:
 
 
 class ReleaseTests(unittest.TestCase):
+    def test_portable_overrides_rehash_manifest(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="spacescan-portable-test-") as temp:
+            stage = Path(temp)
+            paths = {
+                "app/tools/demo_runtime_identity.py": (
+                    "import json\nfrom pathlib import Path\n"
+                    "expected_python = Path('C:/Users/private/python.exe').resolve()\n"
+                ),
+                "app/outputs/distillation/bioclip_probe_20260908_0227/protocol.json":
+                    json.dumps({"assets_sha256": {"C:/Users/private/TREE/data/a": "hash"}}),
+                "app/outputs/distillation/bioclip_probe_20260908_0227/selection_lock.json":
+                    json.dumps({"backup": "C:/Users/private/TREE/outputs/backup"}),
+            }
+            rows = []
+            for relative, content in paths.items():
+                path = stage / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(content, encoding="utf-8")
+                rows.append({"file": relative, "bytes": path.stat().st_size,
+                             "sha256": sha(path)})
+            manifest = stage / "model_manifest.json"
+            manifest.write_text(json.dumps(rows), encoding="utf-8")
+            (stage / "BUILD_INFO.json").write_text(
+                '{"source":"C:/Users/private/TREE"}', encoding="utf-8")
+            files = [SourceFile(row["file"], stage / row["file"],
+                                row["bytes"], row["sha256"]) for row in rows]
+            files.append(SourceFile("model_manifest.json", manifest,
+                                    manifest.stat().st_size, sha(manifest)))
+            overrides = portable_overrides(stage, files)
+            self.assertIn(b"sys.executable", overrides["app/tools/demo_runtime_identity.py"])
+            self.assertIn(b"app/data/a", overrides[next(p for p in paths if p.endswith("protocol.json"))])
+            self.assertNotIn(b"C:/Users/private", b"".join(overrides.values()))
+            rewritten = json.loads(overrides["model_manifest.json"])
+            for row in rewritten:
+                self.assertEqual(row["sha256"], hashlib.sha256(overrides[row["file"]]).hexdigest())
+
     def test_rejects_path_traversal(self) -> None:
         for value in ("../outside", "/absolute", "C:/drive", "nested/../../outside"):
             with self.assertRaises(ValueError):
