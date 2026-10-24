@@ -15,6 +15,7 @@ import io
 import json
 import os
 import re
+import shutil
 import tarfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -183,15 +184,34 @@ def tar_info(name: str, size: int) -> tarfile.TarInfo:
 
 
 def build(stage: Path, base: Path, output: Path, version: str,
-          source_commit: str, part_bytes: int) -> Path:
+          source_commit: str, part_bytes: int,
+          source_snapshot_manifest: Path | None = None) -> Path:
     if not VERSION_PATTERN.fullmatch(version):
         raise ValueError("Version must look like v2026.10.24.1")
     if not re.fullmatch(r"[0-9a-f]{40}", source_commit):
         raise ValueError("Source commit must be a full Git SHA-1")
     if not 1024 <= part_bytes < 2 * 1024**3:
         raise ValueError("Part size must be at least 1 KiB and under 2 GiB")
-    output.mkdir(parents=True, exist_ok=False)
+    source_snapshot = None
+    if source_snapshot_manifest is not None:
+        snapshot = json.loads(source_snapshot_manifest.read_text(encoding="utf-8"))
+        snapshot_zip = source_snapshot_manifest.with_name("source.zip")
+        if digest(snapshot_zip) != snapshot["archive_sha256"]:
+            raise RuntimeError("Source snapshot SHA-256 mismatch")
+        source_snapshot = {
+            "git_head": snapshot["git_head"],
+            "archive_sha256": snapshot["archive_sha256"],
+            "source_file_count": snapshot["source_file_count"],
+        }
     files = inventory(stage, base)
+    output.mkdir(parents=True, exist_ok=False)
+    for name in ("Install-SpaceScanTrees.ps1", "Install-FromGitHub.ps1",
+                 "Switch-SpaceScanTreesVersion.ps1"):
+        shutil.copy2(Path(__file__).with_name(name), output / name)
+    if source_snapshot_manifest is not None:
+        shutil.copy2(source_snapshot_manifest, output / "source-snapshot-manifest.json")
+        shutil.copy2(source_snapshot_manifest.with_name("source.zip"),
+                     output / "source-snapshot.zip")
     build_info = json.dumps({
         "kind": "private-windows-desktop-release", "version": version,
         "source_commit": source_commit, "training_performed": False,
@@ -223,6 +243,7 @@ def build(stage: Path, base: Path, output: Path, version: str,
         "format": 1, "product": "SpaceScan Trees Desktop", "version": version,
         "visibility": "private", "created_utc": datetime.now(timezone.utc).isoformat(),
         "source_commit": source_commit,
+        "application_source_snapshot": source_snapshot,
         "file_count": len(records),
         "uncompressed_bytes": sum(row["bytes"] for row in records),
         "parts": writer.parts, "files": records,
@@ -251,6 +272,7 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--version", required=True)
     parser.add_argument("--source-commit", required=True)
+    parser.add_argument("--source-snapshot-manifest", type=Path)
     parser.add_argument("--part-bytes", type=int, default=1_800_000_000)
     parser.add_argument("--verify-only", action="store_true")
     parser.add_argument("--inventory-only", action="store_true")
@@ -270,5 +292,6 @@ if __name__ == "__main__":
         if not args.stage or not args.base:
             parser.error("--stage and --base are required when building")
         path = build(args.stage, args.base, args.output, args.version,
-                     args.source_commit, args.part_bytes)
+                     args.source_commit, args.part_bytes,
+                     args.source_snapshot_manifest)
         print(f"RELEASE_BUNDLE_OK {path}")

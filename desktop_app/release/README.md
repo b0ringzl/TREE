@@ -38,6 +38,7 @@ python desktop_app/release/build_release.py `
   --stage C:\path\to\SpaceScan-Trees-Desktop-Private-20261023 `
   --output C:\path\to\releases\v2026.10.24.1 `
   --version v2026.10.24.1 `
+  --source-snapshot-manifest C:\path\to\local_snapshots\source-...\manifest.json `
   --source-commit FULL_40_CHARACTER_COMMIT_SHA
 ```
 
